@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shruhani Technologies — Fraud &amp; Credit Risk Intelligence for Indian BFSI</title>
+<meta name="description" content="Shruhani Technologies builds real-time fraud and credit risk intelligence for Indian banks, NBFCs, and lenders. See intent, not just identity." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#0A0E1A;
+    --ink-2:#10172A;
+    --ink-3:#172040;
+    --line-d:rgba(150,165,205,.14);
+    --paper:#F5F7FC;
+    --white:#FFFFFF;
+    --line-l:#E6EAF3;
+    --text:#0C1222;
+    --text-d:#EAEEF8;
+    --muted:#69748C;
+    --muted-d:#98A4C2;
+    --primary:#5B7CFA;
+    --primary-2:#3A56D4;
+    --approve:#27B582;
+    --review:#E6A23C;
+    --decline:#E2585E;
+    --r:14px;
+    --maxw:1140px;
+    --display:'Space Grotesk',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    color:var(--text);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--primary);
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--body);font-weight:600;font-size:15px;
+    padding:12px 22px;border-radius:10px;border:1px solid transparent;
+    cursor:pointer;transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover{background:var(--primary-2)}
+  .btn-ghost{background:transparent;color:var(--text-d);border-color:var(--line-d)}
+  .btn-ghost:hover{border-color:var(--muted-d)}
+  .btn-arrow::after{content:"→";font-family:var(--mono)}
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,14,26,.82);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line-d);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--text-d);font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em}
+  .brand .mark{
+    width:26px;height:26px;border-radius:7px;
+    background:linear-gradient(135deg,var(--primary),#8aa0ff);
+    position:relative;flex:none;
+  }
+  .brand .mark::after{
+    content:"";position:absolute;inset:7px;border-radius:3px;
+    border:2px solid rgba(255,255,255,.9);border-right-color:transparent;
+  }
+  .navlinks{display:flex;gap:30px;align-items:center}
+  .navlinks a{font-size:14.5px;color:var(--muted-d);transition:color .15s}
+  .navlinks a:hover{color:var(--text-d)}
+  .nav .btn-primary{padding:9px 18px;font-size:14px}
+  .navtoggle{display:none;background:none;border:0;color:var(--text-d);font-size:24px;cursor:pointer}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(900px 480px at 78% -10%, rgba(91,124,250,.20), transparent 60%),
+      radial-gradient(700px 500px at 5% 110%, rgba(39,181,130,.10), transparent 55%),
+      var(--ink);
+    color:var(--text-d);
+    border-bottom:1px solid var(--line-d);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;
+    padding:78px 0 86px;
+  }
+  .hero h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(2.4rem,5.2vw,4rem);line-height:1.04;letter-spacing:-.02em;
+    margin:18px 0 20px;
+  }
+  .hero h1 .em{color:var(--primary);}
+  .hero p.lede{font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--muted-d);max-width:34rem;margin-bottom:30px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* signal visual */
+  .signal-card{
+    background:linear-gradient(180deg,var(--ink-2),#0c1326);
+    border:1px solid var(--line-d);border-radius:18px;
+    padding:18px;box-shadow:0 30px 70px -30px rgba(0,0,0,.7);
+  }
+  .signal-card .cap{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted-d);display:flex;justify-content:space-between;margin:2px 6px 10px;
+  }
+  .signal-svg{width:100%;height:auto;display:block}
+  .signal-svg text{font-family:var(--mono);}
+
+  /* ---------- marquee strip ---------- */
+  .strip{background:var(--ink-2);border-bottom:1px solid var(--line-d);overflow:hidden}
+  .strip-inner{
+    display:flex;gap:0;white-space:nowrap;color:var(--muted-d);
+    font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    animation:scroll 26s linear infinite;
+  }
+  .strip-inner span{padding:16px 28px;position:relative}
+  .strip-inner span::after{content:"·";position:absolute;right:-3px;color:var(--primary)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- generic section ---------- */
+  .section{padding:88px 0}
+  .section-head{max-width:46rem;margin-bottom:48px}
+  .section-head h2{
+    font-family:var(--display);font-weight:600;letter-spacing:-.02em;
+    font-size:clamp(1.7rem,3.2vw,2.55rem);line-height:1.1;margin:14px 0 14px;
+  }
+  .section-head p{color:var(--muted);font-size:1.05rem}
+
+  .alt{background:var(--paper)}
+
+  /* problem callout */
+  .problem .lead{
+    font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,2.6vw,2rem);
+    line-height:1.28;letter-spacing:-.01em;max-width:40rem;
+  }
+  .problem .lead b{color:var(--primary-2);font-weight:600}
+  .problem .body{display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;margin-top:40px}
+  .problem .body p{color:var(--muted);font-size:1rem}
+  .problem .body h4{font-family:var(--display);font-size:1.02rem;margin-bottom:6px;color:var(--text)}
+
+  /* capability cards */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .card{
+    background:var(--white);border:1px solid var(--line-l);border-radius:var(--r);
+    padding:28px;transition:transform .18s ease, box-shadow .18s ease, border-color .18s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(20,30,60,.4);border-color:#d5dcec}
+  .card .ic{
+    width:42px;height:42px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px;
+    background:rgba(91,124,250,.1);color:var(--primary-2);
+  }
+  .card h3{font-family:var(--display);font-weight:600;font-size:1.18rem;margin-bottom:8px;letter-spacing:-.01em}
+  .card p{color:var(--muted);font-size:.97rem}
+  .card .ic svg{width:22px;height:22px}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:step}
+  .step{position:relative;padding-top:26px;border-top:2px solid var(--line-d)}
+  .step .n{
+    font-family:var(--mono);font-size:13px;color:var(--primary);letter-spacing:.1em;
+    position:absolute;top:-12px;left:0;background:var(--ink);padding-right:10px;
+  }
+  .step h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin-bottom:10px}
+  .step p{color:var(--muted-d);font-size:1rem}
+  .how{background:var(--ink);color:var(--text-d)}
+  .how .section-head h2{color:var(--text-d)}
+  .how .section-head p{color:var(--muted-d)}
+
+  /* audience */
+  .aud{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+  .pill-card{
+    border:1px solid var(--line-l);border-radius:12px;padding:22px 20px;background:var(--white);
+  }
+  .pill-card .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary-2);margin-bottom:10px}
+  .pill-card h4{font-family:var(--display);font-weight:600;font-size:1.05rem;margin-bottom:4px}
+  .pill-card p{color:var(--muted);font-size:.9rem}
+
+  /* security */
+  .sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .sec-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .tag{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;
+    border:1px solid var(--line-l);border-radius:999px;padding:8px 15px;color:var(--text);background:var(--white);
+  }
+  .sec-grid .note{font-size:.92rem;color:var(--muted);margin-top:18px}
+
+  /* CTA band */
+  .cta{
+    background:
+      radial-gradient(700px 360px at 85% 0%, rgba(91,124,250,.22), transparent 60%),
+      var(--ink);
+    color:var(--text-d);text-align:center;padding:96px 0;
+  }
+  .cta h2{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,3.8vw,2.9rem);letter-spacing:-.02em;line-height:1.08;margin-bottom:18px}
+  .cta p{color:var(--muted-d);max-width:34rem;margin:0 auto 30px;font-size:1.08rem}
+  .cta .hero-cta{justify-content:center}
+
+  /* footer */
+  footer{background:#070A12;color:var(--muted-d);padding:54px 0 38px;border-top:1px solid var(--line-d)}
+  .foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:34px}
+  .foot-brand{max-width:24rem}
+  .foot-brand .brand{margin-bottom:14px}
+  .foot-brand p{font-size:.95rem}
+  .foot-cols{display:flex;gap:64px;flex-wrap:wrap}
+  .foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d);margin-bottom:14px}
+  .foot-col a,.foot-col span{display:block;font-size:.94rem;margin-bottom:9px;transition:color .15s}
+  .foot-col a:hover{color:var(--text-d)}
+  .foot-bottom{border-top:1px solid var(--line-d);padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.85rem;font-family:var(--mono)}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:920px){
+    .hero-grid{grid-template-columns:1fr;gap:42px;padding:60px 0 64px}
+    .signal-card{max-width:460px}
+    .problem .body{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr;gap:30px}
+    .aud{grid-template-columns:1fr 1fr}
+    .sec-grid{grid-template-columns:1fr;gap:26px}
+    .navlinks{
+      position:absolute;top:66px;left:0;right:0;flex-direction:column;gap:0;
+      background:var(--ink-2);border-bottom:1px solid var(--line-d);padding:8px 0;display:none;
+    }
+    .navlinks.open{display:flex}
+    .navlinks a{padding:13px 24px;width:100%}
+    .navlinks .btn-primary{margin:10px 24px;justify-content:center}
+    .navtoggle{display:block}
+  }
+  @media(max-width:480px){
+    .aud{grid-template-columns:1fr}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand"><span class="mark"></span> Shruhani</a>
+    <nav class="navlinks" id="menu">
+      <a href="#platform">Platform</a>
+      <a href="#how">How it works</a>
+      <a href="#who">Who it's for</a>
+      <a href="#security">Security</a>
+      <a href="#contact" class="btn btn-primary">Request a demo</a>
+    </nav>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Fraud &amp; credit risk intelligence · India</span>
+      <h1>See <span class="em">intent</span>, not just identity.</h1>
+      <p class="lede">Shruhani Technologies builds real-time risk intelligence for Indian banks, NBFCs, and lenders. We read the digital and behavioural signals around every applicant and transaction, so your team approves genuine customers faster and stops fraud before money moves.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary btn-arrow">Request a demo</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+    </div>
+
+    <div class="signal-card">
+      <div class="cap"><span>Signal → Score → Decision</span><span>Real-time</span></div>
+      <svg class="signal-svg" viewBox="0 0 560 372" role="img" aria-label="Diagram showing six risk signals feeding a scoring engine that produces an approve, review, or decline decision">
+        <defs>
+          <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#5B7CFA" stop-opacity="0"/>
+            <stop offset="1" stop-color="#5B7CFA" stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+
+        <!-- connecting paths -->
+        <g fill="none" stroke="#2b3556" stroke-width="1.4">
+          <path d="M176,33 C206,33 206,186 236,186"/>
+          <path d="M176,87 C206,87 206,186 236,186"/>
+          <path d="M176,141 C212,141 206,186 236,186"/>
+          <path d="M176,195 C212,195 212,186 236,186"/>
+          <path d="M176,249 C206,249 206,186 236,186"/>
+          <path d="M176,303 C206,303 206,186 236,186"/>
+        </g>
+        <!-- animated flow overlay -->
+        <g fill="none" stroke="url(#flow)" stroke-width="1.8" stroke-dasharray="6 90" opacity=".9">
+          <path d="M176,33 C206,33 206,186 236,186"><animate attributeName="stroke-dashoffset" from="96" to="0" dur="2.4s" repeatCount="indefinite"/></path>
+          <path d="M176,141 C212,141 206,186 236,186"><animate attributeName="stroke-dashoffset" from="96" to="0" dur="2.0s" repeatCount="indefinite"/></path>
+          <path d="M176,303 C206,303 206,186 236,186"><animate attributeName="stroke-dashoffset" from="96" to="0" dur="2.8s" repeatCount="indefinite"/></path>
+        </g>
+
+        <!-- signal chips -->
+        <g font-size="12.5" fill="#cdd6ef">
+          <rect x="8" y="11"  width="168" height="44" rx="10" fill="#131c34" stroke="#2a345c"/>
+          <circle cx="28" cy="33" r="3.5" fill="#5B7CFA"/><text x="42" y="37">Device intelligence</text>
+
+          <rect x="8" y="65" width="168" height="44" rx="10" fill="#131c34" stroke="#2a345c"/>
+          <circle cx="28" cy="87" r="3.5" fill="#5B7CFA"/><text x="42" y="91">Digital footprint</text>
+
+          <rect x="8" y="119" width="168" height="44" rx="10" fill="#131c34" stroke="#2a345c"/>
+          <circle cx="28" cy="141" r="3.5" fill="#5B7CFA"/><text x="42" y="145">Location signals</text>
+
+          <rect x="8" y="173" width="168" height="44" rx="10" fill="#131c34" stroke="#2a345c"/>
+          <circle cx="28" cy="195" r="3.5" fill="#5B7CFA"/><text x="42" y="199">Behaviour</text>
+
+          <rect x="8" y="227" width="168" height="44" rx="10" fill="#131c34" stroke="#2a345c"/>
+          <circle cx="28" cy="249" r="3.5" fill="#5B7CFA"/><text x="42" y="253">Image / KYC</text>
+
+          <rect x="8" y="281" width="168" height="44" rx="10" fill="#131c34" stroke="#2a345c"/>
+          <circle cx="28" cy="303" r="3.5" fill="#5B7CFA"/><text x="42" y="307">SMS activity</text>
+        </g>
+
+        <!-- score node -->
+        <rect x="236" y="124" width="150" height="124" rx="16" fill="#0e1730" stroke="#33406b"/>
+        <text x="311" y="152" text-anchor="middle" font-size="10.5" letter-spacing="2" fill="#8c98bf">RISK SCORE</text>
+        <text x="311" y="196" text-anchor="middle" font-size="40" fill="#eef2ff" font-weight="500">0.12</text>
+        <rect x="266" y="214" width="90" height="6" rx="3" fill="#26304f"/>
+        <rect x="266" y="214" width="16" height="6" rx="3" fill="#27B582"/>
+        <text x="311" y="238" text-anchor="middle" font-size="10" letter-spacing="1.5" fill="#7f8caf">LOW RISK</text>
+
+        <!-- output path to approve -->
+        <path d="M386,186 C408,186 408,71 430,71" fill="none" stroke="#27B582" stroke-width="1.8" opacity=".75"/>
+
+        <!-- decision pills -->
+        <g font-size="12.5" font-weight="500">
+          <rect x="430" y="50"  width="122" height="42" rx="21" fill="rgba(39,181,130,.16)" stroke="#27B582"/>
+          <circle cx="452" cy="71" r="4" fill="#27B582"/>
+          <text x="466" y="75" fill="#7fe9c1">Approve</text>
+
+          <rect x="430" y="104" width="122" height="42" rx="21" fill="#101a30" stroke="#39435c"/>
+          <circle cx="452" cy="125" r="4" fill="#E6A23C"/>
+          <text x="466" y="129" fill="#c7b083">Review</text>
+
+          <rect x="430" y="158" width="122" height="42" rx="21" fill="#101a30" stroke="#39435c"/>
+          <circle cx="452" cy="179" r="4" fill="#E2585E"/>
+          <text x="466" y="183" fill="#c79096">Decline</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE STRIP ================= -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-inner">
+    <span>Digital onboarding</span><span>Credit underwriting</span><span>Mule &amp; fraud detection</span><span>Transaction monitoring</span><span>AML &amp; EDD</span><span>Device intelligence</span>
+    <span>Digital onboarding</span><span>Credit underwriting</span><span>Mule &amp; fraud detection</span><span>Transaction monitoring</span><span>AML &amp; EDD</span><span>Device intelligence</span>
+  </div>
+</div>
+
+<!-- ================= PROBLEM ================= -->
+<section class="section problem" id="problem">
+  <div class="wrap">
+    <span class="eyebrow">The gap</span>
+    <p class="lead" style="margin-top:14px">Documents are real. <b>Intent often isn't.</b> Today's checks confirm who someone claims to be. They rarely answer why an account is really being opened.</p>
+    <div class="body">
+      <div>
+        <h4>Mule accounts pass KYC</h4>
+        <p>The Aadhaar is genuine, the PAN is genuine, the person is genuine. The fraud sits in what the account is used for, and document checks have no way to see it.</p>
+      </div>
+      <div>
+        <h4>Bureau files run thin</h4>
+        <p>New-to-credit borrowers, gig workers, and young professionals carry little or no bureau history. A backward-looking score cannot separate a good thin-file applicant from a fabricated one.</p>
+      </div>
+      <div>
+        <h4>Fraud rings cycle devices and SIMs</h4>
+        <p>Organised rings reuse a small set of devices across hundreds of applications, cycle SIMs, and lean on residential proxies that look like ordinary home broadband.</p>
+      </div>
+      <div>
+        <h4>IP reputation has aged out</h4>
+        <p>With carrier-grade NAT across Indian ISPs, thousands of users share a single public IP. Risk has to be read from the device and the behaviour, not the address.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLATFORM / CAPABILITIES ================= -->
+<section class="section alt" id="platform">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>One intelligence layer across the customer lifecycle</h2>
+      <p>Shruhani sits on top of your existing fraud, KYC, and underwriting stack and adds the signal layer those systems structurally miss. No rip-and-replace.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
+        <h3>Onboarding intelligence</h3>
+        <p>Score every applicant in real time from device, digital footprint, location, and image signals, before disbursal. Green-channel genuine customers, flag the rest.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16M8 16l3-4 3 2 4-6"/></svg></div>
+        <h3>Credit risk for thin files</h3>
+        <p>Alternate-data signals for new-to-credit and thin-file segments where bureau coverage is limited, so you can widen approvals without widening default.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="7" r="2.4"/><circle cx="18" cy="7" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M7.6 8.6l3 7M16.4 8.6l-3 7M8 7h8"/></svg></div>
+        <h3>Fraud &amp; mule detection</h3>
+        <p>Surface coordinated rings and mule accounts that clear document checks, using persistent device signals and network-level connections between accounts.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2 5 4-13 2 8h6"/></svg></div>
+        <h3>Monitoring, AML &amp; EDD</h3>
+        <p>Continuous post-onboarding monitoring and case workflows built for Indian regulatory reporting, with audit trails your team can stand behind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="section how" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From raw signal to a decision your stack can act on</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="n">01 / Signal</span>
+        <h3>Capture</h3>
+        <p>Collect device, phone, email, location, behaviour, and image signals through a simple API or a lightweight SDK. Most modules need no app-side change.</p>
+      </div>
+      <div class="step">
+        <span class="n">02 / Score</span>
+        <h3>Interpret</h3>
+        <p>Models tuned to Indian patterns turn raw signals into risk scores and explainable flags, calibrated to your portfolio rather than industry averages.</p>
+      </div>
+      <div class="step">
+        <span class="n">03 / Decision</span>
+        <h3>Act</h3>
+        <p>Scores feed straight into your onboarding, fraud, and underwriting systems. Approve, review, or decline, with the evidence behind every call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHO IT'S FOR ================= -->
+<section class="section" id="who">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Who it's for</span>
+      <h2>Built for India's regulated lenders and digital platforms</h2>
+    </div>
+    <div class="aud">
+      <div class="pill-card"><div class="k">01</div><h4>Banks &amp; SFBs</h4><p>Onboarding, mule detection, and EDD workflows for regulated banks.</p></div>
+      <div class="pill-card"><div class="k">02</div><h4>NBFCs &amp; lenders</h4><p>Thin-file underwriting and application-fraud control for digital lending.</p></div>
+      <div class="pill-card"><div class="k">03</div><h4>Fintechs</h4><p>Real-time risk scoring for high-volume onboarding and transactions.</p></div>
+      <div class="pill-card"><div class="k">04</div><h4>Marketplaces</h4><p>Trust scoring, fake-profile detection, and promo-abuse prevention.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECURITY ================= -->
+<section class="section alt" id="security">
+  <div class="wrap sec-grid">
+    <div>
+      <span class="eyebrow">Security &amp; compliance</span>
+      <div class="section-head" style="margin-bottom:0">
+        <h2>Designed for Indian data and Indian regulation</h2>
+        <p>Shruhani is built around the requirements Indian financial institutions answer to, with deployment options that fit your data-residency needs.</p>
+      </div>
+      <p class="note">Deployment: cloud, on-premise, or hybrid. Encryption in transit and at rest.</p>
+    </div>
+    <div>
+      <div class="sec-list">
+        <span class="tag">DPDP Act 2023</span>
+        <span class="tag">RBI KYC Master Direction</span>
+        <span class="tag">PMLA / FIU-IND</span>
+        <span class="tag">Role-based access</span>
+        <span class="tag">Audit trails</span>
+        <span class="tag">Data residency in India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Get started</span>
+    <h2 style="margin-top:14px">Bring intent into your risk decisions.</h2>
+    <p>Tell us about your onboarding and fraud challenges, and we'll walk you through how Shruhani fits your stack.</p>
+    <div class="hero-cta">
+      <a href="mailto:amit@Shruhani.com?subject=Demo%20request%20%E2%80%94%20Shruhani" class="btn btn-primary btn-arrow">Request a demo</a>
+      <a href="mailto:amit@Shruhani.com" class="btn btn-ghost">amit@Shruhani.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#top" class="brand"><span class="mark"></span> Shruhani</a>
+        <p>Real-time fraud and credit risk intelligence for Indian banks, NBFCs, and lenders.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Platform</h5>
+          <a href="#platform">Capabilities</a>
+          <a href="#how">How it works</a>
+          <a href="#who">Who it's for</a>
+          <a href="#security">Security</a>
+        </div>
+        <div class="foot-col">
+          <h5>Company</h5>
+          <a href="mailto:amit@Shruhani.com">amit@Shruhani.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Shruhani Technologies Pvt. Ltd.</span>
+      <span>Made in India</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  var t=document.getElementById('navtoggle'), m=document.getElementById('menu');
+  t.addEventListener('click',function(){m.classList.toggle('open')});
+  m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open')})});
+  // year
+  document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
