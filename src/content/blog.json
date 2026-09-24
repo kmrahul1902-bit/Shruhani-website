@@ -8,7 +8,7 @@
   "filters.lengthLong": "15 min and over",
   "filters.lengthShort": "Under 15 min",
   "filters.topicHeading": "Topic",
-  "hero.deck": "The latest in fraud prevention, risk management, exponential growth, and Sign3 news.",
+  "hero.deck": "The latest in fraud prevention, risk management, exponential growth, and Shruhani news.",
   "hero.h1": "Articles, Insights and more",
   "hero.searchLabel": "Search articles",
   "hero.searchPlaceholder": "Search articles, guides and playbooks",
@@ -16,12 +16,12 @@
   "results.count": "{count} results found",
   "results.countOne": "1 result found",
   "results.empty": "No articles in this category yet.",
-  "results.footNote": "New research and teardowns from the Sign3 team, every week.",
+  "results.footNote": "New research and teardowns from the Shruhani team, every week.",
   "results.moreLabel": "Load more articles",
   "results.total": "{count} articles.",
   "results.totalOne": "1 article.",
   "seo.breadcrumbLabel": "Articles",
   "seo.keywords": "fraud prevention articles, risk intelligence insights",
-  "seo.metaDescription": "The latest in fraud prevention, risk management, exponential growth, and Sign3 news.",
+  "seo.metaDescription": "The latest in fraud prevention, risk management, exponential growth, and Shruhani news.",
   "seo.metaTitle": "Articles"
 }

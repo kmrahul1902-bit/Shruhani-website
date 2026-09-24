@@ -1,0 +1,10 @@
+export { default as Hero } from "./Hero";
+export { default as Investors } from "./Investors";
+export { default as Story } from "./Story";
+export { default as Platform } from "./Platform";
+export { default as Journey } from "./Journey";
+export { default as Leaders } from "./Leaders";
+export { default as Team } from "./Team";
+export { default as Certifications } from "./Certifications";
+export { default as Press } from "./Press";
+export { default as Office } from "./Office";
