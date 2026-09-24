@@ -1,0 +1,41 @@
+# Block direct pushes to protected branches and enforce branch naming.
+# The authoritative gate is GitHub branch protection — this is a local
+# guard for fast feedback (bypassable with --no-verify; CI/GitHub are not).
+
+# Edit these to change the branching policy.
+protected_branch="main"
+# Work branches: <type>/<name>.
+allowed_pattern="^(feature|feat|fix|task|inh|hotfix|chore|docs|refactor|test|perf|style|ci|build|release)/.+"
+# Long-lived environment branches allowed as bare names (space-separated).
+allowed_branches="dev stage"
+
+# Git passes ref updates on stdin: <local_ref> <local_sha> <remote_ref> <remote_sha>
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # 1. Never push directly to a protected branch.
+  if [ "$remote_ref" = "refs/heads/$protected_branch" ]; then
+    echo "🚫 Direct pushes to '$protected_branch' are not allowed."
+    echo "   Create a '<type>/<name>' branch (e.g. feature/…, fix/…) and open a pull request."
+    exit 1
+  fi
+
+  # 2. Branch being pushed must be an allowed environment branch OR follow <type>/<name>.
+  branch="${remote_ref#refs/heads/}"
+
+  is_env=0
+  for allowed in $allowed_branches; do
+    if [ "$branch" = "$allowed" ]; then
+      is_env=1
+      break
+    fi
+  done
+
+  if [ -n "$branch" ] && [ "$is_env" -eq 0 ] && ! echo "$branch" | grep -Eq "$allowed_pattern"; then
+    echo "🚫 Branch '$branch' does not match the branching policy."
+    echo "   Use an environment branch ($allowed_branches),"
+    echo "   or '<type>/<name>' where <type> is one of:"
+    echo "   feature, feat, fix, task, inh, hotfix, chore, docs, refactor, test, perf, style, ci, build, release."
+    exit 1
+  fi
+done
+
+exit 0
