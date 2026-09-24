@@ -1,4 +1,7 @@
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import CtaBand, { CtaBandGate } from "@/components/sections/CtaBand";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,8 +29,15 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${inter.variable} ${jakarta.variable} h-full`}>
+      <body className="flex min-h-full flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <CtaBandGate>
+          <CtaBand />
+        </CtaBandGate>
+        <Footer />
+      </body>
     </html>
   );
 }
