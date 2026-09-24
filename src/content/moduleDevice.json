@@ -32,7 +32,7 @@
   "outputs.cards[1].description": "Two risk scores per session, each accompanied by the rules that fired and the factors that contributed. The verdict is transparent and auditable.",
   "outputs.cards[1].points": "Device risk score (full device history across all sessions)\nSession risk score (current session signals)\nApplied rules with per-rule breakdown\nRecommended action: allow, warn, or block",
   "outputs.cards[1].title": "Pre-Built Scores",
-  "outputs.cards[2].description": "Scoring models and rule configurations calibrated to the institution's own fraud patterns and device population. The same device signal carries different weight at a bank versus a gaming platform. Sign3 configures accordingly.",
+  "outputs.cards[2].description": "Scoring models and rule configurations calibrated to the institution's own fraud patterns and device population. The same device signal carries different weight at a bank versus a gaming platform. Shruhani configures accordingly.",
   "outputs.cards[2].title": "Custom Risk Models",
   "outputs.heading": "What Device Intelligence Returns",
   "outputs.sub": "Real-time per session. Three consumption tiers.",

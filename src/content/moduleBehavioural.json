@@ -30,7 +30,7 @@
   "outputs.cards[1].description": "Decision-ready output, each score accompanied by contributing factors.",
   "outputs.cards[1].points": "Behavioural risk score (deviation from individual baseline)\nSession anomaly score (current session signals)\nBot probability classification\nCoaching likelihood indicator",
   "outputs.cards[1].title": "Pre-Built Scores",
-  "outputs.cards[2].description": "Behavioural scoring calibrated to the institution's own user population. Normal behaviour at a trading platform differs from normal behaviour at a lending application. Sign3 tunes the baseline sensitivity and thresholds accordingly.",
+  "outputs.cards[2].description": "Behavioural scoring calibrated to the institution's own user population. Normal behaviour at a trading platform differs from normal behaviour at a lending application. Shruhani tunes the baseline sensitivity and thresholds accordingly.",
   "outputs.cards[2].title": "Custom Risk Models",
   "outputs.heading": "What Comes Out",
   "outputs.sub": "Behavioural intelligence per session. Real-time. Three consumption tiers.",

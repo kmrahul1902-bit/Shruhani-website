@@ -30,7 +30,7 @@
   "outputs.cards[1].description": "Decision-ready output, each score accompanied by contributing factors.",
   "outputs.cards[1].points": "Image risk score (composite across all five layers)\nIdentity integrity classification\nAffluence and lifestyle indicators from scene and device metadata",
   "outputs.cards[1].title": "Pre-Built Scores",
-  "outputs.cards[2].description": "Image scoring calibrated to the institution's own onboarding patterns. The weight of a kiosk-environment detection differs between a bank with no agent channel and an NBFC with 60% agent-assisted origination. Sign3 tunes accordingly.",
+  "outputs.cards[2].description": "Image scoring calibrated to the institution's own onboarding patterns. The weight of a kiosk-environment detection differs between a bank with no agent channel and an NBFC with 60% agent-assisted origination. Shruhani tunes accordingly.",
   "outputs.cards[2].title": "Custom Risk Models",
   "outputs.heading": "What Comes Out",
   "outputs.sub": "Per-image intelligence profile. Real-time. Three consumption tiers.",

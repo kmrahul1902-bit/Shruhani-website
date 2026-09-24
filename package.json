@@ -20,15 +20,6 @@
     "check": "npm run lint && npm run format:check && npm run test && npm run build",
     "prepare": "husky"
   },
-  "lint-staged": {
-    "*.{js,jsx,mjs}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,css,md}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "lottie-web": "^5.13.0",

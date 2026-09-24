@@ -30,7 +30,7 @@
   "outputs.cards[1].description": "Five composite scores on a 0-100 scale, ready to use standalone or as enrichment.",
   "outputs.cards[1].points": "Affluence, Economic Activity, Commercial Activity, Urbanisation, Fraud Risk",
   "outputs.cards[1].title": "Pre-Built Scores",
-  "outputs.cards[2].description": "Location signals calibrated to the institution's own portfolio. The weight of an affluence score differs between a microfinance lender and an urban credit card issuer. Sign3 tunes accordingly.",
+  "outputs.cards[2].description": "Location signals calibrated to the institution's own portfolio. The weight of an affluence score differs between a microfinance lender and an urban credit card issuer. Shruhani tunes accordingly.",
   "outputs.cards[2].title": "Custom Risk Models",
   "outputs.heading": "What Comes Out",
   "outputs.sub": "Structured location profile per address. Real-time. Three consumption tiers.",

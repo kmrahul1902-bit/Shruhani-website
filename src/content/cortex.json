@@ -48,7 +48,7 @@
   "personaLayers.cards[1].title": "Behavioural Biometrics",
   "personaLayers.cards[2].title": "Network",
   "personaLayers.heading": "What Cortex watches on every session",
-  "personaLayers.sub": "Three signal layers, read continuously and scored together, the same signal modules that power onboarding, now running for the life of the account. Account takeovers break the pattern within seconds; mules drift from it over time.\nOnboarding asks one question once. Cortex asks it on every session, against a baseline that belongs to the individual account, not a global threshold that treats every customer the same. Each account's signals are resolved on Sign3's unified customer graph and scored by a dynamic engine of 60+ rules, and the score carries the reason with it.",
+  "personaLayers.sub": "Three signal layers, read continuously and scored together, the same signal modules that power onboarding, now running for the life of the account. Account takeovers break the pattern within seconds; mules drift from it over time.\nOnboarding asks one question once. Cortex asks it on every session, against a baseline that belongs to the individual account, not a global threshold that treats every customer the same. Each account's signals are resolved on Shruhani's unified customer graph and scored by a dynamic engine of 60+ rules, and the score carries the reason with it.",
   "seo.breadcrumbLabel": "Cortex",
   "seo.keywords": "continuous account monitoring, mule detection, account takeover prevention, fraud ring detection",
   "seo.metaDescription": "Cortex watches every active account, every session. Continuous device, behavioural and network signals surface mule formation, account takeover and behavioural drift before the first transfer.",
