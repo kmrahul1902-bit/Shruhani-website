@@ -10,7 +10,7 @@
   "decisions.heading": "The decisions it sharpens",
   "decisions.statement": "A lender needs decisions that grow the book, hold the loss rate, and stand up in a board review — at the same time.",
   "decisions.statementAccent": "grow the book, hold the loss rate, and stand up in a board review",
-  "decisions.sub": "The decisions a lending team makes every day, mapped to Sign3's intelligence layer.",
+  "decisions.sub": "The decisions a lending team makes every day, mapped to Shruhani's intelligence layer.",
   "gap.cards[0].description": "The board wants disbursal volume up. The risk committee wants NPAs down. Every quarter, both targets tighten. The room to get a decision wrong shrinks while the pressure to decide faster grows.",
   "gap.cards[0].title": "The squeeze",
   "gap.cards[1].description": "300 million Indians have no score at all. For the rest, the score is months stale. A borrower who stacked three new loans this week still shows last month's number. The risk that matters is in the present.",
@@ -25,7 +25,7 @@
   "gap.statementAccent": "grow the book, hold the loss rate, and stand up in a board review",
   "gap.sub": "Four pressures every lending team is carrying at once.",
   "hero.ctaLabel": "Book a demo →",
-  "hero.deck": "Bureau tells you the past. KYC confirms the paperwork. Neither tells you who the borrower actually is right now. Sign3 builds a 360-degree customer persona from signals bureau can't see, calibrated to your portfolio, so you grow the book, control the risk, and defend every call to the board.",
+  "hero.deck": "Bureau tells you the past. KYC confirms the paperwork. Neither tells you who the borrower actually is right now. Shruhani builds a 360-degree customer persona from signals bureau can't see, calibrated to your portfolio, so you grow the book, control the risk, and defend every call to the board.",
   "hero.heading": "Approve more. Default less",
   "hero.sub": "Explain every decision. One intelligence layer makes all three possible.",
   "mapping.cards[0].description": "Scores every applicant across device, footprint, location, image, and SMS before disbursal, catching fraud and predicting default with signals bureau can't see, calibrated to your own portfolio.",
@@ -53,6 +53,6 @@
   "metricsBand.sub": "Measured across live NBFC, lending and credit-card deployments in India.",
   "seo.breadcrumbLabel": "NBFCs & Lending",
   "seo.keywords": "credit underwriting, NBFC fraud prevention, lending risk intelligence, thin-file borrower scoring",
-  "seo.metaDescription": "Bureau tells you the past; KYC confirms the paperwork. Sign3 builds a 360-degree borrower persona from signals bureau can't see, calibrated to your portfolio.",
+  "seo.metaDescription": "Bureau tells you the past; KYC confirms the paperwork. Shruhani builds a 360-degree borrower persona from signals bureau can't see, calibrated to your portfolio.",
   "seo.metaTitle": "NBFCs & Lending"
 }

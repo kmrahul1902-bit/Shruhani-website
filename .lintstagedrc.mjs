@@ -28,7 +28,7 @@ function quote(filenames) {
   return filenames.map((f) => `"${f}"`).join(" ");
 }
 
-export default {
+const config = {
   "*.{js,jsx,mjs}": (filenames) =>
     chunk(filenames, CHUNK_SIZE).map((batch) => `eslint --fix ${quote(batch)}`),
   "*.{json,css,md}": (filenames) =>
@@ -36,3 +36,5 @@ export default {
       (batch) => `prettier --write ${quote(batch)}`
     ),
 };
+
+export default config;
