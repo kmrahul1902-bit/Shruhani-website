@@ -4,12 +4,9 @@
  * registry — see plan/CLAUDE.md → Decisions). Names preserved as written
  * per guardrail #2 — no metric or claim invented or altered.
  *
- * TODO(content): none of these have an image file anywhere in this project
- * OR in the reference's local `public/` (the reference serves them from a
- * Strapi media host we don't have). No `src` is set below, so `LogoBand`'s
- * own `logos.filter((logo) => logo.src)` naturally renders just the caption
- * with no broken images — swap in real PNG/SVG files under `public/logos/`
- * and add `src` per entry once they're supplied.
+ * Image files live at `public/logos/<file>` — downloaded from the live
+ * site's own CDN (cdn.sign3.in), 600x200 each, matching exactly what this
+ * component already expected (`width={600} height={200}` in LogoGrid.jsx).
  *
  * TODO(verify): every name below (guardrail #2, item 3) — confirm each is
  * still a customer displayable under the Shruhani name before launch.
@@ -29,7 +26,12 @@ export const clientLogos = [
   { file: "onecard.png", alt: "OneCard" },
   { file: "smartcoin.png", alt: "SmartCoin" },
   { file: "oto.png", alt: "OTO" },
-].map(({ file, alt, tall }) => ({ src: null, file, alt, tall: tall ?? false }));
+].map(({ file, alt, tall }) => ({
+  src: `/logos/${file}`,
+  file,
+  alt,
+  tall: tall ?? false,
+}));
 
 // Carried over verbatim — no brand mention to rename.
 export const logoStripEyebrow =

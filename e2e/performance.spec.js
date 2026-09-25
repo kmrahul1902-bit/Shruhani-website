@@ -37,10 +37,18 @@ const PHOTO_HERO_PAGES = ["/solutions/industries/banks-sfbs"];
  * 0px box and failed for a hero that was never on screen. Take the first image
  * with a box in the opening viewport instead, which is the LCP candidate on
  * every composition that has one.
+ *
+ * Scoped to `.hero-under-nav` (the hero section's own class), not all of
+ * `main`: once the customer-logo roster got real images, a wide-enough
+ * viewport (the `large` project, 1920x1080) fits the LogoGrid section's
+ * marks above the fold too, and an unscoped search picked the first LOGO
+ * as "the hero image" — correctly lazy-loaded, and correctly not eager,
+ * which is exactly why it failed this hero-only assertion.
  */
 async function heroPhoto(page) {
   return page.evaluate(() => {
-    const img = [...document.querySelectorAll("main img")].find((candidate) => {
+    const scope = document.querySelector(".hero-under-nav") ?? document;
+    const img = [...scope.querySelectorAll("img")].find((candidate) => {
       const box = candidate.getBoundingClientRect();
       return box.width > 0 && box.height > 0 && box.top < window.innerHeight;
     });
@@ -100,16 +108,11 @@ for (const path of PHOTO_HERO_PAGES) {
 }
 
 test("everything below the fold stays lazy", async ({ page }) => {
-  // No image assets exist anywhere in this project yet (LogoGrid's roster
-  // has every `src: null`, and no photo/illustration assets have been
-  // supplied for any page — see Phase 3/4/6 reports). That means there are
-  // currently zero `<img>` elements on this page at all, lazy or otherwise,
-  // so the "everything below the fold stays lazy" guard has nothing to
-  // assert against yet. Skip rather than assert something trivially true
-  // (`toBe(0)`) or silently wrong (`toBeGreaterThan(0)`, which fails) —
-  // re-enable this once real images land on a page.
-  test.skip(
-    true,
-    "no image assets exist anywhere in the project yet — nothing to lazy-load"
+  // Re-enabled: LogoGrid's customer roster now has real images (post-build
+  // fix), so this page has something to assert against again.
+  await page.goto("/solutions/industries/banks-sfbs");
+  const lazy = await page.evaluate(
+    () => [...document.images].filter((i) => i.loading === "lazy").length
   );
+  expect(lazy).toBeGreaterThan(0);
 });

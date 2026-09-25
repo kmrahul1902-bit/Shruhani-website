@@ -23,7 +23,7 @@
   "list.items[8].question": "Can Shruhani deploy on-premise?",
   "list.items[9].answer": "Shruhani offers pilot and POC deployments. Share historical data (phone numbers, emails, outcome labels) and Shruhani will run its models against your portfolio, share the results, and let the numbers speak. Minimum data for calibration: 20K-50K historical records.",
   "list.items[9].question": "How do we evaluate Shruhani before committing?",
-  "list.mailTo": "support@shruhani.com",
+  "list.mailTo": "amit@shruhani.com",
   "list.sub": "Written for risk, fraud, credit, and compliance teams evaluating Shruhani — no marketing detours.",
   "seo.breadcrumbLabel": "FAQ",
   "seo.keywords": "Shruhani FAQ, fraud detection FAQ, device intelligence deployment, DPDP compliance",

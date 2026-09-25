@@ -3,12 +3,17 @@
  *
  * Adapted from the reference: that version writes the submission to Strapi
  * with a server-side write token. This project has no CMS and no email/CRM
- * credentials (guardrail #5: no secrets in the repo) — so this stub keeps
- * the reference's validation (it's generically useful and touches no
- * external service) and logs the validated submission instead of writing
- * it anywhere. Swap the block marked below for a fetch to your CRM/email
- * provider once real `DEMO_REQUEST_*` env vars exist; nothing else here
- * needs to change.
+ * credentials (guardrail #5: no secrets in the repo) — so this forwards to
+ * a CONFIGURABLE endpoint instead: set `DEMO_REQUEST_WEBHOOK_URL` (e.g. a
+ * Formspree/Zapier/CRM webhook) in `.env.local` and every validated lead
+ * POSTs there as JSON. With no URL configured, it falls back to logging the
+ * lead (dev-friendly, never silently drops a submission).
+ *
+ * The webhook URL is a SERVER env var, not `NEXT_PUBLIC_*` — it never
+ * reaches the client bundle. The browser always posts to this same-origin
+ * route; only this route knows (or doesn't) where the lead goes next. An
+ * optional `DEMO_REQUEST_WEBHOOK_TOKEN` is sent as a Bearer token if the
+ * target needs auth.
  *
  * Validation is deliberately thin: two required fields and length caps.
  * This is a sales lead, not a login. Rejecting a real prospect because
@@ -73,9 +78,40 @@ export async function POST(request) {
       : "";
   fields.userAgent = (request.headers.get("user-agent") ?? "").slice(0, 500);
 
-  // --- stub: replace with a real CRM/email write ---
-  console.warn("[demo-request] new lead (stub, not persisted):", fields);
-  // --- end stub ---
+  const webhookUrl = process.env.DEMO_REQUEST_WEBHOOK_URL;
+  if (webhookUrl) {
+    try {
+      const res = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          ...(process.env.DEMO_REQUEST_WEBHOOK_TOKEN && {
+            authorization: `Bearer ${process.env.DEMO_REQUEST_WEBHOOK_TOKEN}`,
+          }),
+        },
+        body: JSON.stringify(fields),
+        signal: AbortSignal.timeout(10_000),
+      });
+      if (!res.ok) {
+        console.error(
+          "[demo-request] webhook rejected the lead:",
+          res.status
+        );
+        return json({ error: "Unable to record that right now." }, 502);
+      }
+    } catch (e) {
+      console.error("[demo-request] webhook unreachable:", e?.message);
+      return json({ error: "Unable to record that right now." }, 502);
+    }
+  } else {
+    // No DEMO_REQUEST_WEBHOOK_URL configured — log rather than silently
+    // drop, so a lead is never lost without a trace during local dev or
+    // before a real endpoint is wired up.
+    console.warn(
+      "[demo-request] DEMO_REQUEST_WEBHOOK_URL not set — logging only:",
+      fields
+    );
+  }
 
-  return json({ ok: true, contact: "sales@shruhani.com" }, 201);
+  return json({ ok: true, contact: "amit@shruhani.com" }, 201);
 }

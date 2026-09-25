@@ -103,8 +103,9 @@ export const footerContent = {
   // current company records before the investor presentation.
   contact: {
     heading: "Contact",
-    // Global-rename of the reference's "contact@sign3.ai".
-    email: "contact@shruhani.com",
+    // Global-rename of the reference's "contact@sign3.ai", then updated to
+    // the team's real contact address.
+    email: "amit@shruhani.com",
     phone: "+91 98765 43211",
     addressLines: [
       "241, Udyog Vihar Phase 1, Sector 20",
