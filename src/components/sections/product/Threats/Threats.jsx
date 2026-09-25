@@ -16,6 +16,9 @@ import Image from "next/image";
  * it sits in differ — four narrow columns against three wider ones — and each
  * page's artwork carries a different amount of its own left margin, which is
  * what the two bleed values correct for.
+ *
+ * TODO(content): no product page's `threats.cards[].image` is wired — see
+ * `SignalLayers.jsx`'s note for why (banned icon-pack/3D-render imagery).
  */
 const VARIANTS = {
   cortex: {

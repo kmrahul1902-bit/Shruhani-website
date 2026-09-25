@@ -6,6 +6,9 @@ import { cn } from "@/lib/cn";
  * beneath. By default the visual carries no background of its own.
  * `visual: "plate"` is the exception, for a module whose illustrations have
  * no ground of their own.
+ *
+ * TODO(content): see `ReaderFrame.jsx`'s note — no module's `.image` here is
+ * wired, the live CDN art is banned by CLAUDE.md § Art Direction.
  */
 export default function AppliesCard({ title, description, image, visual }) {
   const plate = visual === "plate";

@@ -39,6 +39,10 @@ function ArrowRightIcon() {
  * standard 42px and runs a wider, shorter visual instead. The step cards
  * follow: ScreenX sets shorter plates and smaller, non-wrapping titles because
  * its three titles are longer.
+ *
+ * TODO(content): no product page's `howItWorks.visual` or `.steps[].image` is
+ * wired — see `SignalLayers.jsx`'s note for why (banned icon-pack/3D-render
+ * imagery).
  */
 const VARIANTS = {
   cortex: {

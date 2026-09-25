@@ -73,6 +73,11 @@ export default function Capabilities({
         <ul className="fs-cols mt-11">
           {cards?.map((card) => (
             <li key={card.key} className="fs-card">
+              {/* TODO(content): the live site's per-module icons
+                  (cdn.sign3.in/.../device_*.png etc.) exist but are blue/
+                  violet isometric icon-pack renders — banned by this
+                  project's Art Direction guardrail independent of color.
+                  Needs a pink-native, non-icon-pack replacement set. */}
               {card.image?.src && (
                 <Image
                   src={card.image.src}

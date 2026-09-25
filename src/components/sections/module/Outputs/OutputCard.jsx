@@ -6,6 +6,9 @@ import { cn } from "@/lib/cn";
  * One consumption tier: an illustration on its own plate, then the copy.
  * `tallIllustration` is the plate the two-up row uses; the section decides
  * it from the card count.
+ *
+ * TODO(content): see `ReaderFrame.jsx`'s note — no module's `.image` here is
+ * wired, the live CDN art is banned by CLAUDE.md § Art Direction.
  */
 export default function OutputCard({
   title,

@@ -7,6 +7,9 @@ import IntegrationCard from "./IntegrationCard";
  * an illustration on the left, facts on the right, shared by all six module
  * pages. `className` is where the template hands this section a wider
  * measure (see integration-measure-wide).
+ *
+ * TODO(content): see `ReaderFrame.jsx`'s note — no module's `.image` here is
+ * wired, the live CDN art is banned by CLAUDE.md § Art Direction.
  */
 export default function Integration({
   heading,

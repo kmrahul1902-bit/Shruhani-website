@@ -26,6 +26,14 @@ const nextConfig = {
   },
 
   /**
+   * `/home` is a common guess for the landing page URL (nav muscle memory
+   * from other sites) — redirect rather than 404 it.
+   */
+  async redirects() {
+    return [{ source: "/home", destination: "/", permanent: true }];
+  },
+
+  /**
    * `X-Robots-Tag` for every response on a deployment that should not be
    * indexed (e.g. a preview/staging build). robots.txt and per-page `robots`
    * metadata only cover HTML; this reaches every response.

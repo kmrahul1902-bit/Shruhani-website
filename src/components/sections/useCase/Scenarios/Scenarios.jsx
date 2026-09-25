@@ -139,6 +139,12 @@ export default function Scenarios({ heading, sub, tabs }) {
           </div>
 
           <div className="fq-media">
+            {/* TODO(content): the live site's per-tab illustrations
+                (cdn.sign3.in/.../fd_sc_*.png and equivalents per use-case)
+                exist but are blue and, for at least one tab, a hooded-figure
+                "hacker" illustration — explicitly banned by this project's
+                Art Direction guardrail regardless of color. Needs a
+                pink-native, non-banned replacement set. */}
             {tabs.map((tab, i) =>
               tab.image?.src ? (
                 <Image

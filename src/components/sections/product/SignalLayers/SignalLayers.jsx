@@ -14,6 +14,17 @@ import { SECTION_VARIANT } from "../product.constants";
 /**
  * Cortex and ScreenX pull their heading up into the section above; Escalation
  * does not, and paints its card border violet rather than blue.
+ *
+ * TODO(content): none of the three product pages' `personaLayers.cards[].image`
+ * fields are wired. The live site's CDN candidates for this section (and for
+ * `gap.cards[].image`, `howItWorks.steps[].image`/`.visual`, and
+ * `threats.cards[].image` on all three pages — see matching notes on
+ * `GapCard.jsx`, `HowItWorks.jsx`, `Threats.jsx`) are isometric/3D icon-pack
+ * renders in blue and purple, both banned outright by CLAUDE.md § Art
+ * Direction ("Isometric / flat clipart from icon packs", "3D podium renders,
+ * glow rims, floating device composites") — recoloring wouldn't fix the
+ * imagery problem, only the palette. Left unwired rather than wiring content
+ * that violates the design system.
  */
 const VARIANTS = {
   product: { top: "-mt-10 mb-10", border: "layer-card-border" },

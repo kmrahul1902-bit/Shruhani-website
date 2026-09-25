@@ -6,6 +6,10 @@ import { ReaderIcon, ReaderTick } from "../Reader/reader.icons";
  * The signal explorer on a phone. Each block gets its own image and signal
  * cards (rather than the desktop's sticky-frame swap), so this renders on
  * the server with no JS.
+ *
+ * TODO(content): see `Reader/ReaderFrame.jsx`'s note — no module's
+ * `reader.slides[].image` is wired, the live CDN art is banned by CLAUDE.md
+ * § Art Direction.
  */
 const TONE_CLASS = {
   ok: "text-signal-ok",

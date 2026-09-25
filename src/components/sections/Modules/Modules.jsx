@@ -10,6 +10,15 @@ import { MODULE_IMAGE_SIZES, MODULE_META } from "./modules.constants";
  * Adapted from the reference: `modules` is the baked copy (`home.json`'s
  * `modulesGrid.modules`), merged here with `MODULE_META` by array position.
  *
+ * TODO(content): no module's `.image` is wired. The live site's CDN art for
+ * this grid (and for the module pages' Reader/Applies/Outputs sections) is
+ * an isometric device-plus-orbiting-icon-badge illustration — banned outright
+ * by CLAUDE.md § Art Direction ("Isometric / flat clipart from icon packs",
+ * "3D podium renders, glow rims, floating device composites"), independent of
+ * its color. A prior pass wired one of these (Device Intelligence, already in
+ * the pink/purple brand palette) without catching the style conflict; this
+ * pass found and reverted it along with the other five.
+ *
  * Server Component: hover lift + the "Learn more" gap growth are CSS.
  */
 export default function Modules({ heading, sub, modules: content }) {
