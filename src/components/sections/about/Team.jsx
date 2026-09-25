@@ -5,9 +5,14 @@ import { SECTION_TIGHT } from "./about.constants";
 /**
  * Our team — four function cards and the group photograph below them.
  *
- * The photograph is the third image still to be supplied. Like the leader
- * portraits it renders as its well until it lands, so the section keeps its
- * shape and nothing below it moves when the picture arrives.
+ * The group photograph is wired (post-build) to a real office photo.
+ *
+ * TODO(content): the four function cards' `.image` are not wired — the live
+ * site's CDN icons for Product Engineering/Data Science/Banking &
+ * Compliance/Platform Security are 3D podium-render illustrations (glossy
+ * highlights, drop shadows, blue), banned outright by CLAUDE.md § Art
+ * Direction regardless of color — same conflict as the product/module pages
+ * (see `product/SignalLayers/SignalLayers.jsx`'s note).
  */
 export default function Team({ team }) {
   return (

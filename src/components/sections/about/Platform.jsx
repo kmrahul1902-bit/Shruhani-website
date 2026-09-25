@@ -11,6 +11,12 @@ import { ArrowIcon } from "./about.icons";
  * plan/CLAUDE.md → Decisions) — each suite/module already carries its own
  * `href` and `key`, attached by `about.adapter.js`, rather than looking one
  * up in a route registry here.
+ *
+ * TODO(content): no suite's `.image` is wired — the live site's CDN icons
+ * for ScreenX/Cortex/EscalationX are 3D podium-render illustrations (glossy
+ * highlights, drop shadows, blue), banned outright by CLAUDE.md § Art
+ * Direction regardless of color — same conflict as the product/module pages
+ * (see `SignalLayers.jsx`'s note).
  */
 export default function Platform({ platform }) {
   return (
