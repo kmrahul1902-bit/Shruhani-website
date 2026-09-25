@@ -144,13 +144,13 @@ export default function Scenarios({ heading, sub, tabs }) {
                 anyway per an explicit, temporary override for the investor
                 presentation (filled pages over empty boxes); slated for
                 replacement with on-brand art.
-                TODO(content): a subset of tabs across the four use-case
-                pages are still unwired regardless of the override — their
-                only CDN art is a hooded/masked "hacker" figure, which
-                CLAUDE.md bans as a factually misleading cliché ("the cliché
-                a bank risk officer is trained to discount"), not just an
-                off-brand style. That ban isn't lifted by the style override
-                and those specific tabs are left without an image. */}
+                Fraud's "Mule accounts"/"Synthetic identity"/"Account
+                takeover" tabs specifically use a hooded/masked "hacker"
+                figure, which CLAUDE.md bans separately as a factually
+                misleading cliché ("the cliché a bank risk officer is
+                trained to discount") — a second, distinct override from
+                the style one above, wired in on the same "filled over
+                empty, temporary" basis per explicit instruction. */}
             {tabs.map((tab, i) =>
               tab.image?.src ? (
                 <Image
