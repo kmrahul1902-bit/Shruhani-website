@@ -1,16 +1,19 @@
 import Image from "next/image";
 import LogoGrid from "@/components/sections/LogoGrid";
 import ContactForm from "@/components/sections/contact/Form";
+import PageSchema from "@/components/shared/PageSchema";
 import { getContent } from "@/lib/content";
 import { contactHref } from "@/lib/contact-href";
+import { buildMetadata } from "@/lib/seo";
 
 export function generateMetadata() {
   const { seo } = getContent("contact");
-  return {
+  return buildMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     keywords: seo.keywords,
-  };
+    path: "/book-a-demo",
+  });
 }
 
 /**
@@ -124,6 +127,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <PageSchema path="/book-a-demo" seo={content.seo} />
       <section className="hero-under-nav relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
           {hero.visual?.src && (

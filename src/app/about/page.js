@@ -11,11 +11,17 @@ import {
   Office,
 } from "@/components/sections/about";
 import { enrichAboutContent } from "@/components/sections/about/about.adapter";
+import PageSchema from "@/components/shared/PageSchema";
 import { getContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
 export function generateMetadata() {
   const { seo } = getContent("about");
-  return { title: seo.metaTitle, description: seo.metaDescription };
+  return buildMetadata({
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    path: "/about",
+  });
 }
 
 /**
@@ -30,6 +36,7 @@ export default function AboutPage() {
 
   return (
     <>
+      <PageSchema path="/about" seo={content.seo} />
       <Hero hero={content.hero} />
       <Investors investors={content.investors} />
       <Story story={content.story} />

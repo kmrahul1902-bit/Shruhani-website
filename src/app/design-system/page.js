@@ -1,7 +1,11 @@
-export const metadata = {
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata = buildMetadata({
   title: "Design System — Shruhani",
-  robots: { index: false, follow: false },
-};
+  description: "Internal design-token reference. Not a public page.",
+  path: "/design-system",
+  noIndex: true,
+});
 
 // Page-specific reference data — lives with the route, not src/data.
 // Phase 1 scope: verify color tokens, type scale, and per-product accent

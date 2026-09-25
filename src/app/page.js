@@ -4,20 +4,18 @@ import Products from "@/components/sections/Products";
 import Modules from "@/components/sections/Modules";
 import Metrics from "@/components/sections/Metrics";
 import Industries from "@/components/sections/Industries";
+import PageSchema from "@/components/shared/PageSchema";
 import { getContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
-/**
- * Adapted from the reference: metadata is built directly from
- * `content.seo` rather than through `lib/seo.js`/`config/routes.js` (no
- * CMS/routes registry in this project — see plan/CLAUDE.md → Decisions).
- */
 export function generateMetadata() {
   const { seo } = getContent("home");
-  return {
+  return buildMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     keywords: seo.keywords,
-  };
+    path: "/",
+  });
 }
 
 /** Home page — section order matches the reference's own page.js. */
@@ -26,6 +24,7 @@ export default function HomePage() {
 
   return (
     <>
+      <PageSchema path="/" seo={content.seo} />
       <Hero
         content={content}
         demoHref="/book-a-demo"

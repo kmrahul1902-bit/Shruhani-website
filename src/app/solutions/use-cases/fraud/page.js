@@ -5,18 +5,22 @@ import Split from "@/components/sections/useCase/Split";
 import Capabilities from "@/components/sections/useCase/Capabilities";
 import Scenarios from "@/components/sections/useCase/Scenarios";
 import Metrics from "@/components/sections/Metrics";
+import PageSchema from "@/components/shared/PageSchema";
 import { adaptUseCaseContent } from "@/components/sections/useCase/useCase.adapter";
 import { getContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
 const PAGE_KEY = "useCaseFraud";
+const PATH = "/solutions/use-cases/fraud";
 
 export function generateMetadata() {
   const { seo } = getContent(PAGE_KEY);
-  return {
+  return buildMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     keywords: seo.keywords,
-  };
+    path: PATH,
+  });
 }
 
 /**
@@ -31,7 +35,12 @@ export default function UseCaseFraudPage() {
 
   return (
     <>
-      <Hero hero={content.hero} labels={content.labels} demoHref="/book-a-demo" />
+      <PageSchema path={PATH} seo={content.seo} />
+      <Hero
+        hero={content.hero}
+        labels={content.labels}
+        demoHref="/book-a-demo"
+      />
       {/* Below 620px the page is its own composition rather than the
           desktop sections reflowed — see useCase/mobile. */}
       <UseCaseMobile content={content} />

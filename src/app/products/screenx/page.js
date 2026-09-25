@@ -7,15 +7,21 @@ import SignalLayers from "@/components/sections/product/SignalLayers";
 import Toolkit from "@/components/sections/product/Toolkit";
 import Threats from "@/components/sections/product/Threats";
 import Metrics from "@/components/sections/Metrics";
+import PageSchema from "@/components/shared/PageSchema";
 import {
   SECTION_VARIANT,
   enrichProductContent,
 } from "@/components/sections/product/product.constants";
 import { getContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
 export function generateMetadata() {
   const { seo } = getContent("screenx");
-  return { title: seo.metaTitle, description: seo.metaDescription };
+  return buildMetadata({
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    path: "/products/screenx",
+  });
 }
 
 /**
@@ -25,15 +31,16 @@ export function generateMetadata() {
  * (Phase 1), so the page themes itself by not overriding anything.
  *
  * Adapted from the reference: plain `metadata`/sync `getContent` (no CMS/
- * routes registry — see plan/CLAUDE.md → Decisions); no `PageSchema` (Phase 8
- * scope). `enrichProductContent` patches in the `key`s our baked JSON doesn't
- * carry — see product.constants.js.
+ * routes registry — see plan/CLAUDE.md → Decisions). `enrichProductContent`
+ * patches in the `key`s our baked JSON doesn't carry — see
+ * product.constants.js.
  */
 export default function ScreenxPage() {
   const content = enrichProductContent(getContent("screenx"), "screenx");
 
   return (
     <>
+      <PageSchema path="/products/screenx" seo={content.seo} />
       <Hero hero={content.hero} demoHref="/book-a-demo" />
       {/* Below 620px the page is its own composition rather than the desktop
           sections reflowed — see product/mobile. The desktop sections are

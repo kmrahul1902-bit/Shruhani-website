@@ -1,0 +1,6 @@
+{
+  "_comment": "High-water marks for npm run design:budget. Written by --update. A metric at or under its cap is removed; the cap holds it from then on. A mark only ever rises via --reseed, which records why below.",
+  "marks": {
+    "colorRoles": 194
+  }
+}

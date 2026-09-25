@@ -1,20 +1,18 @@
 import BlogIndex from "@/components/sections/blog/index/BlogIndex";
 import { BLOG_LABELS } from "@/components/sections/blog/blog.labels";
+import PageSchema from "@/components/shared/PageSchema";
 import { getArticles } from "@/lib/articles";
 import { getContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
-/**
- * Adapted from the reference: plain `generateMetadata`/`getContent` (no
- * `lib/seo.js`/routes registry — see plan/CLAUDE.md → Decisions). No
- * `BlogIndexSchema` (JSON-LD, Phase 8 scope).
- */
 export function generateMetadata() {
   const { seo } = getContent("blog");
-  return {
+  return buildMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     keywords: seo.keywords,
-  };
+    path: "/resources",
+  });
 }
 
 export default async function ResourcesPage() {
@@ -27,5 +25,10 @@ export default async function ResourcesPage() {
   // its empty state.
   const [featured, ...rest] = articles;
 
-  return <BlogIndex featured={featured} rest={rest} copy={copy} />;
+  return (
+    <>
+      <PageSchema path="/resources" seo={content.seo} />
+      <BlogIndex featured={featured} rest={rest} copy={copy} />
+    </>
+  );
 }

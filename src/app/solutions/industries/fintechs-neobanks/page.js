@@ -5,24 +5,28 @@ import Gap from "@/components/sections/product/Gap";
 import Decisions from "@/components/sections/industry/Decisions";
 import Mapping from "@/components/sections/industry/Mapping";
 import Metrics from "@/components/sections/Metrics";
+import PageSchema from "@/components/shared/PageSchema";
 import { SECTION_VARIANT } from "@/components/sections/product/product.constants";
 import { enrichIndustryContent } from "@/components/sections/industry/industry.constants";
 import { getContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
 const PAGE_KEY = "industryFintechs";
+const PATH = "/solutions/industries/fintechs-neobanks";
 
 /**
- * Adapted from the reference: metadata built directly from `content.seo`,
- * no `lib/seo.js`/routes registry/`PageSchema` (Phase 8 scope, no CMS in
- * this project — see plan/CLAUDE.md → Decisions).
+ * Adapted from the reference: metadata built through `lib/seo.js`'s
+ * `buildMetadata`, no routes registry (no CMS in this project — see
+ * plan/CLAUDE.md → Decisions).
  */
 export function generateMetadata() {
   const { seo } = getContent(PAGE_KEY);
-  return {
+  return buildMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     keywords: seo.keywords,
-  };
+    path: PATH,
+  });
 }
 
 /**
@@ -36,6 +40,7 @@ export default function IndustryFintechsPage() {
 
   return (
     <>
+      <PageSchema path={PATH} seo={content.seo} />
       <Hero
         hero={content.hero}
         labels={content.labels}

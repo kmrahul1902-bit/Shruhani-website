@@ -5,11 +5,17 @@ import {
   PartnerCta,
 } from "@/components/sections/investors";
 import LogoGrid from "@/components/sections/LogoGrid";
+import PageSchema from "@/components/shared/PageSchema";
 import { getContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
 export function generateMetadata() {
   const { seo } = getContent("investorsPartners");
-  return { title: seo.metaTitle, description: seo.metaDescription };
+  return buildMetadata({
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    path: "/investors-partners",
+  });
 }
 
 /**
@@ -23,6 +29,7 @@ export default function InvestorsPartnersPage() {
 
   return (
     <>
+      <PageSchema path="/investors-partners" seo={content.seo} />
       <Hero hero={content.hero} />
       <Investors investors={content.investors} />
       <Partners partners={content.partners} />

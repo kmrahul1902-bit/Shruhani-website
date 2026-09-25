@@ -1,13 +1,16 @@
 import LegalPage from "@/components/sections/legal";
+import PageSchema from "@/components/shared/PageSchema";
 import { getContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
 export function generateMetadata() {
   const { seo } = getContent("privacyPolicy");
-  return {
+  return buildMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     keywords: seo.keywords,
-  };
+    path: "/privacy-policy",
+  });
 }
 
 /**
@@ -23,5 +26,10 @@ export function generateMetadata() {
  */
 export default function PrivacyPolicyPage() {
   const content = getContent("privacyPolicy");
-  return <LegalPage content={content} homeLabel="Home" />;
+  return (
+    <>
+      <PageSchema path="/privacy-policy" seo={content.seo} />
+      <LegalPage content={content} homeLabel="Home" />
+    </>
+  );
 }

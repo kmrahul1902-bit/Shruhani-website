@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "check": "npm run lint && npm run format:check && npm run test && npm run build",
+    "design:budget": "node scripts/design-budget.mjs",
+    "check": "npm run lint && npm run format:check && npm run design:budget && npm run test && npm run build",
     "prepare": "husky"
   },
   "dependencies": {
