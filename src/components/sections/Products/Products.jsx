@@ -28,10 +28,9 @@ const SUITE = {
  * The three suites — every one of them on the page, stacked.
  *
  * Adapted from the reference: `panels` is the baked copy (`home.json`'s
- * `productShowcase.panels`), which carries no route/key — merged here with
- * `PRODUCT_META` by array position (both are ScreenX → Cortex → Escalation
- * order). No panel has an `animation` (Phase 7 scope, not ported), so the
- * flow diagrams simply don't render.
+ * `productShowcase.panels`), which carries no route/key/animation — merged
+ * here with `PRODUCT_META` by array position (both are ScreenX → Cortex →
+ * Escalation order).
  *
  * Server Component. With the selection gone there is nothing here for the
  * browser to decide.

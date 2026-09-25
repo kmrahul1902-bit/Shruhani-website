@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hero animation — Device Intelligence session readout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#fff;font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;color:#0A1628;overflow-x:hidden}
+  .stage{padding:64px 40px 96px;display:flex;flex-direction:column;align-items:center}
+  .stage>.cap{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A94A6;margin-bottom:40px}
+  .stage>.host{width:100%;max-width:1440px}
+  a{color:#C21E86}a:hover{color:#C21E86}
+</style>
+</head>
+<body>
+<div class="stage">
+  <span class="cap">Device Intelligence hero · mobile / web session readout</span>
+  <div class="host">
+      <!-- Hero visual — Device Intelligence session readout (mobile / web, 14s cycle) -->
+      <style>
+      #diHero { width: 100%; margin-top: 32px; display: flex; justify-content: center; overflow: hidden; }
+      @keyframes di3-spin-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes di3-spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+      @keyframes di3-track-a { 0%, 45.9% { opacity: 1; } 46%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
+      @keyframes di3-track-b { 0%, 45.9% { opacity: 0; } 46%, 99.9% { opacity: 1; } 100% { opacity: 0; } }
+      @keyframes di3-case-a { 0%, 45.9% { opacity: 1; } 46%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
+      @keyframes di3-case-b { 0%, 45.9% { opacity: 0; } 46%, 99.9% { opacity: 1; } 100% { opacity: 0; } }
+      @keyframes di3-icon-a {
+        0% { opacity: 1; transform: scale(0.86); }
+        3% { opacity: 1; transform: scale(1.1); }
+        6%, 45.9% { opacity: 1; transform: scale(1); }
+        46%, 99.9% { opacity: 0; transform: scale(0.78); }
+        100% { opacity: 1; transform: scale(0.86); }
+      }
+      @keyframes di3-icon-b {
+        0%, 45.9% { opacity: 0; transform: scale(0.78); }
+        46% { opacity: 1; transform: scale(0.86); }
+        49% { opacity: 1; transform: scale(1.1); }
+        52%, 99.9% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.78); }
+      }
+      @keyframes di3-comet { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -466; } }
+      @keyframes di3-draw-a { 0% { stroke-dashoffset: 900; } 16%, 45.9% { stroke-dashoffset: 0; } 46%, 100% { stroke-dashoffset: 900; } }
+      @keyframes di3-draw-b { 0%, 46% { stroke-dashoffset: 900; } 62%, 99.9% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 900; } }
+      @keyframes di3-tip-a { 0%, 14% { opacity: 0; } 18%, 45.9% { opacity: 1; } 46%, 100% { opacity: 0; } }
+      @keyframes di3-tip-b { 0%, 60% { opacity: 0; } 64%, 99.9% { opacity: 1; } 100% { opacity: 0; } }
+      @keyframes di3-pulse { 0% { transform: scale(0.86); opacity: 0; } 18% { opacity: 0.5; } 100% { transform: scale(1.5); opacity: 0; } }
+      #diHero [data-scan-ring] { transform-box: view-box; transform-origin: 150px 168px; }
+      #diHero [data-motion] { transform-box: view-box; }
+      @media (prefers-reduced-motion: reduce) {
+        #diHero [data-scan-ring], #diHero [data-gen], #diHero [data-case], #diHero [data-motion], #diHero [data-comet] { animation: none !important; }
+        #diHero [data-gen] { opacity: 1 !important; transform: none !important; }
+        #diHero [data-comet] { opacity: 0 !important; }
+        #diHero [data-motion] { opacity: 1 !important; }
+        #diHero [data-case="a"] { opacity: 1 !important; }
+        #diHero [data-case="b"] { display: none !important; }
+      }
+      </style>
+
+      <div id="diHero">
+<div style="width:100%;box-sizing:border-box;font-family:'Plus Jakarta Sans',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden">
+  <div id="diCanvas" style="width:1400px;height:900px;position:relative;flex:0 0 auto;transform-origin:center center">
+
+    <svg width="1400" height="900" viewBox="0 0 1400 900" style="position:absolute;left:0;top:0;overflow:visible;pointer-events:none">
+      <defs>
+        <radialGradient id="s3glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#C21E86" stop-opacity="0.16"></stop>
+          <stop offset="60%" stop-color="#6D5AE6" stop-opacity="0.07"></stop>
+          <stop offset="100%" stop-color="#6D5AE6" stop-opacity="0"></stop>
+        </radialGradient>
+        <filter id="s3soft" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+        </filter>
+      </defs>
+      <circle cx="150" cy="168" r="142" fill="url(#s3glow)"></circle>
+      <path d="M 150 168 L 150 440 Q 150 456 166 456 L 322 456" fill="none" stroke="#C9D3E4" stroke-width="1.5" stroke-linecap="round"></path>
+      <circle cx="322" cy="456" r="3.5" fill="#C21E86"></circle>
+      <path data-comet="" d="M 150 168 L 150 440 Q 150 456 166 456 L 322 456" fill="none" stroke="#F45FB8" stroke-width="7" stroke-linecap="round" stroke-dasharray="14 452" filter="url(#s3soft)" opacity="0.55" style="animation:di3-comet 3.4s linear infinite"></path>
+      <path data-comet="" d="M 150 168 L 150 440 Q 150 456 166 456 L 322 456" fill="none" stroke="#C21E86" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="9 457" style="animation:di3-comet 3.4s linear infinite"></path>
+      <circle cx="150" cy="168" r="78" fill="none" stroke="#C21E86" stroke-width="1" opacity="0.14"></circle>
+      <circle data-scan-ring="" cx="150" cy="168" r="72" fill="none" stroke="#C21E86" stroke-width="2.5" opacity="0" style="animation:di3-pulse 2.6s cubic-bezier(0.4,0,0.2,1) infinite"></circle>
+      <g data-scan-ring="" style="animation:di3-spin-cw 22s linear infinite">
+        <path d="M 120.6 248.8 A 86 86 0 1 1 193 93.5" fill="none" stroke="#C21E86" stroke-width="11" stroke-linecap="round" opacity="0.9"></path>
+        <path d="M 215.9 112.7 A 86 86 0 0 1 193 242.5" fill="none" stroke="#6D5AE6" stroke-width="11" stroke-linecap="round" opacity="0.55"></path>
+        <circle cx="120.6" cy="248.8" r="4" fill="#FFFFFF" stroke="#C21E86" stroke-width="2"></circle>
+        <circle cx="193" cy="93.5" r="4" fill="#C21E86"></circle>
+        <circle cx="193" cy="242.5" r="3.5" fill="#6D5AE6" opacity="0.7"></circle>
+      </g>
+      <g data-scan-ring="" style="animation:di3-spin-cw 14s linear infinite">
+        <circle cx="150" cy="168" r="121" fill="none" stroke="#C21E86" stroke-width="9" stroke-dasharray="2 15" opacity="0.4"></circle>
+      </g>
+    <div style="position: absolute; left: 43px; top: 15px; width: 220px; text-align: center; font-family: Inter,system-ui,sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8A94A6">Scanning device</div></svg>
+
+    <div style="position:absolute;left:85px;top:103px;width:130px;height:130px;position:relative;border-radius:50%;background:#FFFFFF;border:1px solid rgba(194, 30, 134,0.14);box-shadow:0 18px 40px rgba(10,22,40,0.12), 0 0 0 8px rgba(194, 30, 134,0.04);display:flex;align-items:center;justify-content:center;box-sizing:border-box">
+      <img data-case="a" src="https://cdn.sign3.in/strapi-assets/api-uploads/device_phone_c35b63d4b8.png" alt="Mobile device" width="88" height="88" style="position:absolute;width:88px;height:88px;object-fit:contain;filter:hue-rotate(24deg) saturate(1.25);animation:di3-icon-a 14s ease-in-out infinite">
+      <img data-case="b" src="https://cdn.sign3.in/strapi-assets/api-uploads/device_laptop_c5600d49df.png" alt="Laptop device" width="84" height="84" style="position:absolute;width:84px;height:84px;object-fit:contain;filter:hue-rotate(24deg) saturate(1.25);opacity:0;animation:di3-icon-b 14s ease-in-out infinite">
+    </div>
+    
+
+    <div style="position:absolute;left:322px;top:46px;width:1018px;height:820px;box-sizing:border-box;background:#FEF8FB;border:1px solid rgba(194, 30, 134,0.35);border-radius:20px;box-shadow:0 26px 60px rgba(10,22,40,0.10);padding:34px 36px;display:flex;flex-direction:column;gap:20px">
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Device intelligence</span>
+          <div style="position:relative;height:64px;width:520px">
+            <div data-case="a" style="position:absolute;left:0;top:0;display:flex;flex-direction:column;gap:7px;animation:di3-case-a 14s ease-in-out infinite">
+              <span style="font-size:26px;font-weight:800;letter-spacing:-0.01em;color:#0A1628">Mobile session readout</span>
+              <span style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#6B7688">Session <span style="color:#0A1628;font-weight:600">sx-9f21-4a08</span> · 312 signals evaluated</span>
+            </div>
+            <div data-case="b" style="position:absolute;left:0;top:0;display:flex;flex-direction:column;gap:7px;opacity:0;animation:di3-case-b 14s ease-in-out infinite">
+              <span style="font-size:26px;font-weight:800;letter-spacing:-0.01em;color:#0A1628">Web session readout</span>
+              <span style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#6B7688">Session <span style="color:#0A1628;font-weight:600">sx-4c07-8b52</span> · 286 signals evaluated</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          
+          <div data-motion="" style="display:flex;align-items:center;gap:16px;opacity:1">
+            <div style="position:relative;width:92px;height:92px;flex:0 0 auto">
+              <svg width="92" height="92" viewBox="0 0 104 104">
+                <circle cx="52" cy="52" r="46" fill="none" stroke="#0A1628" stroke-opacity="0.08" stroke-width="7"></circle>
+                <circle id="diRing" cx="52" cy="52" r="46" fill="none" stroke="#EF4444" stroke-width="7" stroke-linecap="round" stroke-dasharray="222.5 289" transform="rotate(-90 52 52)"></circle>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px">
+                <span id="diInt" style="font-family:Inter,system-ui,sans-serif;font-size:24px;font-weight:600;line-height:1;letter-spacing:-0.02em;color:#EF4444;font-variant-numeric:tabular-nums">77</span>
+                <span id="diOutOf" style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;font-weight:500;color:#EF4444;opacity:0.65">/ 100</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#8A94A6">Current risk</span>
+              <span id="diScore" style="font-size:40px;line-height:1;font-weight:800;letter-spacing:-0.02em;color:#EF4444;font-variant-numeric:tabular-nums">77.04</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span id="diPill" style="padding:3px 9px;border-radius:999px;background:#EF4444;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em">HIGH</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:12px;color:#6B7688">tier</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:1px;background:rgba(10,22,40,0.07)"></div>
+
+      <div style="height:392px;flex:0 0 auto;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(rgba(0,0,0,0.25) 0, #000 7%, #000 93%, rgba(0,0,0,0.25) 100%);mask-image:linear-gradient(rgba(0,0,0,0.25) 0, #000 7%, #000 93%, rgba(0,0,0,0.25) 100%)">
+        <div data-case="a" style="position:absolute;left:0;right:0;top:0;animation:di3-track-a 14s ease-in-out infinite">
+          <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:44px;row-gap:20px">
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Device identity</span>
+            <div style="display:flex;flex-direction:column">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Model</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Redmi Note 7 Pro</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">OS</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Android 10</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Screen</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">1080×2131</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Device ID</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">4334…cbac <span style="color:#8A94A6;font-weight:500">· persistent</span></span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Integrity</span>
+            <div style="display:flex;flex-direction:column">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Rooted</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Yes</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,0.14);flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Hooking</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Yes</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,0.14);flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Emulator</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">App tampering</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Remote access</span>
+            <div style="display:flex;flex-direction:column">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Mirrored screen</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Yes</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,0.14);flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Remote app</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Yes</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,0.14);flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Debugging</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Yes</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Accessibility</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Yes</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Network &amp; location</span>
+            <div style="display:flex;flex-direction:column">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">VPN</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Proxy</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">IP</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Navi Mumbai, IN</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">ISP</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">TTSL</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="grid-column:1 / -1;display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Installed apps</span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:44px">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Apps profiled</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">142</span>
+
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Risky app</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">1 flagged</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+        <div data-case="b" style="position:absolute;left:0;right:0;top:0;opacity:0;animation:di3-track-b 14s ease-in-out infinite">
+          <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:44px;row-gap:20px">
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Device identity</span>
+            <div style="display:flex;flex-direction:column">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Browser</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Mobile Safari 18</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">OS</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">iOS 18</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Screen</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">390×844</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Device ID</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">acded…3ab11 <span style="color:#8A94A6;font-weight:500">· persistent</span></span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Integrity / automation</span>
+            <div style="display:flex;flex-direction:column">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Bot detected</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Selenium</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Headless Chrome</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Webdriver</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Evasion / privacy</span>
+            <div style="display:flex;flex-direction:column">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Incognito</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Yes</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,0.14);flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Ad-blocker</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Yes</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">User-agent spoofed</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Dev tools open</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Network &amp; location</span>
+            <div style="display:flex;flex-direction:column">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">VPN</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Tor</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Proxy</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">No</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">IP</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">223.225.57.29</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="grid-column:1 / -1;display:flex;flex-direction:column;gap:8px">
+            <span data-gen="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Fingerprint depth</span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:44px">
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">WebGL</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Apple GPU</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">HW concurrency</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">4</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+              <div data-gen="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:6px 0">
+                <span style="flex:1;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Cookie &amp; IndexedDB IDs</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#0A1628">Match</span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#C3CBD9;flex:0 0 auto"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          
+        </div>
+      </div>
+
+      <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding-top:4px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#8A94A6">Risk score trend</span>
+          <div style="display:flex;align-items:center;gap:18px">
+            <span style="display:flex;align-items:center;gap:7px;font-family:Inter,system-ui,sans-serif;font-size:11.5px;color:#6B7688"><span style="width:16px;height:2px;background:#EF4444;border-radius:2px"></span>This device</span>
+            <span style="display:flex;align-items:center;gap:7px;font-family:Inter,system-ui,sans-serif;font-size:11.5px;color:#6B7688"><span style="width:16px;height:0;border-top:2px dashed #C21E86;border-radius:2px"></span>Portfolio baseline</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 946 182" width="100%" height="182" style="display:block">
+          <g font-family="Inter, system-ui, sans-serif" font-size="10" fill="#A6B0C0">
+            <text x="0" y="161.5">0</text>
+            <text x="0" y="124">25</text>
+            <text x="0" y="86.5">50</text>
+            <text x="0" y="49">75</text>
+            <text x="0" y="11.5">100</text>
+          </g>
+          <g stroke="#FDF1F8" stroke-width="1">
+            <line x1="30" y1="158" x2="930" y2="158"></line>
+            <line x1="30" y1="120.5" x2="930" y2="120.5"></line>
+            <line x1="30" y1="83" x2="930" y2="83"></line>
+            <line x1="30" y1="45.5" x2="930" y2="45.5"></line>
+            <line x1="30" y1="8" x2="930" y2="8"></line>
+          </g>
+          <g data-case="a" style="animation:di3-case-a 14s ease-in-out infinite">
+            <polyline points="48,107 174,108.5 300,105.5 426,110 552,107 678,108.5 804,105.5 930,107" fill="none" stroke="#C21E86" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round" opacity="0.7"></polyline>
+            <polyline points="48,96.5 174,86 300,75.5 426,65 552,53 678,41 804,29 930,21.5" fill="none" stroke="#EF4444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="900" stroke-dashoffset="0" data-motion="" style="animation:di3-draw-a 14s ease-in-out infinite"></polyline>
+            <circle cx="930" cy="21.5" r="4.5" fill="#FFFFFF" stroke="#EF4444" stroke-width="2" data-motion="" style="animation:di3-tip-a 14s ease-in-out infinite"></circle>
+          </g>
+          <g data-case="b" opacity="0" style="animation:di3-case-b 14s ease-in-out infinite">
+            <polyline points="48,113 174,111.5 300,114.5 426,110 552,113 678,111.5 804,113 930,111.5" fill="none" stroke="#C21E86" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round" opacity="0.7"></polyline>
+            <polyline points="48,80 174,62 300,71 426,51.5 552,59 678,38 804,50 930,42.5" fill="none" stroke="#EF4444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="900" stroke-dashoffset="0" data-motion="" style="animation:di3-draw-b 14s ease-in-out infinite"></polyline>
+            <circle cx="930" cy="42.5" r="4.5" fill="#FFFFFF" stroke="#EF4444" stroke-width="2" data-motion="" style="animation:di3-tip-b 14s ease-in-out infinite"></circle>
+          </g>
+          <g font-family="Inter, system-ui, sans-serif" font-size="10.5" fill="#8A94A6" text-anchor="middle">
+            <text x="48" y="176">Jul 06</text>
+            <text x="174" y="176">Jul 13</text>
+            <text x="300" y="176">Jul 20</text>
+            <text x="426" y="176">Jul 27</text>
+            <text x="552" y="176">Aug 03</text>
+            <text x="678" y="176">Aug 10</text>
+            <text x="804" y="176">Aug 17</text>
+            <text x="930" y="176">Today</text>
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</div>
+      </div>
+
+      <script>
+      (function () {
+        var root = document.getElementById('diHero');
+        if (!root) return;
+        var node = document.getElementById('diCanvas');
+        var scoreEl = document.getElementById('diScore');
+        var intEl = document.getElementById('diInt');
+        var outOfEl = document.getElementById('diOutOf');
+        var pillEl = document.getElementById('diPill');
+        var ringEl = document.getElementById('diRing');
+
+        function fit() {
+          if (!node) return;
+          var avail = root.clientWidth;
+          if (!avail) return;
+          var s = Math.min(1, avail / 1400);
+          node.style.transform = 'scale(' + s + ')';
+          node.style.margin = (-(900 * (1 - s)) / 2) + 'px ' + (-(1400 * (1 - s)) / 2) + 'px';
+        }
+        fit();
+        window.addEventListener('resize', fit);
+        window.addEventListener('load', fit);
+        if (window.ResizeObserver) new ResizeObserver(fit).observe(root);
+
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var CYCLE = 14, CUT = 6.44, C = 2 * Math.PI * 46;
+        var RUNS = [[11.42, 77.04], [9.60, 24.18], [14.75, 58.31], [8.20, 91.46], [12.08, 41.67], [10.34, 68.92]];
+        var ease = function (p) { return 1 - Math.pow(1 - p, 2.4); };
+        var trackEl = null, rows = null;
+
+        function clock() {
+          if (!trackEl) trackEl = root.querySelector('[style*="di3-track-a"]');
+          var anim = trackEl && trackEl.getAnimations && trackEl.getAnimations()[0];
+          if (anim && anim.currentTime != null) return Number(anim.currentTime) / 1000;
+          return performance.now() / 1000;
+        }
+
+        function tick() {
+          var abs = clock(), t = abs % CYCLE, e = t < CUT ? t : t - CUT;
+          var run = RUNS[(Math.floor(abs / CYCLE) * 2 + (t < CUT ? 0 : 1)) % RUNS.length];
+          var FROM = run[0], TO = run[1];
+          var p = Math.max(0, Math.min(1, (e - 0.1) / 2.3));
+          var drift = p >= 1 ? Math.sin(abs * 1.7) * 0.18 + Math.sin(abs * 0.63) * 0.11 : 0;
+          var s = Math.max(0, Math.min(100, FROM + (TO - FROM) * ease(p) + drift));
+
+          if (!rows) {
+            var tr = root.querySelectorAll('[style*="di3-track-a"], [style*="di3-track-b"]');
+            rows = [0, 1].map(function (i) { return tr[i] ? Array.prototype.slice.call(tr[i].querySelectorAll('[data-gen]')) : []; });
+          }
+          var activeA = t < CUT;
+          rows.forEach(function (list, ci) {
+            var owner = (ci === 0) === activeA;
+            list.forEach(function (el, i) {
+              var arrive = Math.max(0, (i - 3) * 0.085);
+              var k = owner ? Math.max(0, Math.min(1, (e + 0.06 - arrive) / 0.18)) : 0;
+              el.style.opacity = k.toFixed(3);
+              el.style.transform = k < 1 ? 'translateY(' + (7 * (1 - k)).toFixed(1) + 'px)' : 'none';
+            });
+          });
+
+          var STOPS = [[0, 34, 197, 94], [46, 245, 158, 11], [72, 239, 68, 68]];
+          var col = STOPS[STOPS.length - 1];
+          for (var k2 = 0; k2 < STOPS.length - 1; k2++) {
+            var a = STOPS[k2], b = STOPS[k2 + 1];
+            if (s <= b[0]) {
+              var q = Math.max(0, Math.min(1, (s - a[0]) / (b[0] - a[0])));
+              col = [0, a[1] + (b[1] - a[1]) * q, a[2] + (b[2] - a[2]) * q, a[3] + (b[3] - a[3]) * q];
+              break;
+            }
+          }
+          var rgb = 'rgb(' + Math.round(col[1]) + ',' + Math.round(col[2]) + ',' + Math.round(col[3]) + ')';
+          if (scoreEl) { scoreEl.textContent = s.toFixed(2); scoreEl.style.color = rgb; }
+          if (intEl) { intEl.textContent = String(Math.round(s)); intEl.style.color = rgb; }
+          if (outOfEl) outOfEl.style.color = rgb;
+          if (pillEl) {
+            pillEl.style.background = rgb;
+            var lbl = s >= 66 ? 'HIGH' : s >= 40 ? 'ELEVATED' : 'LOW';
+            if (pillEl.textContent !== lbl) pillEl.textContent = lbl;
+          }
+          if (ringEl) {
+            ringEl.setAttribute('stroke-dasharray', (s / 100 * C).toFixed(1) + ' ' + C.toFixed(1));
+            ringEl.setAttribute('stroke', rgb);
+          }
+          requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      })();
+      </script>
+  </div>
+</div>
+</body>
+</html>
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     .stage is the standalone's viewing harness; in a frame its padding is white
+     space above and either side of the artwork. The animation's own wrapper
+     keeps its 40px top margin, which is the gap the design asks for. */
+  .stage { padding: 0; max-width: none; }
+
+  /* New in the 24 Aug cut: each standalone labels itself with a harness caption
+     ("Location Intelligence hero - capture -> verify -> enrich -> predict") as a
+     direct child of .stage. It is the preview's own title, not part of the
+     artwork, and framed it paints a stray grey line above the hero. Matched as
+     a direct child so it cannot collide with an artwork class of the same name. */
+  .stage > .cap { display: none; }
+
+  /* The standalone paints a white body because it is a page when opened on its
+     own. Framed, that white is a rectangle sitting on top of the hero's wash,
+     which is what made every animation look pasted on rather than part of the
+     page. The artwork's own surfaces are unaffected — only the ground behind
+     them goes. */
+  html,
+  body { background: transparent; }
+
+
+  /* The home animation is the one of the five that ships no reduced-motion
+     guard; its README says it "needs the same guard added on rebuild". This is
+     the same guard the other four ship ('animation: none !important'), applied
+     the only way it can be here: home declares all 33 of its animations in
+     inline style attributes, which a stylesheet only outranks with !important,
+     and it names no classes to list. Scoped to the wrapper, so it is inert in
+     the other sixteen files. */
+  @media (prefers-reduced-motion: reduce) {
+    #s3hero-row,
+    #s3hero-row * { animation: none !important; }
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // 'zoom' -> 'transform: scale()', on every row the bundle scales.
+  //
+  // The bundles shrink each oversized hero row with 'zoom', and serving that
+  // verbatim is a fault this repo has already paid for: Safari lays a zoomed row
+  // out at a different width than Chrome, so the columns lose their room and the
+  // flex row WRAPS — verdict badge on a second line, orbit chips off their ring,
+  // connector streams gone, canvas boxes showing. Fixed in 915dc4b, then
+  // reintroduced when the heroes moved from ported JSX to framed standalones,
+  // which put the designer's 'zoom' back on the page. The bundle's own README
+  // asks for this conversion in production.
+  //
+  // The recipe is the one probed against the affected Safari at the time —
+  // zoom-with-percentage, zoom-with-explicit-width and transform side by side,
+  // and only transform held:
+  //
+  //   width: calc(100% / s)  lays the row out at host/s so it paints back to
+  //                          exactly the host's width, with no percentage under
+  //                          zoom for engines to disagree about
+  //   transform: scale(s)    spec'd identically in every engine, and does not
+  //                          participate in layout, which is what makes the
+  //                          percentage above safe
+  //   flex: none             the hosts are centring flex containers, so a flex
+  //                          item would be SHRUNK back to the host's width — the
+  //                          very thing the calc() exists to avoid
+  //   transform-origin: top center
+  //                          the host centres the layout box, so scaling about
+  //                          its own centre keeps the painted result centred even
+  //                          where a max-width caps it narrower than the host
+  //
+  // Geometry is preserved rather than approximated: under 'zoom: s' with
+  // 'width: 100%' the row's offsetWidth is already host/s and its rect is host,
+  // which is exactly what the pair above produces — so the controllers, which
+  // divide by rect.width / offsetWidth to undo the scaling, read identical
+  // numbers before and after.
+  (function () {
+    // Re-scanned on every pass rather than collected once. The Design Component
+    // runtime behind the mobile heroes renders after this script parses and
+    // replaces what was there, so a list captured at parse time misses whatever
+    // it creates — cortex-mobile ships two inline zooms that only exist after
+    // it has run. Converting is idempotent: a converted element carries an
+    // inline zoom of 1, so a later pass no longer sees it.
+    function collect() {
+      var scaled = [];
+      document.querySelectorAll("body *").forEach(function (el) {
+        var z = parseFloat(getComputedStyle(el).zoom);
+        if (!(z > 0) || z === 1) return;
+      // Take only the element the zoom is DECLARED on, never its descendants.
+      // Engines disagree about what computed zoom reports: Chrome gives the
+      // element's own value, and a descendant of a zoomed row reads 1; other
+      // engines report the cumulative zoom, so every descendant reads the row's
+      // value too. Without this guard the second kind of engine would scale the
+      // whole subtree again, once per level -- geometry inside the row would
+      // collapse in exactly the way a distorted, off-centre composition looks.
+      // A declared zoom always differs from its parent's; an inherited reading
+      // never does.
+        var parent = el.parentElement;
+        var pz = parent ? parseFloat(getComputedStyle(parent).zoom) : 1;
+        if (pz > 0 && Math.abs(pz - z) < 0.0001) return;
+        scaled.push(el);
+      });
+      return scaled;
+    }
+
+    var OURS = [
+      "zoom",
+      "width",
+      "flex",
+      "transform",
+      "transform-origin",
+      "margin-bottom",
+    ];
+
+    function apply(el) {
+      // Drop back to the stylesheet's own state first: the scale is
+      // breakpoint-dependent (screenx 0.72 -> 0.6, cortex 0.7 -> 0.56) and an
+      // inline zoom of our own would mask the media query's value.
+      OURS.forEach(function (p) {
+        el.style.removeProperty(p);
+      });
+      var s = parseFloat(getComputedStyle(el).zoom);
+      if (!(s > 0) || s === 1) return; // Unscaled at this width.
+
+      el.style.setProperty("zoom", "1", "important");
+      el.style.setProperty("width", "calc(100% / " + s + ")", "important");
+      el.style.setProperty("flex", "none", "important");
+      el.style.setProperty("transform-origin", "top center", "important");
+      el.style.setProperty("transform", "scale(" + s + ")", "important");
+
+      // The transform paints smaller but the row still RESERVES its full
+      // unscaled height, so take back exactly the part that no longer paints.
+      //
+      // offsetHeight, NOT getBoundingClientRect().height, even though the rect
+      // is the painted box and looks like the more direct answer: the rect fed
+      // back on itself when this was last built — a too-tall row lengthens the
+      // page, which brings in a scrollbar, which narrows the viewport, which
+      // re-wraps the row, which makes it taller again. In WebKit at 1024px that
+      // ran away to 6052px. The layout height cannot be influenced by what we
+      // set here, so there is nothing for a loop to amplify.
+      var dead = Math.round(el.offsetHeight * (1 - s));
+      if (dead > 0)
+        el.style.setProperty("margin-bottom", "-" + dead + "px", "important");
+    }
+
+    function applyAll() {
+      collect().forEach(apply);
+    }
+
+    var timer;
+    function reapply() {
+      clearTimeout(timer);
+      timer = setTimeout(applyAll, 120);
+    }
+
+    applyAll();
+    addEventListener("resize", reapply);
+    // After the runtime has rendered, for anything it created.
+    addEventListener("load", applyAll);
+    // The controllers measure their anchors and redraw off resize; nudge them
+    // once so they re-read the row rather than keeping numbers taken before the
+    // conversion. Only on the initial pass — later passes ARE resize events.
+    dispatchEvent(new Event("resize"));
+  })();
+
+  // The rest of home's guard. Its connector dots are SVG <animateMotion>, built
+  // by the controller after load and rebuilt on every resize, so CSS cannot
+  // reach them: 'animation: none' does not apply to SMIL. Removing each one as
+  // it is inserted parks its dot at the path start instead of flying it along,
+  // and covers the rebuilds too. Only home generates these; the observer is not
+  // installed anywhere else.
+  if (
+    document.getElementById("s3hero-row") &&
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const strip = (node) => {
+      if (node.nodeType !== 1) return;
+      if (node.tagName === "animateMotion") node.remove();
+      else node.querySelectorAll?.("animateMotion").forEach((el) => el.remove());
+    };
+    document.querySelectorAll("animateMotion").forEach((el) => el.remove());
+    new MutationObserver((records) =>
+      records.forEach((r) => r.addedNodes.forEach(strip))
+    ).observe(document.documentElement, { childList: true, subtree: true });
+  }
+</script>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs -- not from the design bundle. */
+  /* Pin the rotation pivot to a box that every engine agrees on.
+     The bundle writes transform-box:view-box with a pixel transform-origin
+     on its concentric rings. That pair is only the ring's centre if view-box is
+     honoured; resolved against the fill-box instead, the pixel pair is measured
+     from the element's own bbox corner and every ring spins about a different
+     off-centre point — the rings stop being concentric.
+     Measured across all seventeen animations, the fill-box centre IS the
+     declared pivot for every one of these elements to within a user unit, so
+     'center' under an explicitly pinned fill-box is the same rotation with no
+     dependency on view-box support. The one exception is measured out below. */
+  [data-scan-ring],
+  #bhHero [data-breathe],
+  .hero-anim .hf-core,
+  .hero-anim .hf-ripple,
+  .hero-anim .hf-spin,
+  .hero-anim .hf-spin-rev,
+  .nCore,
+  .nRipple,
+  .nSpin,
+  .nSpinRev {
+    transform-box: fill-box !important;
+    transform-origin: center !important;
+  }
+
+  /* !important, not higher specificity, and this is load-bearing rather than
+     lazy. The bundles namespace every selector under the wrapper id -- the
+     24 Aug cut's README states it as a rule -- so the file's own declaration is
+     '#diHero [data-scan-ring]' at (1,1,0) where the selector above is (0,1,0).
+     It loses on specificity no matter what order the sheets are in. That is
+     exactly how this fix went missing: it worked while device-intelligence
+     shipped an unscoped rule, then stopped the moment the new cut replaced the
+     file, and the rings went back to being non-concentric in Safari with
+     nothing in the diff to show it. Matching the namespacing here would only
+     put us one bundle rename away from the same silent failure. */
+
+  /* The one element whose fill box is not centred on its pivot: its bbox starts
+     at (123.4, 101.7) and the bundle rotates it about (230, 220). */
+  #bhHero [data-breathe] { transform-origin: 106.6px 118.3px !important; }
+</style>

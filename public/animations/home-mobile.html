@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: transparent; }
+  a { color: #C21E86; text-decoration: none; }
+  a:hover { color: #0A1628; }
+  @keyframes s3-halo-pulse{0%{transform:translate(-50%,-50%) scale(.96);opacity:0}18%{opacity:1}55%{opacity:.7}100%{transform:translate(-50%,-50%) scale(1.34);opacity:0}}
+  @keyframes s3-scan-spin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes s3-core-drift{0%{transform:rotate(0) scale(1.04)}50%{transform:rotate(180deg) scale(1.12)}100%{transform:rotate(360deg) scale(1.04)}}
+  @keyframes s3-orbit-scan{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @keyframes s3-orbit-upright{from{transform:translate(-50%,-31px) rotate(0)}to{transform:translate(-50%,-31px) rotate(-360deg)}}
+  @keyframes s3-chip-pop{0%{opacity:0;transform:translate(-50%,-31px) scale(.35)}45%{opacity:1;transform:translate(-50%,-31px) scale(1.18)}70%{opacity:1;transform:translate(-50%,-31px) scale(.94)}100%{opacity:1;transform:translate(-50%,-31px) scale(1)}}
+  @keyframes s3-in-pop{0%{opacity:0;transform:scale(.55)}62%{opacity:1;transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
+  @keyframes s3-in-pop-c{0%{opacity:0;transform:translate(-50%,-50%) scale(.55)}62%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+  @keyframes s3-in-fade{from{opacity:0}to{opacity:1}}
+  @keyframes s3-spin-arc{to{transform:rotate(360deg)}}
+  @keyframes s3-stage-pop{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.09)}100%{opacity:1;transform:scale(1)}}
+  @keyframes s3-badge-pop{0%{transform:scale(.55);opacity:0}62%{transform:scale(1.12);opacity:1}100%{transform:scale(1);opacity:1}}
+  @keyframes s3-badge-dance{0%,100%{transform:translateY(0) rotate(0) scale(1)}25%{transform:translateY(-3px) rotate(-3deg) scale(1.03)}55%{transform:translateY(1px) rotate(2.5deg) scale(.99)}80%{transform:translateY(-1.5px) rotate(-1deg) scale(1.01)}}
+  @keyframes s3-badge-rise{from{transform:translateY(6px);opacity:0}to{transform:translateY(0);opacity:1}}
+  @keyframes s3-cap-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes s3-beam{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}38%{opacity:.85}100%{opacity:0;transform:translate(-50%,-50%) scale(2)}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;width:1080px;height:1080px;overflow:hidden;background:transparent;font-family:'Plus Jakarta Sans',Inter,sans-serif;box-sizing:border-box">
+
+  <div style="position:absolute;left:540px;top:470px;width:220px;height:220px;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle,rgba(194, 30, 134,.28),rgba(229, 54, 163,.10) 55%,rgba(255,255,255,0) 100%);opacity:{{ beamOpacity }};animation:s3-beam 0.85s ease-out infinite"></div>
+
+  <div ref="{{ scene0 }}" style="position:absolute;left:0;top:0;width:1080px;height:880px;display:flex;align-items:center;justify-content:center;transition:opacity 700ms cubic-bezier(.4,0,.2,1),transform 860ms cubic-bezier(.32,1.02,.4,1),filter 640ms ease;opacity:{{ s0o }};transform:scale({{ s0k }});filter:blur({{ s0b }}px)">
+    <div style="width:480px;height:480px;position:relative;zoom:1.62">
+      <div style="position:absolute;inset:0;pointer-events:none">
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:348px;height:348px;border:1.5px solid rgba(194, 30, 134,.30);animation:s3-halo-pulse 10s cubic-bezier(.42,0,.58,1) 0s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:348px;height:348px;border:1.5px solid rgba(194, 30, 134,.26);animation:s3-halo-pulse 10s cubic-bezier(.42,0,.58,1) 2.5s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:348px;height:348px;border:1.5px solid rgba(194, 30, 134,.22);animation:s3-halo-pulse 10s cubic-bezier(.42,0,.58,1) 5s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:348px;height:348px;border:1.5px solid rgba(194, 30, 134,.24);animation:s3-halo-pulse 10s cubic-bezier(.42,0,.58,1) 7.5s infinite"></div>
+      </div>
+      <svg width="480" height="480" viewBox="0 0 480 480" style="position:absolute;inset:0">
+        <defs>
+          <linearGradient id="sqs-orbit-arc" x1="0.15" y1="0" x2="0.85" y2="1">
+            <stop offset="0%" stop-color="#C21E86"></stop><stop offset="45%" stop-color="#C21E86"></stop>
+            <stop offset="78%" stop-color="#C21E86"></stop><stop offset="100%" stop-color="#E536A3"></stop>
+          </linearGradient>
+        </defs>
+        <circle cx="240" cy="240" r="182" fill="none" stroke="#0A1628" stroke-opacity="0.14" stroke-width="1"></circle>
+        <circle cx="240" cy="240" r="158" fill="none" stroke="#0A1628" stroke-opacity="0.14" stroke-width="1"></circle>
+        <circle cx="240" cy="240" r="170" fill="none" stroke="url(#sqs-orbit-arc)" stroke-width="7" stroke-opacity="0.45"></circle>
+      </svg>
+      <div ref="{{ profileRef }}" style="position:absolute;left:240px;top:240px;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;border:4px solid rgba(194, 30, 134,.16);animation:s3-in-pop-c .55s cubic-bezier(.34,1.5,.64,1) both;box-shadow:0 12px 32px rgba(10,22,40,.14);background:#FFFFFF url('https://cdn.sign3.in/strapi-assets/api-uploads/hero_face_illus_1_b0c2c3cae7.png') 50% 50%/106% no-repeat;overflow:hidden"></div>
+      <div style="position:absolute;left:50%;top:50%;width:208px;height:208px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);background:conic-gradient(from 0deg,rgba(194, 30, 134,0) 0deg,rgba(194, 30, 134,.08) 90deg,rgba(194, 30, 134,.55) 200deg,#C21E86 300deg,#C21E86 342deg,rgba(194, 30, 134,0) 360deg);-webkit-mask:radial-gradient(circle at center,transparent 0 100px,#000 100.5px);mask:radial-gradient(circle at center,transparent 0 100px,#000 100.5px);animation:s3-in-fade .45s ease-out both,s3-scan-spin 7s linear .5s infinite"></div>
+      <div style="position:absolute;inset:0;transform-origin:50% 50%;animation:s3-orbit-scan 44s linear .6s infinite">
+        <div style="position:absolute;left:240px;top:70px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;transform:translate(-50%,-31px);transform-origin:50% 31px;animation:s3-chip-pop .55s cubic-bezier(.34,1.6,.6,1) .35s both,s3-orbit-upright 44s linear .6s infinite">
+          <div style="display:flex;align-items:center;justify-content:center;width:62px;height:62px;background:#fff;border-radius:7px;border:1px solid rgba(10,22,40,.05);box-shadow:0 8px 22px rgba(10,22,40,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="#C21E86"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 3.5A2.5 2.5 0 018.5 1h7A2.5 2.5 0 0118 3.5v17A2.5 2.5 0 0115.5 23h-7A2.5 2.5 0 016 20.5zM10 19.4h4a.9.9 0 010 1.8h-4a.9.9 0 010-1.8z"></path></svg></div>
+          <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#0A1628;text-shadow:0 0 4px #fff,0 0 8px #fff;animation:s3-in-fade .5s ease-out .75s both">Device</span>
+        </div>
+        <div style="position:absolute;left:387px;top:155px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;transform:translate(-50%,-31px);transform-origin:50% 31px;animation:s3-chip-pop .55s cubic-bezier(.34,1.6,.6,1) .46s both,s3-orbit-upright 44s linear .6s infinite">
+          <div style="display:flex;align-items:center;justify-content:center;width:62px;height:62px;background:#fff;border-radius:7px;border:1px solid rgba(10,22,40,.05);box-shadow:0 8px 22px rgba(10,22,40,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="#C21E86"><path d="M2 6.6A2.6 2.6 0 014.6 4h14.8A2.6 2.6 0 0122 6.6v.4l-10 5.8L2 7zM2 9.3l9.5 5.5a1 1 0 001 0L22 9.3v8.1a2.6 2.6 0 01-2.6 2.6H4.6A2.6 2.6 0 012 17.4z"></path></svg></div>
+          <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#0A1628;text-shadow:0 0 4px #fff,0 0 8px #fff;animation:s3-in-fade .5s ease-out .75s both">Email</span>
+        </div>
+        <div style="position:absolute;left:387px;top:325px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;transform:translate(-50%,-31px);transform-origin:50% 31px;animation:s3-chip-pop .55s cubic-bezier(.34,1.6,.6,1) .57s both,s3-orbit-upright 44s linear .6s infinite">
+          <div style="display:flex;align-items:center;justify-content:center;width:62px;height:62px;background:#fff;border-radius:7px;border:1px solid rgba(10,22,40,.05);box-shadow:0 8px 22px rgba(10,22,40,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="#C21E86"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 5.6A2.6 2.6 0 015.6 3h12.8A2.6 2.6 0 0121 5.6v12.8a2.6 2.6 0 01-2.6 2.6H5.6A2.6 2.6 0 013 18.4zm5.6 1.7a2.1 2.1 0 100 4.2 2.1 2.1 0 000-4.2zM5 18.2l4.3-4.4 3.3 3.3 2.7-2 3.7 3.3v.2H5z"></path></svg></div>
+          <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#0A1628;text-shadow:0 0 4px #fff,0 0 8px #fff;animation:s3-in-fade .5s ease-out .75s both">Image</span>
+        </div>
+        <div style="position:absolute;left:240px;top:410px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;transform:translate(-50%,-31px);transform-origin:50% 31px;animation:s3-chip-pop .55s cubic-bezier(.34,1.6,.6,1) .68s both,s3-orbit-upright 44s linear .6s infinite">
+          <div style="display:flex;align-items:center;justify-content:center;width:62px;height:62px;background:#fff;border-radius:7px;border:1px solid rgba(10,22,40,.05);box-shadow:0 8px 22px rgba(10,22,40,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="#C21E86"><path d="M6.4 2.6h4.2l2.1 5.3-2.7 1.6a12.4 12.4 0 004.5 4.5l1.6-2.7 5.3 2.1v4.2a2.2 2.2 0 01-2.4 2.2A17.4 17.4 0 014.2 5a2.2 2.2 0 012.2-2.4z"></path></svg></div>
+          <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#0A1628;text-shadow:0 0 4px #fff,0 0 8px #fff;animation:s3-in-fade .5s ease-out .75s both">Phone</span>
+        </div>
+        <div style="position:absolute;left:93px;top:325px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;transform:translate(-50%,-31px);transform-origin:50% 31px;animation:s3-chip-pop .55s cubic-bezier(.34,1.6,.6,1) .79s both,s3-orbit-upright 44s linear .6s infinite">
+          <div style="display:flex;align-items:center;justify-content:center;width:62px;height:62px;background:#fff;border-radius:7px;border:1px solid rgba(10,22,40,.05);box-shadow:0 8px 22px rgba(10,22,40,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="#C21E86"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.8a7.7 7.7 0 00-7.7 7.7c0 5.7 6.7 11.8 7 12.1a1 1 0 001.4 0c.3-.3 7-6.4 7-12.1A7.7 7.7 0 0012 1.8zm0 10.2a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"></path></svg></div>
+          <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#0A1628;text-shadow:0 0 4px #fff,0 0 8px #fff;animation:s3-in-fade .5s ease-out .75s both">Location</span>
+        </div>
+        <div style="position:absolute;left:93px;top:155px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;transform:translate(-50%,-31px);transform-origin:50% 31px;animation:s3-chip-pop .55s cubic-bezier(.34,1.6,.6,1) .90s both,s3-orbit-upright 44s linear .6s infinite">
+          <div style="display:flex;align-items:center;justify-content:center;width:62px;height:62px;background:#fff;border-radius:7px;border:1px solid rgba(10,22,40,.05);box-shadow:0 8px 22px rgba(10,22,40,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="#C21E86"><path d="M3 13.5h2.6V19H3zm4.7-4.8h2.6V19H7.7zm4.7-4.4H15V19h-2.6zm4.7 6.4h2.6V19h-2.6z"></path></svg></div>
+          <span style="font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:#0A1628;text-shadow:0 0 4px #fff,0 0 8px #fff;animation:s3-in-fade .5s ease-out .75s both">Behavior</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ref="{{ scene1 }}" style="position:absolute;left:0;top:0;width:1080px;height:880px;display:flex;align-items:center;justify-content:center;transition:opacity 700ms cubic-bezier(.4,0,.2,1),transform 860ms cubic-bezier(.32,1.02,.4,1),filter 640ms ease;opacity:{{ s1o }};transform:scale({{ s1k }});filter:blur({{ s1b }}px)">
+    <div style="position:relative;display:flex;align-items:center;justify-content:center;width:400px;height:372px;zoom:1.7">
+      <div style="position:absolute;inset:0;pointer-events:none">
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:372px;height:372px;border:1.5px solid rgba(194, 30, 134,.28);animation:s3-halo-pulse 10.4s cubic-bezier(.42,0,.58,1) .8s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:372px;height:372px;border:1.5px solid rgba(229, 54, 163,.26);animation:s3-halo-pulse 10.4s cubic-bezier(.42,0,.58,1) 3.4s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:372px;height:372px;border:1.5px solid rgba(194, 30, 134,.22);animation:s3-halo-pulse 10.4s cubic-bezier(.42,0,.58,1) 6s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:372px;height:372px;border:1.5px solid rgba(194, 30, 134,.24);animation:s3-halo-pulse 10.4s cubic-bezier(.42,0,.58,1) 8.6s infinite"></div>
+      </div>
+      <div style="position:absolute;left:50%;top:344px;transform:translateX(-50%);width:300px;height:46px;border-radius:50%;background:radial-gradient(closest-side,rgba(10,22,40,.22),rgba(10,22,40,.08) 60%,rgba(10,22,40,0) 100%);filter:blur(8px)"></div>
+      <div style="position:absolute;inset:0;pointer-events:none">
+        <div style="position:absolute;left:50%;top:-12px;transform:translateX(-50%);width:384px;height:384px;border-radius:50%;background:linear-gradient(160deg,#C21E86 0%,#C21E86 34%,#C21E86 72%,#E536A3 100%);opacity:.9"></div>
+        <div style="position:absolute;left:50%;top:-18px;transform:translateX(-50%);width:396px;height:396px;border-radius:50%;background:radial-gradient(closest-side,rgba(194, 30, 134,.18),rgba(229, 54, 163,.10) 74%,rgba(255,255,255,0) 100%);filter:blur(10px)"></div>
+      </div>
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:360px;height:360px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 42%,#fff 0%,#FEF8FB 48%,#FDF1F8 78%,#FDF1F8 100%);box-shadow:0 30px 80px rgba(194, 30, 134,.16),inset 0 0 60px rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(from 0deg,rgba(124,92,224,.16),rgba(194, 30, 134,.10) 90deg,rgba(229, 54, 163,.16) 180deg,rgba(194, 30, 134,.08) 270deg,rgba(124,92,224,.16));mix-blend-mode:multiply;animation:s3-core-drift 26s linear infinite"></div>
+        <canvas ref="{{ canvasRef }}" width="720" height="720" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:0 24px;animation:s3-in-pop .62s cubic-bezier(.34,1.6,.6,1) .25s both">
+          <img src="/logo.svg" alt="Shruhani" style="height:38px;width:auto;display:block">
+          <span style="width:44px;height:1px;background:rgba(10,22,40,.18)"></span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:.26em;color:#0A1628;opacity:.72">INTELLIGENCE CORE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ref="{{ scene2 }}" style="position:absolute;left:0;top:0;width:1080px;height:880px;display:flex;align-items:center;justify-content:center;transition:opacity 700ms cubic-bezier(.4,0,.2,1),transform 860ms cubic-bezier(.32,1.02,.4,1),filter 640ms ease;opacity:{{ s2o }};transform:scale({{ s2k }});filter:blur({{ s2b }}px)">
+    <div style="position:relative;width:300px;height:300px;zoom:2">
+      <div style="position:absolute;inset:0;pointer-events:none">
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:304px;height:304px;border:1.5px solid rgba(34,197,94,.30);animation:s3-halo-pulse 11s cubic-bezier(.42,0,.58,1) 1.6s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:304px;height:304px;border:1.5px solid rgba(194, 30, 134,.22);animation:s3-halo-pulse 11s cubic-bezier(.42,0,.58,1) 4.2s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:304px;height:304px;border:1.5px solid rgba(34,197,94,.22);animation:s3-halo-pulse 11s cubic-bezier(.42,0,.58,1) 6.8s infinite"></div>
+        <div style="position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%);width:304px;height:304px;border:1.5px solid rgba(34,197,94,.24);animation:s3-halo-pulse 11s cubic-bezier(.42,0,.58,1) 9.4s infinite"></div>
+      </div>
+      <svg ref="{{ ringOkRef }}" width="300" height="300" viewBox="0 0 300 300" style="position:absolute;inset:0">
+        <defs><linearGradient id="sqs-arc" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C21E86"></stop><stop offset="52%" stop-color="#22C55E"></stop><stop offset="100%" stop-color="#F0A93B"></stop></linearGradient></defs>
+        <circle cx="150" cy="150" r="144" fill="none" stroke="url(#sqs-arc)" stroke-width="8" stroke-linecap="round"></circle>
+      </svg>
+      <svg ref="{{ ringRiskRef }}" width="300" height="300" viewBox="0 0 300 300" style="position:absolute;inset:0;display:none">
+        <defs><linearGradient id="sqs-arc-risk" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B91C1C"></stop><stop offset="50%" stop-color="#E8603C"></stop><stop offset="100%" stop-color="#F0A93B"></stop></linearGradient></defs>
+        <circle cx="150" cy="150" r="144" fill="none" stroke="url(#sqs-arc-risk)" stroke-width="8" stroke-linecap="round"></circle>
+      </svg>
+      <div style="position:absolute;inset:22px;border-radius:50%;background:#fff;box-shadow:0 18px 44px rgba(10,22,40,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px">
+        <div ref="{{ analyseRef }}" style="display:flex;flex-direction:column;align-items:center;gap:12px;animation:s3-stage-pop .6s cubic-bezier(.34,1.56,.64,1) both">
+          <div style="position:relative;width:46px;height:46px">
+            <div style="position:absolute;inset:0;border-radius:50%;border:3px solid rgba(194, 30, 134,.12)"></div>
+            <div style="position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:#C21E86;border-right-color:rgba(194, 30, 134,.45);animation:s3-spin-arc 1.1s linear infinite"></div>
+          </div>
+          <span style="font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#C21E86">Analysing</span>
+          <span style="font-size:30px;font-weight:800;letter-spacing:.02em;color:#0A1628;line-height:1">SCORING</span>
+          <span style="font-family:Inter,sans-serif;font-size:13px;color:#6B7688">Six signals in review</span>
+        </div>
+        <div ref="{{ approveRef }}" style="display:none;flex-direction:column;align-items:center;gap:10px">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="#22C55E" style="animation:s3-badge-pop .62s cubic-bezier(.34,1.56,.64,1) both,s3-badge-dance 3.4s ease-in-out .62s infinite"><path d="M12 2.4a1 1 0 00-.4.1L4.5 5.3a1 1 0 00-.6.9v5.4c0 5.1 3.4 9.4 8.1 11.1a1 1 0 00.7 0c4.7-1.7 8.1-6 8.1-11.1V6.2a1 1 0 00-.6-.9L12.4 2.5a1 1 0 00-.4-.1z"></path><path d="M8.4 11.6l2.4 2.5 4.5-4.7 1.5 1.5-6 6.2-3.9-4z" fill="#fff"></path></svg>
+          <span style="font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#22C55E;animation:s3-badge-rise .5s ease-out .2s both">Low Risk</span>
+          <span style="font-size:38px;font-weight:800;letter-spacing:.02em;color:#22C55E;line-height:1;animation:s3-badge-rise .5s ease-out .3s both">APPROVE</span>
+          <span style="font-family:Inter,sans-serif;font-size:13px;color:#6B7688;animation:s3-badge-rise .5s ease-out .42s both">Fast Decision</span>
+        </div>
+        <div ref="{{ freezeRef }}" style="display:none;flex-direction:column;align-items:center;gap:10px">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="#D93A22" style="animation:s3-badge-pop .62s cubic-bezier(.34,1.56,.64,1) both,s3-badge-dance 3.4s ease-in-out .62s infinite"><path d="M12 2.4a1 1 0 00-.4.1L4.5 5.3a1 1 0 00-.6.9v5.4c0 5.1 3.4 9.4 8.1 11.1a1 1 0 00.7 0c4.7-1.7 8.1-6 8.1-11.1V6.2a1 1 0 00-.6-.9L12.4 2.5a1 1 0 00-.4-.1z"></path><path d="M9.6 9.2V8.1a2.4 2.4 0 014.8 0v1.1h.6c.5 0 .9.4.9.9v4.3c0 .5-.4.9-.9.9H9c-.5 0-.9-.4-.9-.9v-4.3c0-.5.4-.9.9-.9zm1.5 0h1.8V8.1a.9.9 0 00-1.8 0z" fill="#fff"></path></svg>
+          <span style="font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#D93A22;animation:s3-badge-rise .5s ease-out .2s both">High Risk</span>
+          <span style="font-size:38px;font-weight:800;letter-spacing:.02em;color:#D93A22;line-height:1;animation:s3-badge-rise .5s ease-out .3s both">FREEZE</span>
+          <span style="font-family:Inter,sans-serif;font-size:13px;color:#6B7688;text-align:center;line-height:1.35;animation:s3-badge-rise .5s ease-out .42s both">Hold until further analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:64px;display:flex;flex-direction:column;align-items:center;gap:26px">
+    <div ref="{{ capRef }}" style="display:flex;flex-direction:column;align-items:center;gap:12px;transition:opacity 380ms ease;opacity:{{ capOpacity }}">
+      <b style="font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0A1628">{{ capTitle }}</b>
+      <i style="font-style:normal;font-family:Inter,sans-serif;font-size:26px;color:#6B7688">{{ capSub }}</i>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p0w }}px;background:{{ p0c }}"></span>
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p1w }}px;background:{{ p1c }}"></span>
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p2w }}px;background:{{ p2c }}"></span>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:1080},&quot;sceneSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4.4,&quot;min&quot;:2.5,&quot;max&quot;:9,&quot;step&quot;:0.2,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Timing&quot;},&quot;scenario&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Alternate&quot;,&quot;Low risk&quot;,&quot;High risk&quot;],&quot;default&quot;:&quot;Alternate&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Decision&quot;}}">
+const FACES = ['https://cdn.sign3.in/strapi-assets/api-uploads/hero_face_illus_1_b0c2c3cae7.png', 'https://cdn.sign3.in/strapi-assets/api-uploads/hero_face_illus_2_be207e0c1f.png'];
+const CAPS = [
+  ['Identity Signals', 'Six sources, one profile'],
+  ['Signal Fusion', 'Real-time signal fusion'],
+  ['Decision', 'Under 300 ms']
+];
+
+class Component extends DCLogic {
+  state = { scene: 0, moving: false, decided: false, round: 0 };
+
+  constructor(props) {
+    super(props);
+    ['rootRef', 'scene0', 'scene1', 'scene2', 'canvasRef', 'profileRef', 'analyseRef', 'approveRef', 'freezeRef', 'ringOkRef', 'ringRiskRef', 'capRef']
+      .forEach(k => { this[k] = React.createRef(); });
+    this.last = 0;
+  }
+
+  componentDidMount() {
+    this.t0 = performance.now();
+    this.drawMesh(0);
+    this.raf = requestAnimationFrame(this.loop);
+    this.tick(0);
+  }
+
+  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+
+  loop = ts => {
+    this.raf = requestAnimationFrame(this.loop);
+    if (ts - this.last < 22) return;
+    this.last = ts;
+    this.drawMesh(ts / 1000);
+    this.tick(Math.max(0, ts - this.t0));
+  };
+
+  // single authored clock — self-healing, never gets stuck mid-transition
+  get plan() {
+    const hold = (this.props.sceneSeconds == null ? 4.4 : this.props.sceneSeconds) * 1000;
+    const T = 900;
+    return { segs: [hold + T, hold + T, hold + 2600 + T], T: T };
+  }
+
+  tick(ms) {
+    const p = this.plan, cycle = p.segs[0] + p.segs[1] + p.segs[2];
+    const round = Math.floor(ms / cycle) % 2;
+    let t = ms % cycle, scene = 0;
+    for (let i = 0; i < 3; i++) {
+      if (t < p.segs[i]) { scene = i; break; }
+      t -= p.segs[i];
+    }
+    const moving = t > p.segs[scene] - p.T;
+    const decided = scene === 2 && t > 2400;
+    const s = this.state;
+    if (scene !== s.scene || moving !== s.moving || decided !== s.decided || round !== s.round) {
+      this.setState({ scene: scene, moving: moving, decided: decided, round: round });
+      if (scene !== s.scene && !moving) {
+        this.applyFace();
+        setTimeout(() => this.replay(scene), 30);
+      }
+      if (scene === 2) this.showStage(decided ? 'verdict' : 'analyse');
+    }
+  }
+
+  get risk() {
+    const mode = this.props.scenario || 'Alternate';
+    if (mode === 'Low risk') return false;
+    if (mode === 'High risk') return true;
+    return this.state.round === 1;
+  }
+
+  applyFace() {
+    const el = this.profileRef.current;
+    if (el) {
+      el.style.background = "#FFFFFF url('" + FACES[this.state.round] + "') 50% 50%/106% no-repeat";
+    }
+  }
+
+  showStage(which) {
+    const set = (ref, on) => { if (ref.current) ref.current.style.display = on ? 'flex' : 'none'; };
+    const risk = this.risk;
+    if (which === 'analyse') {
+      set(this.analyseRef, true); set(this.approveRef, false); set(this.freezeRef, false);
+      if (this.ringOkRef.current) this.ringOkRef.current.style.display = 'block';
+      if (this.ringRiskRef.current) this.ringRiskRef.current.style.display = 'none';
+    } else {
+      set(this.analyseRef, false);
+      set(this.approveRef, !risk); set(this.freezeRef, risk);
+      if (this.ringOkRef.current) this.ringOkRef.current.style.display = risk ? 'none' : 'block';
+      if (this.ringRiskRef.current) this.ringRiskRef.current.style.display = risk ? 'block' : 'none';
+    }
+  }
+
+  replay(i) {
+    const root = [this.scene0, this.scene1, this.scene2][i].current;
+    if (!root || !root.querySelectorAll) return;
+    const names = { 's3-in-pop': 1, 's3-in-pop-c': 1, 's3-chip-pop': 1, 's3-in-fade': 1, 's3-stage-pop': 1, 's3-badge-pop': 1, 's3-badge-rise': 1 };
+    root.querySelectorAll('*').forEach(e => {
+      if (!e.getAnimations) return;
+      e.getAnimations().forEach(a => { if (a.animationName && names[a.animationName]) { a.cancel(); a.play(); } });
+    });
+  }
+
+  buildMesh() {
+    const N = 420, gold = Math.PI * (3 - Math.sqrt(5)), base = [];
+    for (let i = 0; i < N; i++) {
+      const y = 1 - (i / (N - 1)) * 2, r0 = Math.sqrt(Math.max(0, 1 - y * y)), t = gold * i;
+      base.push([Math.cos(t) * r0, y, Math.sin(t) * r0]);
+    }
+    const links = [], lim = 0.24;
+    for (let a = 0; a < N; a++) for (let b = a + 1; b < N; b++) {
+      const dx = base[a][0] - base[b][0], dy = base[a][1] - base[b][1], dz = base[a][2] - base[b][2];
+      const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      if (d < lim) links.push([a, b, 1 - d / lim]);
+    }
+    this.mesh = { base: base, links: links };
+  }
+
+  drawMesh(t) {
+    const cv = this.canvasRef.current;
+    if (!cv) return;
+    if (!this.mesh) this.buildMesh();
+    const mesh = this.mesh;
+    const ctx = cv.getContext('2d'), S = cv.width, C = S / 2, R = S * 0.455;
+    ctx.clearRect(0, 0, S, S);
+    const ry = 0.6 + t * 0.34, rx = -0.28 + Math.sin(t * 0.55) * 0.12;
+    const cry = Math.cos(ry), sry = Math.sin(ry), crx = Math.cos(rx), srx = Math.sin(rx);
+    const pts = [];
+    for (let i = 0; i < mesh.base.length; i++) {
+      const x = mesh.base[i][0], y = mesh.base[i][1], z = mesh.base[i][2];
+      const x1 = x * cry + z * sry;
+      let z1 = -x * sry + z * cry;
+      const y1 = y * crx - z1 * srx;
+      z1 = y * srx + z1 * crx;
+      const pp = 1 / (1.9 - z1 * 0.42);
+      pts.push({ sx: C + x1 * R * pp * 1.9, sy: C + y1 * R * pp * 1.9, z: z1 });
+    }
+    ctx.lineWidth = 0.8;
+    for (let k = 0; k < mesh.links.length; k++) {
+      const pa = pts[mesh.links[k][0]], pb = pts[mesh.links[k][1]], w = mesh.links[k][2];
+      const depth = (pa.z + pb.z) / 2, alpha = w * (depth > 0 ? 0.34 : 0.14);
+      if (alpha < 0.02) continue;
+      const hm = 0.5 + 0.5 * Math.sin(t * 0.4 + pa.sx * 0.006);
+      ctx.strokeStyle = 'rgba(' + Math.round(29 + hm * 60) + ',' + Math.round(78 - hm * 20) + ',' + Math.round(216 + hm * 20) + ',' + alpha.toFixed(3) + ')';
+      ctx.beginPath(); ctx.moveTo(pa.sx, pa.sy); ctx.lineTo(pb.sx, pb.sy); ctx.stroke();
+    }
+    for (let j = 0; j < pts.length; j++) {
+      const p = pts[j], front = p.z > 0;
+      ctx.fillStyle = front ? 'rgba(194, 30, 134,0.62)' : 'rgba(244, 95, 184,0.32)';
+      ctx.beginPath(); ctx.arc(p.sx, p.sy, front ? 2.1 : 1.5, 0, Math.PI * 2); ctx.fill();
+    }
+    const ang = t * 0.25;
+    const wash = ctx.createLinearGradient(C + Math.cos(ang) * R, C + Math.sin(ang) * R, C - Math.cos(ang) * R, C - Math.sin(ang) * R);
+    wash.addColorStop(0, 'rgba(124,92,224,0.16)'); wash.addColorStop(0.5, 'rgba(194, 30, 134,0.06)'); wash.addColorStop(1, 'rgba(229, 54, 163,0.16)');
+    ctx.fillStyle = wash; ctx.fillRect(0, 0, S, S);
+    const rim = ctx.createRadialGradient(C, C, R * 0.72, C, C, R * 1.16);
+    rim.addColorStop(0, 'rgba(244, 95, 184,0)'); rim.addColorStop(0.55, 'rgba(244, 95, 184,0.16)'); rim.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = rim; ctx.fillRect(0, 0, S, S);
+    const cw = 0.86 + 0.05 * Math.sin(t * 0.5);
+    const core = ctx.createRadialGradient(C, C, 0, C, C, R * 0.74);
+    core.addColorStop(0, 'rgba(255,255,255,0.97)'); core.addColorStop(0.62, 'rgba(255,255,255,' + cw.toFixed(2) + ')'); core.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = core; ctx.fillRect(0, 0, S, S);
+  }
+
+  layer(i) {
+    const s = this.state;
+    if (s.moving) return { o: 0, k: i === s.scene ? 1.14 : 0.9, b: 9 };
+    if (i === s.scene) return { o: 1, k: 1, b: 0 };
+    return { o: 0, k: 0.86, b: 6 };
+  }
+
+  renderVals() {
+    const a = this.layer(0), b = this.layer(1), c = this.layer(2);
+    const sc = this.state.scene;
+    const bar = i => ({ w: i === sc ? 84 : 26, c: i === sc ? '#C21E86' : 'rgba(10,22,40,0.16)' });
+    const b0 = bar(0), b1 = bar(1), b2 = bar(2);
+    return {
+      rootRef: this.rootRef, scene0: this.scene0, scene1: this.scene1, scene2: this.scene2,
+      canvasRef: this.canvasRef, profileRef: this.profileRef, capRef: this.capRef,
+      analyseRef: this.analyseRef, approveRef: this.approveRef, freezeRef: this.freezeRef,
+      ringOkRef: this.ringOkRef, ringRiskRef: this.ringRiskRef,
+      s0o: a.o, s0k: a.k, s0b: a.b,
+      s1o: b.o, s1k: b.k, s1b: b.b,
+      s2o: c.o, s2k: c.k, s2b: c.b,
+      beamOpacity: this.state.moving ? 1 : 0,
+      capTitle: CAPS[sc][0], capSub: CAPS[sc][1],
+      capOpacity: this.state.moving ? 0 : 1,
+      p0w: b0.w, p0c: b0.c, p1w: b1.w, p1c: b1.c, p2w: b2.w, p2c: b2.c
+    };
+  }
+}
+
+</script>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     The standalone's viewing harness: its padding is white space around the
+     artwork, and its caption is the preview's own title. */
+  .stage { padding: 0; max-width: none; }
+  .stage > .cap { display: none; }
+
+  html,
+  body { background: transparent; }
+</style>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle. */
+  html,
+  body { width: 100%; margin: 0; overflow: hidden; }
+
+  /* The artboard's own width. Its children are positioned in a 1080 space but
+     the root only inherits the body's, so without this the scale below shrinks
+     a 100%-wide box and the composition lands at a third of its width. The
+     scale itself is set by the script, not here. */
+  body > *:not(style):not(script):not(link) {
+    width: 1080px;
+    transform-origin: top left;
+    /* The scale is a plain number in a custom property, set by the script. A
+       RULE rather than an inline style, because the Design Component runtime
+       replaces this element after it renders — an inline style set before that
+       is simply gone, while a rule applies to whatever the root becomes. */
+    transform: scale(var(--sq-scale, 1));
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // Fits the artboard to the frame. These four are the one family that does not
+  // fit itself: each is a fixed 1080 x 1080 composition, and the handoff scales
+  // it from the page ("340 x 340, scale 0.31481"). Every other animation we
+  // serve fits itself to its host, and useAnimationFrameHeight relies on that.
+  //
+  // In JS rather than CSS, and the reason is the second line below. The scale
+  // alone can be written in CSS as scale(calc(100vw / 1080px)) — but that is a
+  // length divided by a length, which is CSS Values 4 and not something to
+  // depend on across engines: where it is not supported the declaration is
+  // dropped silently and the artboard renders at its full 1080, which is
+  // exactly "the animation is too tall and there is white space after it".
+  //
+  // The height matters more. A transform does not participate in layout, so
+  // whatever the scale, the document still RESERVES the artboard's untransformed
+  // 1080px. Chromium happens to give the right answer because the frame is sized
+  // from painted rects rather than the document, but that is the measurement
+  // getting lucky, not the layout being right. Setting the body's height to what
+  // the artwork actually paints makes the document honest in every engine, and
+  // leaves nothing for the frame to over-reserve.
+  (function () {
+    var ARTBOARD = 1080;
+    function fit() {
+      var width = document.documentElement.clientWidth;
+      if (!width) return;
+      var scale = width / ARTBOARD;
+      // On the document element, so it survives the root being re-rendered.
+      document.documentElement.style.setProperty("--sq-scale", scale);
+      document.body.style.height = Math.round(ARTBOARD * scale) + "px";
+    }
+
+    fit();
+    addEventListener("resize", fit);
+    addEventListener("load", fit);
+  })();
+</script>

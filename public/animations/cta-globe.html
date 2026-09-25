@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; }
+  a { color: #C21E86; text-decoration: none; }
+  a:hover { color: #0A1628; }
+</style>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; box-sizing: border-box; background: transparent; font-family: Inter, system-ui, sans-serif;">
+  <div style="position: relative; width: 100%; height: 100%; background: transparent; overflow: visible;">
+    <div style="position: absolute; left: 50%; top: 50%; width: 78%; height: 78%; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(194, 30, 134,0.09); pointer-events: none;"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 96%; height: 96%; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(194, 30, 134,0.06); pointer-events: none;"></div>
+    <canvas ref="{{ canvasRef }}" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;"></canvas>
+    
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script >
+// LOCK ANGLE: drag the globe to the view you like, read the angles off the
+// readout in the card corner, paste them into ROT_Y / ROT_X below and set
+// AUTO_ROTATE = false to ship that exact fixed angle (still draggable).
+const AUTO_ROTATE = true;
+const ROT_Y = 0.62;   // yaw, radians — starting angle
+const ROT_X = -0.24;  // pitch, radians
+
+const SPIN_SPEED = 0.13;   // radians / second of gentle Y spin
+const WOBBLE_AMP = 0.07;   // radians of slow X wobble
+const WOBBLE_PERIOD = 16;  // seconds per wobble cycle
+const DRAG_EASE = 0.16;    // 0..1 — lower = smoother catch-up on drag
+
+const N_POINTS = 420;
+const LINK_DIST = 0.24;
+
+// Orbiting connection lines. S_DIR is the source side the arcs fan out from
+// (unit-ish vector, normalised below) — move it to change which side feeds.
+const S_DIR = [-0.82, 0.16, 0.55];
+const ARC_COUNT = 6;
+const ORBIT_R = 1.16;         // radius multiple — just outside the sphere
+const REVOLVE_SPEED = 0.14;   // radians / second the whole bundle sweeps
+const FLOW_SPEED = 2.3;       // radians / second of the comet pulses
+const PULSES_PER_ARC = 2;
+// Pink rebrand: two of six were institutional blue (220, 240 — pure-blue
+// hues in HSL), replaced with two brand-pink hues (322, 335) so the arc set
+// still shows six distinct hues; the rest were already decorative variety
+// (magenta/red-violet/cyan/teal), not brand blue, so they're untouched.
+const ARC_HUES = [322, 265, 305, 190, 168, 335];
+const ARC_STEPS = 72;
+
+const MESH_BUCKETS = 7;       // depth buckets — links batch into one path each
+const DPR_CAP = 2;            // retina-crisp, capped for cost
+const FPS_CAP = 45;
+
+// World landmasses on the sphere surface (real Natural Earth coastlines,
+// loaded from world-lines.json as lon/lat polylines).
+const SHOW_LAND = true;
+const LAND_R = 0.995;
+const LAND_COLOR = "rgba(194, 30, 134,";
+
+const REDUCED = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.canvas = React.createRef();
+    this.readout = React.createRef();
+    this.draw = this.draw.bind(this);
+    this.frame = this.frame.bind(this);
+    this.onDown = this.onDown.bind(this);
+    this.onMove = this.onMove.bind(this);
+    this.onUp = this.onUp.bind(this);
+    // live angles: target is set by drag / auto-spin, cur eases toward it
+    this.tY = ROT_Y; this.tX = ROT_X;
+    this.rY = ROT_Y; this.rX = ROT_X;
+    this.baseY = ROT_Y; this.baseX = ROT_X;
+    this.spin = 0;
+    this.dragging = false;
+    this.clock = 0;
+
+    this.points = this.build();
+    this.links = this.linkUp(this.points);
+    this.basis = this.makeBasis();
+    this.meshStyles = this.meshPalette();
+    this.arcStyles = this.arcPalette();
+    this.sprites = {};
+    this.proj = this.points.map(() => ({ x: 0, y: 0, z: 0, pp: 0 }));
+  }
+
+  build() {
+    const pts = [];
+    const ga = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < N_POINTS; i++) {
+      const y = 1 - (2 * i) / (N_POINTS - 1);
+      const r = Math.sqrt(Math.max(0, 1 - y * y));
+      const t = ga * i;
+      pts.push([Math.cos(t) * r, y, Math.sin(t) * r]);
+    }
+    return pts;
+  }
+
+  linkUp(pts) {
+    const out = [], d2 = LINK_DIST * LINK_DIST;
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i][0] - pts[j][0], dy = pts[i][1] - pts[j][1], dz = pts[i][2] - pts[j][2];
+        const q = dx * dx + dy * dy + dz * dz;
+        if (q < d2) out.push([i, j, Math.sqrt(q) / LINK_DIST]);
+      }
+    }
+    return out;
+  }
+
+  // one precomputed stroke style per depth bucket × short/long link
+  meshPalette() {
+    const list = [];
+    for (let b = 0; b < MESH_BUCKETS; b++) {
+      const f = (b + 0.5) / MESH_BUCKETS;
+      for (let d = 0; d < 2; d++) {
+        const alpha = (0.14 + f * 0.20) * (d === 0 ? 1 : 0.72);
+        // Pink rebrand: was a blue gradient (R 44→52, G 118→144, B 226→238).
+        // Same base+f*range structure, now sweeping deep pink (~#B01B77) to
+        // bright pink (~#F45FB8) instead.
+        const r = Math.round(176 + f * 68);
+        const gg = Math.round(27 + f * 68);
+        const bl = Math.round(119 + f * 65);
+        list.push({
+          style: "rgba(" + r + "," + gg + "," + Math.min(255, bl) + "," + alpha.toFixed(3) + ")",
+          width: 0.55 + f * 0.45
+        });
+      }
+    }
+    return list;
+  }
+
+  arcPalette() {
+    return ARC_HUES.map((h) => ({
+      hue: h,
+      seg: [0, 1, 2, 3].map((i) => "hsla(" + h + ", 88%, " + (56 - i * 2) + "%, " + (0.30 + i * 0.14).toFixed(2) + ")"),
+      trail: [0, 1, 2, 3].map((i) => "hsla(" + h + ", 90%, 62%, " + (0.16 + i * 0.2).toFixed(2) + ")"),
+      head: "hsla(" + h + ", 90%, 58%, 0.92)"
+    }));
+  }
+
+  sprite(hue) {
+    if (this.sprites[hue]) return this.sprites[hue];
+    const S = 64, c = document.createElement("canvas");
+    c.width = S; c.height = S;
+    const x = c.getContext("2d");
+    const gr = x.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+    gr.addColorStop(0, "hsla(" + hue + ", 95%, 68%, 0.95)");
+    gr.addColorStop(0.35, "hsla(" + hue + ", 92%, 62%, 0.30)");
+    gr.addColorStop(1, "hsla(" + hue + ", 92%, 62%, 0)");
+    x.fillStyle = gr;
+    x.fillRect(0, 0, S, S);
+    this.sprites[hue] = c;
+    return c;
+  }
+
+  makeBasis() {
+    const n = Math.hypot(S_DIR[0], S_DIR[1], S_DIR[2]) || 1;
+    const S = [S_DIR[0] / n, S_DIR[1] / n, S_DIR[2] / n];
+    const a = Math.abs(S[1]) < 0.9 ? [0, 1, 0] : [1, 0, 0];
+    let u = [S[1] * a[2] - S[2] * a[1], S[2] * a[0] - S[0] * a[2], S[0] * a[1] - S[1] * a[0]];
+    const un = Math.hypot(u[0], u[1], u[2]);
+    u = [u[0] / un, u[1] / un, u[2] / un];
+    const v = [S[1] * u[2] - S[2] * u[1], S[2] * u[0] - S[0] * u[2], S[0] * u[1] - S[1] * u[0]];
+    return { S: S, u: u, v: v };
+  }
+
+  // point on the arc of phase φ at angle θ, in view space (drag-independent)
+  arcPoint(phi, th, out) {
+    const b = this.basis;
+    const cp = Math.cos(phi), sp = Math.sin(phi);
+    const c = Math.cos(th), s = Math.sin(th);
+    out[0] = (b.S[0] * c + (b.u[0] * cp + b.v[0] * sp) * s) * ORBIT_R;
+    out[1] = (b.S[1] * c + (b.u[1] * cp + b.v[1] * sp) * s) * ORBIT_R;
+    out[2] = (b.S[2] * c + (b.u[2] * cp + b.v[2] * sp) * s) * ORBIT_R;
+    return out;
+  }
+
+  loadLand() {
+    if (!SHOW_LAND) return;
+    fetch("./world-lines.json").then((r) => r.json()).then((lines) => {
+      // lon/lat → unit-sphere xyz, precomputed once
+      this.land = lines.map((line) =>
+        line.map((p) => {
+          const la = (p[1] * Math.PI) / 180, lo = (p[0] * Math.PI) / 180;
+          const cl = Math.cos(la);
+          return [Math.cos(lo) * cl * LAND_R, Math.sin(la) * LAND_R, Math.sin(lo) * cl * LAND_R];
+        })
+      );
+      this.painted = false;
+    }).catch(() => {});
+  }
+
+  drawLand(g, CX, CY, R) {
+    if (!this.land) return;
+    const cy = Math.cos(this.rY), sy = Math.sin(this.rY);
+    const cx = Math.cos(this.rX), sx = Math.sin(this.rX);
+    const near = new Path2D(), far = new Path2D();
+    for (let l = 0; l < this.land.length; l++) {
+      const line = this.land[l];
+      let openPath = null;
+      for (let i = 0; i < line.length; i++) {
+        const p = line[i];
+        const x1 = p[0] * cy + p[2] * sy;
+        const z1 = -p[0] * sy + p[2] * cy;
+        const y2 = p[1] * cx - z1 * sx;
+        const z2 = p[1] * sx + z1 * cx;
+        if (z2 <= 0.02) { openPath = null; continue; }   // back of the globe
+        const pp = 1 / (1.9 - z2 * 0.42);
+        const sxp = CX + x1 * R * pp * 1.9;
+        const syp = CY - y2 * R * pp * 1.9;
+        const path = z2 > 0.45 ? near : far;
+        if (openPath === path) path.lineTo(sxp, syp);
+        else { path.moveTo(sxp, syp); openPath = path; }
+      }
+    }
+    g.lineCap = "round";
+    g.lineJoin = "round";
+    g.strokeStyle = LAND_COLOR + "0.22)";
+    g.lineWidth = 0.9;
+    g.stroke(far);
+    g.strokeStyle = LAND_COLOR + "0.42)";
+    g.lineWidth = 1.15;
+    g.stroke(near);
+  }
+
+  // hidden behind the opaque unit sphere? (rotation-invariant silhouette test)
+  hidden(p) {
+    const q = p[0] * p[0] + p[1] * p[1];
+    return q < 1 && p[2] < Math.sqrt(1 - q);
+  }
+
+  draw() {
+    const cv = this.canvas.current;
+    if (!cv) return;
+    const box = cv.getBoundingClientRect();
+    const size = Math.min(box.width, box.height);
+    if (!size) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+    const W = Math.round(box.width * dpr), H = Math.round(box.height * dpr);
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
+    const g = cv.getContext("2d");
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, box.width, box.height);
+
+    const CX = box.width / 2, CY = box.height / 2;
+    const R = size * 0.455 * 0.82;
+
+    const cy = Math.cos(this.rY), sy = Math.sin(this.rY);
+    const cx = Math.cos(this.rX), sx = Math.sin(this.rX);
+    const proj = this.proj;
+    for (let i = 0; i < this.points.length; i++) {
+      const p = this.points[i];
+      const x1 = p[0] * cy + p[2] * sy;
+      const z1 = -p[0] * sy + p[2] * cy;
+      const y2 = p[1] * cx - z1 * sx;
+      const z2 = p[1] * sx + z1 * cx;
+      const pp = 1 / (1.9 - z2 * 0.42);
+      const o = proj[i];
+      o.x = CX + x1 * R * pp * 1.9;
+      o.y = CY - y2 * R * pp * 1.9;
+      o.z = z2;
+      o.pp = pp;
+    }
+
+    // rotating wash gradient, clipped to the sphere disc
+    g.save();
+    g.beginPath();
+    g.arc(CX, CY, R * 1.02, 0, Math.PI * 2);
+    g.clip();
+    const wa = 0.9 + this.clock * 0.05;
+    const wx = Math.cos(wa) * R, wy = Math.sin(wa) * R;
+    const wash = g.createLinearGradient(CX - wx, CY - wy, CX + wx, CY + wy);
+    wash.addColorStop(0, "rgba(124,92,224,0.16)");
+    wash.addColorStop(0.5, "rgba(194, 30, 134,0.06)");
+    wash.addColorStop(1, "rgba(229, 54, 163,0.16)");
+    g.fillStyle = wash;
+    g.fillRect(CX - R * 1.1, CY - R * 1.1, R * 2.2, R * 2.2);
+    g.restore();
+
+    if (!this.bg || this.bgKey !== R + "|" + box.width) this.bakeBg(box.width, box.height, CX, CY, R);
+    g.drawImage(this.bg, 0, 0, box.width, box.height);
+
+    // plexus mesh — batched into one path per precomputed style
+    g.lineCap = "round";
+    const buckets = this.meshStyles.map(() => null);
+    for (let k = 0; k < this.links.length; k++) {
+      const l = this.links[k];
+      const a = proj[l[0]], b = proj[l[1]];
+      const f = ((a.z + b.z) / 2 + 1) / 2;
+      const bi = Math.min(MESH_BUCKETS - 1, Math.max(0, Math.floor(f * MESH_BUCKETS)));
+      const idx = bi * 2 + (l[2] < 0.6 ? 0 : 1);
+      let path = buckets[idx];
+      if (!path) { path = new Path2D(); buckets[idx] = path; }
+      path.moveTo(a.x, a.y);
+      path.lineTo(b.x, b.y);
+    }
+    for (let i = 0; i < buckets.length; i++) {
+      if (!buckets[i]) continue;
+      g.strokeStyle = this.meshStyles[i].style;
+      g.lineWidth = this.meshStyles[i].width;
+      g.stroke(buckets[i]);
+    }
+
+    // nodes — two batched paths, front and back
+    const front = new Path2D(), back = new Path2D();
+    for (let i = 0; i < proj.length; i++) {
+      const p = proj[i];
+      const rr = (p.z >= 0 ? 1.35 : 1.05) * (0.85 + p.pp * 0.5);
+      const path = p.z >= 0 ? front : back;
+      path.moveTo(p.x + rr, p.y);
+      path.arc(p.x, p.y, rr, 0, Math.PI * 2);
+    }
+    g.fillStyle = "rgba(244, 95, 184,0.32)";
+    g.fill(back);
+    g.fillStyle = "rgba(194, 30, 134,0.62)";
+    g.fill(front);
+
+    // luminous centre on top so the sphere reads solid
+    const hot = g.createRadialGradient(CX, CY, 0, CX, CY, R * 0.46);
+    hot.addColorStop(0, "rgba(255,255,255,0.86)");
+    hot.addColorStop(0.45, "rgba(255,255,255,0.42)");
+    hot.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = hot;
+    g.beginPath();
+    g.arc(CX, CY, R * 0.46, 0, Math.PI * 2);
+    g.fill();
+
+    this.drawLand(g, CX, CY, R);
+    this.drawOrbits(g, CX, CY, R);
+  }
+
+  // rim glow + white core baked once per size
+  bakeBg(w, h, CX, CY, R) {
+    const c = document.createElement("canvas");
+    c.width = Math.max(1, Math.round(w));
+    c.height = Math.max(1, Math.round(h));
+    const g = c.getContext("2d");
+    const rim = g.createRadialGradient(CX, CY, R * 0.6, CX, CY, R * 1.22);
+    rim.addColorStop(0, "rgba(194, 30, 134,0)");
+    rim.addColorStop(0.72, "rgba(194, 30, 134,0.10)");
+    rim.addColorStop(0.9, "rgba(244, 95, 184,0.16)");
+    rim.addColorStop(1, "rgba(244, 95, 184,0)");
+    g.fillStyle = rim;
+    g.beginPath();
+    g.arc(CX, CY, R * 1.22, 0, Math.PI * 2);
+    g.fill();
+    const core = g.createRadialGradient(CX, CY, 0, CX, CY, R * 0.98);
+    core.addColorStop(0, "rgba(255,255,255,0.97)");
+    core.addColorStop(0.26, "rgba(255,255,255,0.78)");
+    core.addColorStop(0.55, "rgba(255,255,255,0.34)");
+    core.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = core;
+    g.beginPath();
+    g.arc(CX, CY, R * 0.98, 0, Math.PI * 2);
+    g.fill();
+    this.bg = c;
+    this.bgKey = R + "|" + w;
+  }
+
+  drawOrbits(g, CX, CY, R) {
+    const t = this.clock;
+    const v = [0, 0, 0];
+    const px = (p) => {
+      const pp = 1 / (1.9 - p[2] * 0.42);
+      return { x: CX + p[0] * R * pp * 1.9, y: CY - p[1] * R * pp * 1.9, z: p[2] };
+    };
+    g.lineCap = "round";
+
+    for (let a = 0; a < ARC_COUNT; a++) {
+      const phi = t * REVOLVE_SPEED + (a * Math.PI) / ARC_COUNT;
+      const pal = this.arcStyles[a % this.arcStyles.length];
+
+      // visible runs of the arc, one path per depth band
+      const bands = [new Path2D(), new Path2D(), new Path2D(), new Path2D()];
+      let open = -1;
+      for (let i = 0; i <= ARC_STEPS; i++) {
+        this.arcPoint(phi, (i / ARC_STEPS) * Math.PI * 2, v);
+        if (this.hidden(v)) { open = -1; continue; }
+        const p = px(v);
+        const band = Math.min(3, Math.max(0, Math.floor(((p.z / ORBIT_R + 1) / 2) * 4)));
+        if (open === band) {
+          bands[band].lineTo(p.x, p.y);
+        } else {
+          if (open >= 0) bands[open].lineTo(p.x, p.y);
+          bands[band].moveTo(p.x, p.y);
+          open = band;
+        }
+      }
+      for (let b = 0; b < 4; b++) {
+        g.strokeStyle = pal.seg[b];
+        g.lineWidth = 0.9 + b * 0.3;
+        g.stroke(bands[b]);
+      }
+
+      // fast comet pulses with a short fading trail (motion only)
+      for (let k = 0; k < (REDUCED ? 0 : PULSES_PER_ARC); k++) {
+        const head = t * FLOW_SPEED + (k * Math.PI * 2) / PULSES_PER_ARC + a * 0.9;
+        const TR = 14;
+        const tp = [new Path2D(), new Path2D(), new Path2D(), new Path2D()];
+        let prev = null;
+        for (let s = TR; s >= 0; s--) {
+          this.arcPoint(phi, head - s * 0.03, v);
+          if (this.hidden(v)) { prev = null; continue; }
+          const q = px(v);
+          if (prev) {
+            const seg = Math.min(3, Math.floor((1 - s / TR) * 4));
+            tp[seg].moveTo(prev.x, prev.y);
+            tp[seg].lineTo(q.x, q.y);
+          }
+          prev = q;
+        }
+        for (let s = 0; s < 4; s++) {
+          g.strokeStyle = pal.trail[s];
+          g.lineWidth = 0.8 + s * 0.7;
+          g.stroke(tp[s]);
+        }
+
+        this.arcPoint(phi, head, v);
+        if (this.hidden(v)) continue;
+        const h = px(v);
+        const zf = (h.z / ORBIT_R + 1) / 2;
+        const rr = 2.1 + zf * 1.5;
+        const sp = this.sprite(pal.hue);
+        const S = rr * 9;
+        g.globalAlpha = 0.55 + zf * 0.4;
+        g.drawImage(sp, h.x - S / 2, h.y - S / 2, S, S);
+        g.globalAlpha = 1;
+        g.fillStyle = pal.head;
+        g.beginPath();
+        g.arc(h.x, h.y, rr, 0, Math.PI * 2);
+        g.fill();
+        g.fillStyle = "rgba(255,255,255,0.9)";
+        g.beginPath();
+        g.arc(h.x, h.y, rr * 0.5, 0, Math.PI * 2);
+        g.fill();
+      }
+    }
+  }
+
+  pos(e) {
+    const t = e.touches && e.touches[0] ? e.touches[0] : e;
+    return { x: t.clientX, y: t.clientY };
+  }
+
+  onDown(e) {
+    const p = this.pos(e);
+    this.dragging = true;
+    this.dragFrom = { x: p.x, y: p.y, y0: this.tY, x0: this.tX };
+    const cv = this.canvas.current;
+    if (cv) cv.style.cursor = "grabbing";
+    window.addEventListener("mousemove", this.onMove);
+    window.addEventListener("mouseup", this.onUp);
+    window.addEventListener("touchmove", this.onMove, { passive: false });
+    window.addEventListener("touchend", this.onUp);
+  }
+
+  onMove(e) {
+    if (!this.dragging) return;
+    if (e.cancelable) e.preventDefault();
+    const p = this.pos(e);
+    const cv = this.canvas.current;
+    const w = cv ? cv.getBoundingClientRect().width || 520 : 520;
+    const k = (Math.PI * 1.15) / w;
+    this.tY = this.dragFrom.y0 + (p.x - this.dragFrom.x) * k;
+    this.tX = Math.max(-1.2, Math.min(1.2, this.dragFrom.x0 - (p.y - this.dragFrom.y) * k));
+  }
+
+  onUp() {
+    if (!this.dragging) return;
+    this.dragging = false;
+    // hold the released angle: auto-spin resumes from here, not from ROT_Y
+    this.spin = 0;
+    this.baseY = this.tY;
+    this.baseX = this.tX;
+    const cv = this.canvas.current;
+    if (cv) cv.style.cursor = "grab";
+    window.removeEventListener("mousemove", this.onMove);
+    window.removeEventListener("mouseup", this.onUp);
+    window.removeEventListener("touchmove", this.onMove);
+    window.removeEventListener("touchend", this.onUp);
+  }
+
+  frame(now) {
+    this.raf = requestAnimationFrame(this.frame);
+    // frame-rate cap (~FPS_CAP); reduced motion redraws only while dragging
+    const step = 1000 / FPS_CAP;
+    if (this.prev && now - this.prev < step - 1) return;
+    const dt = this.prev ? Math.min(0.05, (now - this.prev) / 1000) : 0.016;
+    this.prev = now;
+
+    if (REDUCED) {
+      const moving = this.dragging || Math.abs(this.tY - this.rY) > 0.0008 || Math.abs(this.tX - this.rX) > 0.0008;
+      if (!moving && this.painted) return;
+      this.rY += (this.tY - this.rY) * DRAG_EASE;
+      this.rX += (this.tX - this.rX) * DRAG_EASE;
+      this.draw();
+      this.painted = true;
+      this.showAngles();
+      return;
+    }
+
+    this.clock += dt;
+
+    if (AUTO_ROTATE && !this.dragging) {
+      this.spin += dt;
+      this.tY = this.baseY + this.spin * SPIN_SPEED;
+      this.tX = this.baseX + Math.sin((this.spin / WOBBLE_PERIOD) * Math.PI * 2) * WOBBLE_AMP;
+    }
+
+    // ease toward the target so drag and hand-off never jump
+    this.rY += (this.tY - this.rY) * DRAG_EASE;
+    this.rX += (this.tX - this.rX) * DRAG_EASE;
+    this.draw();
+    this.showAngles();
+  }
+
+  showAngles() {
+    const ro = this.readout.current;
+    if (!ro) return;
+    const s = "ROT_Y " + this.rY.toFixed(2) + "  ROT_X " + this.rX.toFixed(2);
+    if (ro.textContent !== s) ro.textContent = s;
+  }
+
+  componentDidMount() {
+    this.loadLand();
+    this.draw();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.draw);
+    window.addEventListener("resize", this.draw);
+    const cv = this.canvas.current;
+    if (window.ResizeObserver && cv) {
+      this.ro = new ResizeObserver(this.draw);
+      this.ro.observe(cv.parentElement || cv);
+      this.ro.observe(cv);
+    }
+    if (cv) {
+      cv.style.cursor = "grab";
+      cv.style.touchAction = "none";
+      cv.addEventListener("mousedown", this.onDown);
+      cv.addEventListener("touchstart", this.onDown, { passive: true });
+    }
+    this.raf = requestAnimationFrame(this.frame);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.draw);
+    if (this.ro) this.ro.disconnect();
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this.onUp();
+    const cv = this.canvas.current;
+    if (cv) {
+      cv.removeEventListener("mousedown", this.onDown);
+      cv.removeEventListener("touchstart", this.onDown);
+    }
+  }
+
+  renderVals() {
+    return { canvasRef: this.canvas, readoutRef: this.readout };
+  }
+}
+</script>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     The standalone's viewing harness: its padding is white space around the
+     artwork, and its caption is the preview's own title. */
+  .stage { padding: 0; max-width: none; }
+  .stage > .cap { display: none; }
+
+  html,
+  body { background: transparent; }
+</style>

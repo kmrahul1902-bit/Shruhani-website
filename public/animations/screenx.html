@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hero animation — KYC vs ScreenX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#FEF8FB;font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;color:#0A1628;overflow-x:hidden}
+  .stage{padding:64px 0 96px;display:flex;flex-direction:column;align-items:center}
+  .stage>.cap{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A94A6;margin-bottom:40px}
+  a{color:#C21E86}a:hover{color:#C21E86}
+</style>
+</head>
+<body>
+<div class="stage">
+  <span class="cap">ScreenX hero · traditional KYC vs ScreenX risk verdict</span>
+<!-- Hero visual — KYC vs ScreenX live animation -->
+      <style>
+      #sxHeroAnim { width: 100%; margin-top: 48px; display: flex; justify-content: center; overflow: hidden; }
+      #sxHeroAnim .sxa-row {
+        width: 100%; max-width: 1820px; zoom: 0.72;
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+        gap: clamp(28px, 5vw, 110px); position: relative;
+        --sx-accent: #C21E86; --sx-accent2: #E536A3; --sx-risk: #16A34A; --sx-rim: rgba(22,163,74,0.22);
+      }
+      #sxHeroAnim .sxa-card {
+        flex: 0 1 auto; width: 560px; max-width: 100%; height: 720px;
+        background: #fff; border: 1px solid rgba(10,22,40,0.07); border-radius: 24px;
+        box-shadow: 0 26px 60px rgba(10,22,40,0.08);
+        padding: 40px 42px; box-sizing: border-box; display: flex; flex-direction: column;
+        text-align: left; z-index: 1;
+      }
+      #sxHeroAnim .sxa-card.sxa-x { border: 1.5px solid rgba(229, 54, 163,0.55); box-shadow: 0 26px 60px rgba(229, 54, 163,0.16); }
+      #sxHeroAnim .sxa-eyebrow { display: flex; align-items: center; gap: 10px; font-family: Inter, system-ui, sans-serif; font-size: 17px; color: #6B7688; }
+      #sxHeroAnim .sxa-card.sxa-x .sxa-eyebrow { color: #E536A3; font-weight: 600; }
+      #sxHeroAnim .sxa-title { font-size: 40px; font-weight: 800; letter-spacing: -0.01em; color: #0A1628; line-height: 1.1; margin: 20px 0 0; }
+      #sxHeroAnim .sxa-lede { font-family: Inter, system-ui, sans-serif; font-size: 19px; color: #6B7688; margin: 12px 0 0; }
+      #sxHeroAnim .sxa-rule { height: 1px; background: rgba(10,22,40,0.08); margin: 28px 0 24px; }
+      #sxHeroAnim .sxa-label { font-family: Inter, system-ui, sans-serif; font-size: 16px; color: #8A94A6; }
+      #sxHeroAnim .sxa-checks { display: flex; flex-direction: column; gap: 18px; margin-top: 20px; }
+      #sxHeroAnim .sxa-check { display: flex; align-items: center; gap: 16px; border-radius: 10px; margin: 0 -10px; padding: 4px 10px; }
+      #sxHeroAnim .sxa-check span.t { font-family: Inter, system-ui, sans-serif; font-size: 19px; color: #0A1628; }
+      #sxHeroAnim .sxa-tick { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(34,197,94,0.12); flex: 0 0 auto; }
+      #sxHeroAnim .sxa-verified { display: flex; align-items: center; gap: 16px; margin-top: 26px; }
+      #sxHeroAnim .sxa-pill { display: inline-flex; align-items: center; background: rgba(34,197,94,0.10); border: 1px solid rgba(34,197,94,0.26); color: #16A34A; border-radius: 999px; padding: 10px 22px; font-size: 18px; font-weight: 700; }
+      #sxHeroAnim .sxa-verified em { font-family: Inter, system-ui, sans-serif; font-size: 17px; color: #6B7688; font-style: normal; }
+      #sxHeroAnim .sxa-spacer { flex: 1 1 auto; min-height: 32px; }
+      #sxHeroAnim .sxa-warn {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.24);
+        border-radius: 14px; padding: 20px 22px;
+        animation: sxaWarnBreathe 9s ease-in-out 3s infinite;
+      }
+      #sxHeroAnim .sxa-warn svg { flex: 0 0 auto; margin-top: 2px; animation: sxaWarnIcon 9s ease-in-out 3s infinite; }
+      #sxHeroAnim .sxa-warn span { font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.5; color: #B45309; text-wrap: pretty; }
+
+      #sxHeroAnim .sxa-center { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; position: relative; z-index: 1; }
+      #sxHeroAnim .sxa-orb { position: relative; width: 480px; height: 480px; }
+      #sxHeroAnim .sxa-halos { position: absolute; inset: 0; pointer-events: none; }
+      #sxHeroAnim .sxa-halo { position: absolute; left: 50%; top: 50%; width: 348px; height: 348px; border-radius: 50%; border: 1.5px solid rgba(194, 30, 134,0.28); opacity: 0; transform: translate(-50%,-50%); animation: sxaHalo 10s cubic-bezier(0.42,0,0.58,1) infinite; }
+      #sxHeroAnim .sxa-ringnode { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 340px; height: 340px; border-radius: 50%; pointer-events: none; }
+      #sxHeroAnim .sxa-photo {
+        position: absolute; left: 240px; top: 240px; transform: translate(-50%,-50%);
+        width: 200px; height: 200px; border-radius: 50%;
+        border: 4px solid var(--sx-rim); transition: border-color 0.5s ease;
+        box-shadow: 0 12px 32px rgba(10,22,40,0.14); background: #eef1f5; overflow: hidden;
+      }
+      #sxHeroAnim .sxa-photo i { position: absolute; inset: 0; border-radius: 50%; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat; }
+      #sxHeroAnim .sxa-scan {
+        position: absolute; left: 50%; top: 50%; width: 208px; height: 208px; border-radius: 50%;
+        pointer-events: none; transform: translate(-50%,-50%); transition: background 0.7s ease;
+        -webkit-mask: radial-gradient(circle at center, transparent 0 100px, #000 100.5px);
+        mask: radial-gradient(circle at center, transparent 0 100px, #000 100.5px);
+        animation: sxaScanSpin 7s linear 0.5s infinite;
+      }
+      #sxHeroAnim .sxa-orbit { position: absolute; inset: 0; transform-origin: 50% 50%; animation: sxaOrbit 44s linear 0.6s infinite; }
+      #sxHeroAnim .sxa-chip { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 8px; transform: translate(-50%,-31px); transform-origin: 50% 31px; animation: sxaOrbitUp 44s linear 0.6s infinite; }
+      #sxHeroAnim .sxa-chip b { display: flex; align-items: center; justify-content: center; width: 62px; height: 62px; background: #fff; border-radius: 7px; border: 1px solid rgba(10,22,40,0.05); box-shadow: 0 8px 22px rgba(10,22,40,0.12); }
+      #sxHeroAnim .sxa-chip b svg { fill: var(--sx-accent); transition: fill 0.5s ease; }
+      #sxHeroAnim .sxa-chip em { font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 500; font-style: normal; color: #0A1628; text-shadow: 0 0 4px #fff, 0 0 8px #fff; }
+      #sxHeroAnim .sxa-caption { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A1628; white-space: nowrap; }
+
+      #sxHeroAnim .sxa-signals {
+        position: relative; flex: 1 1 auto; min-height: 0; margin-top: 18px; overflow: hidden;
+        -webkit-mask: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+        mask: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+      }
+      #sxHeroAnim .sxa-scanline { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, rgba(229, 54, 163,0), rgba(229, 54, 163,0.55), rgba(229, 54, 163,0)); z-index: 2; pointer-events: none; animation: sxaScanLine 6s cubic-bezier(0.45,0,0.55,1) infinite; }
+      #sxHeroAnim .sxa-marquee { display: flex; flex-direction: column; gap: 14px; animation: sxaSignalScroll 30s linear infinite; }
+      #sxHeroAnim .sxa-sig { display: flex; align-items: center; gap: 14px; font-family: Inter, system-ui, sans-serif; font-size: 19px; color: #0A1628; }
+      #sxHeroAnim .sxa-sig .n { flex: 1 1 auto; }
+      #sxHeroAnim .sxa-sig .v { font-weight: 600; }
+      #sxHeroAnim .sxa-sig .d { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; animation: sxaDotBlink 6s ease-in-out infinite; }
+      #sxHeroAnim .sxa-verdict { display: flex; align-items: center; gap: 26px; }
+      #sxHeroAnim .sxa-gauge { position: relative; width: 124px; height: 124px; flex: 0 0 auto; }
+      #sxHeroAnim .sxa-gauge .num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: Inter, system-ui, sans-serif; color: var(--sx-risk); }
+      #sxHeroAnim .sxa-gauge .num b { font-size: 34px; font-weight: 600; line-height: 1; }
+      #sxHeroAnim .sxa-gauge .num i { font-size: 14px; opacity: 0.7; font-style: normal; }
+      #sxHeroAnim .sxa-gauge circle.val { transition: stroke-dasharray 1.2s cubic-bezier(0.22,1,0.36,1), stroke 0.6s ease; }
+      #sxHeroAnim .sxa-verdict .txt { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+      #sxHeroAnim .sxa-verdict .rl { font-size: 28px; font-weight: 700; line-height: 1; color: var(--sx-risk); }
+      #sxHeroAnim .sxa-verdict .rn { font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.45; color: #6B7688; max-width: 280px; text-wrap: pretty; }
+      #sxHeroAnim .sxa-verdict .rc { font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45; font-weight: 600; max-width: 280px; text-wrap: pretty; color: var(--sx-risk); }
+
+      /* entrance pass — restarted on every case switch */
+      #sxHeroAnim .sxa-run .sxa-photo i { animation: sxaPhotoSwap 0.85s cubic-bezier(0.22,1,0.36,1) both; }
+      #sxHeroAnim .sxa-run .sxa-check { animation: sxaRowIn 0.7s ease-out both; }
+      #sxHeroAnim .sxa-run .sxa-check:nth-child(2) { animation-delay: 0.35s; }
+      #sxHeroAnim .sxa-run .sxa-check:nth-child(3) { animation-delay: 0.7s; }
+      #sxHeroAnim .sxa-run .sxa-tick { animation: sxaTickIn 0.55s cubic-bezier(0.34,1.6,0.6,1) 0.1s both; }
+      #sxHeroAnim .sxa-run .sxa-check:nth-child(2) .sxa-tick { animation-delay: 0.45s; }
+      #sxHeroAnim .sxa-run .sxa-check:nth-child(3) .sxa-tick { animation-delay: 0.8s; }
+      #sxHeroAnim .sxa-run .sxa-pill { animation: sxaVerifyIn 0.8s cubic-bezier(0.34,1.5,0.64,1) 1.5s both; }
+      #sxHeroAnim .sxa-run .sxa-warn { animation: sxaSoftIn 0.6s ease-out 2s both, sxaWarnBreathe 9s ease-in-out 3s infinite; }
+      #sxHeroAnim .sxa-run .sxa-marquee { animation: sxaSoftIn 0.6s ease-out 0.35s both, sxaSignalScroll 30s linear infinite; }
+      #sxHeroAnim .sxa-run .sxa-verdict { animation: sxaVerdictIn 0.8s cubic-bezier(0.34,1.5,0.64,1) 1.9s both; }
+
+      @keyframes sxaFade { from { opacity: 0 } to { opacity: 1 } }
+      @keyframes sxaOrbit { from { transform: rotate(0) } to { transform: rotate(360deg) } }
+      @keyframes sxaOrbitUp { from { transform: translate(-50%,-31px) rotate(0) } to { transform: translate(-50%,-31px) rotate(-360deg) } }
+      @keyframes sxaScanSpin { from { transform: translate(-50%,-50%) rotate(0) } to { transform: translate(-50%,-50%) rotate(360deg) } }
+      @keyframes sxaHalo {
+        0% { transform: translate(-50%,-50%) scale(0.96); opacity: 0 }
+        18% { opacity: 1 } 55% { opacity: 0.7 }
+        100% { transform: translate(-50%,-50%) scale(1.34); opacity: 0 }
+      }
+      @keyframes sxaPhotoSwap { 0% { opacity: 0; transform: scale(1.07) } 100% { opacity: 1; transform: scale(1) } }
+      @keyframes sxaTickIn { 0% { transform: scale(0.3); opacity: 0 } 60% { transform: scale(1.18); opacity: 1 } 100% { transform: scale(1); opacity: 1 } }
+      @keyframes sxaRowIn {
+        0% { opacity: 0; transform: translateY(6px); background: rgba(34,197,94,0.14) }
+        60% { opacity: 1; transform: translateY(0); background: rgba(34,197,94,0.10) }
+        100% { opacity: 1; transform: translateY(0); background: rgba(34,197,94,0) }
+      }
+      @keyframes sxaVerifyIn {
+        0% { opacity: 0; transform: scale(0.8); box-shadow: 0 0 0 0 rgba(34,197,94,0) }
+        55% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 0 10px rgba(34,197,94,0.16) }
+        100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 16px rgba(34,197,94,0) }
+      }
+      @keyframes sxaSoftIn { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: translateY(0) } }
+      @keyframes sxaVerdictIn {
+        0% { opacity: 0; transform: translateY(10px) scale(0.96) }
+        65% { opacity: 1; transform: translateY(0) scale(1.03) }
+        100% { opacity: 1; transform: translateY(0) scale(1) }
+      }
+      @keyframes sxaChipPop {
+        0% { opacity: 0; transform: translate(-50%,-31px) scale(0.35) }
+        45% { opacity: 1; transform: translate(-50%,-31px) scale(1.18) }
+        70% { transform: translate(-50%,-31px) scale(0.94) }
+        100% { opacity: 1; transform: translate(-50%,-31px) scale(1) }
+      }
+      @keyframes sxaWarnBreathe {
+        0%, 100% { border-color: rgba(245,158,11,0.24); background: rgba(245,158,11,0.08) }
+        50% { border-color: rgba(245,158,11,0.44); background: rgba(245,158,11,0.13) }
+      }
+      @keyframes sxaWarnIcon {
+        0%, 88%, 100% { transform: translateX(0) rotate(0) }
+        91% { transform: translateX(-1.5px) rotate(-6deg) }
+        94% { transform: translateX(1.5px) rotate(6deg) }
+        97% { transform: translateX(0) rotate(0) }
+      }
+      @keyframes sxaDotBlink {
+        0%, 70%, 100% { transform: scale(1); box-shadow: 0 0 0 0 currentColor }
+        78% { transform: scale(1.5); box-shadow: 0 0 0 4px rgba(34,197,94,0.16) }
+        88% { transform: scale(1); box-shadow: 0 0 0 0 currentColor }
+      }
+      @keyframes sxaScanLine {
+        0% { top: -8px; opacity: 0 } 12% { opacity: 1 } 88% { opacity: 1 } 100% { top: 100%; opacity: 0 }
+      }
+      @keyframes sxaSignalScroll { from { transform: translateY(0) } to { transform: translateY(calc(-50% - 7px)) } }
+      @media (max-width: 1080px) { #sxHeroAnim .sxa-row { zoom: 0.6; } }
+      @media (prefers-reduced-motion: reduce) {
+        #sxHeroAnim .sxa-orbit, #sxHeroAnim .sxa-chip, #sxHeroAnim .sxa-scan, #sxHeroAnim .sxa-halo,
+        #sxHeroAnim .sxa-marquee, #sxHeroAnim .sxa-scanline, #sxHeroAnim .sxa-warn, #sxHeroAnim .sxa-warn svg { animation: none !important; }
+      }
+      </style>
+
+      <div id="sxHeroAnim">
+        <div class="sxa-row sxa-run" id="sxaRow">
+
+          <div class="sxa-card" data-zone="kyc" data-node="kyc">
+            <div class="sxa-eyebrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7688" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.8 20 5.7v5.4c0 4.9-3.3 8.9-8 10.4-4.7-1.5-8-5.5-8-10.4V5.7z"></path><path d="m8.6 11.9 2.4 2.4 4.4-4.6" stroke-linecap="round"></path></svg>
+              <span>Identity verification</span>
+            </div>
+            <h3 class="sxa-title">Traditional KYC</h3>
+            <p class="sxa-lede">Confirms the identity is genuine.</p>
+            <div class="sxa-rule"></div>
+            <span class="sxa-label">Checks performed</span>
+            <div class="sxa-checks">
+              <div class="sxa-check"><span class="sxa-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.6 9.6 17.7 19.5 6.8"></path></svg></span><span class="t">Document authenticity</span></div>
+              <div class="sxa-check"><span class="sxa-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.6 9.6 17.7 19.5 6.8"></path></svg></span><span class="t">Face match</span></div>
+              <div class="sxa-check"><span class="sxa-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.6 9.6 17.7 19.5 6.8"></path></svg></span><span class="t">ID number valid</span></div>
+            </div>
+            <div class="sxa-verified"><span class="sxa-pill">Verified</span><em>Identity confirmed</em></div>
+            <div class="sxa-spacer"></div>
+            <div class="sxa-warn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2 21.4 20H2.6z"></path><path d="M12 10v4.2"></path><path d="M12 17.2h.01"></path></svg>
+              <span>A genuine document isn't a genuine customer. Mules and synthetic identities pass this.</span>
+            </div>
+          </div>
+
+          <div class="sxa-center" data-zone="center">
+            <div class="sxa-orb">
+              <div class="sxa-halos" aria-hidden="true">
+                <span class="sxa-halo"></span>
+                <span class="sxa-halo" style="animation-delay:2.5s"></span>
+                <span class="sxa-halo" style="animation-delay:5s"></span>
+                <span class="sxa-halo" style="animation-delay:7.5s"></span>
+              </div>
+              <div class="sxa-ringnode" data-node="ring"></div>
+              <svg width="480" height="480" viewBox="0 0 480 480" style="position:absolute;inset:0;pointer-events:none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="sxaArc" x1="0.15" y1="0" x2="0.85" y2="1">
+                    <stop offset="0%" stop-color="#C21E86" id="sxaArc1" style="transition:stop-color .7s ease"></stop>
+                    <stop offset="45%" stop-color="#C21E86" id="sxaArc2" style="transition:stop-color .7s ease"></stop>
+                    <stop offset="78%" stop-color="#E536A3" id="sxaArc3" style="transition:stop-color .7s ease"></stop>
+                    <stop offset="100%" stop-color="#E536A3" id="sxaArc4" style="transition:stop-color .7s ease"></stop>
+                  </linearGradient>
+                </defs>
+                <circle cx="240" cy="240" r="182" fill="none" stroke="#0A1628" stroke-opacity="0.14" stroke-width="1"></circle>
+                <circle cx="240" cy="240" r="158" fill="none" stroke="#0A1628" stroke-opacity="0.14" stroke-width="1"></circle>
+                <circle cx="240" cy="240" r="170" fill="none" stroke="url(#sxaArc)" stroke-width="7" stroke-opacity="0.45"></circle>
+              </svg>
+              <div class="sxa-photo" data-node="profile"><i id="sxaPhoto"></i></div>
+              <div class="sxa-scan" id="sxaScan"></div>
+              <div class="sxa-orbit">
+                <div class="sxa-chip" style="left:240px;top:70px"><b><svg width="24" height="24" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 3.5A2.5 2.5 0 018.5 1h7A2.5 2.5 0 0118 3.5v17A2.5 2.5 0 0115.5 23h-7A2.5 2.5 0 016 20.5zM10 19.4h4a.9.9 0 010 1.8h-4a.9.9 0 010-1.8z"></path></svg></b><em>Device</em></div>
+                <div class="sxa-chip" style="left:387px;top:155px"><b><svg width="24" height="24" viewBox="0 0 24 24"><path d="M2 6.6A2.6 2.6 0 014.6 4h14.8A2.6 2.6 0 0122 6.6v.4l-10 5.8L2 7zM2 9.3l9.5 5.5a1 1 0 001 0L22 9.3v8.1a2.6 2.6 0 01-2.6 2.6H4.6A2.6 2.6 0 012 17.4z"></path></svg></b><em>Email</em></div>
+                <div class="sxa-chip" style="left:387px;top:325px"><b><svg width="24" height="24" viewBox="0 0 24 24"><path d="M6.2 2.4h7l4.6 4.6v14.6H6.2zm7 1.6v3.6h3.6z"></path><path d="M8.6 12.4h6.8v1.6H8.6zm0 3.4h6.8v1.6H8.6z" fill="#FFFFFF"></path></svg></b><em>Documents</em></div>
+                <div class="sxa-chip" style="left:240px;top:410px"><b><svg width="24" height="24" viewBox="0 0 24 24"><path d="M6.4 2.6h4.2l2.1 5.3-2.7 1.6a12.4 12.4 0 004.5 4.5l1.6-2.7 5.3 2.1v4.2a2.2 2.2 0 01-2.4 2.2A17.4 17.4 0 014.2 5a2.2 2.2 0 012.2-2.4z"></path></svg></b><em>Phone</em></div>
+                <div class="sxa-chip" style="left:93px;top:325px"><b><svg width="24" height="24" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.8a7.7 7.7 0 00-7.7 7.7c0 5.7 6.7 11.8 7 12.1a1 1 0 001.4 0c.3-.3 7-6.4 7-12.1A7.7 7.7 0 0012 1.8zm0 10.2a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"></path></svg></b><em>Location</em></div>
+                <div class="sxa-chip" style="left:93px;top:155px"><b><svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 13.5h2.6V19H3zm4.7-4.8h2.6V19H7.7zm4.7-4.4H15V19h-2.6zm4.7 6.4h2.6V19h-2.6z"></path></svg></b><em>Behavior</em></div>
+              </div>
+            </div>
+            <span class="sxa-caption">Customer profile</span>
+          </div>
+
+          <div class="sxa-card sxa-x" data-zone="screenx" data-node="screenx">
+            <div class="sxa-eyebrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E536A3" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="2.4"></circle><path d="M7.4 16.6a6.5 6.5 0 0 1 0-9.2"></path><path d="M16.6 7.4a6.5 6.5 0 0 1 0 9.2"></path></svg>
+              <span>Risk intelligence</span>
+            </div>
+            <h3 class="sxa-title">ScreenX</h3>
+            <p class="sxa-lede">Scores how risky the customer is.</p>
+            <div class="sxa-rule"></div>
+            <span class="sxa-label">Signals analysed</span>
+            <div class="sxa-signals">
+              <div class="sxa-scanline"></div>
+              <div class="sxa-marquee" id="sxaMarquee"></div>
+            </div>
+            <div class="sxa-rule" style="margin:26px 0"></div>
+            <div class="sxa-verdict">
+              <div class="sxa-gauge">
+                <svg width="124" height="124" viewBox="0 0 124 124" aria-hidden="true">
+                  <circle cx="62" cy="62" r="55" fill="none" stroke="#0A1628" stroke-opacity="0.09" stroke-width="7"></circle>
+                  <circle class="val" id="sxaGauge" cx="62" cy="62" r="55" fill="none" stroke="#16A34A" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 345.6" transform="rotate(-90 62 62)"></circle>
+                </svg>
+                <div class="num"><b id="sxaScore">0</b><i>/ 100</i></div>
+              </div>
+              <div class="txt">
+                <span class="rl" id="sxaRiskLabel">Low risk</span>
+                <span class="rn" id="sxaRiskNote">Signals check out — safe to onboard.</span>
+                <span class="rc" id="sxaRiskCase"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <script>
+      (function () {
+        var CASES = [
+          { label: 'Low risk', color: '#16A34A', score: 18, photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/sx_face_illus_low_7c539ccfc7.png',
+            rim: 'rgba(22,163,74,0.22)', accent: '#C21E86', accent2: '#E536A3',
+            note: 'Signals check out — safe to onboard.', caseType: '',
+            signals: [['Device reputation','92','#22C55E'],['Location consistency','88','#22C55E'],['Behavioural pattern','Normal','#22C55E'],['Digital footprint','Aged','#22C55E'],['SIM-swap risk','Low','#F59E0B'],['Image liveness','96','#22C55E'],['Velocity check','Clear','#22C55E'],['Email age','7 yrs','#22C55E'],['Phone–name match','94','#22C55E'],['App tampering','None','#22C55E'],['Emulator check','Clear','#22C55E'],['Mule-account link','None','#22C55E']] },
+          { label: 'Medium risk', color: '#D97706', score: 56, photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/sx_face_illus_medium_aaae0de465.png',
+            rim: 'rgba(217,119,6,0.26)', accent: '#D97706', accent2: '#F59E0B',
+            note: 'Step up verification before disbursal.',
+            caseType: 'Possible first-party fraud — income and device history do not line up',
+            signals: [['Device reputation','61','#F59E0B'],['Location consistency','48','#F59E0B'],['Behavioural pattern','Rushed','#F59E0B'],['Digital footprint','4 months','#F59E0B'],['SIM-swap risk','11 days ago','#F59E0B'],['Image liveness','89','#22C55E'],['Velocity check','3 applications','#F59E0B'],['Email age','2 months','#F59E0B'],['Phone–name match','58','#F59E0B'],['App tampering','None','#22C55E'],['Emulator check','Clear','#22C55E'],['Bureau enquiry burst','6 in 30 days','#F59E0B']] },
+          { label: 'High risk', color: '#DC2626', score: 87, photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/sx_face_illus_high_9efd5fd8b5.png',
+            rim: 'rgba(220,38,38,0.30)', accent: '#DC2626', accent2: '#F05252',
+            note: 'Block and route to manual review.',
+            caseType: 'Likely mule account / account takeover — one device across 14 identities',
+            signals: [['Device reputation','9','#DC2626'],['Location consistency','14','#DC2626'],['Behavioural pattern','Scripted','#DC2626'],['Digital footprint','3 days','#DC2626'],['SIM-swap risk','Today','#DC2626'],['Image liveness','41','#DC2626'],['Velocity check','14 identities','#DC2626'],['Email age','6 days','#DC2626'],['Phone–name match','12','#DC2626'],['App tampering','Detected','#DC2626'],['Emulator check','Emulator','#DC2626'],['Mule-account link','5 known mules','#DC2626']] }
+        ];
+        var STREAMS = [
+          { id: 1, from: 'ring', to: 'kyc', count: 12, spread: 30, curve: 28, bow: 66, width: 1.5, opacity: 42, color1: '#7A8AA6', color2: '#B4C0D4', dots: 3, speed: 1.5, fixed: true },
+          { id: 2, from: 'ring', to: 'screenx', count: 12, spread: 30, curve: 28, bow: 68, width: 1.5, opacity: 42, color1: '#C21E86', color2: '#E536A3', dots: 3, speed: 1.5 }
+        ];
+        var NS = 'http://www.w3.org/2000/svg';
+        var row = document.getElementById('sxaRow');
+        if (!row) return;
+        var idx = 0, svg = null;
+
+        function rgba(hex, a) {
+          var n = parseInt(hex.slice(1), 16);
+          return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')';
+        }
+        function el(tag, attrs) {
+          var e = document.createElementNS(NS, tag);
+          for (var k in attrs) e.setAttribute(k, attrs[k]);
+          return e;
+        }
+        function measure() {
+          var rr = row.getBoundingClientRect();
+          var k = rr.width / row.offsetWidth || 1;
+          var nodes = {};
+          row.querySelectorAll('[data-node]').forEach(function (n) {
+            var r = n.getBoundingClientRect();
+            nodes[n.getAttribute('data-node')] = {
+              cx: (r.left - rr.left) / k + r.width / (2 * k),
+              cy: (r.top - rr.top) / k + r.height / (2 * k),
+              rx: r.width / (2 * k), ry: r.height / (2 * k)
+            };
+          });
+          return { nodes: nodes, w: row.offsetWidth, h: row.offsetHeight };
+        }
+        function edge(node, rad, inset) {
+          var cos = Math.cos(rad), sin = Math.sin(rad), t;
+          if (Math.abs(node.rx - node.ry) < 2) t = node.rx - inset;
+          else {
+            var ex = Math.abs(cos) > 1e-4 ? (node.rx - inset) / Math.abs(cos) : Infinity;
+            var ey = Math.abs(sin) > 1e-4 ? (node.ry - inset) / Math.abs(sin) : Infinity;
+            t = Math.min(ex, ey);
+          }
+          return [node.cx + cos * t, node.cy + sin * t];
+        }
+        function paths(cfg, nodes) {
+          var A = nodes[cfg.from], B = nodes[cfg.to];
+          if (!A || !B) return [];
+          var D = Math.PI / 180;
+          var base = Math.atan2(B.cy - A.cy, B.cx - A.cx) / D;
+          var dist = Math.hypot(B.cx - A.cx, B.cy - A.cy) || 1;
+          var out = [];
+          for (var i = 0; i < cfg.count; i++) {
+            var t = i / (cfg.count - 1) - 0.5;
+            var p1 = edge(A, (base + t * cfg.spread) * D, 3);
+            var p2 = edge(B, (base + 180 - t * cfg.spread * 0.42) * D, 3);
+            var x1 = p1[0], y1 = p1[1], x2 = p2[0], y2 = p2[1];
+            var k = (cfg.curve / 100) * 0.8 + 0.05;
+            var nx = -(y2 - y1) / dist, ny = (x2 - x1) / dist, bow = -t * 2 * cfg.bow;
+            out.push('M' + x1.toFixed(1) + ' ' + y1.toFixed(1) +
+              ' C ' + (x1 + (x2 - x1) * k + nx * bow).toFixed(1) + ' ' + (y1 + (y2 - y1) * k + ny * bow).toFixed(1) +
+              ', ' + (x2 - (x2 - x1) * k + nx * bow).toFixed(1) + ' ' + (y2 - (y2 - y1) * k + ny * bow).toFixed(1) +
+              ', ' + x2.toFixed(1) + ' ' + y2.toFixed(1));
+          }
+          return out;
+        }
+        function wide() {
+          var zones = Array.prototype.slice.call(row.querySelectorAll('[data-zone]')).map(function (z) { return z.getBoundingClientRect(); });
+          return zones.length === 3 && zones.every(function (a) {
+            return zones.every(function (b) { return a.top < b.bottom - 20 && b.top < a.bottom - 20; });
+          });
+        }
+        function drawStreams() {
+          if (svg) { svg.remove(); svg = null; }
+          if (!wide()) return;
+          var g = measure(), nodes = g.nodes, C = CASES[idx];
+          svg = el('svg', { width: g.w, height: g.h, viewBox: '0 0 ' + g.w + ' ' + g.h, 'aria-hidden': 'true' });
+          svg.setAttribute('style', 'position:absolute;top:0;left:0;z-index:0;pointer-events:none;overflow:visible');
+          var defs = el('defs', {});
+          var soft = el('filter', { id: 'sxaSoft', x: '-120%', y: '-120%', width: '340%', height: '340%' });
+          soft.appendChild(el('feGaussianBlur', { stdDeviation: 2.6 }));
+          defs.appendChild(soft);
+          svg.appendChild(defs);
+
+          STREAMS.forEach(function (base) {
+            var cfg = base.fixed ? base : Object.assign({}, base, { color1: C.accent, color2: C.accent2 });
+            var A = nodes[cfg.from], B = nodes[cfg.to];
+            if (!A || !B) return;
+            var ps = paths(cfg, nodes), op = cfg.opacity / 100, gid = 'sxaG' + cfg.id;
+            var grad = el('linearGradient', { id: gid, gradientUnits: 'userSpaceOnUse', x1: A.cx, y1: A.cy, x2: B.cx, y2: B.cy });
+            [['0%', cfg.color1, 0], ['14%', cfg.color1, op], ['55%', cfg.color2, op * 0.82], ['86%', cfg.color2, op * 0.35], ['100%', cfg.color2, 0]].forEach(function (s) {
+              grad.appendChild(el('stop', { offset: s[0], 'stop-color': s[1], 'stop-opacity': s[2] }));
+            });
+            defs.appendChild(grad);
+            var grp = el('g', {});
+            ps.forEach(function (d) {
+              grp.appendChild(el('path', { d: d, fill: 'none', stroke: 'url(#' + gid + ')', 'stroke-width': cfg.width, 'stroke-linecap': 'round' }));
+            });
+            ps.forEach(function (d, i) {
+              for (var p = 0; p < cfg.dots; p++) {
+                var dur = (cfg.speed + i * 0.3 + p * 0.4).toFixed(2) + 's';
+                var begin = (0.5 + i * 0.4 + p * (cfg.speed / cfg.dots)).toFixed(2) + 's';
+                var col = p % 2 ? cfg.color2 : cfg.color1;
+                var dg = el('g', {});
+                dg.appendChild(el('animateMotion', { dur: dur, begin: begin, repeatCount: 'indefinite', path: d, calcMode: 'spline', keyPoints: '0;1', keyTimes: '0;1', keySplines: '0.42 0 0.58 1' }));
+                [[Math.max(4, cfg.width * 3.4), '0;0.18;0.16;0', true], [Math.max(1.6, cfg.width * 1.5), '0;0.95;0.85;0', false]].forEach(function (c) {
+                  var circ = el('circle', { r: c[0], fill: col, opacity: 0 });
+                  if (c[2]) circ.setAttribute('filter', 'url(#sxaSoft)');
+                  circ.appendChild(el('animate', { attributeName: 'opacity', values: c[1], keyTimes: '0;0.14;0.78;1', dur: dur, begin: begin, repeatCount: 'indefinite' }));
+                  dg.appendChild(circ);
+                });
+                grp.appendChild(dg);
+              }
+            });
+            svg.appendChild(grp);
+          });
+          row.insertBefore(svg, row.firstChild);
+        }
+
+        function apply() {
+          var C = CASES[idx];
+          row.style.setProperty('--sx-accent', C.accent);
+          row.style.setProperty('--sx-accent2', C.accent2);
+          row.style.setProperty('--sx-risk', C.color);
+          row.style.setProperty('--sx-rim', C.rim);
+          document.getElementById('sxaArc1').setAttribute('stop-color', C.accent);
+          document.getElementById('sxaArc2').setAttribute('stop-color', C.accent);
+          document.getElementById('sxaArc3').setAttribute('stop-color', C.accent2);
+          document.getElementById('sxaArc4').setAttribute('stop-color', C.accent2);
+          document.getElementById('sxaPhoto').style.backgroundImage = 'url(' + C.photo + ')';
+          document.getElementById('sxaScan').style.background =
+            'conic-gradient(from 0deg,' + rgba(C.accent, 0) + ' 0deg,' + rgba(C.accent, 0.08) + ' 90deg,' +
+            rgba(C.accent2, 0.55) + ' 200deg,' + C.accent + ' 300deg,' + C.accent + ' 342deg,' + rgba(C.accent, 0) + ' 360deg)';
+          document.getElementById('sxaScore').textContent = C.score;
+          document.getElementById('sxaRiskLabel').textContent = C.label;
+          document.getElementById('sxaRiskNote').textContent = C.note;
+          document.getElementById('sxaRiskCase').textContent = C.caseType;
+          var gauge = document.getElementById('sxaGauge');
+          gauge.setAttribute('stroke', C.color);
+          gauge.setAttribute('stroke-dasharray', '0 345.6');
+          setTimeout(function () { gauge.setAttribute('stroke-dasharray', (C.score / 100 * 345.6).toFixed(1) + ' 345.6'); }, 2100);
+          var mq = document.getElementById('sxaMarquee');
+          mq.innerHTML = C.signals.concat(C.signals).map(function (s, i) {
+            return '<div class="sxa-sig"><span class="n">' + s[0] + '</span><span class="v">' + s[1] +
+              '</span><span class="d" style="background:' + s[2] + ';animation-delay:' + ((i % 8) * 0.55).toFixed(2) + 's"></span></div>';
+          }).join('');
+          row.classList.remove('sxa-run');
+          void row.offsetWidth;
+          row.classList.add('sxa-run');
+          drawStreams();
+        }
+
+        apply();
+        var timer = setInterval(function () { idx = (idx + 1) % CASES.length; apply(); }, 11000);
+        var rt;
+        window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(drawStreams, 180); });
+        if (window.ResizeObserver) new ResizeObserver(function () { clearTimeout(rt); rt = setTimeout(drawStreams, 180); }).observe(row);
+        window.addEventListener('load', drawStreams);
+      })();
+      </script>
+</div>
+</body>
+</html>
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     .stage is the standalone's viewing harness; in a frame its padding is white
+     space above and either side of the artwork. The animation's own wrapper
+     keeps its 40px top margin, which is the gap the design asks for. */
+  .stage { padding: 0; max-width: none; }
+
+  /* New in the 24 Aug cut: each standalone labels itself with a harness caption
+     ("Location Intelligence hero - capture -> verify -> enrich -> predict") as a
+     direct child of .stage. It is the preview's own title, not part of the
+     artwork, and framed it paints a stray grey line above the hero. Matched as
+     a direct child so it cannot collide with an artwork class of the same name. */
+  .stage > .cap { display: none; }
+
+  /* The standalone paints a white body because it is a page when opened on its
+     own. Framed, that white is a rectangle sitting on top of the hero's wash,
+     which is what made every animation look pasted on rather than part of the
+     page. The artwork's own surfaces are unaffected — only the ground behind
+     them goes. */
+  html,
+  body { background: transparent; }
+
+
+  /* The home animation is the one of the five that ships no reduced-motion
+     guard; its README says it "needs the same guard added on rebuild". This is
+     the same guard the other four ship ('animation: none !important'), applied
+     the only way it can be here: home declares all 33 of its animations in
+     inline style attributes, which a stylesheet only outranks with !important,
+     and it names no classes to list. Scoped to the wrapper, so it is inert in
+     the other sixteen files. */
+  @media (prefers-reduced-motion: reduce) {
+    #s3hero-row,
+    #s3hero-row * { animation: none !important; }
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // 'zoom' -> 'transform: scale()', on every row the bundle scales.
+  //
+  // The bundles shrink each oversized hero row with 'zoom', and serving that
+  // verbatim is a fault this repo has already paid for: Safari lays a zoomed row
+  // out at a different width than Chrome, so the columns lose their room and the
+  // flex row WRAPS — verdict badge on a second line, orbit chips off their ring,
+  // connector streams gone, canvas boxes showing. Fixed in 915dc4b, then
+  // reintroduced when the heroes moved from ported JSX to framed standalones,
+  // which put the designer's 'zoom' back on the page. The bundle's own README
+  // asks for this conversion in production.
+  //
+  // The recipe is the one probed against the affected Safari at the time —
+  // zoom-with-percentage, zoom-with-explicit-width and transform side by side,
+  // and only transform held:
+  //
+  //   width: calc(100% / s)  lays the row out at host/s so it paints back to
+  //                          exactly the host's width, with no percentage under
+  //                          zoom for engines to disagree about
+  //   transform: scale(s)    spec'd identically in every engine, and does not
+  //                          participate in layout, which is what makes the
+  //                          percentage above safe
+  //   flex: none             the hosts are centring flex containers, so a flex
+  //                          item would be SHRUNK back to the host's width — the
+  //                          very thing the calc() exists to avoid
+  //   transform-origin: top center
+  //                          the host centres the layout box, so scaling about
+  //                          its own centre keeps the painted result centred even
+  //                          where a max-width caps it narrower than the host
+  //
+  // Geometry is preserved rather than approximated: under 'zoom: s' with
+  // 'width: 100%' the row's offsetWidth is already host/s and its rect is host,
+  // which is exactly what the pair above produces — so the controllers, which
+  // divide by rect.width / offsetWidth to undo the scaling, read identical
+  // numbers before and after.
+  (function () {
+    // Re-scanned on every pass rather than collected once. The Design Component
+    // runtime behind the mobile heroes renders after this script parses and
+    // replaces what was there, so a list captured at parse time misses whatever
+    // it creates — cortex-mobile ships two inline zooms that only exist after
+    // it has run. Converting is idempotent: a converted element carries an
+    // inline zoom of 1, so a later pass no longer sees it.
+    function collect() {
+      var scaled = [];
+      document.querySelectorAll("body *").forEach(function (el) {
+        var z = parseFloat(getComputedStyle(el).zoom);
+        if (!(z > 0) || z === 1) return;
+      // Take only the element the zoom is DECLARED on, never its descendants.
+      // Engines disagree about what computed zoom reports: Chrome gives the
+      // element's own value, and a descendant of a zoomed row reads 1; other
+      // engines report the cumulative zoom, so every descendant reads the row's
+      // value too. Without this guard the second kind of engine would scale the
+      // whole subtree again, once per level -- geometry inside the row would
+      // collapse in exactly the way a distorted, off-centre composition looks.
+      // A declared zoom always differs from its parent's; an inherited reading
+      // never does.
+        var parent = el.parentElement;
+        var pz = parent ? parseFloat(getComputedStyle(parent).zoom) : 1;
+        if (pz > 0 && Math.abs(pz - z) < 0.0001) return;
+        scaled.push(el);
+      });
+      return scaled;
+    }
+
+    var OURS = [
+      "zoom",
+      "width",
+      "flex",
+      "transform",
+      "transform-origin",
+      "margin-bottom",
+    ];
+
+    function apply(el) {
+      // Drop back to the stylesheet's own state first: the scale is
+      // breakpoint-dependent (screenx 0.72 -> 0.6, cortex 0.7 -> 0.56) and an
+      // inline zoom of our own would mask the media query's value.
+      OURS.forEach(function (p) {
+        el.style.removeProperty(p);
+      });
+      var s = parseFloat(getComputedStyle(el).zoom);
+      if (!(s > 0) || s === 1) return; // Unscaled at this width.
+
+      el.style.setProperty("zoom", "1", "important");
+      el.style.setProperty("width", "calc(100% / " + s + ")", "important");
+      el.style.setProperty("flex", "none", "important");
+      el.style.setProperty("transform-origin", "top center", "important");
+      el.style.setProperty("transform", "scale(" + s + ")", "important");
+
+      // The transform paints smaller but the row still RESERVES its full
+      // unscaled height, so take back exactly the part that no longer paints.
+      //
+      // offsetHeight, NOT getBoundingClientRect().height, even though the rect
+      // is the painted box and looks like the more direct answer: the rect fed
+      // back on itself when this was last built — a too-tall row lengthens the
+      // page, which brings in a scrollbar, which narrows the viewport, which
+      // re-wraps the row, which makes it taller again. In WebKit at 1024px that
+      // ran away to 6052px. The layout height cannot be influenced by what we
+      // set here, so there is nothing for a loop to amplify.
+      var dead = Math.round(el.offsetHeight * (1 - s));
+      if (dead > 0)
+        el.style.setProperty("margin-bottom", "-" + dead + "px", "important");
+    }
+
+    function applyAll() {
+      collect().forEach(apply);
+    }
+
+    var timer;
+    function reapply() {
+      clearTimeout(timer);
+      timer = setTimeout(applyAll, 120);
+    }
+
+    applyAll();
+    addEventListener("resize", reapply);
+    // After the runtime has rendered, for anything it created.
+    addEventListener("load", applyAll);
+    // The controllers measure their anchors and redraw off resize; nudge them
+    // once so they re-read the row rather than keeping numbers taken before the
+    // conversion. Only on the initial pass — later passes ARE resize events.
+    dispatchEvent(new Event("resize"));
+  })();
+
+  // The rest of home's guard. Its connector dots are SVG <animateMotion>, built
+  // by the controller after load and rebuilt on every resize, so CSS cannot
+  // reach them: 'animation: none' does not apply to SMIL. Removing each one as
+  // it is inserted parks its dot at the path start instead of flying it along,
+  // and covers the rebuilds too. Only home generates these; the observer is not
+  // installed anywhere else.
+  if (
+    document.getElementById("s3hero-row") &&
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const strip = (node) => {
+      if (node.nodeType !== 1) return;
+      if (node.tagName === "animateMotion") node.remove();
+      else node.querySelectorAll?.("animateMotion").forEach((el) => el.remove());
+    };
+    document.querySelectorAll("animateMotion").forEach((el) => el.remove());
+    new MutationObserver((records) =>
+      records.forEach((r) => r.addedNodes.forEach(strip))
+    ).observe(document.documentElement, { childList: true, subtree: true });
+  }
+</script>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs -- not from the design bundle. */
+  /* Pin the rotation pivot to a box that every engine agrees on.
+     The bundle writes transform-box:view-box with a pixel transform-origin
+     on its concentric rings. That pair is only the ring's centre if view-box is
+     honoured; resolved against the fill-box instead, the pixel pair is measured
+     from the element's own bbox corner and every ring spins about a different
+     off-centre point — the rings stop being concentric.
+     Measured across all seventeen animations, the fill-box centre IS the
+     declared pivot for every one of these elements to within a user unit, so
+     'center' under an explicitly pinned fill-box is the same rotation with no
+     dependency on view-box support. The one exception is measured out below. */
+  [data-scan-ring],
+  #bhHero [data-breathe],
+  .hero-anim .hf-core,
+  .hero-anim .hf-ripple,
+  .hero-anim .hf-spin,
+  .hero-anim .hf-spin-rev,
+  .nCore,
+  .nRipple,
+  .nSpin,
+  .nSpinRev {
+    transform-box: fill-box !important;
+    transform-origin: center !important;
+  }
+
+  /* !important, not higher specificity, and this is load-bearing rather than
+     lazy. The bundles namespace every selector under the wrapper id -- the
+     24 Aug cut's README states it as a rule -- so the file's own declaration is
+     '#diHero [data-scan-ring]' at (1,1,0) where the selector above is (0,1,0).
+     It loses on specificity no matter what order the sheets are in. That is
+     exactly how this fix went missing: it worked while device-intelligence
+     shipped an unscoped rule, then stopped the moment the new cut replaced the
+     file, and the rings went back to being non-concentric in Safari with
+     nothing in the diff to show it. Matching the namespacing here would only
+     put us one bundle rename away from the same silent failure. */
+
+  /* The one element whose fill box is not centred on its pivot: its bbox starts
+     at (123.4, 101.7) and the bundle rotates it about (230, 220). */
+  #bhHero [data-breathe] { transform-origin: 106.6px 118.3px !important; }
+</style>

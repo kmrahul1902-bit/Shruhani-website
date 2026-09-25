@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: transparent; }
+  a { color: #C21E86; text-decoration: none; }
+  a:hover { color: #0A1628; }
+  #sxq3 { --sx-accent: #C21E86; --sx-accent2: #E536A3; --sx-risk: #16A34A; --sx-rim: rgba(22,163,74,0.22); }
+  #sxq3 *, #sxq3 *::before, #sxq3 *::after { box-sizing: border-box; }
+  #sxq3 .sxa-halo { position: absolute; left: 50%; top: 50%; width: 348px; height: 348px; border-radius: 50%; border: 1.5px solid rgba(194, 30, 134,0.28); opacity: 0; transform: translate(-50%,-50%); animation: sxaHalo 10s cubic-bezier(0.42,0,0.58,1) infinite; }
+  #sxq3 .sxa-photo {
+    position: absolute; left: 240px; top: 240px; transform: translate(-50%,-50%);
+    width: 200px; height: 200px; border-radius: 50%;
+    border: 4px solid var(--sx-rim); transition: border-color 0.5s ease;
+    box-shadow: 0 12px 32px rgba(10,22,40,0.14); background: #eef1f5; overflow: hidden;
+  }
+  #sxq3 .sxa-photo i { position: absolute; inset: 0; border-radius: 50%; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat; animation: sxaPhotoSwap 0.85s cubic-bezier(0.22,1,0.36,1) both; }
+  #sxq3 .sxa-scan {
+    position: absolute; left: 50%; top: 50%; width: 208px; height: 208px; border-radius: 50%;
+    pointer-events: none; transform: translate(-50%,-50%); transition: background 0.7s ease;
+    -webkit-mask: radial-gradient(circle at center, transparent 0 100px, #000 100.5px);
+    mask: radial-gradient(circle at center, transparent 0 100px, #000 100.5px);
+    animation: sxaScanSpin 7s linear 0.5s infinite;
+  }
+  #sxq3 .sxa-orbit { position: absolute; inset: 0; transform-origin: 50% 50%; animation: sxaOrbit 44s linear 0.6s infinite; }
+  #sxq3 .sxa-chip { position: absolute; transform: translate(-50%,-31px); transform-origin: 50% 31px; animation: sxaOrbitUp 44s linear 0.6s infinite; }
+  #sxq3 .sxa-chip > span { display: flex; flex-direction: column; align-items: center; gap: 8px; animation: sxqChipPop 0.55s cubic-bezier(0.34,1.6,0.6,1) both; }
+  #sxq3 .sxa-chip:nth-child(1) > span { animation-delay: 0.30s }
+  #sxq3 .sxa-chip:nth-child(2) > span { animation-delay: 0.40s }
+  #sxq3 .sxa-chip:nth-child(3) > span { animation-delay: 0.50s }
+  #sxq3 .sxa-chip:nth-child(4) > span { animation-delay: 0.60s }
+  #sxq3 .sxa-chip:nth-child(5) > span { animation-delay: 0.70s }
+  #sxq3 .sxa-chip:nth-child(6) > span { animation-delay: 0.80s }
+  #sxq3 .sxa-chip b { display: flex; align-items: center; justify-content: center; width: 62px; height: 62px; background: #fff; border-radius: 7px; border: 1px solid rgba(10,22,40,0.05); box-shadow: 0 8px 22px rgba(10,22,40,0.12); }
+  #sxq3 .sxa-chip b svg { fill: var(--sx-accent); transition: fill 0.5s ease; }
+  #sxq3 .sxa-chip em { font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 500; font-style: normal; color: #0A1628; text-shadow: 0 0 4px #fff, 0 0 8px #fff; }
+
+  #sxq3 .sxa-card {
+    width: 560px; height: 720px; background: #fff; border: 1px solid rgba(10,22,40,0.07);
+    border-radius: 24px; box-shadow: 0 26px 60px rgba(10,22,40,0.08);
+    padding: 40px 42px; display: flex; flex-direction: column; text-align: left;
+  }
+  #sxq3 .sxa-card.sxa-x { width: 620px; height: 786px; border: 1.5px solid rgba(229, 54, 163,0.55); box-shadow: 0 26px 60px rgba(229, 54, 163,0.16); }
+  #sxq3 .sxa-kycline {
+    display: flex; align-items: center; gap: 12px; margin-top: 22px; padding: 14px 18px;
+    background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.24); border-radius: 12px;
+    white-space: nowrap; animation: sxqSoftIn 0.6s ease-out 2.1s both;
+  }
+  #sxq3 .sxa-kycline .k { font-family: Inter, system-ui, sans-serif; font-size: 16px; color: #8A94A6; }
+  #sxq3 .sxa-kycline .v { font-family: Inter, system-ui, sans-serif; font-size: 17px; font-weight: 600; color: #16A34A; }
+  #sxq3 .sxa-eyebrow { display: flex; align-items: center; gap: 10px; font-family: Inter, system-ui, sans-serif; font-size: 17px; color: #6B7688; }
+  #sxq3 .sxa-card.sxa-x .sxa-eyebrow { color: #E536A3; font-weight: 600; }
+  #sxq3 .sxa-title { font-size: 40px; font-weight: 800; letter-spacing: -0.01em; color: #0A1628; line-height: 1.1; margin: 20px 0 0; }
+  #sxq3 .sxa-lede { font-family: Inter, system-ui, sans-serif; font-size: 19px; color: #6B7688; margin: 12px 0 0; }
+  #sxq3 .sxa-rule { height: 1px; background: rgba(10,22,40,0.08); margin: 28px 0 24px; }
+  #sxq3 .sxa-label { font-family: Inter, system-ui, sans-serif; font-size: 16px; color: #8A94A6; }
+  #sxq3 .sxa-checks { display: flex; flex-direction: column; gap: 18px; margin-top: 20px; }
+  #sxq3 .sxa-check { display: flex; align-items: center; gap: 16px; border-radius: 10px; margin: 0 -10px; padding: 4px 10px; animation: sxaRowIn 0.7s ease-out both; }
+  #sxq3 .sxa-check:nth-child(2) { animation-delay: 0.35s }
+  #sxq3 .sxa-check:nth-child(3) { animation-delay: 0.7s }
+  #sxq3 .sxa-check span.t { font-family: Inter, system-ui, sans-serif; font-size: 19px; color: #0A1628; }
+  #sxq3 .sxa-tick { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(34,197,94,0.12); flex: 0 0 auto; animation: sxaTickIn 0.55s cubic-bezier(0.34,1.6,0.6,1) 0.1s both; }
+  #sxq3 .sxa-check:nth-child(2) .sxa-tick { animation-delay: 0.45s }
+  #sxq3 .sxa-check:nth-child(3) .sxa-tick { animation-delay: 0.8s }
+  #sxq3 .sxa-verified { display: flex; align-items: center; gap: 16px; margin-top: 26px; }
+  #sxq3 .sxa-pill { display: inline-flex; align-items: center; background: rgba(34,197,94,0.10); border: 1px solid rgba(34,197,94,0.26); color: #16A34A; border-radius: 999px; padding: 10px 22px; font-size: 18px; font-weight: 700; animation: sxaVerifyIn 0.8s cubic-bezier(0.34,1.5,0.64,1) 1.3s both; }
+  #sxq3 .sxa-verified em { font-family: Inter, system-ui, sans-serif; font-size: 17px; color: #6B7688; font-style: normal; }
+  #sxq3 .sxa-spacer { flex: 1 1 auto; min-height: 32px; }
+  #sxq3 .sxa-warn {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.24);
+    border-radius: 14px; padding: 20px 22px;
+    animation: sxqSoftIn 0.6s ease-out 1.7s both, sxaWarnBreathe 9s ease-in-out 3s infinite;
+  }
+  #sxq3 .sxa-warn svg { flex: 0 0 auto; margin-top: 2px; animation: sxaWarnIcon 9s ease-in-out 3s infinite; }
+  #sxq3 .sxa-warn span { font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.5; color: #B45309; text-wrap: pretty; }
+  #sxq3 .sxa-signals {
+    position: relative; flex: 1 1 auto; min-height: 0; margin-top: 18px; overflow: hidden;
+    -webkit-mask: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+    mask: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+  }
+  #sxq3 .sxa-scanline { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, rgba(229, 54, 163,0), rgba(229, 54, 163,0.55), rgba(229, 54, 163,0)); z-index: 2; pointer-events: none; animation: sxaScanLine 6s cubic-bezier(0.45,0,0.55,1) infinite; }
+  #sxq3 .sxa-marquee { display: flex; flex-direction: column; gap: 14px; animation: sxqSoftIn 0.6s ease-out 0.35s both, sxaSignalScroll 30s linear infinite; }
+  #sxq3 .sxa-sig { display: flex; align-items: center; gap: 14px; font-family: Inter, system-ui, sans-serif; font-size: 19px; color: #0A1628; }
+  #sxq3 .sxa-sig .n { flex: 1 1 auto; }
+  #sxq3 .sxa-sig .v { font-weight: 600; flex: 0 0 auto; white-space: nowrap; }
+  #sxq3 .sxa-sig .d { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; animation: sxaDotBlink 6s ease-in-out infinite; }
+  #sxq3 .sxa-verdict { display: flex; align-items: center; gap: 26px; animation: sxqVerdictIn 0.8s cubic-bezier(0.34,1.5,0.64,1) 1.5s both; }
+  #sxq3 .sxa-gauge { position: relative; width: 124px; height: 124px; flex: 0 0 auto; }
+  #sxq3 .sxa-gauge .num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: Inter, system-ui, sans-serif; color: var(--sx-risk); }
+  #sxq3 .sxa-gauge .num b { font-size: 34px; font-weight: 600; line-height: 1; }
+  #sxq3 .sxa-gauge .num i { font-size: 14px; opacity: 0.7; font-style: normal; }
+  #sxq3 .sxa-gauge circle.val { transition: stroke-dasharray 1.2s cubic-bezier(0.22,1,0.36,1), stroke 0.6s ease; }
+  #sxq3 .sxa-verdict .txt { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  #sxq3 .sxa-verdict .rl { font-size: 28px; font-weight: 700; line-height: 1; color: var(--sx-risk); }
+  #sxq3 .sxa-verdict .rn { font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.45; color: #6B7688; max-width: 300px; text-wrap: pretty; }
+  #sxq3 .sxa-verdict .rc { font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45; font-weight: 600; max-width: 300px; text-wrap: pretty; color: var(--sx-risk); }
+
+  @keyframes sxqChipPop { 0% { opacity: 0; transform: scale(0.35) } 45% { opacity: 1; transform: scale(1.18) } 70% { transform: scale(0.94) } 100% { opacity: 1; transform: scale(1) } }
+  @keyframes sxqSoftIn { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: translateY(0) } }
+  @keyframes sxqVerdictIn { 0% { opacity: 0; transform: translateY(10px) scale(0.96) } 65% { opacity: 1; transform: translateY(0) scale(1.03) } 100% { opacity: 1; transform: translateY(0) scale(1) } }
+  @keyframes sxqBeam { 0% { opacity: 0; transform: translate(-50%,-50%) scale(0.25) } 38% { opacity: 0.85 } 100% { opacity: 0; transform: translate(-50%,-50%) scale(2) } }
+  @keyframes sxaOrbit { from { transform: rotate(0) } to { transform: rotate(360deg) } }
+  @keyframes sxaOrbitUp { from { transform: translate(-50%,-31px) rotate(0) } to { transform: translate(-50%,-31px) rotate(-360deg) } }
+  @keyframes sxaScanSpin { from { transform: translate(-50%,-50%) rotate(0) } to { transform: translate(-50%,-50%) rotate(360deg) } }
+  @keyframes sxaHalo { 0% { transform: translate(-50%,-50%) scale(0.96); opacity: 0 } 18% { opacity: 1 } 55% { opacity: 0.7 } 100% { transform: translate(-50%,-50%) scale(1.34); opacity: 0 } }
+  @keyframes sxaPhotoSwap { 0% { opacity: 0; transform: scale(1.07) } 100% { opacity: 1; transform: scale(1) } }
+  @keyframes sxaTickIn { 0% { transform: scale(0.3); opacity: 0 } 60% { transform: scale(1.18); opacity: 1 } 100% { transform: scale(1); opacity: 1 } }
+  @keyframes sxaRowIn { 0% { opacity: 0; transform: translateY(6px); background: rgba(34,197,94,0.14) } 60% { opacity: 1; transform: translateY(0); background: rgba(34,197,94,0.10) } 100% { opacity: 1; transform: translateY(0); background: rgba(34,197,94,0) } }
+  @keyframes sxaVerifyIn { 0% { opacity: 0; transform: scale(0.8); box-shadow: 0 0 0 0 rgba(34,197,94,0) } 55% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 0 10px rgba(34,197,94,0.16) } 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 16px rgba(34,197,94,0) } }
+  @keyframes sxaWarnBreathe { 0%, 100% { border-color: rgba(245,158,11,0.24); background: rgba(245,158,11,0.08) } 50% { border-color: rgba(245,158,11,0.44); background: rgba(245,158,11,0.13) } }
+  @keyframes sxaWarnIcon { 0%, 88%, 100% { transform: translateX(0) rotate(0) } 91% { transform: translateX(-1.5px) rotate(-6deg) } 94% { transform: translateX(1.5px) rotate(6deg) } 97% { transform: translateX(0) rotate(0) } }
+  @keyframes sxaDotBlink { 0%, 70%, 100% { transform: scale(1); box-shadow: 0 0 0 0 currentColor } 78% { transform: scale(1.5); box-shadow: 0 0 0 4px rgba(34,197,94,0.16) } 88% { transform: scale(1); box-shadow: 0 0 0 0 currentColor } }
+  @keyframes sxaScanLine { 0% { top: -8px; opacity: 0 } 12% { opacity: 1 } 88% { opacity: 1 } 100% { top: 100%; opacity: 0 } }
+  @keyframes sxaSignalScroll { from { transform: translateY(0) } to { transform: translateY(calc(-50% - 7px)) } }
+</style>
+</helmet>
+<div id="sxq3" style="position:relative;width:1080px;height:1080px;overflow:hidden;background:transparent;font-family:'Plus Jakarta Sans',Inter,sans-serif">
+
+  <div style="position:absolute;left:540px;top:460px;width:220px;height:220px;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle,rgba(194, 30, 134,.26),rgba(229, 54, 163,.10) 55%,rgba(255,255,255,0) 100%);opacity:{{ beamOpacity }};animation:sxqBeam 0.85s ease-out infinite"></div>
+
+  <div ref="{{ scene0 }}" style="position:absolute;left:0;top:0;width:1080px;height:900px;display:flex;align-items:center;justify-content:center;transition:opacity 700ms cubic-bezier(.4,0,.2,1),transform 860ms cubic-bezier(.32,1.02,.4,1),filter 640ms ease;opacity:{{ s0o }};transform:scale({{ s0k }});filter:blur({{ s0b }}px)">
+    <div style="position:relative;width:480px;height:480px;zoom:1.56">
+      <div style="position:absolute;inset:0;pointer-events:none">
+        <span class="sxa-halo"></span>
+        <span class="sxa-halo" style="animation-delay:2.5s"></span>
+        <span class="sxa-halo" style="animation-delay:5s"></span>
+        <span class="sxa-halo" style="animation-delay:7.5s"></span>
+      </div>
+      <svg width="480" height="480" viewBox="0 0 480 480" style="position:absolute;inset:0;pointer-events:none" aria-hidden="true">
+        <defs>
+          <linearGradient id="sxq3Arc" x1="0.15" y1="0" x2="0.85" y2="1">
+            <stop offset="0%" stop-color="#C21E86" ref="{{ arc1 }}" style="transition:stop-color .7s ease"></stop>
+            <stop offset="45%" stop-color="#C21E86" ref="{{ arc2 }}" style="transition:stop-color .7s ease"></stop>
+            <stop offset="78%" stop-color="#E536A3" ref="{{ arc3 }}" style="transition:stop-color .7s ease"></stop>
+            <stop offset="100%" stop-color="#E536A3" ref="{{ arc4 }}" style="transition:stop-color .7s ease"></stop>
+          </linearGradient>
+        </defs>
+        <circle cx="240" cy="240" r="182" fill="none" stroke="#0A1628" stroke-opacity="0.14" stroke-width="1"></circle>
+        <circle cx="240" cy="240" r="158" fill="none" stroke="#0A1628" stroke-opacity="0.14" stroke-width="1"></circle>
+        <circle cx="240" cy="240" r="170" fill="none" stroke="url(#sxq3Arc)" stroke-width="7" stroke-opacity="0.45"></circle>
+      </svg>
+      <div class="sxa-photo"><i ref="{{ photoRef }}"></i></div>
+      <div class="sxa-scan" ref="{{ scanRef }}"></div>
+      <div class="sxa-orbit">
+        <div class="sxa-chip" style="left:240px;top:70px"><span><b><svg width="24" height="24" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 3.5A2.5 2.5 0 018.5 1h7A2.5 2.5 0 0118 3.5v17A2.5 2.5 0 0115.5 23h-7A2.5 2.5 0 016 20.5zM10 19.4h4a.9.9 0 010 1.8h-4a.9.9 0 010-1.8z"></path></svg></b><em>Device</em></span></div>
+        <div class="sxa-chip" style="left:387px;top:155px"><span><b><svg width="24" height="24" viewBox="0 0 24 24"><path d="M2 6.6A2.6 2.6 0 014.6 4h14.8A2.6 2.6 0 0122 6.6v.4l-10 5.8L2 7zM2 9.3l9.5 5.5a1 1 0 001 0L22 9.3v8.1a2.6 2.6 0 01-2.6 2.6H4.6A2.6 2.6 0 012 17.4z"></path></svg></b><em>Email</em></span></div>
+        <div class="sxa-chip" style="left:387px;top:325px"><span><b><svg width="24" height="24" viewBox="0 0 24 24"><path d="M6.2 2.4h7l4.6 4.6v14.6H6.2zm7 1.6v3.6h3.6z"></path><path d="M8.6 12.4h6.8v1.6H8.6zm0 3.4h6.8v1.6H8.6z" fill="#FFFFFF"></path></svg></b><em>Documents</em></span></div>
+        <div class="sxa-chip" style="left:240px;top:410px"><span><b><svg width="24" height="24" viewBox="0 0 24 24"><path d="M6.4 2.6h4.2l2.1 5.3-2.7 1.6a12.4 12.4 0 004.5 4.5l1.6-2.7 5.3 2.1v4.2a2.2 2.2 0 01-2.4 2.2A17.4 17.4 0 014.2 5a2.2 2.2 0 012.2-2.4z"></path></svg></b><em>Phone</em></span></div>
+        <div class="sxa-chip" style="left:93px;top:325px"><span><b><svg width="24" height="24" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.8a7.7 7.7 0 00-7.7 7.7c0 5.7 6.7 11.8 7 12.1a1 1 0 001.4 0c.3-.3 7-6.4 7-12.1A7.7 7.7 0 0012 1.8zm0 10.2a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"></path></svg></b><em>Location</em></span></div>
+        <div class="sxa-chip" style="left:93px;top:155px"><span><b><svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 13.5h2.6V19H3zm4.7-4.8h2.6V19H7.7zm4.7-4.4H15V19h-2.6zm4.7 6.4h2.6V19h-2.6z"></path></svg></b><em>Behavior</em></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div ref="{{ scene1 }}" style="position:absolute;left:0;top:0;width:1080px;height:900px;display:flex;align-items:center;justify-content:center;transition:opacity 700ms cubic-bezier(.4,0,.2,1),transform 860ms cubic-bezier(.32,1.02,.4,1),filter 640ms ease;opacity:{{ s1o }};transform:scale({{ s1k }});filter:blur({{ s1b }}px)">
+    <div style="zoom:1.06">
+      <div class="sxa-card sxa-x">
+        <div class="sxa-eyebrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E536A3" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="2.4"></circle><path d="M7.4 16.6a6.5 6.5 0 0 1 0-9.2"></path><path d="M16.6 7.4a6.5 6.5 0 0 1 0 9.2"></path></svg>
+          <span>Risk intelligence</span>
+        </div>
+        <h3 class="sxa-title">ScreenX</h3>
+        <p class="sxa-lede">Scores how risky the customer is.</p>
+        <div class="sxa-rule"></div>
+        <span class="sxa-label">Signals analysed</span>
+        <div class="sxa-signals">
+          <div class="sxa-scanline"></div>
+          <div class="sxa-marquee" ref="{{ marqueeRef }}"></div>
+        </div>
+        <div class="sxa-rule" style="margin:26px 0"></div>
+        <div class="sxa-verdict">
+          <div class="sxa-gauge">
+            <svg width="124" height="124" viewBox="0 0 124 124" aria-hidden="true">
+              <circle cx="62" cy="62" r="55" fill="none" stroke="#0A1628" stroke-opacity="0.09" stroke-width="7"></circle>
+              <circle class="val" ref="{{ gaugeRef }}" cx="62" cy="62" r="55" fill="none" stroke="#16A34A" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 345.6" transform="rotate(-90 62 62)"></circle>
+            </svg>
+            <div class="num"><b ref="{{ scoreRef }}">0</b><i>/ 100</i></div>
+          </div>
+          <div class="txt">
+            <span class="rl" ref="{{ labelRef }}">Low risk</span>
+            <span class="rn" ref="{{ noteRef }}">Signals check out — safe to onboard.</span>
+            <span class="rc" ref="{{ caseRef }}"></span>
+          </div>
+        </div>
+        <div class="sxa-kycline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.6 9.6 17.7 19.5 6.8"></path></svg>
+          <span class="k">Traditional KYC found</span>
+          <span class="v">Identity genuine — documents verified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:58px;display:flex;flex-direction:column;align-items:center;gap:24px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;transition:opacity 380ms ease;opacity:{{ capOpacity }}">
+      <b style="font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0A1628">{{ capTitle }}</b>
+      <i style="font-style:normal;font-family:Inter,sans-serif;font-size:26px;color:#6B7688">{{ capSub }}</i>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p0w }}px;background:{{ p0c }}"></span>
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p1w }}px;background:{{ p1c }}"></span>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:1080},&quot;sceneSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4.6,&quot;min&quot;:2.5,&quot;max&quot;:9,&quot;step&quot;:0.2,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Timing&quot;},&quot;riskCase&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Cycle&quot;,&quot;Low risk&quot;,&quot;Medium risk&quot;,&quot;High risk&quot;],&quot;default&quot;:&quot;Cycle&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Case&quot;}}">
+const CASES = [
+  { label: 'Low risk', color: '#16A34A', score: 18, photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/sx_face_illus_low_7c539ccfc7.png',
+    rim: 'rgba(22,163,74,0.22)', accent: '#C21E86', accent2: '#E536A3',
+    note: 'Signals check out — safe to onboard.', caseType: '',
+    signals: [['Device reputation','92','#22C55E'],['Location consistency','88','#22C55E'],['Behavioural pattern','Normal','#22C55E'],['Digital footprint','Aged','#22C55E'],['SIM-swap risk','Low','#F59E0B'],['Image liveness','96','#22C55E'],['Velocity check','Clear','#22C55E'],['Email age','7 yrs','#22C55E'],['Phone–name match','94','#22C55E'],['App tampering','None','#22C55E'],['Emulator check','Clear','#22C55E'],['Mule-account link','None','#22C55E']] },
+  { label: 'Medium risk', color: '#D97706', score: 56, photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/sx_face_illus_medium_aaae0de465.png',
+    rim: 'rgba(217,119,6,0.26)', accent: '#D97706', accent2: '#F59E0B',
+    note: 'Step up verification before disbursal.',
+    caseType: 'Possible first-party fraud — income and device history do not line up',
+    signals: [['Device reputation','61','#F59E0B'],['Location consistency','48','#F59E0B'],['Behavioural pattern','Rushed','#F59E0B'],['Digital footprint','4 months','#F59E0B'],['SIM-swap risk','11 days ago','#F59E0B'],['Image liveness','89','#22C55E'],['Velocity check','3 applications','#F59E0B'],['Email age','2 months','#F59E0B'],['Phone–name match','58','#F59E0B'],['App tampering','None','#22C55E'],['Emulator check','Clear','#22C55E'],['Bureau enquiry burst','6 in 30 days','#F59E0B']] },
+  { label: 'High risk', color: '#DC2626', score: 87, photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/sx_face_illus_high_9efd5fd8b5.png',
+    rim: 'rgba(220,38,38,0.30)', accent: '#DC2626', accent2: '#F05252',
+    note: 'Block and route to manual review.',
+    caseType: 'Likely mule account / account takeover — one device across 14 identities',
+    signals: [['Device reputation','9','#DC2626'],['Location consistency','14','#DC2626'],['Behavioural pattern','Scripted','#DC2626'],['Digital footprint','3 days','#DC2626'],['SIM-swap risk','Today','#DC2626'],['Image liveness','41','#DC2626'],['Velocity check','14 identities','#DC2626'],['Email age','6 days','#DC2626'],['Phone–name match','12','#DC2626'],['App tampering','Detected','#DC2626'],['Emulator check','Emulator','#DC2626'],['Mule-account link','5 known mules','#DC2626']] }
+];
+const CAPS = [
+  ['Customer profile', 'Six signal sources, one identity'],
+  ['ScreenX', 'Scores how risky the customer is']
+];
+const SCENES = 2;
+const ENTRANCES = { sxqChipPop: 1, sxqSoftIn: 1, sxqVerdictIn: 1, sxaPhotoSwap: 1, sxaTickIn: 1, sxaRowIn: 1, sxaVerifyIn: 1 };
+
+class Component extends DCLogic {
+  state = { scene: 0, moving: false, round: 0 };
+
+  constructor(props) {
+    super(props);
+    ['scene0', 'scene1', 'photoRef', 'scanRef', 'marqueeRef', 'gaugeRef', 'scoreRef', 'labelRef', 'noteRef', 'caseRef', 'arc1', 'arc2', 'arc3', 'arc4']
+      .forEach(k => { this[k] = React.createRef(); });
+  }
+
+  componentDidMount() {
+    this.t0 = performance.now();
+    this.applyCase();
+    this.enterScene(0);
+    this.raf = requestAnimationFrame(this.loop);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    clearTimeout(this.gt);
+  }
+
+  // one continuous clock: derive scene + case from elapsed time so it can never stall
+  loop = ts => {
+    this.raf = requestAnimationFrame(this.loop);
+    this.tick(Math.max(0, ts - this.t0));
+  };
+
+  get plan() {
+    const hold = (this.props.sceneSeconds == null ? 4.6 : this.props.sceneSeconds) * 1000;
+    const T = 900;
+    return { segs: [hold + T, hold + 1800 + T], T: T };
+  }
+
+  tick(ms) {
+    const p = this.plan, cycle = p.segs.reduce((a, b) => a + b, 0);
+    const round = Math.floor(ms / cycle) % CASES.length;
+    let t = ms % cycle, scene = 0;
+    for (let i = 0; i < SCENES; i++) {
+      if (t < p.segs[i]) { scene = i; break; }
+      t -= p.segs[i];
+    }
+    const moving = t > p.segs[scene] - p.T;
+    const s = this.state;
+    if (scene !== s.scene || moving !== s.moving || round !== s.round) {
+      const caseChanged = round !== s.round;
+      this.setState({ scene: scene, moving: moving, round: round });
+      if (caseChanged) setTimeout(() => this.applyCase(), 20);
+      if (scene !== s.scene && !moving) this.enterScene(scene);
+    }
+  }
+
+  enterScene(i) {
+    setTimeout(() => {
+      const root = [this.scene0, this.scene1][i].current;
+      if (!root || !root.querySelectorAll) return;
+      root.querySelectorAll('*').forEach(e => {
+        if (!e.getAnimations) return;
+        e.getAnimations().forEach(a => { if (a.animationName && ENTRANCES[a.animationName]) { a.cancel(); a.play(); } });
+      });
+    }, 30);
+    if (i === 1) this.fillGauge(1500);
+  }
+
+  fillGauge(delay) {
+    const gauge = this.gaugeRef.current;
+    if (!gauge) return;
+    const C = this.currentCase;
+    gauge.setAttribute('stroke-dasharray', '0 345.6');
+    clearTimeout(this.gt);
+    this.gt = setTimeout(() => gauge.setAttribute('stroke-dasharray', (C.score / 100 * 345.6).toFixed(1) + ' 345.6'), delay);
+  }
+
+  get currentCase() {
+    const mode = this.props.riskCase || 'Cycle';
+    if (mode !== 'Cycle') return CASES[Math.max(0, ['Low risk', 'Medium risk', 'High risk'].indexOf(mode))];
+    return CASES[this.state.round];
+  }
+
+  rgba(hex, a) {
+    const n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+
+  applyCase() {
+    const C = this.currentCase;
+    const host = document.getElementById('sxq3');
+    if (host) {
+      host.style.setProperty('--sx-accent', C.accent);
+      host.style.setProperty('--sx-accent2', C.accent2);
+      host.style.setProperty('--sx-risk', C.color);
+      host.style.setProperty('--sx-rim', C.rim);
+    }
+    if (this.arc1.current) this.arc1.current.setAttribute('stop-color', C.accent);
+    if (this.arc2.current) this.arc2.current.setAttribute('stop-color', C.accent);
+    if (this.arc3.current) this.arc3.current.setAttribute('stop-color', C.accent2);
+    if (this.arc4.current) this.arc4.current.setAttribute('stop-color', C.accent2);
+    if (this.photoRef.current) this.photoRef.current.style.backgroundImage = 'url(' + C.photo + ')';
+    if (this.scanRef.current) this.scanRef.current.style.background =
+      'conic-gradient(from 0deg,' + this.rgba(C.accent, 0) + ' 0deg,' + this.rgba(C.accent, 0.08) + ' 90deg,' +
+      this.rgba(C.accent2, 0.55) + ' 200deg,' + C.accent + ' 300deg,' + C.accent + ' 342deg,' + this.rgba(C.accent, 0) + ' 360deg)';
+    if (this.scoreRef.current) this.scoreRef.current.textContent = C.score;
+    if (this.labelRef.current) this.labelRef.current.textContent = C.label;
+    if (this.noteRef.current) this.noteRef.current.textContent = C.note;
+    if (this.caseRef.current) this.caseRef.current.textContent = C.caseType;
+    const gauge = this.gaugeRef.current;
+    if (gauge) gauge.setAttribute('stroke', C.color);
+    const mq = this.marqueeRef.current;
+    if (mq) {
+      mq.innerHTML = C.signals.concat(C.signals).map((s, i) =>
+        '<div class="sxa-sig"><span class="n">' + s[0] + '</span><span class="v">' + s[1] +
+        '</span><span class="d" style="background:' + s[2] + ';animation-delay:' + ((i % 8) * 0.55).toFixed(2) + 's"></span></div>').join('');
+    }
+  }
+
+  layer(i) {
+    const s = this.state;
+    if (s.moving) return { o: 0, k: i === s.scene ? 1.12 : 0.9, b: 9 };
+    if (i === s.scene) return { o: 1, k: 1, b: 0 };
+    return { o: 0, k: 0.88, b: 6 };
+  }
+
+  renderVals() {
+    const a = this.layer(0), b = this.layer(1);
+    const sc = this.state.scene;
+    const bar = i => ({ w: i === sc ? 84 : 26, c: i === sc ? '#C21E86' : 'rgba(10,22,40,0.16)' });
+    const b0 = bar(0), b1 = bar(1);
+    return {
+      scene0: this.scene0, scene1: this.scene1,
+      photoRef: this.photoRef, scanRef: this.scanRef, marqueeRef: this.marqueeRef,
+      gaugeRef: this.gaugeRef, scoreRef: this.scoreRef, labelRef: this.labelRef,
+      noteRef: this.noteRef, caseRef: this.caseRef,
+      arc1: this.arc1, arc2: this.arc2, arc3: this.arc3, arc4: this.arc4,
+      s0o: a.o, s0k: a.k, s0b: a.b,
+      s1o: b.o, s1k: b.k, s1b: b.b,
+      beamOpacity: this.state.moving ? 1 : 0,
+      capTitle: CAPS[sc][0], capSub: CAPS[sc][1],
+      capOpacity: this.state.moving ? 0 : 1,
+      p0w: b0.w, p0c: b0.c, p1w: b1.w, p1c: b1.c
+    };
+  }
+}
+
+</script>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     The standalone's viewing harness: its padding is white space around the
+     artwork, and its caption is the preview's own title. */
+  .stage { padding: 0; max-width: none; }
+  .stage > .cap { display: none; }
+
+  html,
+  body { background: transparent; }
+</style>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle. */
+  html,
+  body { width: 100%; margin: 0; overflow: hidden; }
+
+  /* The artboard's own width. Its children are positioned in a 1080 space but
+     the root only inherits the body's, so without this the scale below shrinks
+     a 100%-wide box and the composition lands at a third of its width. The
+     scale itself is set by the script, not here. */
+  body > *:not(style):not(script):not(link) {
+    width: 1080px;
+    transform-origin: top left;
+    /* The scale is a plain number in a custom property, set by the script. A
+       RULE rather than an inline style, because the Design Component runtime
+       replaces this element after it renders — an inline style set before that
+       is simply gone, while a rule applies to whatever the root becomes. */
+    transform: scale(var(--sq-scale, 1));
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // Fits the artboard to the frame. These four are the one family that does not
+  // fit itself: each is a fixed 1080 x 1080 composition, and the handoff scales
+  // it from the page ("340 x 340, scale 0.31481"). Every other animation we
+  // serve fits itself to its host, and useAnimationFrameHeight relies on that.
+  //
+  // In JS rather than CSS, and the reason is the second line below. The scale
+  // alone can be written in CSS as scale(calc(100vw / 1080px)) — but that is a
+  // length divided by a length, which is CSS Values 4 and not something to
+  // depend on across engines: where it is not supported the declaration is
+  // dropped silently and the artboard renders at its full 1080, which is
+  // exactly "the animation is too tall and there is white space after it".
+  //
+  // The height matters more. A transform does not participate in layout, so
+  // whatever the scale, the document still RESERVES the artboard's untransformed
+  // 1080px. Chromium happens to give the right answer because the frame is sized
+  // from painted rects rather than the document, but that is the measurement
+  // getting lucky, not the layout being right. Setting the body's height to what
+  // the artwork actually paints makes the document honest in every engine, and
+  // leaves nothing for the frame to over-reserve.
+  (function () {
+    var ARTBOARD = 1080;
+    function fit() {
+      var width = document.documentElement.clientWidth;
+      if (!width) return;
+      var scale = width / ARTBOARD;
+      // On the document element, so it survives the root being re-rendered.
+      document.documentElement.style.setProperty("--sq-scale", scale);
+      document.body.style.height = Math.round(ARTBOARD * scale) + "px";
+    }
+
+    fit();
+    addEventListener("resize", fit);
+    addEventListener("load", fit);
+  })();
+</script>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shruhani Digital Footprint — hero animation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#0a0a0a;background:#fff;overflow-x:hidden}
+  .stage{width:100%;max-width:1600px;margin:0 auto;padding:40px 24px;display:flex;justify-content:center}
+</style>
+</head>
+<body>
+<div class="stage">
+<style>
+      #fpHeroAnim { width: 100%; margin-top: 40px; display: flex; align-items: center; justify-content: center; overflow: hidden; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+      #fpmCanvas { width: 1440px; height: 820px; position: relative; flex: 0 0 auto; transform-origin: center center; }
+      @keyframes fpm-pulse { 0% { transform: scale(0.74); opacity: 0; } 18% { opacity: 0.42; } 100% { transform: scale(1.8); opacity: 0; } }
+      @keyframes fpm-comet { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -98; } }
+      @keyframes fpm-fade-out { from { opacity: 1; } to { opacity: 0; } }
+      @keyframes fpm-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes fpm-pop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+      @keyframes fpm-dot { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+      @media (prefers-reduced-motion: reduce) {
+        #fpmCanvas [data-pulse], #fpmCanvas [data-comet] { animation: none !important; opacity: 0 !important; }
+        #fpmCanvas [data-rise], #fpmCanvas [data-pop] { animation: none !important; opacity: 1 !important; transform: none !important; }
+        #fpmCanvas [data-dot-pulse] { animation: none !important; opacity: 1 !important; }
+      }
+      </style>
+
+      <div id="fpHeroAnim">
+        <div id="fpmCanvas">
+          <svg width="1440" height="820" viewBox="0 0 1440 820" style="position:absolute;left:0;top:0;overflow:visible;pointer-events:none">
+            <defs><filter id="fpmSoft" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter></defs>
+            <path d="M 312 176 L 330 176 Q 342 176 342 188 L 342 218 Q 342 230 354 230 L 366 230" fill="none" stroke="#C9D3E4" stroke-width="1.5" stroke-linecap="round"></path>
+            <path data-comet d="M 312 176 L 330 176 Q 342 176 342 188 L 342 218 Q 342 230 354 230 L 366 230" fill="none" stroke="#F45FB8" stroke-width="7" stroke-linecap="round" stroke-dasharray="9 89" filter="url(#fpmSoft)" opacity="0.55" style="animation:fpm-comet 3.2s ease-in-out infinite"></path>
+            <path data-comet d="M 312 176 L 330 176 Q 342 176 342 188 L 342 218 Q 342 230 354 230 L 366 230" fill="none" stroke="#C21E86" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="6 92" style="animation:fpm-comet 3.2s ease-in-out infinite"></path>
+            <circle cx="366" cy="230" r="3.5" fill="#C21E86"></circle>
+            <circle cx="312" cy="176" r="2.5" fill="#C9D3E4"></circle>
+          </svg>
+
+          <div style="position:absolute;left:52px;top:40px;width:260px;box-sizing:border-box;background:#FFFFFF;border:1px solid rgba(10,22,40,0.07);border-radius:20px;box-shadow:0 20px 44px rgba(10,22,40,0.10);padding:24px 24px 22px;display:flex;flex-direction:column;gap:18px">
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8;line-height:1">Applicant · Input</span>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="position:relative;width:44px;height:44px;flex:0 0 auto">
+                <span data-pulse style="position:absolute;inset:0;border-radius:50%;border:2px solid #C21E86;opacity:0;animation:fpm-pulse 2.8s cubic-bezier(0.42,0,0.58,1) infinite"></span>
+                <span data-pulse style="position:absolute;inset:0;border-radius:50%;border:2px solid #6D5AE6;opacity:0;animation:fpm-pulse 2.8s cubic-bezier(0.42,0,0.58,1) infinite;animation-delay:1.4s"></span>
+                <div data-avatar style="position:absolute;inset:0;border-radius:50%;background:linear-gradient(140deg,#C21E86,#6D5AE6);overflow:hidden"><img data-layer="a" src="https://cdn.sign3.in/strapi-assets/api-uploads/fp_avatar_1_921d76d696.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:1;transform:scale(1);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)"><img data-layer="b" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transform:scale(1.06);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)"></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <span data-name style="font-size:15px;font-weight:700;color:#0A1628;letter-spacing:-0.01em;transition:opacity 0.4s ease-in-out">Riya Menon</span>
+                <span data-appid style="font-family:Inter,system-ui,sans-serif;font-size:11.5px;color:#94A3B8;transition:opacity 0.4s ease-in-out">Application #A-4821</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:11px;background:#FEF8FB;border:1px solid rgba(194, 30, 134,0.08)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C21E86" style="flex:0 0 auto"><path d="M6.6 2.5h3a1.5 1.5 0 0 1 1.44 1.08l.9 3.1a1.5 1.5 0 0 1-.5 1.6l-1.3 1.05a12.6 12.6 0 0 0 4.5 4.5l1.05-1.3a1.5 1.5 0 0 1 1.6-.5l3.1.9A1.5 1.5 0 0 1 21.5 14.4v3a2.1 2.1 0 0 1-2.32 2.09C10.9 18.6 5.4 13.1 4.5 4.82A2.1 2.1 0 0 1 6.6 2.5Z"></path></svg>
+                <span data-cardphone style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628;letter-spacing:0.01em;transition:opacity 0.4s ease-in-out">+91 •••• ••1234</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:11px;background:#FEF8FB;border:1px solid rgba(194, 30, 134,0.08)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#6D5AE6" style="flex:0 0 auto"><path d="M3 6.4A2.4 2.4 0 0 1 5.4 4h13.2A2.4 2.4 0 0 1 21 6.4v.4l-9 5.2-9-5.2V6.4Zm0 2.9 8.44 4.88a1.1 1.1 0 0 0 1.12 0L21 9.3v8.3A2.4 2.4 0 0 1 18.6 20H5.4A2.4 2.4 0 0 1 3 17.6V9.3Z"></path></svg>
+                <span data-cardemail style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628;letter-spacing:0.01em;transition:opacity 0.4s ease-in-out">a•••@example.com</span>
+              </div>
+            </div>
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;line-height:1.55;color:#94A3B8;text-wrap:pretty">Phone + email in — no SDK, nothing collected from the applicant.</span>
+          </div>
+
+          <div style="position:absolute;left:366px;top:40px;width:1026px;height:740px;box-sizing:border-box;background:#FEF8FB;border:1px solid rgba(194, 30, 134,0.35);border-radius:20px;box-shadow:0 26px 60px rgba(10,22,40,0.10);padding:36px 40px;display:flex;flex-direction:column;justify-content:space-between;gap:22px">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px">
+              <div data-rise style="display:flex;flex-direction:column;gap:7px">
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8">Digital footprint</span>
+                <span style="font-size:27px;font-weight:800;letter-spacing:-0.01em;color:#0A1628">Applicant profile</span>
+                <span style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#6B7688">presence read across the ecosystem</span>
+              </div>
+              <div data-rise style="display:flex;align-items:center;gap:14px">
+                <div style="position:relative;width:88px;height:88px;flex:0 0 auto">
+                  <svg width="88" height="88" viewBox="0 0 104 104">
+                    <circle cx="52" cy="52" r="46" fill="none" stroke="#0A1628" stroke-opacity="0.08" stroke-width="7"></circle>
+                    <circle data-ring cx="52" cy="52" r="46" fill="none" stroke="#22C55E" stroke-width="7" stroke-linecap="round" stroke-dasharray="23.1 289" transform="rotate(-90 52 52)"></circle>
+                  </svg>
+                  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px">
+                    <span data-int style="font-family:Inter,system-ui,sans-serif;font-size:24px;font-weight:600;line-height:1;letter-spacing:-0.02em;color:#22C55E;font-variant-numeric:tabular-nums">8</span>
+                    <span data-outof style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;font-weight:500;color:#22C55E;opacity:0.65">/ 100</span>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:5px">
+                  <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#94A3B8">Current risk</span>
+                  <span data-score style="font-size:38px;line-height:1;font-weight:800;letter-spacing:-0.02em;color:#22C55E;font-variant-numeric:tabular-nums">8.00</span>
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span data-pill style="padding:3px 9px;border-radius:999px;background:#22C55E;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em">LOW</span>
+                    <span style="display:flex;align-items:center;gap:6px;padding:3px 9px 3px 8px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(194, 30, 134,0.22);font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.08em;color:#C21E86"><span data-dot-pulse style="width:5px;height:5px;border-radius:50%;background:#C21E86;animation:fpm-dot 1.8s ease-in-out infinite"></span>READING</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div data-rise data-divider style="height:1px;background:rgba(10,22,40,0.07)"></div>
+
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <span data-rise style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8">Digital presence · 16 of 17 found</span>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px"><div data-pop style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid rgba(34,197,94,0.28);box-shadow:0 6px 16px rgba(10,22,40,0.04)"><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Social</span><span style="padding:3px 10px;border-radius:999px;background:rgba(34,197,94,0.12);color:#22C55E;font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums">3/3</span></div><div data-pop style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid rgba(34,197,94,0.28);box-shadow:0 6px 16px rgba(10,22,40,0.04)"><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Commerce</span><span style="padding:3px 10px;border-radius:999px;background:rgba(34,197,94,0.12);color:#22C55E;font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums">4/4</span></div><div data-pop style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid rgba(34,197,94,0.28);box-shadow:0 6px 16px rgba(10,22,40,0.04)"><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Travel</span><span style="padding:3px 10px;border-radius:999px;background:rgba(34,197,94,0.12);color:#22C55E;font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums">3/3</span></div><div data-pop style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid rgba(34,197,94,0.28);box-shadow:0 6px 16px rgba(10,22,40,0.04)"><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Messaging</span><span style="padding:3px 10px;border-radius:999px;background:rgba(34,197,94,0.12);color:#22C55E;font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums">2/2</span></div><div data-pop style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid rgba(34,197,94,0.28);box-shadow:0 6px 16px rgba(10,22,40,0.04)"><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Ent.</span><span style="padding:3px 10px;border-radius:999px;background:rgba(34,197,94,0.12);color:#22C55E;font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums">3/3</span></div><div data-pop style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid rgba(34,197,94,0.28);box-shadow:0 6px 16px rgba(10,22,40,0.04)"><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Fintech</span><span style="padding:3px 10px;border-radius:999px;background:rgba(34,197,94,0.12);color:#22C55E;font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums">1/1</span></div></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:48px">
+              <div style="display:flex;flex-direction:column;gap:9px"><span data-rise style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8">Age &amp; disposability</span><div style="display:flex;flex-direction:column"><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(10,22,40,0.05)"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Phone age</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">9+ years</span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(10,22,40,0.05)"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Email</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Non-disposable</span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(10,22,40,0.05)"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Domain</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Registered</span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Line</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Postpaid</span><span style="width:8px;height:8px;border-radius:50%;background:#94A3B8;flex:0 0 auto"></span></div></div></div>
+              <div style="display:flex;flex-direction:column;gap:9px"><span data-rise style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8">Behavioural scores</span><div style="display:flex;flex-direction:column"><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(10,22,40,0.05)"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Ecommerce affinity</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">0.84 <span style="color:#94A3B8;font-weight:500">· Safe</span></span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(10,22,40,0.05)"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Tier-1 user</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">0.80 <span style="color:#94A3B8;font-weight:500">· Safe</span></span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(10,22,40,0.05)"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Professional</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">0.72 <span style="color:#94A3B8;font-weight:500">· Safe</span></span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Tech-savvy</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">0.66 <span style="color:#94A3B8;font-weight:500">· Safe</span></span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div></div></div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:9px"><span data-rise style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8">Breaches &amp; linkage</span><div style="display:flex;flex-direction:column"><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(10,22,40,0.05)"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Breaches</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">None</span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div><div data-rise data-row style="display:flex;align-items:center;gap:12px;padding:9px 0"><span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Phone-email linkage</span><span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Strong</span><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function(){
+        var node = document.getElementById('fpmCanvas');
+        if (!node) return;
+        var G='#22C55E', A='#F59E0B', R='#EF4444', N='#94A3B8';
+        var soft = { '#22C55E':'rgba(34,197,94,', '#F59E0B':'rgba(245,158,11,', '#EF4444':'rgba(239,68,68,', '#94A3B8':'rgba(148,163,184,' };
+        var CASES = [
+          { who:['https://cdn.sign3.in/strapi-assets/api-uploads/fp_avatar_1_921d76d696.png','Riya Menon','Application #A-4821','+91 •••• ••1234','a•••@example.com'], score:8, tier:'LOW', col:G, presence:'Digital presence · 16 of 17 found',
+            tiles:[['3/3',G],['4/4',G],['3/3',G],['2/2',G],['3/3',G],['1/1',G]],
+            rows:[['9+ years',G],['Non-disposable',G],['Registered',G],['Postpaid',N],['0.84 · Safe',G],['0.80 · Safe',G],['0.72 · Safe',G],['0.66 · Safe',G],['None',G],['Strong',G]] },
+          { who:['https://cdn.sign3.in/strapi-assets/api-uploads/fp_avatar_2_640c91165a.png','Dev Kulkarni','Application #A-5307','+91 •••• ••7788','d•••@example.com'], score:52, tier:'MEDIUM', col:A, presence:'Digital presence · 7 of 17 found',
+            tiles:[['1/3',A],['2/4',A],['1/3',A],['1/2',A],['2/3',A],['0/1',N]],
+            rows:[['~1 year',A],['Non-disposable',G],['Registered',G],['Prepaid',N],['0.55 · Medium',A],['0.48 · Medium',A],['0.40 · Medium',A],['0.30 · Risky',A],['1 · old',A],['Weak',A]] },
+          { who:['https://cdn.sign3.in/strapi-assets/api-uploads/fp_avatar_3_31f3039100.png','Sunil Rao','Application #A-6142','+91 •••• ••0042','x•••@example.com'], score:88, tier:'HIGH', col:R, presence:'Digital presence · 1 of 17 found',
+            tiles:[['0/3',N],['0/4',N],['0/3',N],['1/2',A],['0/3',N],['0/1',N]],
+            rows:[['2 weeks',R],['Disposable',R],['Unregistered',R],['Prepaid',N],['0.10',R],['0.08',R],['0.05',R],['0.12',R],['None on record',N],['Never seen together',R]] }
+        ];
+        var HOLD=5600, FADE=500, BLANK=500, C=2*Math.PI*46, timers=[], raf=null;
+        function later(fn,ms){ timers.push(setTimeout(fn,ms)); }
+        var q=function(s){ return node.querySelector(s); };
+
+        function fit(){
+          var host = node.parentElement; if (!host) return;
+          var availW = host.clientWidth;
+          if (!availW) return;
+          var s = Math.min(0.8, availW / 1400) * 0.92 * (1400 / 1440);
+          node.style.transform = 'scale(' + s + ')';
+          node.style.margin = (-(820*(1-s))/2) + 'px ' + (-(1440*(1-s))/2) + 'px';
+        }
+        if (window.ResizeObserver && node.parentElement) new ResizeObserver(fit).observe(node.parentElement);
+        window.addEventListener('resize', fit); fit();
+
+        var rises = Array.prototype.slice.call(node.querySelectorAll('[data-rise]'));
+        var titleEl = rises.filter(function(el){ return el.textContent.indexOf('Applicant profile') > -1; })[0];
+        var gaugeEl = rises.filter(function(el){ return el.querySelector('[data-ring]'); })[0];
+        var dividerEl = q('[data-divider]');
+        var bodyEls = rises.filter(function(el){ return el !== titleEl && el !== gaugeEl && el !== dividerEl; });
+        var tiles = Array.prototype.slice.call(node.querySelectorAll('[data-pop]'));
+        var rowEls = Array.prototype.slice.call(node.querySelectorAll('[data-row]'));
+        var presenceEl = bodyEls.filter(function(el){ return el.textContent.indexOf('Digital presence') > -1; })[0];
+        var ringEl=q('[data-ring]'), intEl=q('[data-int]'), outOfEl=q('[data-outof]'), scoreEl=q('[data-score]'), pillEl=q('[data-pill]');
+        var whoEls = ['[data-avatar]','[data-name]','[data-appid]','[data-cardphone]','[data-cardemail]'].map(q);
+        var gaugeBits = [ringEl,intEl,outOfEl,scoreEl,pillEl].filter(Boolean);
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var avFront = 'a';
+        ['https://cdn.sign3.in/strapi-assets/api-uploads/fp_avatar_1_921d76d696.png','https://cdn.sign3.in/strapi-assets/api-uploads/fp_avatar_2_640c91165a.png','https://cdn.sign3.in/strapi-assets/api-uploads/fp_avatar_3_31f3039100.png'].forEach(function(s){ var i=new Image(); i.src=s; });
+        function crossfadeAvatar(av, src){
+          if (!av || !src) return;
+          var a = av.querySelector('[data-layer="a"]'), b = av.querySelector('[data-layer="b"]');
+          if (!a || !b) return;
+          var front = avFront === 'b' ? b : a, back = front === a ? b : a;
+          if (front.getAttribute('src') === src) return;
+          function show(){
+            back.style.opacity='1'; back.style.transform='scale(1)';
+            front.style.opacity='0'; front.style.transform='scale(0.96)';
+            avFront = back === b ? 'b' : 'a';
+          }
+          var img = new Image();
+          img.onload = function(){ back.src = src; requestAnimationFrame(function(){ requestAnimationFrame(show); }); };
+          img.onerror = function(){ back.src = src; show(); };
+          img.src = src;
+        }
+        function applyWho(c){
+          crossfadeAvatar(whoEls[0], c.who[0]);
+          var texts = whoEls.slice(1);
+          if (reduce) { texts.forEach(function(el,i){ if(el) el.textContent=c.who[i+1]; }); return; }
+          texts.forEach(function(el){ if(el) el.style.opacity='0'; });
+          later(function(){ texts.forEach(function(el,i){ if(!el) return; el.textContent=c.who[i+1]; el.style.opacity='1'; }); }, 400);
+        }
+        function apply(c){
+          applyWho(c);
+          if (presenceEl) presenceEl.textContent = c.presence;
+          tiles.forEach(function(tile,i){
+            var t=c.tiles[i]; if(!t) return;
+            var dead = t[1]===N, spans = tile.querySelectorAll('span');
+            tile.style.border = '1px solid ' + soft[t[1]] + (dead ? '0.30)' : '0.28)');
+            tile.style.background = dead ? '#FEF8FB' : '#FFFFFF';
+            tile.style.boxShadow = dead ? 'none' : '0 6px 16px rgba(10,22,40,0.04)';
+            if (spans[0]) spans[0].style.color = dead ? '#94A3B8' : '#0A1628';
+            if (spans[1]) { spans[1].textContent = t[0]; spans[1].style.background = soft[t[1]] + '0.12)'; spans[1].style.color = t[1]; }
+          });
+          rowEls.forEach(function(rw,i){
+            var r=c.rows[i]; if(!r) return;
+            var spans=rw.children, parts=r[0].split(' · ');
+            if (spans[1]) spans[1].innerHTML = parts[1] ? parts[0] + ' <span style="color:#94A3B8;font-weight:500">· ' + parts[1] + '</span>' : parts[0];
+            if (spans[2]) { spans[2].style.background = r[1]; spans[2].style.boxShadow = r[1]===R ? '0 0 0 3px rgba(239,68,68,0.14)' : 'none'; }
+          });
+          if (pillEl) { pillEl.textContent = c.tier; pillEl.style.background = c.col; }
+        }
+        function paintScore(s,col){
+          if (scoreEl) { scoreEl.textContent = s.toFixed(2); scoreEl.style.color = col; }
+          if (intEl) { intEl.textContent = String(Math.round(s)); intEl.style.color = col; }
+          if (outOfEl) outOfEl.style.color = col;
+          if (ringEl) { ringEl.setAttribute('stroke-dasharray', (s/100*C).toFixed(1) + ' ' + C.toFixed(1)); ringEl.setAttribute('stroke', col); }
+        }
+        function countUp(target,col){
+          if (raf) cancelAnimationFrame(raf);
+          var DUR=1400, t0=performance.now()+200;
+          var ease=function(p){ return p<0.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2; };
+          paintScore(0,col);
+          (function tick(){
+            var p=Math.max(0,Math.min(1,(performance.now()-t0)/DUR));
+            paintScore(target*ease(p),col);
+            raf = p<1 ? requestAnimationFrame(tick) : null;
+          })();
+        }
+        function load(i){
+          var c=CASES[i];
+          apply(c);
+          bodyEls.forEach(function(el,k){ el.style.transition='none'; el.style.opacity=''; el.style.animation='fpm-rise 0.55s cubic-bezier(0.42,0,0.58,1) ' + (0.06+k*0.045).toFixed(3) + 's both'; });
+          tiles.forEach(function(el,k){ el.style.transition='none'; el.style.opacity=''; el.style.animation='fpm-pop 0.45s cubic-bezier(0.42,0,0.58,1) ' + (0.30+k*0.05).toFixed(3) + 's both'; });
+          gaugeBits.forEach(function(el){ el.style.transition='opacity 0.5s ease-in-out'; el.style.opacity='1'; });
+          countUp(c.score,c.col);
+          later(fadeOut, 1800+HOLD);
+        }
+        var idx=0;
+        function fadeOut(){
+          bodyEls.concat(tiles).forEach(function(el){ el.style.transition='none'; el.style.opacity=''; el.style.animation='fpm-fade-out ' + (FADE/1000) + 's cubic-bezier(0.42,0,0.58,1) both'; });
+          gaugeBits.forEach(function(el){ el.style.transition='opacity ' + (FADE/1000) + 's ease-in-out'; el.style.opacity='0'; });
+          if (raf) { cancelAnimationFrame(raf); raf=null; }
+          later(function(){ idx=(idx+1)%CASES.length; load(idx); }, FADE+BLANK);
+        }
+        apply(CASES[0]);
+        if (reduce) paintScore(CASES[0].score, CASES[0].col); else load(0);
+      })();
+      </script>
+</div>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     .stage is the standalone's viewing harness; in a frame its padding is white
+     space above and either side of the artwork. The animation's own wrapper
+     keeps its 40px top margin, which is the gap the design asks for. */
+  .stage { padding: 0; max-width: none; }
+
+  /* New in the 24 Aug cut: each standalone labels itself with a harness caption
+     ("Location Intelligence hero - capture -> verify -> enrich -> predict") as a
+     direct child of .stage. It is the preview's own title, not part of the
+     artwork, and framed it paints a stray grey line above the hero. Matched as
+     a direct child so it cannot collide with an artwork class of the same name. */
+  .stage > .cap { display: none; }
+
+  /* The standalone paints a white body because it is a page when opened on its
+     own. Framed, that white is a rectangle sitting on top of the hero's wash,
+     which is what made every animation look pasted on rather than part of the
+     page. The artwork's own surfaces are unaffected — only the ground behind
+     them goes. */
+  html,
+  body { background: transparent; }
+
+
+  /* The home animation is the one of the five that ships no reduced-motion
+     guard; its README says it "needs the same guard added on rebuild". This is
+     the same guard the other four ship ('animation: none !important'), applied
+     the only way it can be here: home declares all 33 of its animations in
+     inline style attributes, which a stylesheet only outranks with !important,
+     and it names no classes to list. Scoped to the wrapper, so it is inert in
+     the other sixteen files. */
+  @media (prefers-reduced-motion: reduce) {
+    #s3hero-row,
+    #s3hero-row * { animation: none !important; }
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // 'zoom' -> 'transform: scale()', on every row the bundle scales.
+  //
+  // The bundles shrink each oversized hero row with 'zoom', and serving that
+  // verbatim is a fault this repo has already paid for: Safari lays a zoomed row
+  // out at a different width than Chrome, so the columns lose their room and the
+  // flex row WRAPS — verdict badge on a second line, orbit chips off their ring,
+  // connector streams gone, canvas boxes showing. Fixed in 915dc4b, then
+  // reintroduced when the heroes moved from ported JSX to framed standalones,
+  // which put the designer's 'zoom' back on the page. The bundle's own README
+  // asks for this conversion in production.
+  //
+  // The recipe is the one probed against the affected Safari at the time —
+  // zoom-with-percentage, zoom-with-explicit-width and transform side by side,
+  // and only transform held:
+  //
+  //   width: calc(100% / s)  lays the row out at host/s so it paints back to
+  //                          exactly the host's width, with no percentage under
+  //                          zoom for engines to disagree about
+  //   transform: scale(s)    spec'd identically in every engine, and does not
+  //                          participate in layout, which is what makes the
+  //                          percentage above safe
+  //   flex: none             the hosts are centring flex containers, so a flex
+  //                          item would be SHRUNK back to the host's width — the
+  //                          very thing the calc() exists to avoid
+  //   transform-origin: top center
+  //                          the host centres the layout box, so scaling about
+  //                          its own centre keeps the painted result centred even
+  //                          where a max-width caps it narrower than the host
+  //
+  // Geometry is preserved rather than approximated: under 'zoom: s' with
+  // 'width: 100%' the row's offsetWidth is already host/s and its rect is host,
+  // which is exactly what the pair above produces — so the controllers, which
+  // divide by rect.width / offsetWidth to undo the scaling, read identical
+  // numbers before and after.
+  (function () {
+    // Re-scanned on every pass rather than collected once. The Design Component
+    // runtime behind the mobile heroes renders after this script parses and
+    // replaces what was there, so a list captured at parse time misses whatever
+    // it creates — cortex-mobile ships two inline zooms that only exist after
+    // it has run. Converting is idempotent: a converted element carries an
+    // inline zoom of 1, so a later pass no longer sees it.
+    function collect() {
+      var scaled = [];
+      document.querySelectorAll("body *").forEach(function (el) {
+        var z = parseFloat(getComputedStyle(el).zoom);
+        if (!(z > 0) || z === 1) return;
+      // Take only the element the zoom is DECLARED on, never its descendants.
+      // Engines disagree about what computed zoom reports: Chrome gives the
+      // element's own value, and a descendant of a zoomed row reads 1; other
+      // engines report the cumulative zoom, so every descendant reads the row's
+      // value too. Without this guard the second kind of engine would scale the
+      // whole subtree again, once per level -- geometry inside the row would
+      // collapse in exactly the way a distorted, off-centre composition looks.
+      // A declared zoom always differs from its parent's; an inherited reading
+      // never does.
+        var parent = el.parentElement;
+        var pz = parent ? parseFloat(getComputedStyle(parent).zoom) : 1;
+        if (pz > 0 && Math.abs(pz - z) < 0.0001) return;
+        scaled.push(el);
+      });
+      return scaled;
+    }
+
+    var OURS = [
+      "zoom",
+      "width",
+      "flex",
+      "transform",
+      "transform-origin",
+      "margin-bottom",
+    ];
+
+    function apply(el) {
+      // Drop back to the stylesheet's own state first: the scale is
+      // breakpoint-dependent (screenx 0.72 -> 0.6, cortex 0.7 -> 0.56) and an
+      // inline zoom of our own would mask the media query's value.
+      OURS.forEach(function (p) {
+        el.style.removeProperty(p);
+      });
+      var s = parseFloat(getComputedStyle(el).zoom);
+      if (!(s > 0) || s === 1) return; // Unscaled at this width.
+
+      el.style.setProperty("zoom", "1", "important");
+      el.style.setProperty("width", "calc(100% / " + s + ")", "important");
+      el.style.setProperty("flex", "none", "important");
+      el.style.setProperty("transform-origin", "top center", "important");
+      el.style.setProperty("transform", "scale(" + s + ")", "important");
+
+      // The transform paints smaller but the row still RESERVES its full
+      // unscaled height, so take back exactly the part that no longer paints.
+      //
+      // offsetHeight, NOT getBoundingClientRect().height, even though the rect
+      // is the painted box and looks like the more direct answer: the rect fed
+      // back on itself when this was last built — a too-tall row lengthens the
+      // page, which brings in a scrollbar, which narrows the viewport, which
+      // re-wraps the row, which makes it taller again. In WebKit at 1024px that
+      // ran away to 6052px. The layout height cannot be influenced by what we
+      // set here, so there is nothing for a loop to amplify.
+      var dead = Math.round(el.offsetHeight * (1 - s));
+      if (dead > 0)
+        el.style.setProperty("margin-bottom", "-" + dead + "px", "important");
+    }
+
+    function applyAll() {
+      collect().forEach(apply);
+    }
+
+    var timer;
+    function reapply() {
+      clearTimeout(timer);
+      timer = setTimeout(applyAll, 120);
+    }
+
+    applyAll();
+    addEventListener("resize", reapply);
+    // After the runtime has rendered, for anything it created.
+    addEventListener("load", applyAll);
+    // The controllers measure their anchors and redraw off resize; nudge them
+    // once so they re-read the row rather than keeping numbers taken before the
+    // conversion. Only on the initial pass — later passes ARE resize events.
+    dispatchEvent(new Event("resize"));
+  })();
+
+  // The rest of home's guard. Its connector dots are SVG <animateMotion>, built
+  // by the controller after load and rebuilt on every resize, so CSS cannot
+  // reach them: 'animation: none' does not apply to SMIL. Removing each one as
+  // it is inserted parks its dot at the path start instead of flying it along,
+  // and covers the rebuilds too. Only home generates these; the observer is not
+  // installed anywhere else.
+  if (
+    document.getElementById("s3hero-row") &&
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const strip = (node) => {
+      if (node.nodeType !== 1) return;
+      if (node.tagName === "animateMotion") node.remove();
+      else node.querySelectorAll?.("animateMotion").forEach((el) => el.remove());
+    };
+    document.querySelectorAll("animateMotion").forEach((el) => el.remove());
+    new MutationObserver((records) =>
+      records.forEach((r) => r.addedNodes.forEach(strip))
+    ).observe(document.documentElement, { childList: true, subtree: true });
+  }
+</script>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs -- not from the design bundle. */
+  /* Pin the rotation pivot to a box that every engine agrees on.
+     The bundle writes transform-box:view-box with a pixel transform-origin
+     on its concentric rings. That pair is only the ring's centre if view-box is
+     honoured; resolved against the fill-box instead, the pixel pair is measured
+     from the element's own bbox corner and every ring spins about a different
+     off-centre point — the rings stop being concentric.
+     Measured across all seventeen animations, the fill-box centre IS the
+     declared pivot for every one of these elements to within a user unit, so
+     'center' under an explicitly pinned fill-box is the same rotation with no
+     dependency on view-box support. The one exception is measured out below. */
+  [data-scan-ring],
+  #bhHero [data-breathe],
+  .hero-anim .hf-core,
+  .hero-anim .hf-ripple,
+  .hero-anim .hf-spin,
+  .hero-anim .hf-spin-rev,
+  .nCore,
+  .nRipple,
+  .nSpin,
+  .nSpinRev {
+    transform-box: fill-box !important;
+    transform-origin: center !important;
+  }
+
+  /* !important, not higher specificity, and this is load-bearing rather than
+     lazy. The bundles namespace every selector under the wrapper id -- the
+     24 Aug cut's README states it as a rule -- so the file's own declaration is
+     '#diHero [data-scan-ring]' at (1,1,0) where the selector above is (0,1,0).
+     It loses on specificity no matter what order the sheets are in. That is
+     exactly how this fix went missing: it worked while device-intelligence
+     shipped an unscoped rule, then stopped the moment the new cut replaced the
+     file, and the rings went back to being non-concentric in Safari with
+     nothing in the diff to show it. Matching the namespacing here would only
+     put us one bundle rename away from the same silent failure. */
+
+  /* The one element whose fill box is not centred on its pivot: its bbox starts
+     at (123.4, 101.7) and the bundle rotates it about (230, 220). */
+  #bhHero [data-breathe] { transform-origin: 106.6px 118.3px !important; }
+</style>

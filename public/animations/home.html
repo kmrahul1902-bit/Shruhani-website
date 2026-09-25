@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; }
+  a { color: #C21E86; text-decoration: none; }
+  a:hover { color: #0A1628; }
+  @keyframes s3spin { to { transform: rotate(360deg); } }
+</style>
+</helmet>
+<div ref="{{ hostRef }}" style="position: relative; width: 100%; height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: transparent; font-family: Inter, system-ui, sans-serif;">
+
+  <div ref="{{ stageRef }}" style="position: relative; flex: 0 0 auto; width: 1600px; height: 950px; transform-origin: 50% 50%;">
+
+    <div ref="{{ pillBoxRef }}" style="position: absolute; top: 54px; right: 76px; display: flex; align-items: center; gap: 12px; padding: 14px 26px 14px 20px; border-radius: 999px; background: linear-gradient(100deg, #6D5AE6 0%, #C21E86 78%); box-shadow: 0 14px 34px -10px rgba(194, 30, 134,0.55), 0 2px 6px rgba(10,22,40,0.12); z-index: 90; overflow: hidden; transition: box-shadow 420ms ease, opacity 480ms ease;">
+      <div ref="{{ pillRedRef }}" data-alt-bg="linear-gradient(100deg, #22C55E 0%, #15803D 84%)" style="position: absolute; inset: 0; background: linear-gradient(100deg, #EF4444 0%, #B91C1C 84%); opacity: 0; transition: opacity 420ms cubic-bezier(0.4,0,0.2,1);"></div>
+      <span style="position: relative; z-index: 1; display: block; width: 22px; height: 22px; flex: 0 0 auto;">
+        <svg ref="{{ pillSpinRef }}" width="22" height="22" viewBox="0 0 22 22" fill="none" style="position: absolute; inset: 0; animation: s3spin 1.15s linear infinite; transition: opacity 300ms ease;">
+          <circle cx="11" cy="11" r="8.5" stroke="rgba(255,255,255,0.32)" stroke-width="2.4"></circle>
+          <path d="M11 2.5a8.5 8.5 0 0 1 8.5 8.5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"></path>
+        </svg>
+        <span ref="{{ pillAlertRef }}" style="position: absolute; inset: 0; opacity: 0; transition: opacity 300ms ease;">
+          <svg data-var="fraud" width="22" height="22" viewBox="0 0 22 22" fill="none" style="position: absolute; inset: 0;">
+            <path d="M11 2.6l8.4 15.8H2.6L11 2.6Z" fill="#FFFFFF"></path>
+            <path d="M11 8.4v4.1M11 14.7v.5" stroke="#B91C1C" stroke-width="1.9" stroke-linecap="round"></path>
+          </svg>
+          <svg data-var="genuine" width="22" height="22" viewBox="0 0 22 22" fill="none" style="position: absolute; inset: 0; display: none;">
+            <circle cx="11" cy="11" r="9" fill="#FFFFFF"></circle>
+            <path d="M7.4 11.2l2.5 2.5 4.7-5.2" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </span>
+      <span style="position: relative; z-index: 1; display: block; height: 25px; min-width: 250px; overflow: hidden;">
+        <span ref="{{ pillRef }}" style="position: absolute; left: 0; top: 0; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 19px; line-height: 25px; font-weight: 700; letter-spacing: -0.01em; color: #FFFFFF; white-space: nowrap; transition: opacity 240ms ease;">User onboarding</span>
+      </span>
+    </div>
+
+    <div ref="{{ deckRef }}" style="position: absolute; left: 168px; top: 34px; width: 1264px; height: 884px; transition: opacity 480ms ease;">
+
+      <div ref="{{ ref0 }}" style="position: absolute; left: 0px; top: 336px; width: 404px; border-radius: 22px; background: #FFFFFF; border: 1px solid rgba(10,22,40,0.08); box-shadow: 0 34px 70px -28px rgba(10,22,40,0.28), 0 4px 12px -4px rgba(10,22,40,0.06); padding: 34px 32px 32px; box-sizing: border-box; transform-origin: 50% 50%; will-change: transform, opacity; overflow: hidden;">
+        <div data-veil="" style="position: absolute; inset: 0; z-index: 8; background: #FFFFFF; opacity: 0; pointer-events: none; transition: opacity 700ms cubic-bezier(0.42,0,0.35,1);"></div>
+        <div style="display: flex; justify-content: center;">
+          <div style="width: 104px; height: 104px; border-radius: 50%; background: #FEF8FB; border: 4px solid #FFFFFF; box-shadow: 0 6px 18px -6px rgba(10,22,40,0.22), 0 0 0 1px rgba(10,22,40,0.05); overflow: hidden;">
+            <img data-avatar="" data-alt-src="avatar-genuine.png" src="avatar-fraud.png" alt="" width="104" height="104" style="display: block; width: 104px; height: 104px; object-fit: cover;" />
+          </div>
+        </div>
+        <div style="margin-top: 22px; text-align: center; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: #0A1628;">Get started</div>
+        <div style="margin-top: 26px; display: flex; flex-direction: column; gap: 14px;">
+          <div data-alt="a.sharma.demo@example.com" style="height: 60px; border-radius: 13px; background: #FEF8FB; border: 1px solid rgba(10,22,40,0.04); display: flex; align-items: center; padding: 0 20px; box-sizing: border-box; font-size: 16px; color: #5A6A82;">applicant.demo@example.com</div>
+          <div style="height: 60px; border-radius: 13px; background: #FEF8FB; border: 1px solid rgba(10,22,40,0.04); display: flex; align-items: center; padding: 0 20px; box-sizing: border-box;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 9px; height: 9px; border-radius: 50%; background: #94A3B8;"></div>
+              <div style="width: 9px; height: 9px; border-radius: 50%; background: #94A3B8;"></div>
+              <div style="width: 9px; height: 9px; border-radius: 50%; background: #94A3B8;"></div>
+              <div style="width: 9px; height: 9px; border-radius: 50%; background: #94A3B8;"></div>
+              <div style="width: 9px; height: 9px; border-radius: 50%; background: #94A3B8;"></div>
+              <div style="width: 9px; height: 9px; border-radius: 50%; background: #94A3B8;"></div>
+              <div style="width: 9px; height: 9px; border-radius: 50%; background: #94A3B8;"></div>
+            </div>
+          </div>
+          <div style="height: 60px; border-radius: 13px; background: #FEF8FB; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #C21E86;">Next</div>
+        </div>
+      </div>
+
+      <div ref="{{ ref1 }}" style="position: absolute; left: 238px; top: 92px; width: 470px; border-radius: 22px; background: #FFFFFF; border: 1px solid rgba(10,22,40,0.08); box-shadow: 0 34px 70px -28px rgba(10,22,40,0.28), 0 4px 12px -4px rgba(10,22,40,0.06); padding: 30px 32px 32px; box-sizing: border-box; transform-origin: 50% 50%; will-change: transform, opacity; overflow: hidden; opacity: 0;">
+        <div data-veil="" style="position: absolute; inset: 0; z-index: 8; background: #FFFFFF; opacity: 0; pointer-events: none; transition: opacity 700ms cubic-bezier(0.42,0,0.35,1);"></div>
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <span style="position: relative; width: 52px; height: 52px; flex: 0 0 auto;">
+            <span style="display: block; width: 52px; height: 52px; border-radius: 50%; background: #FEF8FB; overflow: hidden;">
+              <img data-avatar="" data-alt-src="avatar-genuine.png" src="avatar-fraud.png" alt="" width="52" height="52" style="display: block; width: 52px; height: 52px; object-fit: cover;" />
+            </span>
+            <span data-badge="" data-alt-bg="#22C55E" style="position: absolute; right: -2px; bottom: -2px; width: 19px; height: 19px; border-radius: 50%; background: #F59E0B; border: 2.5px solid #FFFFFF; display: flex; align-items: center; justify-content: center;">
+              <svg data-var="fraud" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M5 2v3.4M5 7.2v.4" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <svg data-var="genuine" width="10" height="10" viewBox="0 0 12 12" fill="none" style="display: none;"><path d="M3.2 6.2l1.8 1.8 3.6-4" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </span>
+          </span>
+          <div style="min-width: 0;">
+            <div style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -0.02em; color: #0A1628;">Email information</div>
+            <div data-alt="a.sharma.demo@example.com" style="margin-top: 3px; font-size: 14px; color: #7C8AA0;">applicant.demo@example.com</div>
+          </div>
+        </div>
+
+        <div data-seq="" style="margin-top: 26px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+            <div style="display: flex; align-items: baseline; gap: 6px;">
+              <span data-count="" data-to="88" data-alt-to="12" data-alt-color="#16A34A" style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 44px; line-height: 1; font-weight: 800; letter-spacing: -0.035em; color: #EF4444;">0</span>
+              <span style="font-size: 15px; font-weight: 500; color: #94A3B8;">/100</span>
+            </div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; color: #94A3B8;">EMAIL NETWORK RISK</div>
+          </div>
+          <div style="margin-top: 12px; height: 6px; border-radius: 3px; background: #FEF8FB; overflow: hidden;">
+            <div data-bar="" data-w="88" data-alt-w="12" data-alt-bg="#22C55E" style="height: 100%; width: 0%; border-radius: 3px; background: #EF4444; transition: width 900ms cubic-bezier(0.4,0,0.2,1);"></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px;">
+          <div data-seq="" data-chip="" data-tone="pass" data-alt-tone="pass" style="display: flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 10px; background: #E7F8EF; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 15px; height: 15px; flex: 0 0 auto;">
+              <svg data-ic="pass" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0;"><circle cx="8" cy="8" r="6.6" stroke="#16A34A" stroke-width="1.6"></circle><path d="M5.4 8.2l1.8 1.8 3.4-3.8" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg data-ic="caution" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><path d="M8 2.4l6 11.2H2L8 2.4Z" stroke="#B45309" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 6.6v3M8 11.6v.3" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <svg data-ic="risk" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="8" cy="8" r="6.6" stroke="#DC2626" stroke-width="1.6"></circle><path d="M8 5.1v4.2M8 11.1v.4" stroke="#DC2626" stroke-width="1.7" stroke-linecap="round"></path></svg>
+            </span>
+            <span data-chip-label="" style="font-size: 13.5px; font-weight: 600; color: #157F3C;">Registered domain</span>
+          </div>
+          <div data-seq="" data-chip="" data-tone="risk" data-alt-tone="pass" style="display: flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 10px; background: #FEECEC; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 15px; height: 15px; flex: 0 0 auto;">
+              <svg data-ic="pass" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="8" cy="8" r="6.6" stroke="#16A34A" stroke-width="1.6"></circle><path d="M5.4 8.2l1.8 1.8 3.4-3.8" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg data-ic="caution" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><path d="M8 2.4l6 11.2H2L8 2.4Z" stroke="#B45309" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 6.6v3M8 11.6v.3" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <svg data-ic="risk" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0;"><circle cx="8" cy="8" r="6.6" stroke="#DC2626" stroke-width="1.6"></circle><path d="M8 5.1v4.2M8 11.1v.4" stroke="#DC2626" stroke-width="1.7" stroke-linecap="round"></path></svg>
+            </span>
+            <span data-chip-label="" data-alt="Established email" style="font-size: 13.5px; font-weight: 600; color: #DC2626;">Disposable email</span>
+          </div>
+          <div data-seq="" data-chip="" data-tone="caution" data-alt-tone="pass" style="display: flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 10px; background: #FEF4E6; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 15px; height: 15px; flex: 0 0 auto;">
+              <svg data-ic="pass" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="8" cy="8" r="6.6" stroke="#16A34A" stroke-width="1.6"></circle><path d="M5.4 8.2l1.8 1.8 3.4-3.8" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg data-ic="caution" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0;"><path d="M8 2.4l6 11.2H2L8 2.4Z" stroke="#B45309" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 6.6v3M8 11.6v.3" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <svg data-ic="risk" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="8" cy="8" r="6.6" stroke="#DC2626" stroke-width="1.6"></circle><path d="M8 5.1v4.2M8 11.1v.4" stroke="#DC2626" stroke-width="1.7" stroke-linecap="round"></path></svg>
+            </span>
+            <span data-chip-label="" data-alt="Strong online presence" style="font-size: 13.5px; font-weight: 600; color: #B45309;">Thin online presence</span>
+          </div>
+        </div>
+
+        <div data-seq="" style="margin-top: 26px; display: flex; align-items: baseline; justify-content: space-between; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <div style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.015em; color: #0A1628;">Digital footprint</div>
+          <div data-var="fraud" style="font-size: 14px; color: #64748B;">2 of 17 accounts &middot; <span style="color: #DC2626; font-weight: 600;">sparse</span></div>
+          <div data-var="genuine" style="font-size: 14px; color: #64748B; display: none;">14 of 17 accounts &middot; <span style="color: #16A34A; font-weight: 600;">established</span></div>
+        </div>
+
+        <div data-seq="" style="margin-top: 16px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <div data-var="fraud" style="display: flex; gap: 10px;">
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #FEF8FB 0%, #FDF1F8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(194, 30, 134,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><rect x="1.8" y="3.6" width="12.4" height="8.8" rx="1.8" stroke="#C21E86" stroke-width="1.5"></rect><path d="M2.4 4.8L8 8.8l5.6-4" stroke="#C21E86" stroke-width="1.5" stroke-linecap="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #FEF8FB 0%, #FDF1F8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(194, 30, 134,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><path d="M2.2 7.4c0-2.6 2.6-4.6 5.8-4.6s5.8 2 5.8 4.6-2.6 4.6-5.8 4.6c-.7 0-1.4-.1-2-.3L3 13.2l.5-2.4A4.6 4.6 0 0 1 2.2 7.4Z" stroke="#C21E86" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FEF8FB; display: flex; align-items: center; justify-content: center;">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="2.6" stroke="#C3CCDA" stroke-width="1.5"></circle><path d="M3.4 13.4c0-2.3 2.1-4 4.6-4s4.6 1.7 4.6 4" stroke="#C3CCDA" stroke-width="1.5" stroke-linecap="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FEF8FB; display: flex; align-items: center; justify-content: center;">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><rect x="1.8" y="4" width="12.4" height="8" rx="1.8" stroke="#C3CCDA" stroke-width="1.5"></rect><path d="M1.8 6.8h12.4" stroke="#C3CCDA" stroke-width="1.5"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FEF8FB; display: flex; align-items: center; justify-content: center;">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><path d="M2.4 3.4h1.8l1.6 7h6.4l1.4-4.6H5.2" stroke="#C3CCDA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="6.6" cy="13" r="1.1" stroke="#C3CCDA" stroke-width="1.5"></circle><circle cx="11.4" cy="13" r="1.1" stroke="#C3CCDA" stroke-width="1.5"></circle></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FEF8FB; display: flex; align-items: center; justify-content: center;">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><rect x="4.6" y="1.8" width="6.8" height="12.4" rx="1.8" stroke="#C3CCDA" stroke-width="1.5"></rect><path d="M7.2 12.2h1.6" stroke="#C3CCDA" stroke-width="1.5" stroke-linecap="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FEF8FB; display: flex; align-items: center; justify-content: center;">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><path d="M8 1.8c1.8 1.9 2.8 3.9 2.8 6.2S9.8 12.3 8 14.2C6.2 12.3 5.2 10.3 5.2 8S6.2 3.7 8 1.8Z" stroke="#C3CCDA" stroke-width="1.5"></path><circle cx="8" cy="8" r="6.2" stroke="#C3CCDA" stroke-width="1.5"></circle></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FEF8FB; display: flex; align-items: center; justify-content: center;">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><path d="M2 8.4l12-5-4.6 11-1.6-4.6L2 8.4Z" stroke="#C3CCDA" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FEF8FB; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 700; color: #C3CCDA;">+9</div>
+          </div>
+          <div data-var="genuine" data-var-display="flex" style="display: none; gap: 10px;">
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #FEF8FB 0%, #FDF1F8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(194, 30, 134,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><rect x="1.8" y="3.6" width="12.4" height="8.8" rx="1.8" stroke="#C21E86" stroke-width="1.5"></rect><path d="M2.4 4.8L8 8.8l5.6-4" stroke="#C21E86" stroke-width="1.5" stroke-linecap="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #FEF8FB 0%, #FDF1F8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(194, 30, 134,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><path d="M2.2 7.4c0-2.6 2.6-4.6 5.8-4.6s5.8 2 5.8 4.6-2.6 4.6-5.8 4.6c-.7 0-1.4-.1-2-.3L3 13.2l.5-2.4A4.6 4.6 0 0 1 2.2 7.4Z" stroke="#C21E86" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #F2EFFD 0%, #E6E1FB 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(109,90,230,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="2.6" stroke="#6D5AE6" stroke-width="1.5"></circle><path d="M3.4 13.4c0-2.3 2.1-4 4.6-4s4.6 1.7 4.6 4" stroke="#6D5AE6" stroke-width="1.5" stroke-linecap="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #E7F8EF 0%, #D6F2E3 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(34,197,94,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><rect x="1.8" y="4" width="12.4" height="8" rx="1.8" stroke="#16A34A" stroke-width="1.5"></rect><path d="M1.8 6.8h12.4" stroke="#16A34A" stroke-width="1.5"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #FEF4E6 0%, #FCE9CE 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(245,158,11,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><path d="M2.4 3.4h1.8l1.6 7h6.4l1.4-4.6H5.2" stroke="#B45309" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="6.6" cy="13" r="1.1" stroke="#B45309" stroke-width="1.5"></circle><circle cx="11.4" cy="13" r="1.1" stroke="#B45309" stroke-width="1.5"></circle></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #FEF8FB 0%, #FDF1F8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(194, 30, 134,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><rect x="4.6" y="1.8" width="6.8" height="12.4" rx="1.8" stroke="#C21E86" stroke-width="1.5"></rect><path d="M7.2 12.2h1.6" stroke="#C21E86" stroke-width="1.5" stroke-linecap="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #FEF8FB 0%, #FDF1F8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(194, 30, 134,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><path d="M8 1.8c1.8 1.9 2.8 3.9 2.8 6.2S9.8 12.3 8 14.2C6.2 12.3 5.2 10.3 5.2 8S6.2 3.7 8 1.8Z" stroke="#C21E86" stroke-width="1.5"></path><circle cx="8" cy="8" r="6.2" stroke="#C21E86" stroke-width="1.5"></circle></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(150deg, #F2EFFD 0%, #E6E1FB 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -4px rgba(109,90,230,0.35);">
+              <svg width="19" height="19" viewBox="0 0 16 16" fill="none"><path d="M2 8.4l12-5-4.6 11-1.6-4.6L2 8.4Z" stroke="#6D5AE6" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FEF8FB; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 700; color: #94A3B8;">+6</div>
+          </div>
+        </div>
+      </div>
+
+      <div ref="{{ sideRef }}" style="position: absolute; left: 0px; top: 142px; width: 268px; border-radius: 18px; background: #FFFFFF; border: 1px solid rgba(10,22,40,0.08); box-shadow: 0 26px 54px -24px rgba(10,22,40,0.26), 0 3px 10px -4px rgba(10,22,40,0.06); padding: 18px 20px; box-sizing: border-box; z-index: 80; transform-origin: 50% 50%; will-change: transform, opacity; opacity: 0; transition: opacity 620ms cubic-bezier(0.42,0,0.35,1), transform 620ms cubic-bezier(0.42,0,0.35,1);">
+        <div data-veil="" style="position: absolute; inset: 0; z-index: 8; background: #FFFFFF; opacity: 0; pointer-events: none; transition: opacity 700ms cubic-bezier(0.42,0,0.35,1); border-radius: 18px;"></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+          <div style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 15.5px; font-weight: 800; letter-spacing: -0.015em; color: #0A1628;">Applicant profile</div>
+          <div data-var="fraud" style="padding: 4px 9px; border-radius: 7px; background: #FEF4E6; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: #B45309;">REVIEW</div>
+          <div data-var="genuine" style="padding: 4px 9px; border-radius: 7px; background: #E7F8EF; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: #157F3C; display: none;">TRUSTED</div>
+        </div>
+        <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 11px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+            <span style="font-size: 13px; color: #7C8AA0;">Profile age</span>
+            <span data-alt="3 years" style="font-size: 13px; font-weight: 600; color: #0A1628;">4 days</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+            <span style="font-size: 13px; color: #7C8AA0;">Linked accounts</span>
+            <span data-alt="14" style="font-size: 13px; font-weight: 600; color: #0A1628;">2</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+            <span style="font-size: 13px; color: #7C8AA0;">Prior applications</span>
+            <span data-alt="1 approved" data-alt-color="#157F3C" style="font-size: 13px; font-weight: 600; color: #DC2626;">3 declined</span>
+          </div>
+        </div>
+      </div>
+
+      <div ref="{{ ref2 }}" style="position: absolute; left: 464px; top: 258px; width: 462px; border-radius: 22px; background: #FFFFFF; border: 1px solid rgba(10,22,40,0.08); box-shadow: 0 34px 70px -28px rgba(10,22,40,0.28), 0 4px 12px -4px rgba(10,22,40,0.06); padding: 30px 32px 32px; box-sizing: border-box; transform-origin: 50% 50%; will-change: transform, opacity; overflow: hidden; opacity: 0;">
+        <div data-veil="" style="position: absolute; inset: 0; z-index: 8; background: #FFFFFF; opacity: 0; pointer-events: none; transition: opacity 700ms cubic-bezier(0.42,0,0.35,1);"></div>
+        <div style="display: flex; align-items: center; gap: 13px;">
+          <div style="width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(150deg, #FEF8FB 0%, #FDF1F8 100%); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; box-shadow: 0 5px 12px -5px rgba(194, 30, 134,0.4);">
+            <svg width="21" height="21" viewBox="0 0 20 20" fill="none">
+              <rect x="5.6" y="2" width="8.8" height="16" rx="2.4" stroke="#C21E86" stroke-width="1.7"></rect>
+              <path d="M8.8 15.2h2.4" stroke="#C21E86" stroke-width="1.7" stroke-linecap="round"></path>
+            </svg>
+          </div>
+          <div>
+            <div style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -0.02em; color: #0A1628;">Devices &amp; OS</div>
+            <div data-alt="Android 14 &middot; verified build" style="margin-top: 3px; font-size: 13.5px; color: #7C8AA0;">Android 13 &middot; unverified build</div>
+          </div>
+        </div>
+
+        <div data-seq="" style="margin-top: 26px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+            <div style="display: flex; align-items: baseline; gap: 6px;">
+              <span data-count="" data-to="91" data-alt-to="18" data-alt-color="#16A34A" style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 44px; line-height: 1; font-weight: 800; letter-spacing: -0.035em; color: #EF4444;">0</span>
+              <span style="font-size: 15px; font-weight: 500; color: #94A3B8;">/100</span>
+            </div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; color: #94A3B8;">DEVICE RISK</div>
+          </div>
+          <div style="margin-top: 12px; height: 6px; border-radius: 3px; background: #FEF8FB; overflow: hidden;">
+            <div data-bar="" data-w="91" data-alt-w="18" data-alt-bg="#22C55E" style="height: 100%; width: 0%; border-radius: 3px; background: #EF4444; transition: width 900ms cubic-bezier(0.4,0,0.2,1);"></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px;">
+          <div data-seq="" data-chip="" data-tone="pass" data-alt-tone="pass" style="display: flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 10px; background: #E7F8EF; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 15px; height: 15px; flex: 0 0 auto;">
+              <svg data-ic="pass" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0;"><circle cx="8" cy="8" r="6.6" stroke="#16A34A" stroke-width="1.6"></circle><path d="M5.4 8.2l1.8 1.8 3.4-3.8" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg data-ic="caution" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><path d="M8 2.4l6 11.2H2L8 2.4Z" stroke="#B45309" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 6.6v3M8 11.6v.3" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <svg data-ic="risk" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="8" cy="8" r="6.6" stroke="#DC2626" stroke-width="1.6"></circle><path d="M8 5.1v4.2M8 11.1v.4" stroke="#DC2626" stroke-width="1.7" stroke-linecap="round"></path></svg>
+            </span>
+            <span data-chip-label="" style="font-size: 13.5px; font-weight: 600; color: #157F3C;">Biometrics enabled</span>
+          </div>
+          <div data-seq="" data-chip="" data-tone="risk" data-alt-tone="pass" style="display: flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 10px; background: #FEECEC; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 15px; height: 15px; flex: 0 0 auto;">
+              <svg data-ic="pass" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="8" cy="8" r="6.6" stroke="#16A34A" stroke-width="1.6"></circle><path d="M5.4 8.2l1.8 1.8 3.4-3.8" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg data-ic="caution" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><path d="M8 2.4l6 11.2H2L8 2.4Z" stroke="#B45309" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 6.6v3M8 11.6v.3" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <svg data-ic="risk" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0;"><circle cx="8" cy="8" r="6.6" stroke="#DC2626" stroke-width="1.6"></circle><path d="M8 5.1v4.2M8 11.1v.4" stroke="#DC2626" stroke-width="1.7" stroke-linecap="round"></path></svg>
+            </span>
+            <span data-chip-label="" data-alt="No emulator" style="font-size: 13.5px; font-weight: 600; color: #DC2626;">Emulator detected</span>
+          </div>
+          <div data-seq="" data-chip="" data-tone="risk" data-alt-tone="pass" style="display: flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 10px; background: #FEECEC; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 15px; height: 15px; flex: 0 0 auto;">
+              <svg data-ic="pass" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="8" cy="8" r="6.6" stroke="#16A34A" stroke-width="1.6"></circle><path d="M5.4 8.2l1.8 1.8 3.4-3.8" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg data-ic="caution" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><path d="M8 2.4l6 11.2H2L8 2.4Z" stroke="#B45309" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 6.6v3M8 11.6v.3" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <svg data-ic="risk" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0;"><circle cx="8" cy="8" r="6.6" stroke="#DC2626" stroke-width="1.6"></circle><path d="M8 5.1v4.2M8 11.1v.4" stroke="#DC2626" stroke-width="1.7" stroke-linecap="round"></path></svg>
+            </span>
+            <span data-chip-label="" data-alt="No VPN or proxy" style="font-size: 13.5px; font-weight: 600; color: #DC2626;">VPN + Proxy</span>
+          </div>
+          <div data-seq="" data-chip="" data-tone="risk" data-alt-tone="pass" style="display: flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 10px; background: #FEECEC; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 15px; height: 15px; flex: 0 0 auto;">
+              <svg data-ic="pass" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="8" cy="8" r="6.6" stroke="#16A34A" stroke-width="1.6"></circle><path d="M5.4 8.2l1.8 1.8 3.4-3.8" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg data-ic="caution" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0; display: none;"><path d="M8 2.4l6 11.2H2L8 2.4Z" stroke="#B45309" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 6.6v3M8 11.6v.3" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <svg data-ic="risk" width="15" height="15" viewBox="0 0 16 16" fill="none" style="position: absolute; inset: 0;"><circle cx="8" cy="8" r="6.6" stroke="#DC2626" stroke-width="1.6"></circle><path d="M8 5.1v4.2M8 11.1v.4" stroke="#DC2626" stroke-width="1.7" stroke-linecap="round"></path></svg>
+            </span>
+            <span data-chip-label="" data-alt="Trusted device &middot; 14 months" style="font-size: 13.5px; font-weight: 600; color: #DC2626;">Debugging enabled</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px; display: flex; flex-direction: column;">
+          <div data-seq="" style="display: flex; align-items: center; justify-content: space-between; padding: 13px 0; border-top: 1px solid #FEF8FB; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="font-size: 14.5px; color: #64748B;">Location</span>
+            <span data-alt="Pune, MH" style="font-size: 14.5px; font-weight: 600; color: #0A1628;">Undisclosed</span>
+          </div>
+          <div data-seq="" style="display: flex; align-items: center; justify-content: space-between; padding: 13px 0; border-top: 1px solid #FEF8FB; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="font-size: 14.5px; color: #64748B;">Country</span>
+            <span data-alt="India &middot; consistent" data-alt-color="#157F3C" style="font-size: 14.5px; font-weight: 600; color: #DC2626;">Mismatch &middot; 2 regions</span>
+          </div>
+          <div data-seq="" style="display: flex; align-items: center; justify-content: space-between; padding: 13px 0; border-top: 1px solid #FEF8FB; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="font-size: 14.5px; color: #64748B;">Screen resolution</span>
+            <span style="font-size: 14.5px; font-weight: 600; color: #0A1628;">1080 &times; 2400</span>
+          </div>
+        </div>
+      </div>
+
+      <div ref="{{ ref3 }}" style="position: absolute; left: 640px; top: 44px; width: 496px; border-radius: 22px; background: #FFFFFF; border: 1px solid rgba(10,22,40,0.08); box-shadow: 0 34px 70px -28px rgba(10,22,40,0.28), 0 4px 12px -4px rgba(10,22,40,0.06); padding: 28px 30px 30px; box-sizing: border-box; transform-origin: 50% 50%; will-change: transform, opacity; overflow: hidden; opacity: 0;">
+        <div data-veil="" style="position: absolute; inset: 0; z-index: 8; background: #FFFFFF; opacity: 0; pointer-events: none; transition: opacity 700ms cubic-bezier(0.42,0,0.35,1);"></div>
+        <div style="display: flex; align-items: center; gap: 13px;">
+          <div style="width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(150deg, #F2EFFD 0%, #E6E1FB 100%); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; box-shadow: 0 5px 12px -5px rgba(109,90,230,0.42);">
+            <svg width="21" height="21" viewBox="0 0 20 20" fill="none">
+              <rect x="2.4" y="4" width="15.2" height="12" rx="2.4" stroke="#6D5AE6" stroke-width="1.7"></rect>
+              <circle cx="7.6" cy="8.8" r="1.8" stroke="#6D5AE6" stroke-width="1.7"></circle>
+              <path d="M3.2 14.4 8 10.8l3.2 2.4 2.8-2.4 2.8 2.4" stroke="#6D5AE6" stroke-width="1.7" stroke-linecap="round"></path>
+            </svg>
+          </div>
+          <div style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -0.02em; color: #0A1628;">Document check</div>
+        </div>
+
+        <div data-seq="" style="margin-top: 22px; display: flex; gap: 40px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; color: #C21E86;">DOCUMENT TYPE</div>
+            <div style="margin-top: 9px; display: flex; align-items: center; gap: 9px;">
+              <span style="width: 30px; height: 30px; border-radius: 9px; background: #FEF8FB; display: flex; align-items: center; justify-content: center;">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1.6" y="3.4" width="12.8" height="9.2" rx="1.8" stroke="#C21E86" stroke-width="1.5"></rect><circle cx="5.6" cy="7.4" r="1.5" stroke="#C21E86" stroke-width="1.4"></circle><path d="M9.2 6.6h3M9.2 9.2h3" stroke="#C21E86" stroke-width="1.4" stroke-linecap="round"></path></svg>
+              </span>
+              <span style="font-size: 15.5px; font-weight: 600; color: #0A1628;">ID card</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; color: #C21E86;">CAPTURE SOURCE</div>
+            <div style="margin-top: 9px; display: flex; align-items: center; gap: 9px;">
+              <span data-tile="" data-alt-bg="#E7F8EF" style="width: 30px; height: 30px; border-radius: 9px; background: #FEECEC; display: flex; align-items: center; justify-content: center;">
+                <svg data-var="fraud" width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2.6" y="2.6" width="8" height="10.8" rx="1.4" stroke="#DC2626" stroke-width="1.5"></rect><path d="M12.4 5.2v7a1.4 1.4 0 0 1-1.4 1.4H5.6" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                <svg data-var="genuine" width="15" height="15" viewBox="0 0 16 16" fill="none" style="display: none;"><rect x="1.8" y="4.2" width="12.4" height="8.4" rx="1.8" stroke="#16A34A" stroke-width="1.5"></rect><circle cx="8" cy="8.4" r="2.4" stroke="#16A34A" stroke-width="1.5"></circle><path d="M6 4.2l1-1.6h2l1 1.6" stroke="#16A34A" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+              </span>
+              <span data-alt="Live capture" data-alt-color="#157F3C" style="font-size: 15.5px; font-weight: 600; color: #DC2626;">Re-scan</span>
+            </div>
+          </div>
+        </div>
+
+        <div data-seq="" style="position: relative; margin-top: 20px; border-radius: 14px; background: linear-gradient(150deg, #FEF8FB 0%, #FEF8FB 100%); border: 1px solid rgba(194, 30, 134,0.10); box-sizing: border-box; padding: 22px 24px; display: flex; gap: 22px; align-items: center; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <div style="position: absolute; left: 10px; top: 10px; width: 18px; height: 18px; border-left: 2px solid #C21E86; border-top: 2px solid #C21E86; border-radius: 4px 0 0 0;"></div>
+          <div style="position: absolute; right: 10px; top: 10px; width: 18px; height: 18px; border-right: 2px solid #C21E86; border-top: 2px solid #C21E86; border-radius: 0 4px 0 0;"></div>
+          <div style="position: absolute; left: 10px; bottom: 10px; width: 18px; height: 18px; border-left: 2px solid #C21E86; border-bottom: 2px solid #C21E86; border-radius: 0 0 0 4px;"></div>
+          <div style="position: absolute; right: 10px; bottom: 10px; width: 18px; height: 18px; border-right: 2px solid #C21E86; border-bottom: 2px solid #C21E86; border-radius: 0 0 4px 0;"></div>
+
+          <div style="width: 84px; height: 100px; border-radius: 8px; background: #FDF1F8; overflow: hidden; flex: 0 0 auto;">
+            <img data-avatar="" data-alt-src="avatar-genuine.png" src="avatar-fraud.png" alt="" width="84" height="100" style="display: block; width: 84px; height: 100px; object-fit: cover;" />
+          </div>
+          <div style="flex: 1 1 auto; min-width: 0;">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: #94A3B8;">IDENTITY DOCUMENT &middot; SPECIMEN</div>
+            <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 11px;">
+              <div style="display: flex; justify-content: space-between; gap: 14px;"><span style="font-size: 13px; color: #94A3B8;">Name</span><span data-alt="A. Sharma" style="font-size: 13px; font-weight: 600; color: #43526B;">A. Placeholder</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 14px;"><span style="font-size: 13px; color: #94A3B8;">Date of birth</span><span data-alt="14 / 08 / 1993" style="font-size: 13px; font-weight: 600; color: #43526B;">01 / 01 / 1990</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 14px;"><span style="font-size: 13px; color: #94A3B8;">Issue date</span><span data-alt="02 / 06 / 2021" style="font-size: 13px; font-weight: 600; color: #43526B;">01 / 01 / 2021</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-seq="" style="margin-top: 22px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <div style="display: flex; align-items: baseline; justify-content: space-between;">
+            <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.015em; color: #0A1628;">Face match</span>
+            <span data-matchlabel="" data-alt-color="#157F3C" style="font-size: 14px; font-weight: 700; color: #DC2626;"><span data-alt="HIGH &middot; ">LOW &middot; </span><span data-count="" data-to="38" data-alt-to="96">0</span>%</span>
+          </div>
+          <div style="margin-top: 10px; height: 6px; border-radius: 3px; background: #FEF8FB; overflow: hidden;">
+            <div data-bar="" data-w="38" data-alt-w="96" data-alt-bg="#22C55E" style="height: 100%; width: 0%; border-radius: 3px; background: #EF4444; transition: width 900ms cubic-bezier(0.4,0,0.2,1);"></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 22px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; color: #C21E86;">DOCUMENT EVALUATION</div>
+        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 13px;">
+          <div data-seq="" data-resolve="" data-tone="pass" data-alt-tone="pass" style="display: flex; align-items: center; gap: 11px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 19px; height: 19px; flex: 0 0 auto;">
+              <svg data-spin="" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0; animation: s3spin 0.9s linear infinite; transition: opacity 240ms ease;"><circle cx="9" cy="9" r="7" stroke="#FDF1F8" stroke-width="2"></circle><path d="M9 2a7 7 0 0 1 7 7" stroke="#6D5AE6" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span data-icon="" style="position: absolute; inset: 0; opacity: 0; transition: opacity 240ms ease;">
+                <svg data-ic="pass" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0;"><circle cx="9" cy="9" r="7.4" fill="#16A34A"></circle><path d="M6 9.2l2 2 3.9-4.2" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg data-ic="risk" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="9" cy="9" r="7.4" fill="#EF4444"></circle><path d="M9 5.4v4.3M9 11.6v.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </span>
+            </span>
+            <span data-chip-label="" style="font-size: 14.5px; color: #334155;">Valid document</span>
+          </div>
+          <div data-seq="" data-resolve="" data-tone="risk" data-alt-tone="pass" style="display: flex; align-items: center; gap: 11px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 19px; height: 19px; flex: 0 0 auto;">
+              <svg data-spin="" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0; animation: s3spin 0.9s linear infinite; transition: opacity 240ms ease;"><circle cx="9" cy="9" r="7" stroke="#FDF1F8" stroke-width="2"></circle><path d="M9 2a7 7 0 0 1 7 7" stroke="#6D5AE6" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span data-icon="" style="position: absolute; inset: 0; opacity: 0; transition: opacity 240ms ease;">
+                <svg data-ic="pass" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="9" cy="9" r="7.4" fill="#16A34A"></circle><path d="M6 9.2l2 2 3.9-4.2" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg data-ic="risk" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0;"><circle cx="9" cy="9" r="7.4" fill="#EF4444"></circle><path d="M9 5.4v4.3M9 11.6v.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </span>
+            </span>
+            <span data-chip-label="" data-alt="No photocopy detected" data-alt-color="#334155" style="font-size: 14.5px; font-weight: 600; color: #DC2626;">Photocopy detected</span>
+          </div>
+          <div data-seq="" data-resolve="" data-tone="risk" data-alt-tone="pass" style="display: flex; align-items: center; gap: 11px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 19px; height: 19px; flex: 0 0 auto;">
+              <svg data-spin="" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0; animation: s3spin 0.9s linear infinite; transition: opacity 240ms ease;"><circle cx="9" cy="9" r="7" stroke="#FDF1F8" stroke-width="2"></circle><path d="M9 2a7 7 0 0 1 7 7" stroke="#6D5AE6" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span data-icon="" style="position: absolute; inset: 0; opacity: 0; transition: opacity 240ms ease;">
+                <svg data-ic="pass" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="9" cy="9" r="7.4" fill="#16A34A"></circle><path d="M6 9.2l2 2 3.9-4.2" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg data-ic="risk" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0;"><circle cx="9" cy="9" r="7.4" fill="#EF4444"></circle><path d="M9 5.4v4.3M9 11.6v.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </span>
+            </span>
+            <span data-chip-label="" data-alt="No face manipulation" data-alt-color="#334155" style="font-size: 14.5px; font-weight: 600; color: #DC2626;">Face manipulation suspected</span>
+          </div>
+          <div data-seq="" data-resolve="" data-tone="risk" data-alt-tone="pass" data-band="" data-alt-bg="#E7F8EF" style="display: flex; align-items: center; gap: 11px; padding: 12px 14px; border-radius: 11px; background: #FEECEC; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="position: relative; width: 19px; height: 19px; flex: 0 0 auto;">
+              <svg data-spin="" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0; animation: s3spin 0.9s linear infinite; transition: opacity 240ms ease;"><circle cx="9" cy="9" r="7" stroke="#F6CFCF" stroke-width="2"></circle><path d="M9 2a7 7 0 0 1 7 7" stroke="#DC2626" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span data-icon="" style="position: absolute; inset: 0; opacity: 0; transition: opacity 240ms ease;">
+                <svg data-ic="pass" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0; display: none;"><circle cx="9" cy="9" r="7.4" fill="#16A34A"></circle><path d="M6 9.2l2 2 3.9-4.2" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <svg data-ic="risk" width="19" height="19" viewBox="0 0 18 18" fill="none" style="position: absolute; inset: 0;"><circle cx="9" cy="9" r="7.4" fill="#EF4444"></circle><path d="M6.4 6.4l5.2 5.2M11.6 6.4l-5.2 5.2" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </span>
+            </span>
+            <span data-chip-label="" data-alt="Selfie liveness PASSED" data-alt-color="#157F3C" style="font-size: 14.5px; font-weight: 700; color: #DC2626;">Selfie liveness FAILED</span>
+          </div>
+        </div>
+      </div>
+
+      <div ref="{{ ref4 }}" data-front-scale="1.05" style="position: absolute; left: 556px; top: 300px; width: 528px; border-radius: 26px; background: #FFFFFF; border: 1.5px solid rgba(239,68,68,0.24); box-shadow: 0 60px 120px -34px rgba(10,22,40,0.42), 0 0 0 10px rgba(239,68,68,0.06), 0 8px 20px -8px rgba(10,22,40,0.1); padding: 0 0 34px; box-sizing: border-box; transform-origin: 50% 50%; will-change: transform, opacity; overflow: hidden; opacity: 0;" data-alt-border="1px solid rgba(34,197,94,0.22)">
+        <div data-veil="" style="position: absolute; inset: 0; z-index: 8; background: #FFFFFF; opacity: 0; pointer-events: none; transition: opacity 700ms cubic-bezier(0.42,0,0.35,1);"></div>
+
+        <div data-alt-bg="linear-gradient(105deg, #0A1628 0%, #14532D 100%)" style="display: flex; align-items: center; gap: 14px; padding: 22px 34px; border-radius: 24px 24px 0 0; background: linear-gradient(105deg, #0A1628 0%, #7F1D1D 100%);">
+          <div data-alt-bg="rgba(34,197,94,0.18)" style="width: 44px; height: 44px; border-radius: 13px; background: rgba(239,68,68,0.2); display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">
+            <svg data-var="fraud" width="22" height="22" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2.2l6 2.4v5c0 3.7-2.4 6.9-6 8.2-3.6-1.3-6-4.5-6-8.2v-5l6-2.4Z" stroke="#FFFFFF" stroke-width="1.7" stroke-linejoin="round"></path>
+              <path d="M10 7.2v3.4M10 12.9v.4" stroke="#FCA5A5" stroke-width="1.9" stroke-linecap="round"></path>
+            </svg>
+            <svg data-var="genuine" width="22" height="22" viewBox="0 0 20 20" fill="none" style="display: none;">
+              <path d="M10 2.2l6 2.4v5c0 3.7-2.4 6.9-6 8.2-3.6-1.3-6-4.5-6-8.2v-5l6-2.4Z" stroke="#FFFFFF" stroke-width="1.7" stroke-linejoin="round"></path>
+              <path d="M7.4 10l1.9 1.9 3.6-4" stroke="#86EFAC" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <div style="flex: 1 1 auto; min-width: 0;">
+            <div style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 23px; font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF;">Final verdict</div>
+            <div style="margin-top: 3px; font-size: 13px; color: rgba(255,255,255,0.6);">Shruhani unified risk decision</div>
+          </div>
+          <div data-alt="APPROVE" style="padding: 7px 13px; border-radius: 8px; background: rgba(255,255,255,0.14); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #FFFFFF; flex: 0 0 auto;">DECLINE</div>
+        </div>
+
+        <div data-seq="" style="margin: 28px 34px 0; display: flex; align-items: flex-end; gap: 28px; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <div style="flex: 0 0 auto;">
+            <div style="display: flex; align-items: baseline; gap: 6px;">
+              <span data-count="" data-to="94" data-alt-to="8" data-alt-color="#16A34A" style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 68px; line-height: 0.88; font-weight: 800; letter-spacing: -0.04em; color: #EF4444;">0</span>
+              <span style="font-size: 18px; font-weight: 500; color: #94A3B8;">/100</span>
+            </div>
+            <div style="margin-top: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; color: #94A3B8;">OVERALL FRAUD SCORE</div>
+          </div>
+          <div style="flex: 1 1 auto; padding-bottom: 8px;">
+            <div style="height: 8px; border-radius: 4px; background: #FEF8FB; overflow: hidden;">
+              <div data-bar="" data-w="94" data-alt-w="8" data-alt-bg="linear-gradient(90deg, #6D5AE6 0%, #22C55E 70%)" style="height: 100%; width: 0%; border-radius: 4px; background: linear-gradient(90deg, #6D5AE6 0%, #EF4444 70%); transition: width 900ms cubic-bezier(0.4,0,0.2,1);"></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-seq="" data-alt-bg="#E7F8EF" style="margin: 26px 34px 0; display: flex; align-items: center; gap: 11px; padding: 15px 18px; border-radius: 13px; background: #FEECEC; border: 1px solid rgba(239,68,68,0.2); opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+          <svg data-var="fraud" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: 0 0 auto;"><path d="M10 2.6l7.6 14.2H2.4L10 2.6Z" fill="#EF4444"></path><path d="M10 7.8v3.6M10 13.4v.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          <svg data-var="genuine" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: 0 0 auto; display: none;"><circle cx="10" cy="10" r="8" fill="#22C55E"></circle><path d="M6.6 10.2l2.3 2.3 4.4-4.8" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span data-alt="Low risk &rarr; Approve" data-alt-color="#157F3C" style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 17px; font-weight: 800; letter-spacing: -0.015em; color: #B91C1C;">High fraud risk &rarr; Decline</span>
+        </div>
+
+        <div data-seq="" data-alt="Verified document, live selfie and an established footprint on a trusted device &mdash; clean identity." style="margin: 14px 34px 0; font-size: 14.5px; line-height: 1.55; color: #52607A; text-wrap: pretty; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">Disposable identity, emulator + spoofing, failed liveness &mdash; likely synthetic/fraud.</div>
+
+        <div style="margin: 22px 34px 0; display: flex; flex-direction: column;">
+          <div data-seq="" style="display: flex; align-items: center; gap: 16px; padding: 12px 0; border-top: 1px solid #FEF8FB; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="flex: 1 1 auto; font-size: 14.5px; color: #64748B;">Email network</span>
+            <span style="width: 96px; height: 5px; border-radius: 3px; background: #FEF8FB; overflow: hidden; flex: 0 0 auto;"><span data-bar="" data-w="88" data-alt-w="12" data-alt-bg="#22C55E" style="display: block; height: 100%; width: 0%; background: #EF4444; transition: width 700ms cubic-bezier(0.4,0,0.2,1);"></span></span>
+            <span data-alt="12" data-alt-color="#157F3C" style="width: 28px; text-align: right; font-size: 14.5px; font-weight: 700; color: #DC2626; flex: 0 0 auto;">88</span>
+          </div>
+          <div data-seq="" style="display: flex; align-items: center; gap: 16px; padding: 12px 0; border-top: 1px solid #FEF8FB; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="flex: 1 1 auto; font-size: 14.5px; color: #64748B;">Device intelligence</span>
+            <span style="width: 96px; height: 5px; border-radius: 3px; background: #FEF8FB; overflow: hidden; flex: 0 0 auto;"><span data-bar="" data-w="91" data-alt-w="18" data-alt-bg="#22C55E" style="display: block; height: 100%; width: 0%; background: #EF4444; transition: width 700ms cubic-bezier(0.4,0,0.2,1);"></span></span>
+            <span data-alt="18" data-alt-color="#157F3C" style="width: 28px; text-align: right; font-size: 14.5px; font-weight: 700; color: #DC2626; flex: 0 0 auto;">91</span>
+          </div>
+          <div data-seq="" style="display: flex; align-items: center; gap: 16px; padding: 12px 0; border-top: 1px solid #FEF8FB; opacity: 0; transform: translateY(10px); transition: opacity 420ms cubic-bezier(0.4,0,0.2,1), transform 420ms cubic-bezier(0.4,0,0.2,1);">
+            <span style="flex: 1 1 auto; font-size: 14.5px; color: #64748B;">Document &amp; image</span>
+            <span style="width: 96px; height: 5px; border-radius: 3px; background: #FEF8FB; overflow: hidden; flex: 0 0 auto;"><span data-bar="" data-w="96" data-alt-w="8" data-alt-bg="#22C55E" style="display: block; height: 100%; width: 0%; background: #EF4444; transition: width 700ms cubic-bezier(0.4,0,0.2,1);"></span></span>
+            <span data-alt="8" data-alt-color="#157F3C" style="width: 28px; text-align: right; font-size: 14.5px; font-weight: 700; color: #DC2626; flex: 0 0 auto;">96</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;profile&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;fraud&quot;,&quot;genuine&quot;],&quot;default&quot;:&quot;fraud&quot;,&quot;tsType&quot;:&quot;\&quot;fraud\&quot; | \&quot;genuine\&quot;&quot;,&quot;section&quot;:&quot;Scenario&quot;},&quot;alternate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Scenario&quot;},&quot;transitionMs&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:700,&quot;min&quot;:400,&quot;max&quot;:1200,&quot;step&quot;:50,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;loop&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.host = React.createRef();
+    this.stage = React.createRef();
+    this.deck = React.createRef();
+    this.side = React.createRef();
+    this.pill = React.createRef();
+    this.pillBox = React.createRef();
+    this.pillRed = React.createRef();
+    this.pillSpin = React.createRef();
+    this.pillAlert = React.createRef();
+    this.cards = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
+    this.dim = [0.58, 0.7, 0.78, 0.82];
+    this.tones = {
+      pass: { bg: "#E7F8EF", fg: "#157F3C" },
+      caution: { bg: "#FEF4E6", fg: "#B45309" },
+      risk: { bg: "#FEECEC", fg: "#DC2626" }
+    };
+    this.fit = this.fit.bind(this);
+  }
+
+  get dur() { return Number(this.props.transitionMs) || 700; }
+  get last() { return this.cards.length - 1; }
+  get alternating() { return this.props.alternate !== false && this.props.loop !== false; }
+  get genuine() {
+    return (this.alternating ? this.variant : this.props.profile) === "genuine";
+  }
+
+  get labels() {
+    return this.genuine
+      ? ["User onboarding", "Reading digital footprint", "Device check", "Verifying identity", "Approved"]
+      : ["User onboarding", "Reading digital footprint", "Device check", "Verifying identity", "Decision"];
+  }
+
+  live() {
+    const el = this.deck.current;
+    return !!el && el.isConnected;
+  }
+
+  fit() {
+    const h = this.host.current, s = this.stage.current;
+    if (!h || !s) return;
+    const r = h.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    const k = Math.min(r.width / 1600, r.height / 950, 1.3);
+    const v = "scale(" + k + ")";
+    if (s.style.transform !== v) s.style.transform = v;
+  }
+
+  root() { return this.host.current; }
+
+  swap(el, attr, read, write) {
+    const alt = el.getAttribute(attr);
+    if (alt === null) return;
+    const key = "orig" + attr.replace(/[^a-z]/gi, "");
+    if (el.dataset[key] === undefined) el.dataset[key] = read(el);
+    write(el, this.genuine ? alt : el.dataset[key]);
+  }
+
+  applyProfile() {
+    const r = this.root();
+    if (!r) return;
+    const g = this.genuine;
+
+    r.querySelectorAll("[data-var]").forEach((el) => {
+      const want = el.getAttribute("data-var") === (g ? "genuine" : "fraud");
+      if (el.dataset.origdisplay === undefined) el.dataset.origdisplay = el.style.display || "";
+      const shown = el.getAttribute("data-var-display");
+      const base = shown || (el.dataset.origdisplay === "none" ? "" : el.dataset.origdisplay);
+      const v = want ? base : "none";
+      if (el.style.display !== v) el.style.display = v;
+    });
+
+    r.querySelectorAll("[data-alt]").forEach((el) => {
+      this.swap(el, "data-alt", (n) => n.innerHTML, (n, v) => { if (n.innerHTML !== v) n.innerHTML = v; });
+    });
+    r.querySelectorAll("[data-alt-color]").forEach((el) => {
+      this.swap(el, "data-alt-color", (n) => n.style.color, (n, v) => { n.style.color = v; });
+    });
+    r.querySelectorAll("[data-alt-bg]").forEach((el) => {
+      this.swap(el, "data-alt-bg", (n) => n.style.background, (n, v) => { n.style.background = v; });
+    });
+    r.querySelectorAll("[data-alt-shadow]").forEach((el) => {
+      this.swap(el, "data-alt-shadow", (n) => n.style.boxShadow, (n, v) => { n.style.boxShadow = v; });
+    });
+    r.querySelectorAll("[data-alt-border]").forEach((el) => {
+      this.swap(el, "data-alt-border", (n) => n.style.border, (n, v) => { n.style.border = v; });
+    });
+    r.querySelectorAll("[data-alt-src]").forEach((el) => {
+      this.swap(el, "data-alt-src", (n) => n.getAttribute("src"), (n, v) => { if (n.getAttribute("src") !== v) n.setAttribute("src", v); });
+    });
+    r.querySelectorAll("[data-alt-to]").forEach((el) => {
+      this.swap(el, "data-alt-to", (n) => n.getAttribute("data-to"), (n, v) => { n.setAttribute("data-to", v); });
+    });
+    r.querySelectorAll("[data-alt-w]").forEach((el) => {
+      this.swap(el, "data-alt-w", (n) => n.getAttribute("data-w"), (n, v) => { n.setAttribute("data-w", v); });
+    });
+
+    r.querySelectorAll("[data-tone]").forEach((el) => {
+      const tone = (g ? el.getAttribute("data-alt-tone") : el.getAttribute("data-tone")) || "pass";
+      const t = this.tones[tone] || this.tones.pass;
+      if (el.hasAttribute("data-chip")) {
+        if (el.style.background !== t.bg) el.style.background = t.bg;
+      }
+      if (el.hasAttribute("data-chip") || el.hasAttribute("data-band")) {
+        const lb = el.querySelector("[data-chip-label]");
+        if (lb && !lb.hasAttribute("data-alt-color") && lb.style.color !== t.fg) lb.style.color = t.fg;
+      }
+      el.querySelectorAll("[data-ic]").forEach((ic) => {
+        const want = ic.getAttribute("data-ic") === tone || (tone === "caution" && !el.querySelector('[data-ic="caution"]') && ic.getAttribute("data-ic") === "risk");
+        const v = want ? "" : "none";
+        if (ic.style.display !== v) ic.style.display = v;
+      });
+    });
+  }
+
+  build() {
+    const s = [{ arrive: 0, items: [] }];
+    let t = 1000;
+    for (let i = 1; i <= this.last; i++) {
+      const root = this.cards[i].current;
+      const nodes = root ? Array.from(root.querySelectorAll("[data-seq]")) : [];
+      const arrive = t;
+      let it = arrive + 380;
+      const items = nodes.map((el) => {
+        const resolve = el.hasAttribute("data-resolve");
+        const at = it;
+        it += resolve ? 240 : 155;
+        return { el: el, at: at, resolve: resolve };
+      });
+      s.push({ arrive: arrive, items: items });
+      t = it + 820 + (i === this.last ? 2400 : 340);
+    }
+    this.sched = s;
+    this.sideAt = s[1].arrive + 1100;
+    this.fadeAt = t;
+    this.cycle = this.fadeAt + 1000;
+  }
+
+  applyCard(entry, t) {
+    entry.items.forEach((it) => {
+      const el = it.el;
+      const on = t >= it.at;
+      const o = on ? "1" : "0";
+      if (el.style.opacity !== o) {
+        el.style.opacity = o;
+        el.style.transform = on ? "none" : "translateY(10px)";
+      }
+      el.querySelectorAll("[data-bar]").forEach((b) => {
+        const w = on ? b.getAttribute("data-w") + "%" : "0%";
+        if (b.style.width !== w) b.style.width = w;
+      });
+      el.querySelectorAll("[data-count]").forEach((c) => {
+        const to = Number(c.getAttribute("data-to")) || 0;
+        const p = on ? Math.min(1, (t - it.at) / 820) : 0;
+        const v = String(Math.round(to * (1 - Math.pow(1 - p, 3))));
+        if (c.textContent !== v) c.textContent = v;
+      });
+      if (it.resolve) {
+        const done = t >= it.at + 460;
+        el.querySelectorAll("[data-spin]").forEach((n) => {
+          const q = done ? "0" : "1";
+          if (n.style.opacity !== q) n.style.opacity = q;
+        });
+        el.querySelectorAll("[data-icon]").forEach((n) => {
+          const q = done ? "1" : "0";
+          if (n.style.opacity !== q) n.style.opacity = q;
+        });
+      }
+    });
+  }
+
+  layout(front, animate) {
+    const ease = "cubic-bezier(0.42, 0, 0.35, 1)";
+    const tr = animate
+      ? "transform " + this.dur + "ms " + ease + ", opacity " + this.dur + "ms " + ease
+      : "none";
+    this.cards.forEach((ref, i) => {
+      const el = ref.current;
+      if (!el) return;
+      if (el.style.transition !== tr) el.style.transition = tr;
+      const d = front - i;
+      let o, z, x, veil;
+      if (d < 0) {
+        o = "0"; z = "5"; x = "translate(96px, -34px) scale(0.96)"; veil = "0";
+      } else if (d === 0) {
+        o = "1"; z = "70"; x = "translate(0px, 0px) scale(" + (el.getAttribute("data-front-scale") || 1) + ")"; veil = "0";
+      } else {
+        const k = Math.min(d, 4);
+        o = "1";
+        z = String(60 - k * 6);
+        x = "translate(0px, 0px) scale(" + (1 - 0.012 * k) + ")";
+        veil = String(this.dim[k - 1]);
+      }
+      if (el.style.opacity !== o) el.style.opacity = o;
+      if (el.style.zIndex !== z) el.style.zIndex = z;
+      if (el.style.transform !== x) el.style.transform = x;
+      const vn = el.querySelector("[data-veil]");
+      if (vn && vn.style.opacity !== veil) vn.style.opacity = veil;
+    });
+
+    const sd = this.side.current;
+    if (sd) {
+      const on = this.sideOn;
+      const o = on ? "1" : "0";
+      const x = on ? "translate(0px, 0px) scale(1)" : "translate(-16px, -22px) scale(0.97)";
+      if (sd.style.opacity !== o) sd.style.opacity = o;
+      if (sd.style.transform !== x) sd.style.transform = x;
+      const sv = sd.querySelector("[data-veil]");
+      const svo = on && front >= 2 ? "0.42" : "0";
+      if (sv && sv.style.opacity !== svo) sv.style.opacity = svo;
+    }
+  }
+
+  tick() {
+    if (!this.live()) {
+      clearInterval(window.__s3heroTimer);
+      window.__s3heroTimer = null;
+      return;
+    }
+    this.fit();
+    const raw = performance.now() - window.__s3heroT0;
+    const t = this.props.loop === false ? Math.min(raw, this.fadeAt - 1) : raw % this.cycle;
+
+    if (this.alternating) {
+      const first = this.props.profile === "genuine" ? "genuine" : "fraud";
+      const flip = Math.floor(raw / this.cycle) % 2 === 1;
+      const want = flip ? (first === "fraud" ? "genuine" : "fraud") : first;
+      if (want !== this.variant) {
+        this.variant = want;
+        this.applyProfile();
+      }
+    }
+
+    let front = 0;
+    for (let i = 1; i < this.sched.length; i++) if (t >= this.sched[i].arrive) front = i;
+
+    const blank = t >= this.fadeAt || t < 300;
+    this.sideOn = t >= this.sideAt && !blank;
+    this.layout(front, t > 340);
+    for (let i = 1; i < this.sched.length; i++) this.applyCard(this.sched[i], t);
+
+    const dk = this.deck.current;
+    if (dk) {
+      const o = blank ? "0" : "1";
+      if (dk.style.opacity !== o) dk.style.opacity = o;
+    }
+
+    const settled = front === this.last;
+    const dt = t - this.sched[this.last].arrive;
+    const emph = this.cards[this.last].current;
+    if (emph && settled) {
+      const fs = emph.getAttribute("data-front-scale") || 1;
+      const x = dt < 620 ? "translate(0px, 0px) scale(" + (fs * 0.93) + ")" : "translate(0px, 0px) scale(" + fs + ")";
+      if (emph.style.transform !== x) emph.style.transform = x;
+    }
+
+    this.setPill(settled && dt >= 300, blank, front, t);
+  }
+
+  setPill(alertOn, blank, front, t) {
+    const red = this.pillRed.current;
+    if (red) {
+      const o = alertOn ? "1" : "0";
+      if (red.style.opacity !== o) red.style.opacity = o;
+    }
+    const sp = this.pillSpin.current;
+    if (sp) {
+      const o = alertOn ? "0" : "1";
+      if (sp.style.opacity !== o) sp.style.opacity = o;
+    }
+    const al = this.pillAlert.current;
+    if (al) {
+      const o = alertOn ? "1" : "0";
+      if (al.style.opacity !== o) al.style.opacity = o;
+    }
+    const box = this.pillBox.current;
+    if (box) {
+      const bo = blank ? "0" : "1";
+      if (box.style.opacity !== bo) box.style.opacity = bo;
+      const glow = this.genuine ? "rgba(34,197,94,0.55)" : "rgba(239,68,68,0.55)";
+      const sh = alertOn
+        ? "0 14px 34px -10px " + glow + ", 0 2px 6px rgba(10,22,40,0.12)"
+        : "0 14px 34px -10px rgba(194, 30, 134,0.55), 0 2px 6px rgba(10,22,40,0.12)";
+      if (box.style.boxShadow !== sh) box.style.boxShadow = sh;
+    }
+    const p = this.pill.current;
+    if (p) {
+      let vis = blank ? 0 : 1;
+      for (let i = 1; i < this.sched.length; i++) {
+        const a = this.sched[i].arrive;
+        if (t > a - 250 && t < a + 200) vis = 0;
+      }
+      const lbl = this.labels[front];
+      if (p.textContent !== lbl) p.textContent = lbl;
+      const o = String(vis);
+      if (p.style.opacity !== o) p.style.opacity = o;
+    }
+  }
+
+  settle() {
+    if (!this.live()) {
+      clearInterval(window.__s3heroTimer);
+      window.__s3heroTimer = null;
+      return;
+    }
+    this.fit();
+    const t = this.fadeAt - 200;
+    this.sideOn = true;
+    this.layout(this.last, false);
+    for (let i = 1; i < this.sched.length; i++) this.applyCard(this.sched[i], t);
+    const dk = this.deck.current;
+    if (dk && dk.style.opacity !== "1") dk.style.opacity = "1";
+    const emph = this.cards[this.last].current;
+    if (emph) {
+      const x = "translate(0px, 0px) scale(" + (emph.getAttribute("data-front-scale") || 1) + ")";
+      if (emph.style.transform !== x) emph.style.transform = x;
+    }
+    this.setPill(true, false, this.last, t);
+  }
+
+  start() {
+    this.variant = this.props.profile === "genuine" ? "genuine" : "fraud";
+    this.applyProfile();
+    this.build();
+    if (window.__s3heroTimer) clearInterval(window.__s3heroTimer);
+    this.reduced = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    window.__s3heroT0 = performance.now();
+    this.fit();
+    if (this.reduced) {
+      this.settle();
+      window.__s3heroTimer = setInterval(() => this.settle(), 500);
+    } else {
+      this.tick();
+      window.__s3heroTimer = setInterval(() => this.tick(), 40);
+    }
+  }
+
+  componentDidMount() {
+    this.start();
+    window.addEventListener("resize", this.fit);
+    if (window.ResizeObserver && this.host.current) {
+      this.ro = new ResizeObserver(this.fit);
+      this.ro.observe(this.host.current);
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.fit);
+  }
+
+  componentDidUpdate(prev) {
+    if (prev.profile !== this.props.profile) this.start();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.fit);
+    if (this.ro) this.ro.disconnect();
+  }
+
+  renderVals() {
+    return {
+      hostRef: this.host,
+      stageRef: this.stage,
+      deckRef: this.deck,
+      sideRef: this.side,
+      pillRef: this.pill,
+      pillBoxRef: this.pillBox,
+      pillRedRef: this.pillRed,
+      pillSpinRef: this.pillSpin,
+      pillAlertRef: this.pillAlert,
+      ref0: this.cards[0],
+      ref1: this.cards[1],
+      ref2: this.cards[2],
+      ref3: this.cards[3],
+      ref4: this.cards[4]
+    };
+  }
+}
+</script>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     The standalone's viewing harness: its padding is white space around the
+     artwork, and its caption is the preview's own title. */
+  .stage { padding: 0; max-width: none; }
+  .stage > .cap { display: none; }
+
+  html,
+  body { background: transparent; }
+</style>

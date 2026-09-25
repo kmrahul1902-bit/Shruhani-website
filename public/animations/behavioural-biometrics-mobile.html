@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: transparent; }
+  a { color: #C21E86; text-decoration: none; }
+  a:hover { color: #0A1628; }
+  @keyframes s3-dot { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+  @keyframes s3-draw { from { stroke-dashoffset: 664; } to { stroke-dashoffset: 0; } }
+  @keyframes s3-fill-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes s3-vertex { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+  @keyframes s3-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.012); } }
+  @keyframes s3-flag-in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes s3-verdict-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+  @keyframes s3-sub-in { from { opacity: 0; } to { opacity: 1; } }
+  [data-vertex] { transform-box: fill-box; transform-origin: center; }
+  [data-breathe] { transform-box: fill-box; transform-origin: center; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-dot-pulse], [data-breathe], [data-vertex], [data-fill], [data-stroke] { animation: none !important; opacity: 1 !important; transform: none !important; }
+    [data-stroke] { stroke-dashoffset: 0 !important; }
+  }
+</style>
+</helmet>
+<div style="width:100%;box-sizing:border-box;background:transparent;font-family:'Plus Jakarta Sans',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden">
+  <div ref="{{ canvasRef }}" style="width:1020px;height:700px;position:relative;flex:0 0 auto;transform-origin:center center">
+
+    <div style="position:absolute;left:0;top:0;width:1020px;height:700px;box-sizing:border-box;background:#FEF8FB;border:1px solid rgba(194, 30, 134,0.35);border-radius:20px;box-shadow:0 26px 60px rgba(10,22,40,0.10);padding:24px 30px;display:flex;flex-direction:column;gap:16px">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:28px">
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8">Behavioural biometrics</span>
+          <span style="font-size:24px;font-weight:800;letter-spacing:-0.01em;color:#0A1628">Behavioural check</span>
+          <span style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#6B7688">passive · every session · persona learned over 24 sessions</span>
+        </div>
+        <div data-readout="" style="display:flex;align-items:center;gap:20px;flex:0 0 auto">
+          <div style="position:relative;width:104px;height:104px;flex:0 0 auto">
+            <svg width="104" height="104" viewBox="0 0 128 128">
+              <circle cx="64" cy="64" r="54" fill="none" stroke="#0A1628" stroke-opacity="0.08" stroke-width="9"></circle>
+              <circle data-gauge="" cx="64" cy="64" r="54" fill="none" stroke="#EF4444" stroke-width="9" stroke-linecap="round" stroke-dasharray="244.3 339.3" transform="rotate(-90 64 64)"></circle>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px">
+              <span data-gnum="" style="font-family:Inter,system-ui,sans-serif;font-size:27px;font-weight:600;line-height:1;letter-spacing:-0.02em;color:#EF4444;font-variant-numeric:tabular-nums">72</span>
+              <span data-gden="" style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:500;color:#EF4444;opacity:0.65">/ 100</span>
+            </div>
+          </div>
+          <div style="width:210px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#94A3B8">Behavioural risk</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span data-gpill="" style="padding:3px 10px;border-radius:999px;background:#EF4444;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em">HIGH</span>
+              <span style="display:flex;align-items:center;gap:6px;padding:3px 10px 3px 8px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(194, 30, 134,0.22);font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.08em;color:#C21E86"><span data-dot-pulse="" style="width:5px;height:5px;border-radius:50%;background:#C21E86;animation:s3-dot 1.8s ease-in-out infinite"></span>READING</span>
+            </div>
+            <div style="height:8px;border-radius:999px;background:rgba(10,22,40,0.07);overflow:hidden">
+              <div data-gbar="" style="width:72%;height:100%;border-radius:999px;background:#EF4444"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:1px;background:rgba(10,22,40,0.07)"></div>
+
+      <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1.02fr;column-gap:22px">
+
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0;overflow:hidden">
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#94A3B8;flex:0 0 auto">Last 8 sessions</span>
+            <svg width="118" height="18" viewBox="0 0 150 26" style="flex:0 0 auto">
+              <line x1="4" y1="19" x2="146" y2="19" stroke="#22C55E" stroke-opacity="0.45" stroke-width="1.5"></line>
+              <circle cx="4" cy="19" r="3.5" fill="#22C55E"></circle>
+              <circle cx="24.3" cy="19" r="3.5" fill="#22C55E"></circle>
+              <circle cx="44.6" cy="19" r="3.5" fill="#22C55E"></circle>
+              <circle cx="64.9" cy="19" r="3.5" fill="#22C55E"></circle>
+              <circle cx="85.1" cy="19" r="3.5" fill="#22C55E"></circle>
+              <circle cx="105.4" cy="19" r="3.5" fill="#22C55E"></circle>
+              <circle cx="125.7" cy="19" r="3.5" fill="#22C55E"></circle>
+              <circle cx="146" cy="19" r="3.5" fill="#22C55E"></circle>
+            </svg>
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:12px;color:#6B7688;flex:1;min-width:0">consistent · no incidents</span>
+          </div>
+
+          <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;border:1px solid rgba(10,22,40,0.07);border-radius:14px;padding:12px 14px">
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+              <span style="display:flex;align-items:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-size:11.5px;color:#4A5567"><span style="width:14px;height:8px;border-radius:3px;background:rgba(194, 30, 134,0.35);border:1px solid #C21E86"></span>Persona baseline</span>
+              <span style="display:flex;align-items:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-size:11.5px;color:#4A5567"><span style="width:14px;height:8px;border-radius:3px;background:transparent;border:1.5px solid #EF4444"></span>This session</span>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center">
+              <svg width="100%" height="252" viewBox="-60 46 580 336" preserveAspectRatio="xMidYMid meet">
+                <g>
+                  <polygon points="230,80 351.2,150 351.2,290 230,360 108.8,290 108.8,150" fill="#FEF8FB" stroke="#0A1628" stroke-opacity="0.10" stroke-width="1"></polygon>
+                  <polygon points="230,115 320.9,167.5 320.9,272.5 230,325 139.1,272.5 139.1,167.5" fill="none" stroke="#0A1628" stroke-opacity="0.08" stroke-width="1"></polygon>
+                  <polygon points="230,150 290.6,185 290.6,255 230,290 169.4,255 169.4,185" fill="none" stroke="#0A1628" stroke-opacity="0.08" stroke-width="1"></polygon>
+                  <polygon points="230,185 260.3,202.5 260.3,237.5 230,255 199.7,237.5 199.7,202.5" fill="none" stroke="#0A1628" stroke-opacity="0.08" stroke-width="1"></polygon>
+                  <line x1="230" y1="220" x2="230" y2="80" stroke="#0A1628" stroke-opacity="0.10" stroke-width="1"></line>
+                  <line x1="230" y1="220" x2="351.2" y2="150" stroke="#0A1628" stroke-opacity="0.10" stroke-width="1"></line>
+                  <line x1="230" y1="220" x2="351.2" y2="290" stroke="#0A1628" stroke-opacity="0.10" stroke-width="1"></line>
+                  <line x1="230" y1="220" x2="230" y2="360" stroke="#0A1628" stroke-opacity="0.10" stroke-width="1"></line>
+                  <line x1="230" y1="220" x2="108.8" y2="290" stroke="#0A1628" stroke-opacity="0.10" stroke-width="1"></line>
+                  <line x1="230" y1="220" x2="108.8" y2="150" stroke="#0A1628" stroke-opacity="0.10" stroke-width="1"></line>
+                </g>
+                <g data-breathe="" style="animation:s3-breathe 6.5s ease-in-out 2.6s infinite">
+                  <polygon data-fill="" points="230,105.2 324.6,165.4 327,276 230,325 145.1,269 126.9,160.5" fill="rgba(194, 30, 134,0.20)" opacity="0" style="animation:s3-fill-in 1s ease-in-out 1.9s both"></polygon>
+                  <polygon data-stroke="" points="230,105.2 324.6,165.4 327,276 230,325 145.1,269 126.9,160.5" fill="none" stroke="#C21E86" stroke-width="2" stroke-linejoin="round" stroke-dasharray="664" stroke-dashoffset="664" style="animation:s3-draw 1.9s cubic-bezier(0.42,0,0.58,1) 0.5s both"></polygon>
+                  <circle data-vertex="" cx="230" cy="105.2" r="3.5" fill="#C21E86" opacity="0" style="animation:s3-vertex 0.5s cubic-bezier(0.42,0,0.58,1) 0.30s both"></circle>
+                  <circle data-vertex="" cx="324.6" cy="165.4" r="3.5" fill="#C21E86" opacity="0" style="animation:s3-vertex 0.5s cubic-bezier(0.42,0,0.58,1) 0.42s both"></circle>
+                  <circle data-vertex="" cx="327" cy="276" r="3.5" fill="#C21E86" opacity="0" style="animation:s3-vertex 0.5s cubic-bezier(0.42,0,0.58,1) 0.54s both"></circle>
+                  <circle data-vertex="" cx="230" cy="325" r="3.5" fill="#C21E86" opacity="0" style="animation:s3-vertex 0.5s cubic-bezier(0.42,0,0.58,1) 0.66s both"></circle>
+                  <circle data-vertex="" cx="145.1" cy="269" r="3.5" fill="#C21E86" opacity="0" style="animation:s3-vertex 0.5s cubic-bezier(0.42,0,0.58,1) 0.78s both"></circle>
+                  <circle data-vertex="" cx="126.9" cy="160.5" r="3.5" fill="#C21E86" opacity="0" style="animation:s3-vertex 0.5s cubic-bezier(0.42,0,0.58,1) 0.90s both"></circle>
+                </g>
+                <g data-livegroup="" opacity="0">
+                  <polygon data-live="" points="230,105.2 324.6,165.4 327,276 230,325 145.1,269 126.9,160.5" fill="rgba(34,197,94,0.10)" stroke="#22C55E" stroke-width="2.2" stroke-linejoin="round" stroke-dasharray="7 5"></polygon>
+                  <circle data-lv="" cx="230" cy="105.2" r="4" fill="#FFFFFF" stroke="#22C55E" stroke-width="2.2"></circle>
+                  <circle data-lv="" cx="324.6" cy="165.4" r="4" fill="#FFFFFF" stroke="#22C55E" stroke-width="2.2"></circle>
+                  <circle data-lv="" cx="327" cy="276" r="4" fill="#FFFFFF" stroke="#22C55E" stroke-width="2.2"></circle>
+                  <circle data-lv="" cx="230" cy="325" r="4" fill="#FFFFFF" stroke="#22C55E" stroke-width="2.2"></circle>
+                  <circle data-lv="" cx="145.1" cy="269" r="4" fill="#FFFFFF" stroke="#22C55E" stroke-width="2.2"></circle>
+                  <circle data-lv="" cx="126.9" cy="160.5" r="4" fill="#FFFFFF" stroke="#22C55E" stroke-width="2.2"></circle>
+                </g>
+                <g font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#4A5567">
+                  <text x="230" y="66" text-anchor="middle">Typing rhythm</text>
+                  <text x="358" y="141" text-anchor="start">Touch naturalness</text>
+                  <text x="358" y="301" text-anchor="start">Hold / tilt</text>
+                  <text x="230" y="380" text-anchor="middle">Swipe cadence</text>
+                  <text x="102" y="301" text-anchor="end">Hesitation</text>
+                  <text x="102" y="141" text-anchor="end">Session consistency</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+
+          <div data-readout="" style="display:flex;flex-direction:column;gap:9px;padding:12px 14px;border-radius:14px;background:#FFFFFF;border:1px solid rgba(10,22,40,0.07)">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#94A3B8">Deviation from baseline</span>
+              <span data-devlabel="" style="font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:700;color:#EF4444">High</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="flex:1;height:6px;border-radius:999px;background:rgba(10,22,40,0.07);overflow:hidden">
+                <div data-devbar="" style="width:84%;height:100%;border-radius:999px;background:#EF4444"></div>
+              </div>
+              <span data-sigma="" style="font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;color:#4A5567;font-variant-numeric:tabular-nums">3.4σ</span>
+            </div>
+          </div>
+
+          <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;position:relative">
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#94A3B8">Flags</span>
+            <div data-flagwait="" style="opacity:0;position:absolute;left:0;top:26px;display:flex;align-items:center;gap:10px;padding:10px 2px;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#94A3B8">
+              <span data-dot-pulse="" style="width:6px;height:6px;border-radius:50%;background:#94A3B8;animation:s3-dot 1.8s ease-in-out infinite"></span>Monitoring this session · no flags yet
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div data-flag="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:12px;background:#FFFFFF;border:1px solid rgba(10,22,40,0.07)">
+                <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,0.14);flex:0 0 auto"></span>
+                <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Typing rhythm mismatch vs baseline</span>
+                <span style="flex:0 0 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;font-weight:600;color:#EF4444;background:rgba(239,68,68,0.08);border-radius:6px;padding:3px 7px">BEHAVIOR_TYPING_DRIFT</span>
+              </div>
+              <div data-flag="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:12px;background:#FFFFFF;border:1px solid rgba(10,22,40,0.07)">
+                <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,0.14);flex:0 0 auto"></span>
+                <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Hold / motion differs from persona</span>
+                <span style="flex:0 0 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;font-weight:600;color:#EF4444;background:rgba(239,68,68,0.08);border-radius:6px;padding:3px 7px">BEHAVIOR_MOTION_DEVIATION</span>
+              </div>
+              <div data-flag="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:12px;background:#FFFFFF;border:1px solid rgba(10,22,40,0.07)">
+                <span style="width:8px;height:8px;border-radius:50%;background:#F59E0B;box-shadow:0 0 0 3px rgba(245,158,11,0.14);flex:0 0 auto"></span>
+                <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Hesitation spike — unfamiliar navigation</span>
+                <span style="flex:0 0 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;font-weight:600;color:#F59E0B;background:rgba(245,158,11,0.10);border-radius:6px;padding:3px 7px">BEHAVIOR_HESITATION</span>
+              </div>
+              <div data-flag="" style="opacity:0;display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:12px;background:#FFFFFF;border:1px solid rgba(10,22,40,0.07)">
+                <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,0.14);flex:0 0 auto"></span>
+                <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#4A5567">Sustained deviation across the session (CUSUM alarm)</span>
+                <span style="flex:0 0 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;font-weight:600;color:#EF4444;background:rgba(239,68,68,0.08);border-radius:6px;padding:3px 7px">BEHAVIOR_SEQUENTIAL_ALARM</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:9px;padding-top:14px;border-top:1px solid rgba(10,22,40,0.07)">
+            <span data-verdict="" style="opacity:0;display:flex;align-items:center;gap:9px;align-self:flex-start;padding:7px 15px;border-radius:999px;background:rgba(239,68,68,0.10);border:1px solid rgba(239,68,68,0.32);font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#EF4444">
+              <span style="width:7px;height:7px;border-radius:50%;background:#EF4444"></span>Behaviour doesn't match → Block
+            </span>
+            <span data-subline="" style="opacity:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#6B7688;text-wrap:pretty">Credentials were correct. The person wasn't — likely account takeover.</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:700}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this.fit = () => {
+      const el = this.node;
+      if (!el || !el.parentElement) return;
+      const host = el.parentElement;
+      const cs = getComputedStyle(host);
+      const availW = host.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const s = Math.min(1, availW / 1020);
+      el.style.transform = 'scale(' + s + ')';
+      el.style.margin = (-(700 * (1 - s)) / 2) + 'px ' + (-(1020 * (1 - s)) / 2) + 'px';
+    };
+    this.ro = new ResizeObserver(() => this.fit());
+    if (this.node && this.node.parentElement) this.ro.observe(this.node.parentElement);
+    this.fit();
+    this.boot();
+  }
+
+  boot() {
+    const n = this.node;
+    if (!n || this.booted) return;
+    this.booted = true;
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const U = [[0,-1],[0.86603,-0.5],[0.86603,0.5],[0,1],[-0.86603,0.5],[-0.86603,-0.5]];
+    const CX = 230, CY = 220, R = 140, C = 339.3;
+    const FROM = [0.82,0.78,0.80,0.75,0.70,0.85];
+    const TO   = [0.34,0.76,0.38,0.74,0.95,0.80];
+    const GREEN = [34,197,94], AMBER = [245,158,11], RED = [239,68,68];
+    const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+    const ramp = p => p < 0.5 ? mix(GREEN, AMBER, p / 0.5) : mix(AMBER, RED, (p - 0.5) / 0.5);
+    const rgb = (c, a) => a == null ? 'rgb(' + c.join(',') + ')' : 'rgba(' + c.join(',') + ',' + a + ')';
+    const ease = p => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
+    const g = n.querySelector('[data-livegroup]');
+    const poly = n.querySelector('[data-live]');
+    const verts = Array.from(n.querySelectorAll('[data-lv]'));
+    const gauge = n.querySelector('[data-gauge]');
+    const gnum = n.querySelector('[data-gnum]');
+    const gden = n.querySelector('[data-gden]');
+    const gpill = n.querySelector('[data-gpill]');
+    const gbar = n.querySelector('[data-gbar]');
+    const devbar = n.querySelector('[data-devbar]');
+    const devlabel = n.querySelector('[data-devlabel]');
+    const sigma = n.querySelector('[data-sigma]');
+
+    const paint = p => {
+      const col = ramp(p), cs = rgb(col);
+      const pts = FROM.map((f, i) => {
+        const r = (f + (TO[i] - f) * p) * R;
+        return (CX + U[i][0] * r).toFixed(1) + ',' + (CY + U[i][1] * r).toFixed(1);
+      });
+      if (poly) {
+        poly.setAttribute('points', pts.join(' '));
+        poly.setAttribute('stroke', cs);
+        poly.setAttribute('fill', rgb(col, (0.10 + 0.02 * p).toFixed(3)));
+      }
+      verts.forEach((v, i) => {
+        const c = pts[i].split(',');
+        v.setAttribute('cx', c[0]); v.setAttribute('cy', c[1]); v.setAttribute('stroke', cs);
+      });
+      const val = 8 + 64 * p;
+      if (gauge) { gauge.setAttribute('stroke', cs); gauge.setAttribute('stroke-dasharray', (val / 100 * C).toFixed(1) + ' ' + C); }
+      if (gnum) { gnum.textContent = String(Math.round(val)); gnum.style.color = cs; }
+      if (gden) gden.style.color = cs;
+      if (gbar) { gbar.style.width = val.toFixed(1) + '%'; gbar.style.background = cs; }
+      if (gpill) { gpill.style.background = cs; gpill.textContent = p < 0.4 ? 'LOW' : (p < 0.75 ? 'ELEVATED' : 'HIGH'); }
+      const dev = 6 + 78 * p;
+      if (devbar) { devbar.style.width = dev.toFixed(1) + '%'; devbar.style.background = cs; }
+      if (devlabel) { devlabel.style.color = cs; devlabel.textContent = p < 0.4 ? 'Low' : (p < 0.75 ? 'Moderate' : 'High'); }
+      if (sigma) sigma.textContent = (0.2 + 3.2 * p).toFixed(1) + '\u03c3';
+    };
+
+    const flags = Array.from(n.querySelectorAll('[data-flag]'));
+    const verdict = n.querySelector('[data-verdict]');
+    const subline = n.querySelector('[data-subline]');
+    const wait = n.querySelector('[data-flagwait]');
+    const readouts = Array.from(n.querySelectorAll('[data-readout]'));
+
+    if (still) {
+      paint(1);
+      if (g) g.style.opacity = '1';
+      [].concat(flags, [verdict, subline]).filter(Boolean).forEach(el => { el.style.opacity = '1'; });
+      return;
+    }
+
+    const FADE = 800;
+    if (wait) wait.style.transition = 'opacity 0.5s cubic-bezier(0.42,0,0.58,1)';
+    readouts.forEach(el => {
+      el.style.transition = 'opacity ' + (FADE / 1000) + 's cubic-bezier(0.42,0,0.58,1)';
+      el.style.opacity = '0';
+    });
+    if (g) g.style.transition = 'opacity ' + (FADE / 1000) + 's cubic-bezier(0.42,0,0.58,1)';
+    [].concat(flags, [verdict, subline]).filter(Boolean).forEach(el => {
+      el.style.transition = 'opacity ' + (FADE / 1000) + 's cubic-bezier(0.42,0,0.58,1)';
+    });
+
+    this.timers = [];
+    const later = (fn, ms) => this.timers.push(setTimeout(fn, ms));
+
+    const cycle = () => {
+      paint(0);
+      readouts.forEach(el => { el.style.opacity = '0'; });
+      [].concat(flags, [verdict, subline]).filter(Boolean).forEach(el => {
+        el.style.animation = 'none'; el.style.opacity = '0'; el.style.transform = 'none';
+      });
+      later(() => {
+        if (g) g.style.opacity = '1';
+        if (wait) wait.style.opacity = '1';
+        readouts.forEach(el => { el.style.opacity = '1'; });
+      }, 300);
+      later(() => {
+        if (this.tween) clearInterval(this.tween);
+        const t0 = Date.now(), DUR = 3600;
+        const step = () => {
+          const p = Math.min(1, (Date.now() - t0) / DUR);
+          paint(ease(p));
+          if (p >= 1) { clearInterval(this.tween); this.tween = null; }
+        };
+        this.tween = setInterval(step, 40);
+        step();
+      }, 1300);
+      later(() => {
+        if (wait) wait.style.opacity = '0';
+        flags.forEach((el, i) => {
+          el.style.animation = 's3-flag-in 0.55s cubic-bezier(0.42,0,0.58,1) ' + (i * 0.45).toFixed(2) + 's both';
+        });
+        const after = flags.length * 0.45 + 0.4;
+        if (verdict) verdict.style.animation = 's3-verdict-in 0.9s cubic-bezier(0.42,0,0.58,1) ' + after.toFixed(2) + 's both';
+        if (subline) subline.style.animation = 's3-sub-in 0.7s cubic-bezier(0.42,0,0.58,1) ' + (after + 0.7).toFixed(2) + 's both';
+      }, 2600);
+      later(() => {
+        if (g) g.style.opacity = '0';
+        if (wait) wait.style.opacity = '0';
+        readouts.forEach(el => { el.style.opacity = '0'; });
+        [].concat(flags, [verdict, subline]).filter(Boolean).forEach(el => {
+          el.style.animation = 'none'; el.style.opacity = '0';
+        });
+      }, 10600);
+      later(() => { this.timers = []; cycle(); }, 10600 + FADE + 500);
+    };
+
+    paint(0);
+    later(cycle, 1600);
+  }
+
+  componentWillUnmount() {
+    if (this.ro) this.ro.disconnect();
+    (this.timers || []).forEach(clearTimeout);
+    if (this.tween) clearInterval(this.tween);
+  }
+
+  renderVals() {
+    return { canvasRef: el => { this.node = el; if (this.fit) this.fit(); } };
+  }
+}
+
+</script>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     The standalone's viewing harness: its padding is white space around the
+     artwork, and its caption is the preview's own title. */
+  .stage { padding: 0; max-width: none; }
+  .stage > .cap { display: none; }
+
+  html,
+  body { background: transparent; }
+</style>

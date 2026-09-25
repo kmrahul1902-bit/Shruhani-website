@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hero animation — Continuous monitoring (Cortex)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#FEF8FB;font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;color:#0A1628;overflow-x:hidden}
+  .stage{padding:64px 0 96px;display:flex;flex-direction:column;align-items:center}
+  .stage>.cap{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A94A6;margin-bottom:40px}
+  a{color:#C21E86}a:hover{color:#C21E86}
+</style>
+</head>
+<body>
+<div class="stage">
+  <span class="cap">Cortex hero · post-approval monitoring timeline</span>
+<!-- RIGHT: continuous-monitoring animation -->
+      <style>
+      #cxaHost { width: 100%; display: flex; justify-content: center; overflow: visible; }
+      #cxaRow {
+        width: 100%; max-width: 1620px; zoom: 0.7; box-sizing: border-box;
+        padding: 150px 0 0 96px; position: relative; text-align: left;
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(48px,6vw,120px);
+      }
+      #cxaRow .cxa-lz { flex: 0 1 auto; width: 440px; max-width: 100%; position: relative; z-index: 1; animation: cxaZoneIn 1.5s cubic-bezier(.42,0,.58,1) both; }
+      #cxaRow .cxa-card {
+        width: 100%; min-height: 566px; position: relative; background: #fff;
+        border: 1px solid rgba(10,22,40,.08); border-radius: 12px; box-shadow: 0 22px 52px rgba(10,22,40,.09);
+        box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      }
+      #cxaRow .cxa-topbar { position: absolute; left: 0; right: 0; top: 0; height: 3px; }
+      #cxaRow .cxa-head { padding: 64px 30px 22px; display: flex; flex-direction: column; gap: 20px; }
+      #cxaRow .cxa-headrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-left: 104px; }
+      #cxaRow .cxa-lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #8A94A6; }
+      #cxaRow .cxa-tier { display: inline-flex; align-items: center; gap: 7px; border-radius: 999px; padding: 5px 13px; font-size: 12px; font-weight: 700; }
+      #cxaRow .cxa-tier i { width: 6px; height: 6px; border-radius: 50%; }
+      #cxaRow .cxa-idrow { display: flex; align-items: center; gap: 16px; }
+      #cxaRow .cxa-tile { position: relative; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 14px; }
+      #cxaRow .cxa-idcol { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+      #cxaRow .cxa-id { font-size: 29px; font-weight: 800; letter-spacing: -.015em; color: #0A1628; line-height: 1.05; }
+      #cxaRow .cxa-dev { font-family: 'Inter',system-ui,sans-serif; font-size: 13.5px; color: #6B7688; }
+      #cxaRow .cxa-fields { padding: 0 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      #cxaRow .cxa-fld { display: flex; flex-direction: column; gap: 5px; background: #f9fafb; border: 1px solid rgba(10,22,40,.07); border-radius: 10px; padding: 13px 14px; }
+      #cxaRow .cxa-fld > span:first-child { display: flex; align-items: center; gap: 6px; font-family: 'Inter',system-ui,sans-serif; font-size: 11.5px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #8A94A6; }
+      #cxaRow .cxa-fld b { font-family: 'Inter',system-ui,sans-serif; font-size: 17px; font-weight: 600; color: #0A1628; }
+      #cxaRow .cxa-foot { margin: 24px 0 0; padding: 24px 30px 28px; border-top: 1px solid rgba(10,22,40,.07); display: flex; align-items: center; gap: 22px; }
+      #cxaRow .cxa-gauge { position: relative; width: 104px; height: 104px; flex: 0 0 auto; }
+      #cxaRow .cxa-gauge .n { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-family: 'Inter',system-ui,sans-serif; }
+      #cxaRow .cxa-gauge .n b { font-size: 26px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+      #cxaRow .cxa-gauge .n i { font-size: 11px; font-weight: 500; opacity: .65; font-style: normal; }
+      #cxaRow .cxa-fcol { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+      #cxaRow .cxa-fcol .k { font-family: 'Inter',system-ui,sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8A94A6; }
+      #cxaRow .cxa-fcol .big { font-family: 'Inter',system-ui,sans-serif; font-size: 46px; font-weight: 600; line-height: 1; letter-spacing: -.025em; }
+      #cxaRow .cxa-segs { display: flex; align-items: center; gap: 9px; }
+      #cxaRow .cxa-segs > span:first-child { display: flex; gap: 3px; }
+      #cxaRow .cxa-segs i { width: 4px; height: 11px; border-radius: 2px; transition: background .5s ease; }
+      #cxaRow .cxa-segs em { font-family: 'Inter',system-ui,sans-serif; font-size: 13.5px; color: #6B7688; font-style: normal; }
+
+      #cxaRow .cxa-orb { position: absolute; left: -112px; top: -166px; width: 300px; height: 300px; }
+      #cxaRow .cxa-halo { position: absolute; left: 50%; top: 50%; width: 216px; height: 216px; border-radius: 50%; border: 1.5px solid rgba(229, 54, 163,.28); opacity: 0; transform: translate(-50%,-50%); animation: cxaHalo 10s cubic-bezier(.42,0,.58,1) infinite; }
+      #cxaRow .cxa-photo { position: absolute; left: 150px; top: 150px; transform: translate(-50%,-50%); width: 126px; height: 126px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 12px 32px rgba(10,22,40,.14); background: #eef1f5; overflow: hidden; }
+      #cxaRow .cxa-photo i { position: absolute; inset: 0; border-radius: 50%; background-size: cover; background-repeat: no-repeat; }
+      #cxaRow .cxa-scan { position: absolute; left: 50%; top: 50%; width: 132px; height: 132px; border-radius: 50%; pointer-events: none; transform: translate(-50%,-50%); transition: background .7s ease; -webkit-mask: radial-gradient(circle at center,transparent 0 63px,#000 63.5px); mask: radial-gradient(circle at center,transparent 0 63px,#000 63.5px); animation: cxaScanSpin 7s linear .5s infinite; }
+
+      #cxaRow .cxa-panel {
+        position: relative; z-index: 1; flex: 0 1 auto; width: 940px; max-width: 100%; min-height: 724px;
+        background: #fff; border: 1px solid rgba(10,22,40,.08); border-radius: 12px; box-shadow: 0 22px 52px rgba(10,22,40,.09);
+        padding: 28px 34px 30px; box-sizing: border-box; display: flex; flex-direction: column; gap: 26px;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        animation: cxaZoneIn 1.5s cubic-bezier(.42,0,.58,1) .12s both;
+      }
+      #cxaRow .cxa-ptop { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+      #cxaRow .cxa-ptop h3 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.01em; color: #0A1628; }
+      #cxaRow .cxa-ptop p { margin: 5px 0 0; font-family: 'Inter',system-ui,sans-serif; font-size: 14px; color: #6B7688; }
+      #cxaRow .cxa-live { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.24); border-radius: 999px; padding: 6px 13px; flex: 0 0 auto; white-space: nowrap; font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 600; color: #16A34A; }
+      #cxaRow .cxa-live i { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,.16); animation: cxaLive 2.6s cubic-bezier(.42,0,.58,1) infinite; }
+      #cxaRow .cxa-tl { position: relative; padding: 6px 0 4px; }
+      #cxaRow .cxa-tlbase { position: absolute; left: 8.333%; right: 8.333%; top: 80px; height: 2px; background: rgba(10,22,40,.09); }
+      #cxaRow .cxa-link { position: absolute; top: 80px; height: 2px; width: 16.667%; transform-origin: 0 50%; }
+      #cxaRow .cxa-nodes { position: relative; display: grid; grid-template-columns: repeat(6,1fr); align-items: start; }
+      #cxaRow .cxa-node { display: flex; flex-direction: column; align-items: center; }
+      #cxaRow .cxa-node .top { display: flex; flex-direction: column; align-items: center; gap: 3px; height: 58px; justify-content: flex-end; text-align: center; }
+      #cxaRow .cxa-node .dt { font-family: 'Inter',system-ui,sans-serif; font-size: 12.5px; color: #8A94A6; }
+      #cxaRow .cxa-node .lb { font-family: 'Inter',system-ui,sans-serif; font-weight: 600; line-height: 1.25; }
+      #cxaRow .cxa-node .dotwrap { height: 32px; display: flex; align-items: center; justify-content: center; }
+      #cxaRow .cxa-node .dot { border-radius: 50%; border-style: solid; border-color: #fff; }
+      #cxaRow .cxa-node .bot { display: flex; flex-direction: column; align-items: center; gap: 7px; min-height: 62px; }
+      #cxaRow .cxa-node .sc { font-family: 'Inter',system-ui,sans-serif; font-weight: 600; }
+      #cxaRow .cxa-node .tag { display: inline-flex; align-items: center; text-align: center; color: #fff; border-radius: 999px; padding: 3px 11px; font-size: 11px; font-weight: 700; letter-spacing: .06em; line-height: 1.35; text-transform: uppercase; }
+      #cxaRow .cxa-graphslot { min-height: 104px; display: flex; flex-direction: column; }
+      #cxaRow .cxa-graph { flex: 1 1 auto; display: flex; align-items: center; gap: 20px; background: #f9fafb; border: 1px solid rgba(10,22,40,.07); border-radius: 12px; padding: 14px 18px; }
+      #cxaRow .cxa-groups { display: flex; flex-direction: column; gap: 14px; border-top: 1px solid rgba(10,22,40,.07); padding-top: 22px; min-height: 152px; box-sizing: border-box; }
+      #cxaRow .cxa-grow { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 16px; min-height: 34px; }
+      #cxaRow .cxa-grow > span:first-child { font-family: 'Inter',system-ui,sans-serif; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+      #cxaRow .cxa-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      #cxaRow .cxa-pill { display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Inter',system-ui,sans-serif; }
+      #cxaRow .cxa-sum { display: flex; align-items: flex-start; gap: 12px; background: #FEF8FB; border: 1px solid rgba(229, 54, 163,.14); border-radius: 12px; padding: 16px 18px; min-height: 80px; box-sizing: border-box; }
+      #cxaRow .cxa-sum > span:first-child { width: 3px; align-self: stretch; border-radius: 2px; background: #E536A3; flex: 0 0 auto; }
+      #cxaRow .cxa-sum p { margin: 0; font-family: 'Inter',system-ui,sans-serif; font-size: 15px; line-height: 1.55; color: #3E4A5C; text-wrap: pretty; }
+
+      @keyframes cxaZoneIn { from { opacity: 0; transform: scale(.96) } to { opacity: 1; transform: scale(1) } }
+      @keyframes cxaHalo { 0% { transform: translate(-50%,-50%) scale(.96); opacity: 0 } 18% { opacity: 1 } 55% { opacity: .7 } 100% { transform: translate(-50%,-50%) scale(1.34); opacity: 0 } }
+      @keyframes cxaScanSpin { from { transform: translate(-50%,-50%) rotate(0) } to { transform: translate(-50%,-50%) rotate(360deg) } }
+      @keyframes cxaLive { 0%,100% { transform: scale(1); box-shadow: 0 0 0 3px rgba(34,197,94,.16) } 50% { transform: scale(1.22); box-shadow: 0 0 0 6px rgba(34,197,94,.1) } }
+      @keyframes cxaFieldIn { from { opacity: 0; transform: translateY(3px) } to { opacity: 1; transform: translateY(0) } }
+      @keyframes cxaPhotoSwap { 0% { opacity: 0; transform: scale(1.07) } 100% { opacity: 1; transform: scale(1) } }
+      @keyframes cxaNodeIn { from { opacity: 0; transform: scale(.96) } to { opacity: 1; transform: scale(1) } }
+      @keyframes cxaLineDraw { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+      @keyframes cxaPillIn { from { opacity: 0; transform: scale(.97) } to { opacity: 1; transform: scale(1) } }
+      @keyframes cxaTagPop { from { opacity: 0; transform: scale(.96) } to { opacity: 1; transform: scale(1) } }
+      @keyframes cxaRowIn { from { opacity: 0; transform: scale(.98) } to { opacity: 1; transform: scale(1) } }
+      @keyframes cxaRingPulse {
+        0%,100% { box-shadow: 0 0 0 2px rgba(239,68,68,.45), 0 0 0 9px rgba(239,68,68,.10) }
+        50% { box-shadow: 0 0 0 2px rgba(239,68,68,.45), 0 0 0 15px rgba(239,68,68,.02) }
+      }
+      #cxaRow .cxa-fadein { animation: cxaFieldIn .5s cubic-bezier(.42,0,.58,1) both; }
+      @media (max-width: 1180px) { #cxaRow { zoom: .56; padding-left: 40px; } }
+      @media (prefers-reduced-motion: reduce) {
+        #cxaHost * { animation: none !important; opacity: 1 !important; transform: none !important; }
+      }
+      </style>
+
+      <div id="cxaHost">
+        <div id="cxaRow">
+          <div class="cxa-lz">
+            <div class="cxa-card" data-node="card">
+              <span class="cxa-topbar" id="cxaTopbar"></span>
+              <div class="cxa-head" id="cxaHead">
+                <div class="cxa-headrow">
+                  <span class="cxa-lbl">Account</span>
+                  <span class="cxa-tier" id="cxaTier"><i></i><b>Low</b></span>
+                </div>
+                <div class="cxa-idrow">
+                  <span class="cxa-tile" id="cxaTile">
+                    <svg width="26" height="26" viewBox="0 0 24 24" id="cxaTileIc" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 3.5A2.5 2.5 0 018.5 1h7A2.5 2.5 0 0118 3.5v17A2.5 2.5 0 0115.5 23h-7A2.5 2.5 0 016 20.5zM10 19.4h4a.9.9 0 010 1.8h-4a.9.9 0 010-1.8z"></path></svg>
+                  </span>
+                  <div class="cxa-idcol">
+                    <span class="cxa-id cxa-fadein" id="cxaId" style="animation-delay:.05s">user2173</span>
+                    <span class="cxa-dev cxa-fadein" id="cxaDev" style="animation-delay:.12s">device</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cxa-fields">
+                <div class="cxa-fld"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8A94A6" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.6v4.7l3.2 2"></path></svg>First seen</span><b class="cxa-fadein" id="cxaFirst" style="animation-delay:.19s">—</b></div>
+                <div class="cxa-fld"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8A94A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.5h17v15h-17z"></path><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Last seen</span><b class="cxa-fadein" id="cxaLast" style="animation-delay:.25s">—</b></div>
+                <div class="cxa-fld"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="#8A94A6"><path d="M3 13.5h2.6V19H3zm4.7-4.8h2.6V19H7.7zm4.7-4.4H15V19h-2.6zm4.7 6.4h2.6V19h-2.6z"></path></svg>Activities</span><b class="cxa-fadein" id="cxaActs" style="animation-delay:.31s">—</b></div>
+                <div class="cxa-fld"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="#8A94A6"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.8a7.7 7.7 0 00-7.7 7.7c0 5.7 6.7 11.8 7 12.1a1 1 0 001.4 0c.3-.3 7-6.4 7-12.1A7.7 7.7 0 0012 1.8zm0 10.2a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"></path></svg>Location</span><b class="cxa-fadein" id="cxaCity" style="animation-delay:.37s">—</b></div>
+              </div>
+              <div class="cxa-foot" id="cxaFootWash">
+                <div class="cxa-gauge">
+                  <svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true">
+                    <circle cx="52" cy="52" r="46" fill="none" stroke="#0A1628" stroke-opacity=".08" stroke-width="7"></circle>
+                    <circle id="cxaRing" cx="52" cy="52" r="46" fill="none" stroke="#E536A3" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 289" transform="rotate(-90 52 52)"></circle>
+                  </svg>
+                  <div class="n"><b id="cxaScoreInt">0</b><i>/ 100</i></div>
+                </div>
+                <div class="cxa-fcol">
+                  <span class="k">Current risk</span>
+                  <span class="big" id="cxaScoreBig">0.00</span>
+                  <span class="cxa-segs"><span id="cxaSegs"></span><em id="cxaSigLabel">No signals active</em></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cxa-orb" aria-hidden="true">
+              <span class="cxa-halo"></span>
+              <span class="cxa-halo" style="animation-delay:2.5s"></span>
+              <span class="cxa-halo" style="animation-delay:5s"></span>
+              <span class="cxa-halo" style="animation-delay:7.5s"></span>
+              <svg width="300" height="300" viewBox="0 0 300 300" style="position:absolute;inset:0;pointer-events:none">
+                <defs>
+                  <linearGradient id="cxaArc" x1="0.15" y1="0" x2="0.85" y2="1">
+                    <stop offset="0%" stop-color="#E536A3" id="cxaArc1" style="transition:stop-color .7s ease"></stop>
+                    <stop offset="45%" stop-color="#E536A3" id="cxaArc2" style="transition:stop-color .7s ease"></stop>
+                    <stop offset="78%" stop-color="#E536A3" id="cxaArc3" style="transition:stop-color .7s ease"></stop>
+                    <stop offset="100%" stop-color="#E536A3" id="cxaArc4" style="transition:stop-color .7s ease"></stop>
+                  </linearGradient>
+                </defs>
+                <circle cx="150" cy="150" r="114" fill="none" stroke="#0A1628" stroke-opacity=".14" stroke-width="1"></circle>
+                <circle cx="150" cy="150" r="99" fill="none" stroke="#0A1628" stroke-opacity=".14" stroke-width="1"></circle>
+                <circle cx="150" cy="150" r="106" fill="none" stroke="url(#cxaArc)" stroke-width="4.5" stroke-opacity=".45"></circle>
+              </svg>
+              <span class="cxa-photo"><i id="cxaPhoto"></i></span>
+              <span class="cxa-scan" id="cxaScan"></span>
+            </div>
+          </div>
+
+          <div class="cxa-panel" data-node="panel">
+            <div class="cxa-ptop">
+              <div>
+                <h3>Continuous monitoring</h3>
+                <p>Every session — logins, activity and transactions</p>
+              </div>
+              <span class="cxa-live"><i></i>Real-time</span>
+            </div>
+            <div class="cxa-tl">
+              <div class="cxa-tlbase"></div>
+              <div id="cxaLinks"></div>
+              <div class="cxa-nodes" id="cxaNodes"></div>
+            </div>
+            <div class="cxa-graphslot" id="cxaGraphSlot"></div>
+            <div class="cxa-groups" id="cxaGroups"></div>
+            <div class="cxa-sum"><span></span><p id="cxaSum"></p></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function () {
+        var LOW = '#E536A3', LOW2 = '#E536A3';
+        var TONES = {
+          cyan:   { dot: LOW,       text: '#E536A3', label: '#0A1628', rgb: '8,145,178',  size: '14px', ring: '3px',   score: '16px' },
+          amber:  { dot: '#F59E0B', text: '#B45309', label: '#B45309', rgb: '245,158,11', size: '18px', ring: '3px',   score: '17px' },
+          orange: { dot: '#EA580C', text: '#C2410C', label: '#C2410C', rgb: '234,88,12',  size: '21px', ring: '3.5px', score: '18px' },
+          red:    { dot: '#EF4444', text: '#EF4444', label: '#0A1628', rgb: '239,68,68',  size: '26px', ring: '4px',   score: '20px' }
+        };
+        var PILL = {
+          red:   { bg: 'rgba(239,68,68,.09)',  border: 'rgba(239,68,68,.26)',  color: '#DC2626', pad: '6px 14px', size: '14px', weight: '600' },
+          amber: { bg: 'rgba(245,158,11,.10)', border: 'rgba(245,158,11,.30)', color: '#B45309', pad: '6px 14px', size: '14px', weight: '600' },
+          cyan:  { bg: 'rgba(229, 54, 163,.07)',  border: 'rgba(229, 54, 163,.22)',  color: '#E536A3', pad: '6px 14px', size: '14px', weight: '600' },
+          muted: { bg: 'rgba(10,22,40,.04)',   border: 'rgba(10,22,40,.10)',   color: '#6B7688', pad: '5px 12px', size: '13px', weight: '500' }
+        };
+        var GRAPH = '<svg width="300" height="76" viewBox="0 0 300 76" aria-hidden="true" style="flex:0 0 auto">' +
+          '<defs><radialGradient id="cxaHubGlow" cx=".5" cy=".5" r=".5"><stop offset="0%" stop-color="#EA580C" stop-opacity=".15"></stop><stop offset="100%" stop-color="#EA580C" stop-opacity="0"></stop></radialGradient></defs>' +
+          '<circle cx="34" cy="38" r="36" fill="url(#cxaHubGlow)"></circle>' +
+          '<g fill="none" stroke="#EA580C" stroke-opacity=".42" stroke-width="1.4"><path d="M52 38 C 82 38, 86 10, 116 10"></path><path d="M52 38 C 82 38, 86 29, 116 29"></path><path d="M52 38 C 82 38, 86 47, 116 47"></path><path d="M52 38 C 82 38, 86 66, 116 66"></path></g>' +
+          '<rect x="20" y="19" width="28" height="38" rx="7" fill="#fff" stroke="#EA580C" stroke-width="1.7"></rect>' +
+          '<rect x="25.5" y="24.5" width="17" height="21" rx="3" fill="#EA580C" fill-opacity=".16"></rect>' +
+          '<circle cx="34" cy="51.5" r="2" fill="#EA580C"></circle>' +
+          '<g>' + [10,29,47,66].map(function(y){ return '<circle cx="125" cy="' + y + '" r="8.5" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"></circle>'; }).join('') + '</g>' +
+          '<g fill="#EA580C">' + [10,29,47,66].map(function(y){ return '<circle cx="125" cy="' + (y-2.4) + '" r="2.3"></circle><path d="M121 ' + (y+4.9) + 'a4.2 4.2 0 018 0z"></path>'; }).join('') + '</g>' +
+          '<g font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#6B7688"><text x="141" y="14">user5541</text><text x="141" y="33">user5539</text><text x="141" y="51">user5602</text><text x="141" y="70">user5617</text></g>' +
+          '<g font-family="Inter,system-ui,sans-serif" font-size="11.5" font-weight="600" fill="#C2410C"><text x="210" y="14">\u20b91.8k in</text><text x="210" y="33">\u20b9500 in</text><text x="210" y="51">\u20b92k in</text><text x="210" y="70">\u20b91.1k in</text></g>' +
+          '</svg>' +
+          '<div style="display:flex;flex-direction:column;gap:5px;padding-left:4px;border-left:2px solid rgba(234,88,12,.22)">' +
+          '<span style="font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;color:#C2410C;padding-left:12px">One device fingerprint, four accounts</span>' +
+          '<span style="font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#6B7688;padding-left:12px">All credits landed inside the same hour</span></div>';
+
+        var CASES = [
+          { photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/cx_face_illus_1_46a15bc4c2.png', pos: '50% 50%', id: 'user2173', device: 'samsung SM-X706B \u00b7 Android 12',
+            city: 'Atlanta', first: '22 Jul', last: '30 Jul', acts: 11,
+            nodeAt: [1.4,2.5,3.6,4.7,6.0,7.3], groupAt: [5.0,6.3,8.0], tagAt: 7.7, summaryAt: 8.3, end: 11.0, graph: false,
+            nodes: [['22 Jul','Login',18,'cyan'],['24 Jul','Balance check',21,'cyan'],['27 Jul','Bill payment \u20b91.2k',24,'cyan'],['30 Jul','New device',58,'amber'],['30 Jul','New beneficiary',74,'orange'],['30 Jul','Transfer \u20b92.4L',95,'red','Blocked','#EF4444',true]],
+            scores: [18,21,24,58,74,95.36], signals: [0,0,0,2,5,9],
+            groups: [['Device',[['New device','red'],['Screen mirror','red']]],['Behaviour',[['New beneficiary','red'],['Behavioural drift','red'],['Velocity spike','amber']]],['Network',[['VPN','muted'],['Proxy','muted']]]],
+            summary: 'Days of normal activity, then a new device, a new beneficiary, and a \u20b92.4L transfer \u2014 risk climbed 18 to 95 before any funds moved. Held for review.' },
+          { photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/cx_face_illus_2_35f00f041b.png', pos: '50% 50%', id: 'user5541', device: 'Xiaomi 22120RN86G \u00b7 Android 13',
+            city: 'Hyderabad', first: '21 Jul', last: '30 Jul', acts: 14,
+            nodeAt: [0.7,1.5,2.3,3.2,4.1,5.0], groupAt: [3.5,5.4,6.2], tagAt: 5.6, summaryAt: 6.6, end: 9.5, graph: true, graphAt: 5.9,
+            nodes: [['22 Jul','Login',18,'cyan'],['24 Jul','Balance check',20,'cyan'],['26 Jul','Bill payment \u20b9900',23,'cyan'],['29 Jul','Credit \u20b91.8k in',44,'amber'],['29 Jul','Credit \u20b9500 in',58,'amber'],['30 Jul','Credit \u20b92k in',72,'orange','Watchlist','#D97706',false]],
+            scores: [18,20,23,44,58,71.64], signals: [0,0,0,1,2,4],
+            groups: [['Device',[['Shared fingerprint','amber']]],['Behaviour',[['Linked-account pattern','red'],['Inbound velocity','amber']]],['Network',[['VPN','muted'],['Proxy','muted']]]],
+            summary: 'Small inbound credits landed within the hour across four accounts sharing one device fingerprint. Nothing was transferred out \u2014 the account is on the watchlist.' },
+          { photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/cx_face_illus_3_3a762cc999.png', pos: '50% 50%', id: 'user8207', device: 'Pixel 7a \u00b7 Android 14',
+            city: 'Pune', first: '12 Jun', last: '30 Jul', acts: 26,
+            nodeAt: [0.7,1.5,2.3,3.2,4.1,5.0], groupAt: [3.5,5.4,6.2], tagAt: 5.6, summaryAt: 6.4, end: 9.3, graph: false,
+            nodes: [['22 Jul','Login 09:12',18,'cyan'],['24 Jul','Login 10:04',21,'cyan'],['26 Jul','Bill payment \u20b91.4k',24,'cyan'],['28 Jul','Login 02:40',43,'amber'],['29 Jul','6 transfers in 1 hr',61,'amber'],['30 Jul','Login 03:18',84,'orange','Step-up authentication','#D97706',false]],
+            scores: [18,21,24,43,61,84.2], signals: [0,0,0,1,3,4],
+            groups: [['Device',[['Same device \u00b7 trusted','cyan']]],['Behaviour',[['Session-time drift','red'],['Velocity spike','amber']]],['Network',[['VPN','muted'],['Proxy','muted']]]],
+            summary: 'No new device and no new payee \u2014 but login times and transfer velocity drifted well away from this account\u2019s baseline. Routed to step-up authentication.' }
+        ];
+
+        var CFG = { count: 18, spread: 24, curve: 37, bow: 66, width: 1.6, opacity: 45, dots: 3, speed: 1.5 };
+        var EASE = 'cubic-bezier(.42,0,.58,1)';
+        var NS = 'http://www.w3.org/2000/svg';
+        var row = document.getElementById('cxaRow');
+        if (!row) return;
+        var $ = function (id) { return document.getElementById(id); };
+        var idx = 0, score = 0, signals = 0, kf = [], t0 = 0, svg = null, curColor = LOW;
+
+        function rgba(hex, a) { var n = parseInt(hex.slice(1), 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; }
+        function el(t, at) { var e = document.createElementNS(NS, t); for (var k in at) e.setAttribute(k, at[k]); return e; }
+        var ease = function (x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; };
+        function pair(c) { return c === '#EF4444' ? '#F87171' : c === '#EA580C' ? '#FB923C' : c === '#F59E0B' ? '#FBBF24' : LOW2; }
+        function rgbOf(c) { return c === '#EF4444' ? '239,68,68' : c === '#EA580C' ? '234,88,12' : c === '#F59E0B' ? '245,158,11' : '8,145,178'; }
+
+        function measure() {
+          var rr = row.getBoundingClientRect(), k = rr.width / row.offsetWidth || 1, nodes = {};
+          row.querySelectorAll('[data-node]').forEach(function (n) {
+            var r = n.getBoundingClientRect();
+            nodes[n.getAttribute('data-node')] = {
+              cx: (r.left - rr.left) / k + r.width / (2 * k), cy: (r.top - rr.top) / k + r.height / (2 * k),
+              rx: r.width / (2 * k), ry: r.height / (2 * k)
+            };
+          });
+          return { nodes: nodes, w: row.offsetWidth, h: row.offsetHeight };
+        }
+        function edge(node, rad, inset) {
+          var cos = Math.cos(rad), sin = Math.sin(rad), t;
+          if (Math.abs(node.rx - node.ry) < 2) t = node.rx - inset;
+          else {
+            var ex = Math.abs(cos) > 1e-4 ? (node.rx - inset) / Math.abs(cos) : Infinity;
+            var ey = Math.abs(sin) > 1e-4 ? (node.ry - inset) / Math.abs(sin) : Infinity;
+            t = Math.min(ex, ey);
+          }
+          return [node.cx + cos * t, node.cy + sin * t];
+        }
+        function wide() {
+          var k = Array.prototype.slice.call(row.querySelectorAll('[data-node]'));
+          return k.length === 2 && Math.abs(k[0].getBoundingClientRect().top - k[1].getBoundingClientRect().top) < 300;
+        }
+        function drawStreams() {
+          if (svg) { svg.remove(); svg = null; }
+          if (!wide()) return;
+          var g = measure(), A = g.nodes.card, B = g.nodes.panel;
+          if (!A || !B) return;
+          var c1 = curColor, c2 = pair(curColor), D = Math.PI / 180;
+          var base = Math.atan2(B.cy - A.cy, B.cx - A.cx) / D, dist = Math.hypot(B.cx - A.cx, B.cy - A.cy) || 1;
+          var paths = [];
+          for (var i = 0; i < CFG.count; i++) {
+            var t = i / (CFG.count - 1) - 0.5;
+            var p1 = edge(A, (base + t * CFG.spread) * D, 3), p2 = edge(B, (base + 180 - t * CFG.spread * 0.42) * D, 3);
+            var x1 = p1[0], y1 = p1[1], x2 = p2[0], y2 = p2[1];
+            var k = (CFG.curve / 100) * 0.8 + 0.05, nx = -(y2 - y1) / dist, ny = (x2 - x1) / dist, bow = -t * 2 * CFG.bow;
+            paths.push('M' + x1.toFixed(1) + ' ' + y1.toFixed(1) +
+              ' C ' + (x1 + (x2 - x1) * k + nx * bow).toFixed(1) + ' ' + (y1 + (y2 - y1) * k + ny * bow).toFixed(1) +
+              ', ' + (x2 - (x2 - x1) * k + nx * bow).toFixed(1) + ' ' + (y2 - (y2 - y1) * k + ny * bow).toFixed(1) +
+              ', ' + x2.toFixed(1) + ' ' + y2.toFixed(1));
+          }
+          var op = CFG.opacity / 100;
+          svg = el('svg', { width: g.w, height: g.h, viewBox: '0 0 ' + g.w + ' ' + g.h, 'aria-hidden': 'true' });
+          svg.setAttribute('style', 'position:absolute;top:0;left:0;z-index:0;pointer-events:none;overflow:visible');
+          var defs = el('defs', {});
+          var f = el('filter', { id: 'cxaSoft', x: '-120%', y: '-120%', width: '340%', height: '340%' });
+          f.appendChild(el('feGaussianBlur', { stdDeviation: 2.6 }));
+          defs.appendChild(f);
+          var grad = el('linearGradient', { id: 'cxaG1', gradientUnits: 'userSpaceOnUse', x1: A.cx, y1: A.cy, x2: B.cx, y2: B.cy });
+          [['0%', c1, 0], ['14%', c1, op], ['55%', c2, op * 0.82], ['86%', c2, op * 0.35], ['100%', c2, 0]].forEach(function (s) {
+            grad.appendChild(el('stop', { offset: s[0], 'stop-color': s[1], 'stop-opacity': s[2] }));
+          });
+          defs.appendChild(grad);
+          svg.appendChild(defs);
+          var grp = el('g', {});
+          paths.forEach(function (d) { grp.appendChild(el('path', { d: d, fill: 'none', stroke: 'url(#cxaG1)', 'stroke-width': CFG.width, 'stroke-linecap': 'round' })); });
+          paths.forEach(function (d, i) {
+            for (var p = 0; p < CFG.dots; p++) {
+              var dur = (CFG.speed + i * 0.3 + p * 0.4).toFixed(2) + 's';
+              var begin = (0.5 + i * 0.4 + p * (CFG.speed / CFG.dots)).toFixed(2) + 's';
+              var col = p % 2 ? c2 : c1, dg = el('g', {});
+              dg.appendChild(el('animateMotion', { dur: dur, begin: begin, repeatCount: 'indefinite', path: d, calcMode: 'spline', keyPoints: '0;1', keyTimes: '0;1', keySplines: '0.42 0 0.58 1' }));
+              [[Math.max(4, CFG.width * 3.4), '0;0.18;0.16;0', true], [Math.max(1.6, CFG.width * 1.5), '0;0.95;0.85;0', false]].forEach(function (c) {
+                var circ = el('circle', { r: c[0], fill: col, opacity: 0 });
+                if (c[2]) circ.setAttribute('filter', 'url(#cxaSoft)');
+                circ.appendChild(el('animate', { attributeName: 'opacity', values: c[1], keyTimes: '0;0.14;0.78;1', dur: dur, begin: begin, repeatCount: 'indefinite' }));
+                dg.appendChild(circ);
+              });
+              grp.appendChild(dg);
+            }
+          });
+          svg.appendChild(grp);
+          row.insertBefore(svg, row.firstChild);
+        }
+
+        function buildCase() {
+          var C = CASES[idx];
+          $('cxaId').textContent = C.id;
+          $('cxaDev').textContent = C.device;
+          $('cxaFirst').textContent = C.first;
+          $('cxaLast').textContent = C.last;
+          $('cxaActs').textContent = C.acts;
+          $('cxaCity').textContent = C.city;
+          var ph = $('cxaPhoto');
+          ph.style.backgroundImage = 'url(' + C.photo + ')';
+          ph.style.backgroundPosition = C.pos;
+          ph.style.animation = 'none';
+          void ph.offsetWidth;
+          ph.style.animation = 'cxaPhotoSwap .85s cubic-bezier(.22,1,.36,1) both';
+          document.querySelectorAll('#cxaRow .cxa-fadein').forEach(function (e) {
+            var d = e.style.animationDelay; e.style.animation = 'none'; void e.offsetWidth;
+            e.style.animation = 'cxaFieldIn .5s ' + EASE + ' ' + d + ' both';
+          });
+
+          $('cxaNodes').innerHTML = C.nodes.map(function (nd, i) {
+            var T = TONES[nd[3]], big = nd[3] === 'red';
+            var shadow = big ? '0 0 0 2px rgba(' + T.rgb + ',.45),0 0 0 9px rgba(' + T.rgb + ',.10)' : '0 0 0 1.5px rgba(' + T.rgb + ',.45)';
+            var pulse = big ? 'cxaRingPulse 2.4s ' + EASE + ' ' + (C.tagAt + 0.3) + 's infinite' : 'none';
+            return '<div class="cxa-node" style="animation:cxaNodeIn .85s ' + EASE + ' ' + C.nodeAt[i] + 's both">' +
+              '<div class="top"><span class="dt">' + nd[0] + '</span>' +
+              '<span class="lb" style="font-size:' + (i === 5 && big ? '16px' : '14.5px') + ';color:' + T.label + '">' + nd[1] + '</span></div>' +
+              '<div class="dotwrap"><span class="dot" style="background:' + T.dot + ';border-width:' + T.ring + ';width:' + T.size + ';height:' + T.size + ';box-shadow:' + shadow + ';animation:' + pulse + '"></span></div>' +
+              '<div class="bot"><span class="sc" style="font-size:' + T.score + ';color:' + T.text + '">' + nd[2] + '</span>' +
+              (nd[4] ? '<span class="tag" style="background:' + nd[5] + ';animation:cxaTagPop .55s ' + EASE + ' ' + C.tagAt + 's both">' + nd[4] + '</span>' : '') +
+              '</div></div>';
+          }).join('');
+
+          $('cxaLinks').innerHTML = [0,1,2,3,4].map(function (i) {
+            var A = TONES[C.nodes[i][3]], B = TONES[C.nodes[i + 1][3]];
+            return '<div class="cxa-link" style="left:' + (8.333 + 16.667 * i).toFixed(3) + '%;background:linear-gradient(90deg,rgba(' + A.rgb + ',.34),rgba(' + B.rgb + ',.42));animation:cxaLineDraw .65s ' + EASE + ' ' + (C.nodeAt[i] + 0.4) + 's both"></div>';
+          }).join('');
+
+          $('cxaGroups').innerHTML = C.groups.map(function (g, gi) {
+            return '<div style="opacity:' + (gi === 2 ? 0.62 : 1) + '"><div class="cxa-grow">' +
+              '<span style="font-size:' + (gi === 2 ? '12px' : '13px') + ';color:' + (gi === 2 ? '#8A94A6' : '#0A1628') + '">' + g[0] + '</span>' +
+              '<div class="cxa-pills">' + g[1].map(function (pp, pi) {
+                var P = PILL[pp[1]];
+                return '<span class="cxa-pill" style="padding:' + P.pad + ';font-size:' + P.size + ';font-weight:' + P.weight + ';background:' + P.bg + ';border:1px solid ' + P.border + ';color:' + P.color + ';animation:cxaPillIn .5s ' + EASE + ' ' + (C.groupAt[gi] + 0.05 + pi * 0.18) + 's both">' + pp[0] + '</span>';
+              }).join('') + '</div></div></div>';
+          }).join('');
+
+          $('cxaGraphSlot').innerHTML = C.graph
+            ? '<div class="cxa-graph" style="animation:cxaRowIn .7s ' + EASE + ' ' + (C.graphAt || 0) + 's both">' + GRAPH + '</div>' : '';
+
+          var sm = $('cxaSum');
+          sm.textContent = C.summary;
+          sm.style.animation = 'none'; void sm.offsetWidth;
+          sm.style.animation = 'cxaRowIn .8s ' + EASE + ' ' + C.summaryAt + 's both';
+        }
+
+        function paint() {
+          var s = score;
+          var color = s >= 85 ? '#EF4444' : s >= 66 ? '#EA580C' : s >= 40 ? '#F59E0B' : LOW;
+          var rgb = rgbOf(color), c2 = pair(color);
+          if (color !== curColor) { curColor = color; drawStreams(); }
+          $('cxaScoreBig').textContent = s.toFixed(2);
+          $('cxaScoreBig').style.color = color;
+          $('cxaScoreInt').textContent = Math.round(s);
+          $('cxaScoreInt').parentNode.style.color = color;
+          var ring = $('cxaRing');
+          ring.setAttribute('stroke', color);
+          ring.setAttribute('stroke-dasharray', (s / 100 * 289).toFixed(1) + ' 289');
+          $('cxaTopbar').style.background = 'linear-gradient(90deg,' + color + ' 0%,rgba(' + rgb + ',.55) 62%,rgba(' + rgb + ',.12) 100%)';
+          $('cxaHead').style.background = 'linear-gradient(165deg,rgba(' + rgb + ',.055) 0%,rgba(' + rgb + ',0) 78%)';
+          $('cxaFootWash').style.background = 'linear-gradient(180deg,rgba(' + rgb + ',.03) 0%,rgba(' + rgb + ',.075) 100%)';
+          var tile = $('cxaTile');
+          tile.style.background = 'linear-gradient(150deg,rgba(' + rgb + ',.09) 0%,#fff 100%)';
+          tile.style.border = '1.5px solid rgba(' + rgb + ',.28)';
+          tile.style.boxShadow = '0 6px 18px rgba(' + rgb + ',.12)';
+          $('cxaTileIc').setAttribute('fill', color);
+          var tier = $('cxaTier');
+          tier.style.background = 'rgba(' + rgb + ',.10)';
+          tier.style.border = '1px solid rgba(' + rgb + ',.28)';
+          tier.style.color = color;
+          tier.querySelector('i').style.background = color;
+          tier.querySelector('i').style.boxShadow = '0 0 0 3px rgba(' + rgb + ',.10)';
+          tier.querySelector('b').textContent = s >= 66 ? 'High' : s >= 40 ? 'Elevated' : 'Low';
+          $('cxaArc1').setAttribute('stop-color', color);
+          $('cxaArc2').setAttribute('stop-color', color);
+          $('cxaArc3').setAttribute('stop-color', c2);
+          $('cxaArc4').setAttribute('stop-color', c2);
+          $('cxaScan').style.background = 'conic-gradient(from 0deg,' + rgba(color, 0) + ' 0deg,' + rgba(color, .08) + ' 90deg,' +
+            rgba(c2, .55) + ' 200deg,' + color + ' 300deg,' + color + ' 342deg,' + rgba(color, 0) + ' 360deg)';
+          $('cxaSigLabel').textContent = signals === 0 ? 'No signals active' : signals === 1 ? '1 signal active' : signals + ' signals active';
+          var segs = $('cxaSegs');
+          if (segs.childNodes.length !== 9) {
+            segs.innerHTML = '';
+            for (var i = 0; i < 9; i++) segs.appendChild(document.createElement('i'));
+          }
+          for (var j = 0; j < 9; j++) segs.childNodes[j].style.background = j < signals ? color : 'rgba(10,22,40,.10)';
+        }
+
+        function enter(next, prev) {
+          idx = next;
+          var C = CASES[idx];
+          kf = [{ t: 0, v: prev }, { t: 0.6, v: C.scores[0] }];
+          for (var i = 1; i < C.nodeAt.length; i++) {
+            var at = C.nodeAt[i] + 0.05;
+            kf.push({ t: at, v: C.scores[i - 1] });
+            kf.push({ t: at + (i < 3 ? 1.0 : 1.15), v: C.scores[i] });
+          }
+          t0 = performance.now();
+          signals = 0;
+          score = prev;
+          buildCase();
+          paint();
+          drawStreams();
+        }
+        function valueAt(e) {
+          if (e <= kf[0].t) return kf[0].v;
+          for (var i = 1; i < kf.length; i++) {
+            if (e <= kf[i].t) {
+              var a = kf[i - 1], span = kf[i].t - a.t;
+              return span <= 0 ? kf[i].v : a.v + (kf[i].v - a.v) * ease((e - a.t) / span);
+            }
+          }
+          return kf[kf.length - 1].v;
+        }
+
+        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        enter(0, 0);
+        if (reduced) { score = 95.36; signals = 9; paint(); }
+        else setInterval(function () {
+          var C = CASES[idx], e = (performance.now() - t0) / 1000;
+          if (e >= C.end) { enter((idx + 1) % CASES.length, valueAt(e)); return; }
+          var v = valueAt(e), n = 0;
+          for (var i = 0; i < C.nodeAt.length; i++) if (e >= C.nodeAt[i] + 0.05) n = C.signals[i];
+          if (Math.abs(v - score) > 0.002 || n !== signals) { score = v; signals = n; paint(); }
+        }, 40);
+
+        var rt;
+        var refresh = function () { clearTimeout(rt); rt = setTimeout(drawStreams, 180); };
+        window.addEventListener('resize', refresh);
+        window.addEventListener('load', refresh);
+        if (window.ResizeObserver) new ResizeObserver(refresh).observe(row);
+        setTimeout(drawStreams, 120);
+        setTimeout(drawStreams, 800);
+      })();
+      </script>
+</div>
+</body>
+</html>
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     .stage is the standalone's viewing harness; in a frame its padding is white
+     space above and either side of the artwork. The animation's own wrapper
+     keeps its 40px top margin, which is the gap the design asks for. */
+  .stage { padding: 0; max-width: none; }
+
+  /* New in the 24 Aug cut: each standalone labels itself with a harness caption
+     ("Location Intelligence hero - capture -> verify -> enrich -> predict") as a
+     direct child of .stage. It is the preview's own title, not part of the
+     artwork, and framed it paints a stray grey line above the hero. Matched as
+     a direct child so it cannot collide with an artwork class of the same name. */
+  .stage > .cap { display: none; }
+
+  /* The standalone paints a white body because it is a page when opened on its
+     own. Framed, that white is a rectangle sitting on top of the hero's wash,
+     which is what made every animation look pasted on rather than part of the
+     page. The artwork's own surfaces are unaffected — only the ground behind
+     them goes. */
+  html,
+  body { background: transparent; }
+
+
+  /* The home animation is the one of the five that ships no reduced-motion
+     guard; its README says it "needs the same guard added on rebuild". This is
+     the same guard the other four ship ('animation: none !important'), applied
+     the only way it can be here: home declares all 33 of its animations in
+     inline style attributes, which a stylesheet only outranks with !important,
+     and it names no classes to list. Scoped to the wrapper, so it is inert in
+     the other sixteen files. */
+  @media (prefers-reduced-motion: reduce) {
+    #s3hero-row,
+    #s3hero-row * { animation: none !important; }
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // 'zoom' -> 'transform: scale()', on every row the bundle scales.
+  //
+  // The bundles shrink each oversized hero row with 'zoom', and serving that
+  // verbatim is a fault this repo has already paid for: Safari lays a zoomed row
+  // out at a different width than Chrome, so the columns lose their room and the
+  // flex row WRAPS — verdict badge on a second line, orbit chips off their ring,
+  // connector streams gone, canvas boxes showing. Fixed in 915dc4b, then
+  // reintroduced when the heroes moved from ported JSX to framed standalones,
+  // which put the designer's 'zoom' back on the page. The bundle's own README
+  // asks for this conversion in production.
+  //
+  // The recipe is the one probed against the affected Safari at the time —
+  // zoom-with-percentage, zoom-with-explicit-width and transform side by side,
+  // and only transform held:
+  //
+  //   width: calc(100% / s)  lays the row out at host/s so it paints back to
+  //                          exactly the host's width, with no percentage under
+  //                          zoom for engines to disagree about
+  //   transform: scale(s)    spec'd identically in every engine, and does not
+  //                          participate in layout, which is what makes the
+  //                          percentage above safe
+  //   flex: none             the hosts are centring flex containers, so a flex
+  //                          item would be SHRUNK back to the host's width — the
+  //                          very thing the calc() exists to avoid
+  //   transform-origin: top center
+  //                          the host centres the layout box, so scaling about
+  //                          its own centre keeps the painted result centred even
+  //                          where a max-width caps it narrower than the host
+  //
+  // Geometry is preserved rather than approximated: under 'zoom: s' with
+  // 'width: 100%' the row's offsetWidth is already host/s and its rect is host,
+  // which is exactly what the pair above produces — so the controllers, which
+  // divide by rect.width / offsetWidth to undo the scaling, read identical
+  // numbers before and after.
+  (function () {
+    // Re-scanned on every pass rather than collected once. The Design Component
+    // runtime behind the mobile heroes renders after this script parses and
+    // replaces what was there, so a list captured at parse time misses whatever
+    // it creates — cortex-mobile ships two inline zooms that only exist after
+    // it has run. Converting is idempotent: a converted element carries an
+    // inline zoom of 1, so a later pass no longer sees it.
+    function collect() {
+      var scaled = [];
+      document.querySelectorAll("body *").forEach(function (el) {
+        var z = parseFloat(getComputedStyle(el).zoom);
+        if (!(z > 0) || z === 1) return;
+      // Take only the element the zoom is DECLARED on, never its descendants.
+      // Engines disagree about what computed zoom reports: Chrome gives the
+      // element's own value, and a descendant of a zoomed row reads 1; other
+      // engines report the cumulative zoom, so every descendant reads the row's
+      // value too. Without this guard the second kind of engine would scale the
+      // whole subtree again, once per level -- geometry inside the row would
+      // collapse in exactly the way a distorted, off-centre composition looks.
+      // A declared zoom always differs from its parent's; an inherited reading
+      // never does.
+        var parent = el.parentElement;
+        var pz = parent ? parseFloat(getComputedStyle(parent).zoom) : 1;
+        if (pz > 0 && Math.abs(pz - z) < 0.0001) return;
+        scaled.push(el);
+      });
+      return scaled;
+    }
+
+    var OURS = [
+      "zoom",
+      "width",
+      "flex",
+      "transform",
+      "transform-origin",
+      "margin-bottom",
+    ];
+
+    function apply(el) {
+      // Drop back to the stylesheet's own state first: the scale is
+      // breakpoint-dependent (screenx 0.72 -> 0.6, cortex 0.7 -> 0.56) and an
+      // inline zoom of our own would mask the media query's value.
+      OURS.forEach(function (p) {
+        el.style.removeProperty(p);
+      });
+      var s = parseFloat(getComputedStyle(el).zoom);
+      if (!(s > 0) || s === 1) return; // Unscaled at this width.
+
+      el.style.setProperty("zoom", "1", "important");
+      el.style.setProperty("width", "calc(100% / " + s + ")", "important");
+      el.style.setProperty("flex", "none", "important");
+      el.style.setProperty("transform-origin", "top center", "important");
+      el.style.setProperty("transform", "scale(" + s + ")", "important");
+
+      // The transform paints smaller but the row still RESERVES its full
+      // unscaled height, so take back exactly the part that no longer paints.
+      //
+      // offsetHeight, NOT getBoundingClientRect().height, even though the rect
+      // is the painted box and looks like the more direct answer: the rect fed
+      // back on itself when this was last built — a too-tall row lengthens the
+      // page, which brings in a scrollbar, which narrows the viewport, which
+      // re-wraps the row, which makes it taller again. In WebKit at 1024px that
+      // ran away to 6052px. The layout height cannot be influenced by what we
+      // set here, so there is nothing for a loop to amplify.
+      var dead = Math.round(el.offsetHeight * (1 - s));
+      if (dead > 0)
+        el.style.setProperty("margin-bottom", "-" + dead + "px", "important");
+    }
+
+    function applyAll() {
+      collect().forEach(apply);
+    }
+
+    var timer;
+    function reapply() {
+      clearTimeout(timer);
+      timer = setTimeout(applyAll, 120);
+    }
+
+    applyAll();
+    addEventListener("resize", reapply);
+    // After the runtime has rendered, for anything it created.
+    addEventListener("load", applyAll);
+    // The controllers measure their anchors and redraw off resize; nudge them
+    // once so they re-read the row rather than keeping numbers taken before the
+    // conversion. Only on the initial pass — later passes ARE resize events.
+    dispatchEvent(new Event("resize"));
+  })();
+
+  // The rest of home's guard. Its connector dots are SVG <animateMotion>, built
+  // by the controller after load and rebuilt on every resize, so CSS cannot
+  // reach them: 'animation: none' does not apply to SMIL. Removing each one as
+  // it is inserted parks its dot at the path start instead of flying it along,
+  // and covers the rebuilds too. Only home generates these; the observer is not
+  // installed anywhere else.
+  if (
+    document.getElementById("s3hero-row") &&
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const strip = (node) => {
+      if (node.nodeType !== 1) return;
+      if (node.tagName === "animateMotion") node.remove();
+      else node.querySelectorAll?.("animateMotion").forEach((el) => el.remove());
+    };
+    document.querySelectorAll("animateMotion").forEach((el) => el.remove());
+    new MutationObserver((records) =>
+      records.forEach((r) => r.addedNodes.forEach(strip))
+    ).observe(document.documentElement, { childList: true, subtree: true });
+  }
+</script>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs -- not from the design bundle. */
+  /* Pin the rotation pivot to a box that every engine agrees on.
+     The bundle writes transform-box:view-box with a pixel transform-origin
+     on its concentric rings. That pair is only the ring's centre if view-box is
+     honoured; resolved against the fill-box instead, the pixel pair is measured
+     from the element's own bbox corner and every ring spins about a different
+     off-centre point — the rings stop being concentric.
+     Measured across all seventeen animations, the fill-box centre IS the
+     declared pivot for every one of these elements to within a user unit, so
+     'center' under an explicitly pinned fill-box is the same rotation with no
+     dependency on view-box support. The one exception is measured out below. */
+  [data-scan-ring],
+  #bhHero [data-breathe],
+  .hero-anim .hf-core,
+  .hero-anim .hf-ripple,
+  .hero-anim .hf-spin,
+  .hero-anim .hf-spin-rev,
+  .nCore,
+  .nRipple,
+  .nSpin,
+  .nSpinRev {
+    transform-box: fill-box !important;
+    transform-origin: center !important;
+  }
+
+  /* !important, not higher specificity, and this is load-bearing rather than
+     lazy. The bundles namespace every selector under the wrapper id -- the
+     24 Aug cut's README states it as a rule -- so the file's own declaration is
+     '#diHero [data-scan-ring]' at (1,1,0) where the selector above is (0,1,0).
+     It loses on specificity no matter what order the sheets are in. That is
+     exactly how this fix went missing: it worked while device-intelligence
+     shipped an unscoped rule, then stopped the moment the new cut replaced the
+     file, and the rings went back to being non-concentric in Safari with
+     nothing in the diff to show it. Matching the namespacing here would only
+     put us one bundle rename away from the same silent failure. */
+
+  /* The one element whose fill box is not centred on its pivot: its bbox starts
+     at (123.4, 101.7) and the bundle rotates it about (230, 220). */
+  #bhHero [data-breathe] { transform-origin: 106.6px 118.3px !important; }
+</style>

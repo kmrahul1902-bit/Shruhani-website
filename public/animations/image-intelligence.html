@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shruhani Image Intelligence — hero animation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#0a0a0a;background:#fff;overflow-x:hidden}
+  .stage{width:100%;max-width:1600px;margin:0 auto;padding:40px 24px;display:flex;justify-content:center}
+</style>
+</head>
+<body>
+<div class="stage">
+<style>
+      #iiHero { width: 100%; margin-top: 40px; display: flex; justify-content: center; overflow: hidden; }
+      #iiHero .ii-stage { position: relative; flex: 0 0 auto; transform-origin: center center; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; text-align: left; }
+      @keyframes ii-comet { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -190; } }
+      @keyframes ii-fade-out { from { opacity: 1; } to { opacity: 0; } }
+      @keyframes ii-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes ii-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes ii-scan { 0% { transform: scale(0.86); opacity: 0; } 18% { opacity: 0.4; } 100% { transform: scale(1.6); opacity: 0; } }
+      @keyframes ii-dot { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+      @media (prefers-reduced-motion: reduce) {
+        #iiHero [data-dot-pulse] { animation: none !important; opacity: 1 !important; }
+        #iiHero [data-rise] { animation: none !important; opacity: 1 !important; transform: none !important; }
+        #iiHero [data-spin] { animation: none !important; }
+        #iiHero [data-scan], #iiHero [data-comet] { animation: none !important; opacity: 0 !important; }
+      }
+      </style>
+      <div id="iiHero">
+<div id="iiCanvas" style="width:1440px;height:820px;position:relative;flex:0 0 auto;transform-origin:center center">
+
+    <svg width="1440" height="820" viewBox="0 0 1440 820" style="position:absolute;left:0;top:0;overflow:visible;pointer-events:none">
+      <defs>
+        <filter id="iiSoft" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter>
+      </defs>
+      <path d="M 962 372 L 916 372 Q 904 372 904 384 L 904 402 Q 904 414 892 414 L 800 414" fill="none" stroke="#C9D3E4" stroke-width="1.5" stroke-linecap="round"></path>
+      <circle cx="800" cy="414" r="3.5" fill="#C21E86"></circle>
+      <path data-comet d="M 962 372 L 916 372 Q 904 372 904 384 L 904 402 Q 904 414 892 414 L 800 414" fill="none" stroke="#F45FB8" stroke-width="7" stroke-linecap="round" stroke-dasharray="12 178" filter="url(#iiSoft)" opacity="0.55" style="animation:ii-comet 3.2s ease-in-out infinite"></path>
+      <path data-comet d="M 962 372 L 916 372 Q 904 372 904 384 L 904 402 Q 904 414 892 414 L 800 414" fill="none" stroke="#C21E86" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="8 182" style="animation:ii-comet 3.2s ease-in-out infinite"></path>
+      <circle cx="962" cy="372" r="2.5" fill="#C9D3E4"></circle>
+    </svg>
+
+    <div style="position:absolute;left:48px;top:40px;width:752px;height:740px;box-sizing:border-box;background:#FEF8FB;border:1px solid rgba(194, 30, 134,0.35);border-radius:20px;box-shadow:0 26px 60px rgba(10,22,40,0.10);padding:34px 38px;display:flex;flex-direction:column;gap:18px">
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8">Image intelligence</span>
+          <span style="font-size:26px;font-weight:800;letter-spacing:-0.01em;color:#0A1628">Selfie analysis</span>
+          <span style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#6B7688">five dimensions from one photo</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="position:relative;width:84px;height:84px;flex:0 0 auto">
+            <svg width="84" height="84" viewBox="0 0 104 104">
+              <circle cx="52" cy="52" r="46" fill="none" stroke="#0A1628" stroke-opacity="0.08" stroke-width="7"></circle>
+              <circle data-ring cx="52" cy="52" r="46" fill="none" stroke="#22C55E" stroke-width="7" stroke-linecap="round" stroke-dasharray="26 289" transform="rotate(-90 52 52)"></circle>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px">
+              <span style="font-family:Inter,system-ui,sans-serif;font-size:23px;font-weight:600;line-height:1;letter-spacing:-0.02em;color:#22C55E;font-variant-numeric:tabular-nums" data-int>9</span>
+              <span style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:500;color:#22C55E;opacity:0.65" data-outof>/ 100</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#94A3B8">Current risk</span>
+            <span style="font-size:36px;line-height:1;font-weight:800;letter-spacing:-0.02em;color:#22C55E;font-variant-numeric:tabular-nums" data-score>9.00</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span data-pill style="padding:3px 9px;border-radius:999px;background:#22C55E;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em">LOW</span>
+              <span style="display:flex;align-items:center;gap:6px;padding:3px 9px 3px 8px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(194, 30, 134,0.22);font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.08em;color:#C21E86"><span data-dot-pulse style="width:5px;height:5px;border-radius:50%;background:#C21E86;animation:ii-dot 1.8s ease-in-out infinite"></span>READING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:1px;background:rgba(10,22,40,0.07)"></div>
+
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between">
+        <div data-rise style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:14.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Face &amp; Identity</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">9</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Single real face</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Yes</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Duplicate</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">None</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <div data-rise style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:14.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Background Scene</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">4</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Scene</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Personal <span style="color:#94A3B8;font-weight:500">· home</span></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Fraud background</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">No</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <div data-rise style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:14.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Quality &amp; Liveness</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">8</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Liveness</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Live</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Quality tier</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">High</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <div data-rise style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:14.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Device Intelligence</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">9</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Device</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Mid-range <span style="color:#94A3B8;font-weight:500">· real</span></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">EXIF</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">Complete</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <div data-rise style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:14.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Risk Flags</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">10</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Risk flags</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">0</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row style="display:flex;align-items:center;gap:12px;padding:8px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#4A5567">Severity</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#0A1628">None</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div style="position:absolute;left:896px;top:120px;width:480px;height:480px">
+      <svg width="480" height="480" viewBox="0 0 480 480" style="position:absolute;left:0;top:0;pointer-events:none">
+        <circle cx="240" cy="240" r="182" fill="none" stroke="#0A1628" stroke-opacity="0.13" stroke-width="1"></circle>
+        <circle cx="240" cy="240" r="158" fill="none" stroke="#0A1628" stroke-opacity="0.13" stroke-width="1"></circle>
+        <circle data-ringmain cx="240" cy="240" r="170" fill="none" stroke="#C21E86" stroke-width="7" stroke-opacity="0.5"></circle>
+        <circle data-spin cx="240" cy="240" r="146" fill="none" stroke="#C21E86" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="3 9" style="transform-box:view-box;transform-origin:240px 240px;animation:ii-spin 26s linear infinite"></circle>
+        <circle data-scan cx="240" cy="240" r="104" fill="none" stroke="#C21E86" stroke-width="2" opacity="0" style="transform-box:view-box;transform-origin:240px 240px;animation:ii-scan 2.8s cubic-bezier(0.42,0,0.58,1) infinite"></circle>
+      </svg>
+
+      <div data-frame style="position:absolute;left:240px;top:240px;transform:translate(-50%,-50%);width:184px;height:184px;box-sizing:border-box;border-radius:50%;border:4px solid #C21E86;background:#EDF0F5;box-shadow:0 12px 32px rgba(10,22,40,0.14);overflow:hidden;display:flex;align-items:center;justify-content:center">
+        <img data-layer="a" src="https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_1_180596e516.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:1;transform:scale(1);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)">
+        <img data-layer="b" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transform:scale(1.06);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)">
+      </div>
+
+    </div>
+
+    <div style="position:absolute;left:896px;top:620px;width:480px;display:flex;flex-direction:column;align-items:center;gap:16px">
+      <span data-chip style="display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(34,197,94,0.10);border:1px solid rgba(34,197,94,0.32);font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;color:#22C55E">
+        <span data-chipdot style="width:7px;height:7px;border-radius:50%;background:#22C55E"></span><span data-chiptext>Genuine selfie</span>
+      </span>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#0A1628">KYC selfie</span>
+        <span style="font-family:Inter,system-ui,sans-serif;font-size:12px;color:#6B7688">read across five dimensions</span>
+      </div>
+    </div>
+
+</div>
+      </div>
+
+      <script>
+      (function () {
+        var canvas = document.getElementById('iiCanvas');
+        var host = document.getElementById('iiHero');
+        if (!canvas || !host) return;
+        canvas.className = 'ii-stage';
+        function fit() {
+          var availW = host.clientWidth;
+          if (!availW) return;
+          var s = Math.min(0.8, availW / 1440) * 0.92;
+          canvas.style.transform = 'scale(' + s + ')';
+          canvas.style.margin = (-(820 * (1 - s)) / 2) + 'px ' + (-(1440 * (1 - s)) / 2) + 'px';
+        }
+        fit();
+        window.addEventListener('resize', fit);
+        if (window.ResizeObserver) new ResizeObserver(fit).observe(host);
+
+        var G = '#22C55E', A = '#F59E0B', R = '#EF4444', N = '#94A3B8', B = '#C21E86';
+        var soft = { '#22C55E': 'rgba(34,197,94,', '#F59E0B': 'rgba(245,158,11,', '#EF4444': 'rgba(239,68,68,', '#94A3B8': 'rgba(148,163,184,' };
+        var HOLD = 5600, FADE = 500, BLANK = 500, C = 2 * Math.PI * 46;
+        var CASES = [
+          { score: 9, tier: 'LOW', col: G, ring: B, chip: ['Genuine selfie', G], face: 'https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_1_180596e516.png',
+            rows: [['Single real face','Yes',G],['Duplicate','None',G],['Scene','Personal · home',G],['Fraud background','No',G],['Liveness','Live',G],['Quality tier','High',G],['Device','Mid-range · real',G],['EXIF','Complete',G],['Risk flags','0',G],['Severity','None',G]] },
+          { score: 84, tier: 'HIGH', col: R, ring: R, chip: ['Non-live · spoof', R], face: 'https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_2_7924618cf1.png',
+            rows: [['Face','Detected',N],['Selfie auth','Fail',R],['Scene','Indoor',N],['Fraud background','No',G],['Liveness','Non-live',R],['Spoof','Screen replay',R],['Device','Real',G],['EXIF','Missing',A],['Risk flags','3',R],['Severity','High',R]] },
+          { score: 88, tier: 'HIGH', col: R, ring: R, chip: ['Duplicate identity', R], face: 'https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_3_b0436364a3.png',
+            rows: [['Duplicate','Matches 2 apps',R],['Multiple faces','Yes',A],['Scene','Cyber-cafe · kiosk',R],['Fraud background','Yes',R],['Liveness','Live',G],['Quality tier','High',G],['Device','Shared · flagged',A],['EXIF','Complete',G],['Risk flags','4',R],['Severity','High',R]] }
+        ];
+        var q = function (s) { return canvas.querySelector(s); };
+        var sections = Array.prototype.slice.call(canvas.querySelectorAll('[data-rise]'));
+        var rowEls = Array.prototype.slice.call(canvas.querySelectorAll('[data-row]'));
+        var ringEl = q('[data-ring]'), intEl = q('[data-int]'), outOfEl = q('[data-outof]'), scoreEl = q('[data-score]'),
+            pillEl = q('[data-pill]'), ringMainEl = q('[data-ringmain]'), frameEl = q('[data-frame]'),
+            chipEl = q('[data-chip]'), chipDotEl = q('[data-chipdot]'), chipTextEl = q('[data-chiptext]');
+        var exitEls = [ringEl, intEl, outOfEl, scoreEl, pillEl, ringMainEl, chipEl].filter(Boolean);
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var faceFront = 'a', tween = null, timers = [], idx = 0;
+        function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+
+        function crossfadeFace(src) {
+          if (!frameEl || !src) return;
+          var a = frameEl.querySelector('[data-layer="a"]'), b = frameEl.querySelector('[data-layer="b"]');
+          if (!a || !b) return;
+          var front = faceFront === 'b' ? b : a, back = front === a ? b : a;
+          if (front.getAttribute('src') === src) return;
+          function show() {
+            back.style.opacity = '1'; back.style.transform = 'scale(1)';
+            front.style.opacity = '0'; front.style.transform = 'scale(0.96)';
+            faceFront = back === b ? 'b' : 'a';
+          }
+          var pre = new Image();
+          pre.onload = function () { back.src = src; requestAnimationFrame(function () { requestAnimationFrame(show); }); };
+          pre.onerror = function () { back.src = src; show(); };
+          pre.src = src;
+        }
+        function apply(c) {
+          crossfadeFace(c.face);
+          rowEls.forEach(function (row, i) {
+            var r = c.rows[i]; if (!r) return;
+            var k = row.children;
+            if (k[0]) k[0].textContent = r[0];
+            var parts = r[1].split(' · ');
+            if (k[1]) k[1].innerHTML = parts[1] ? parts[0] + ' <span style="color:#94A3B8;font-weight:500">· ' + parts[1] + '</span>' : parts[0];
+            if (k[2]) { k[2].style.background = r[2]; k[2].style.boxShadow = r[2] === R ? '0 0 0 3px rgba(239,68,68,0.14)' : 'none'; }
+          });
+          if (pillEl) { pillEl.textContent = c.tier; pillEl.style.background = c.col; }
+          if (ringMainEl) ringMainEl.setAttribute('stroke', c.ring);
+          if (frameEl) frameEl.style.borderColor = c.ring;
+          if (chipEl) {
+            chipEl.style.background = soft[c.chip[1]] + '0.10)';
+            chipEl.style.border = '1px solid ' + soft[c.chip[1]] + '0.32)';
+            chipEl.style.color = c.chip[1];
+          }
+          if (chipDotEl) chipDotEl.style.background = c.chip[1];
+          if (chipTextEl) chipTextEl.textContent = c.chip[0];
+        }
+        function paintScore(s, col) {
+          if (scoreEl) { scoreEl.textContent = s.toFixed(2); scoreEl.style.color = col; }
+          if (intEl) { intEl.textContent = String(Math.round(s)); intEl.style.color = col; }
+          if (outOfEl) outOfEl.style.color = col;
+          if (ringEl) {
+            ringEl.setAttribute('stroke-dasharray', (s / 100 * C).toFixed(1) + ' ' + C.toFixed(1));
+            ringEl.setAttribute('stroke', col);
+          }
+        }
+        function countUp(target, col) {
+          if (tween) { clearInterval(tween); tween = null; }
+          var DUR = 1400, DELAY = 200, STEP = 24;
+          var ease = function (p) { return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+          var t0 = Date.now() + DELAY;
+          paintScore(0, col);
+          tween = setInterval(function () {
+            var p = Math.max(0, Math.min(1, (Date.now() - t0) / DUR));
+            paintScore(target * ease(p), col);
+            if (p >= 1) { clearInterval(tween); tween = null; }
+          }, STEP);
+        }
+        function load(i) {
+          var c = CASES[i];
+          apply(c);
+          sections.forEach(function (el, k) {
+            el.style.transition = 'none';
+            el.style.opacity = '';
+            el.style.animation = 'none';
+            void el.offsetWidth;
+            el.style.animation = 'ii-rise 0.55s cubic-bezier(0.42,0,0.58,1) ' + (0.08 + k * 0.09).toFixed(3) + 's both';
+          });
+          exitEls.forEach(function (el) {
+            el.style.animation = 'none';
+            el.style.transition = 'opacity ' + (FADE / 1000) + 's cubic-bezier(0.42,0,0.58,1)';
+            el.style.opacity = '1';
+          });
+          countUp(c.score, c.col);
+          later(function () { paintScore(c.score, c.col); }, 1700);
+          later(function () { fadeOut(); }, 1900 + HOLD);
+        }
+        function fadeOut() {
+          sections.forEach(function (el) {
+            el.style.transition = 'none';
+            el.style.opacity = '';
+            el.style.animation = 'ii-fade-out ' + (FADE / 1000) + 's cubic-bezier(0.42,0,0.58,1) both';
+          });
+          exitEls.forEach(function (el) { el.style.opacity = '0'; });
+          later(function () { idx = (idx + 1) % CASES.length; load(idx); }, FADE + BLANK);
+        }
+        ['https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_1_180596e516.png','https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_2_7924618cf1.png','https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_3_b0436364a3.png'].forEach(function (s) { var i = new Image(); i.src = s; });
+        apply(CASES[0]);
+        if (reduce) { paintScore(CASES[0].score, CASES[0].col); return; }
+        load(0);
+      })();
+      </script>
+</div>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     .stage is the standalone's viewing harness; in a frame its padding is white
+     space above and either side of the artwork. The animation's own wrapper
+     keeps its 40px top margin, which is the gap the design asks for. */
+  .stage { padding: 0; max-width: none; }
+
+  /* New in the 24 Aug cut: each standalone labels itself with a harness caption
+     ("Location Intelligence hero - capture -> verify -> enrich -> predict") as a
+     direct child of .stage. It is the preview's own title, not part of the
+     artwork, and framed it paints a stray grey line above the hero. Matched as
+     a direct child so it cannot collide with an artwork class of the same name. */
+  .stage > .cap { display: none; }
+
+  /* The standalone paints a white body because it is a page when opened on its
+     own. Framed, that white is a rectangle sitting on top of the hero's wash,
+     which is what made every animation look pasted on rather than part of the
+     page. The artwork's own surfaces are unaffected — only the ground behind
+     them goes. */
+  html,
+  body { background: transparent; }
+
+
+  /* The home animation is the one of the five that ships no reduced-motion
+     guard; its README says it "needs the same guard added on rebuild". This is
+     the same guard the other four ship ('animation: none !important'), applied
+     the only way it can be here: home declares all 33 of its animations in
+     inline style attributes, which a stylesheet only outranks with !important,
+     and it names no classes to list. Scoped to the wrapper, so it is inert in
+     the other sixteen files. */
+  @media (prefers-reduced-motion: reduce) {
+    #s3hero-row,
+    #s3hero-row * { animation: none !important; }
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // 'zoom' -> 'transform: scale()', on every row the bundle scales.
+  //
+  // The bundles shrink each oversized hero row with 'zoom', and serving that
+  // verbatim is a fault this repo has already paid for: Safari lays a zoomed row
+  // out at a different width than Chrome, so the columns lose their room and the
+  // flex row WRAPS — verdict badge on a second line, orbit chips off their ring,
+  // connector streams gone, canvas boxes showing. Fixed in 915dc4b, then
+  // reintroduced when the heroes moved from ported JSX to framed standalones,
+  // which put the designer's 'zoom' back on the page. The bundle's own README
+  // asks for this conversion in production.
+  //
+  // The recipe is the one probed against the affected Safari at the time —
+  // zoom-with-percentage, zoom-with-explicit-width and transform side by side,
+  // and only transform held:
+  //
+  //   width: calc(100% / s)  lays the row out at host/s so it paints back to
+  //                          exactly the host's width, with no percentage under
+  //                          zoom for engines to disagree about
+  //   transform: scale(s)    spec'd identically in every engine, and does not
+  //                          participate in layout, which is what makes the
+  //                          percentage above safe
+  //   flex: none             the hosts are centring flex containers, so a flex
+  //                          item would be SHRUNK back to the host's width — the
+  //                          very thing the calc() exists to avoid
+  //   transform-origin: top center
+  //                          the host centres the layout box, so scaling about
+  //                          its own centre keeps the painted result centred even
+  //                          where a max-width caps it narrower than the host
+  //
+  // Geometry is preserved rather than approximated: under 'zoom: s' with
+  // 'width: 100%' the row's offsetWidth is already host/s and its rect is host,
+  // which is exactly what the pair above produces — so the controllers, which
+  // divide by rect.width / offsetWidth to undo the scaling, read identical
+  // numbers before and after.
+  (function () {
+    // Re-scanned on every pass rather than collected once. The Design Component
+    // runtime behind the mobile heroes renders after this script parses and
+    // replaces what was there, so a list captured at parse time misses whatever
+    // it creates — cortex-mobile ships two inline zooms that only exist after
+    // it has run. Converting is idempotent: a converted element carries an
+    // inline zoom of 1, so a later pass no longer sees it.
+    function collect() {
+      var scaled = [];
+      document.querySelectorAll("body *").forEach(function (el) {
+        var z = parseFloat(getComputedStyle(el).zoom);
+        if (!(z > 0) || z === 1) return;
+      // Take only the element the zoom is DECLARED on, never its descendants.
+      // Engines disagree about what computed zoom reports: Chrome gives the
+      // element's own value, and a descendant of a zoomed row reads 1; other
+      // engines report the cumulative zoom, so every descendant reads the row's
+      // value too. Without this guard the second kind of engine would scale the
+      // whole subtree again, once per level -- geometry inside the row would
+      // collapse in exactly the way a distorted, off-centre composition looks.
+      // A declared zoom always differs from its parent's; an inherited reading
+      // never does.
+        var parent = el.parentElement;
+        var pz = parent ? parseFloat(getComputedStyle(parent).zoom) : 1;
+        if (pz > 0 && Math.abs(pz - z) < 0.0001) return;
+        scaled.push(el);
+      });
+      return scaled;
+    }
+
+    var OURS = [
+      "zoom",
+      "width",
+      "flex",
+      "transform",
+      "transform-origin",
+      "margin-bottom",
+    ];
+
+    function apply(el) {
+      // Drop back to the stylesheet's own state first: the scale is
+      // breakpoint-dependent (screenx 0.72 -> 0.6, cortex 0.7 -> 0.56) and an
+      // inline zoom of our own would mask the media query's value.
+      OURS.forEach(function (p) {
+        el.style.removeProperty(p);
+      });
+      var s = parseFloat(getComputedStyle(el).zoom);
+      if (!(s > 0) || s === 1) return; // Unscaled at this width.
+
+      el.style.setProperty("zoom", "1", "important");
+      el.style.setProperty("width", "calc(100% / " + s + ")", "important");
+      el.style.setProperty("flex", "none", "important");
+      el.style.setProperty("transform-origin", "top center", "important");
+      el.style.setProperty("transform", "scale(" + s + ")", "important");
+
+      // The transform paints smaller but the row still RESERVES its full
+      // unscaled height, so take back exactly the part that no longer paints.
+      //
+      // offsetHeight, NOT getBoundingClientRect().height, even though the rect
+      // is the painted box and looks like the more direct answer: the rect fed
+      // back on itself when this was last built — a too-tall row lengthens the
+      // page, which brings in a scrollbar, which narrows the viewport, which
+      // re-wraps the row, which makes it taller again. In WebKit at 1024px that
+      // ran away to 6052px. The layout height cannot be influenced by what we
+      // set here, so there is nothing for a loop to amplify.
+      var dead = Math.round(el.offsetHeight * (1 - s));
+      if (dead > 0)
+        el.style.setProperty("margin-bottom", "-" + dead + "px", "important");
+    }
+
+    function applyAll() {
+      collect().forEach(apply);
+    }
+
+    var timer;
+    function reapply() {
+      clearTimeout(timer);
+      timer = setTimeout(applyAll, 120);
+    }
+
+    applyAll();
+    addEventListener("resize", reapply);
+    // After the runtime has rendered, for anything it created.
+    addEventListener("load", applyAll);
+    // The controllers measure their anchors and redraw off resize; nudge them
+    // once so they re-read the row rather than keeping numbers taken before the
+    // conversion. Only on the initial pass — later passes ARE resize events.
+    dispatchEvent(new Event("resize"));
+  })();
+
+  // The rest of home's guard. Its connector dots are SVG <animateMotion>, built
+  // by the controller after load and rebuilt on every resize, so CSS cannot
+  // reach them: 'animation: none' does not apply to SMIL. Removing each one as
+  // it is inserted parks its dot at the path start instead of flying it along,
+  // and covers the rebuilds too. Only home generates these; the observer is not
+  // installed anywhere else.
+  if (
+    document.getElementById("s3hero-row") &&
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const strip = (node) => {
+      if (node.nodeType !== 1) return;
+      if (node.tagName === "animateMotion") node.remove();
+      else node.querySelectorAll?.("animateMotion").forEach((el) => el.remove());
+    };
+    document.querySelectorAll("animateMotion").forEach((el) => el.remove());
+    new MutationObserver((records) =>
+      records.forEach((r) => r.addedNodes.forEach(strip))
+    ).observe(document.documentElement, { childList: true, subtree: true });
+  }
+</script>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs -- not from the design bundle. */
+  /* Pin the rotation pivot to a box that every engine agrees on.
+     The bundle writes transform-box:view-box with a pixel transform-origin
+     on its concentric rings. That pair is only the ring's centre if view-box is
+     honoured; resolved against the fill-box instead, the pixel pair is measured
+     from the element's own bbox corner and every ring spins about a different
+     off-centre point — the rings stop being concentric.
+     Measured across all seventeen animations, the fill-box centre IS the
+     declared pivot for every one of these elements to within a user unit, so
+     'center' under an explicitly pinned fill-box is the same rotation with no
+     dependency on view-box support. The one exception is measured out below. */
+  [data-scan-ring],
+  #bhHero [data-breathe],
+  .hero-anim .hf-core,
+  .hero-anim .hf-ripple,
+  .hero-anim .hf-spin,
+  .hero-anim .hf-spin-rev,
+  .nCore,
+  .nRipple,
+  .nSpin,
+  .nSpinRev {
+    transform-box: fill-box !important;
+    transform-origin: center !important;
+  }
+
+  /* !important, not higher specificity, and this is load-bearing rather than
+     lazy. The bundles namespace every selector under the wrapper id -- the
+     24 Aug cut's README states it as a rule -- so the file's own declaration is
+     '#diHero [data-scan-ring]' at (1,1,0) where the selector above is (0,1,0).
+     It loses on specificity no matter what order the sheets are in. That is
+     exactly how this fix went missing: it worked while device-intelligence
+     shipped an unscoped rule, then stopped the moment the new cut replaced the
+     file, and the rings went back to being non-concentric in Safari with
+     nothing in the diff to show it. Matching the namespacing here would only
+     put us one bundle rename away from the same silent failure. */
+
+  /* The one element whose fill box is not centred on its pivot: its bbox starts
+     at (123.4, 101.7) and the bundle rotates it about (230, 220). */
+  #bhHero [data-breathe] { transform-origin: 106.6px 118.3px !important; }
+</style>

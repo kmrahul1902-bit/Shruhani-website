@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: transparent; }
+  a { color: #E536A3; text-decoration: none; }
+  a:hover { color: #0A1628; }
+  #cxq *, #cxq *::before, #cxq *::after { box-sizing: border-box; }
+  #cxq .cxa-card {
+    width: 440px; min-height: 566px; position: relative; background: #fff;
+    border: 1px solid rgba(10,22,40,.08); border-radius: 12px; box-shadow: 0 22px 52px rgba(10,22,40,.09);
+    display: flex; flex-direction: column; overflow: hidden;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  #cxq .cxa-topbar { position: absolute; left: 0; right: 0; top: 0; height: 3px; }
+  #cxq .cxa-head { padding: 64px 30px 22px; display: flex; flex-direction: column; gap: 20px; }
+  #cxq .cxa-headrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-left: 104px; }
+  #cxq .cxa-lbl { font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #8A94A6; }
+  #cxq .cxa-tier { display: inline-flex; align-items: center; gap: 7px; border-radius: 999px; padding: 5px 13px; font-size: 12px; font-weight: 700; }
+  #cxq .cxa-tier i { width: 6px; height: 6px; border-radius: 50%; }
+  #cxq .cxa-idrow { display: flex; align-items: center; gap: 16px; }
+  #cxq .cxa-tile { position: relative; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 14px; }
+  #cxq .cxa-idcol { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  #cxq .cxa-id { font-size: 29px; font-weight: 800; letter-spacing: -.015em; color: #0A1628; line-height: 1.05; }
+  #cxq .cxa-dev { font-family: 'Inter',system-ui,sans-serif; font-size: 13.5px; color: #6B7688; }
+  #cxq .cxa-fields { padding: 0 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  #cxq .cxa-fld { display: flex; flex-direction: column; gap: 5px; background: #f9fafb; border: 1px solid rgba(10,22,40,.07); border-radius: 10px; padding: 13px 14px; }
+  #cxq .cxa-fld > span:first-child { display: flex; align-items: center; gap: 6px; font-family: 'Inter',system-ui,sans-serif; font-size: 11.5px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #8A94A6; }
+  #cxq .cxa-fld b { font-family: 'Inter',system-ui,sans-serif; font-size: 17px; font-weight: 600; color: #0A1628; }
+  #cxq .cxa-foot { margin: 24px 0 0; padding: 24px 30px 28px; border-top: 1px solid rgba(10,22,40,.07); display: flex; align-items: center; gap: 22px; }
+  #cxq .cxa-gauge { position: relative; width: 104px; height: 104px; flex: 0 0 auto; }
+  #cxq .cxa-gauge .n { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-family: 'Inter',system-ui,sans-serif; }
+  #cxq .cxa-gauge .n b { font-size: 26px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+  #cxq .cxa-gauge .n i { font-size: 11px; font-weight: 500; opacity: .65; font-style: normal; }
+  #cxq .cxa-fcol { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  #cxq .cxa-fcol .k { font-family: 'Inter',system-ui,sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8A94A6; }
+  #cxq .cxa-fcol .big { font-family: 'Inter',system-ui,sans-serif; font-size: 46px; font-weight: 600; line-height: 1; letter-spacing: -.025em; }
+  #cxq .cxa-segs { display: flex; align-items: center; gap: 9px; }
+  #cxq .cxa-segs > span:first-child { display: flex; gap: 3px; }
+  #cxq .cxa-segs i { width: 4px; height: 11px; border-radius: 2px; transition: background .5s ease; }
+  #cxq .cxa-segs em { font-family: 'Inter',system-ui,sans-serif; font-size: 13.5px; color: #6B7688; font-style: normal; }
+  #cxq .cxa-orb { position: absolute; left: -112px; top: -166px; width: 300px; height: 300px; }
+  #cxq .cxa-halo { position: absolute; left: 50%; top: 50%; width: 216px; height: 216px; border-radius: 50%; border: 1.5px solid rgba(229, 54, 163,.28); opacity: 0; transform: translate(-50%,-50%); animation: cxaHalo 10s cubic-bezier(.42,0,.58,1) infinite; }
+  #cxq .cxa-photo { position: absolute; left: 150px; top: 150px; transform: translate(-50%,-50%); width: 126px; height: 126px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 12px 32px rgba(10,22,40,.14); background: #eef1f5; overflow: hidden; }
+  #cxq .cxa-photo i { position: absolute; inset: 0; border-radius: 50%; background-size: cover; background-repeat: no-repeat; }
+  #cxq .cxa-scan { position: absolute; left: 50%; top: 50%; width: 132px; height: 132px; border-radius: 50%; pointer-events: none; transform: translate(-50%,-50%); transition: background .7s ease; -webkit-mask: radial-gradient(circle at center,transparent 0 63px,#000 63.5px); mask: radial-gradient(circle at center,transparent 0 63px,#000 63.5px); animation: cxaScanSpin 7s linear .5s infinite; }
+  #cxq .cxa-panel {
+    position: relative; width: 940px; min-height: 724px;
+    background: #fff; border: 1px solid rgba(10,22,40,.08); border-radius: 12px; box-shadow: 0 22px 52px rgba(10,22,40,.09);
+    padding: 28px 34px 30px; display: flex; flex-direction: column; gap: 26px;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  #cxq .cxa-ptop { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+  #cxq .cxa-ptop h3 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.01em; color: #0A1628; }
+  #cxq .cxa-ptop p { margin: 5px 0 0; font-family: 'Inter',system-ui,sans-serif; font-size: 14px; color: #6B7688; }
+  #cxq .cxa-live { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.24); border-radius: 999px; padding: 6px 13px; flex: 0 0 auto; white-space: nowrap; font-family: 'Inter',system-ui,sans-serif; font-size: 12px; font-weight: 600; color: #16A34A; }
+  #cxq .cxa-live i { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,.16); animation: cxaLive 2.6s cubic-bezier(.42,0,.58,1) infinite; }
+  #cxq .cxa-tl { position: relative; padding: 6px 0 4px; }
+  #cxq .cxa-tlbase { position: absolute; left: 8.333%; right: 8.333%; top: 80px; height: 2px; background: rgba(10,22,40,.09); }
+  #cxq .cxa-link { position: absolute; top: 80px; height: 2px; width: 16.667%; transform-origin: 0 50%; }
+  #cxq .cxa-nodes { position: relative; display: grid; grid-template-columns: repeat(6,1fr); align-items: start; }
+  #cxq .cxa-node { display: flex; flex-direction: column; align-items: center; }
+  #cxq .cxa-node .top { display: flex; flex-direction: column; align-items: center; gap: 3px; height: 58px; justify-content: flex-end; text-align: center; }
+  #cxq .cxa-node .dt { font-family: 'Inter',system-ui,sans-serif; font-size: 12.5px; color: #8A94A6; }
+  #cxq .cxa-node .lb { font-family: 'Inter',system-ui,sans-serif; font-weight: 600; line-height: 1.25; }
+  #cxq .cxa-node .dotwrap { height: 32px; display: flex; align-items: center; justify-content: center; }
+  #cxq .cxa-node .dot { border-radius: 50%; border-style: solid; border-color: #fff; }
+  #cxq .cxa-node .bot { display: flex; flex-direction: column; align-items: center; gap: 7px; min-height: 62px; }
+  #cxq .cxa-node .sc { font-family: 'Inter',system-ui,sans-serif; font-weight: 600; }
+  #cxq .cxa-node .tag { display: inline-flex; align-items: center; text-align: center; color: #fff; border-radius: 999px; padding: 3px 11px; font-size: 11px; font-weight: 700; letter-spacing: .06em; line-height: 1.35; text-transform: uppercase; }
+  #cxq .cxa-graphslot { min-height: 104px; display: flex; flex-direction: column; }
+  #cxq .cxa-graph { flex: 1 1 auto; display: flex; align-items: center; gap: 20px; background: #f9fafb; border: 1px solid rgba(10,22,40,.07); border-radius: 12px; padding: 14px 18px; }
+  #cxq .cxa-groups { display: flex; flex-direction: column; gap: 14px; border-top: 1px solid rgba(10,22,40,.07); padding-top: 22px; min-height: 152px; }
+  #cxq .cxa-grow { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 16px; min-height: 34px; }
+  #cxq .cxa-grow > span:first-child { font-family: 'Inter',system-ui,sans-serif; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  #cxq .cxa-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  #cxq .cxa-pill { display: inline-flex; align-items: center; border-radius: 999px; font-family: 'Inter',system-ui,sans-serif; white-space: nowrap; }
+  #cxq .cxa-sum { display: flex; align-items: flex-start; gap: 12px; background: #FEF8FB; border: 1px solid rgba(229, 54, 163,.14); border-radius: 12px; padding: 16px 18px; min-height: 80px; }
+  #cxq .cxa-sum > span:first-child { width: 3px; align-self: stretch; border-radius: 2px; background: #E536A3; flex: 0 0 auto; }
+  #cxq .cxa-sum p { margin: 0; font-family: 'Inter',system-ui,sans-serif; font-size: 15px; line-height: 1.55; color: #3E4A5C; text-wrap: pretty; }
+  #cxq .cxa-fadein { animation: cxaFieldIn .5s cubic-bezier(.42,0,.58,1) both; }
+  @keyframes cxaZoneIn { from { opacity: 0; transform: scale(.96) } to { opacity: 1; transform: scale(1) } }
+  @keyframes cxaHalo { 0% { transform: translate(-50%,-50%) scale(.96); opacity: 0 } 18% { opacity: 1 } 55% { opacity: .7 } 100% { transform: translate(-50%,-50%) scale(1.34); opacity: 0 } }
+  @keyframes cxaScanSpin { from { transform: translate(-50%,-50%) rotate(0) } to { transform: translate(-50%,-50%) rotate(360deg) } }
+  @keyframes cxaLive { 0%,100% { transform: scale(1); box-shadow: 0 0 0 3px rgba(34,197,94,.16) } 50% { transform: scale(1.22); box-shadow: 0 0 0 6px rgba(34,197,94,.1) } }
+  @keyframes cxaFieldIn { from { opacity: 0; transform: translateY(3px) } to { opacity: 1; transform: translateY(0) } }
+  @keyframes cxaPhotoSwap { 0% { opacity: 0; transform: scale(1.07) } 100% { opacity: 1; transform: scale(1) } }
+  @keyframes cxaNodeIn { from { opacity: 0; transform: scale(.96) } to { opacity: 1; transform: scale(1) } }
+  @keyframes cxaLineDraw { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+  @keyframes cxaPillIn { from { opacity: 0; transform: scale(.97) } to { opacity: 1; transform: scale(1) } }
+  @keyframes cxaTagPop { from { opacity: 0; transform: scale(.96) } to { opacity: 1; transform: scale(1) } }
+  @keyframes cxaRowIn { from { opacity: 0; transform: scale(.98) } to { opacity: 1; transform: scale(1) } }
+  @keyframes cxaRingPulse {
+    0%,100% { box-shadow: 0 0 0 2px rgba(239,68,68,.45), 0 0 0 9px rgba(239,68,68,.10) }
+    50% { box-shadow: 0 0 0 2px rgba(239,68,68,.45), 0 0 0 15px rgba(239,68,68,.02) }
+  }
+  @keyframes cxqOrbPop { 0% { opacity: 0; transform: scale(.7) } 62% { opacity: 1; transform: scale(1.05) } 100% { opacity: 1; transform: scale(1) } }
+  @keyframes cxqCardIn { 0% { opacity: 0; transform: translateY(22px) scale(.97) } 100% { opacity: 1; transform: translateY(0) scale(1) } }
+  @keyframes cxqBeam { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.25) } 38% { opacity: .8 } 100% { opacity: 0; transform: translate(-50%,-50%) scale(2) } }
+</style>
+</helmet>
+<div id="cxq" style="position:relative;width:1080px;height:1080px;overflow:hidden;background:transparent;font-family:'Plus Jakarta Sans',Inter,sans-serif">
+
+  <div style="position:absolute;left:540px;top:450px;width:220px;height:220px;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle,rgba(229, 54, 163,.26),rgba(229, 54, 163,.10) 55%,rgba(255,255,255,0) 100%);opacity:{{ beamOpacity }};animation:cxqBeam .85s ease-out infinite"></div>
+
+  <div ref="{{ scene0 }}" style="position:absolute;left:0;top:0;width:1080px;height:900px;display:flex;align-items:center;justify-content:center;transition:opacity 700ms cubic-bezier(.4,0,.2,1),transform 860ms cubic-bezier(.32,1.02,.4,1),filter 640ms ease;opacity:{{ s0o }};transform:scale({{ s0k }});filter:blur({{ s0b }}px)">
+    <div style="zoom:1.14">
+      <div style="position:relative;width:552px;height:740px;display:flex;align-items:flex-end;justify-content:flex-end">
+        <div class="cxa-card" style="animation:cxqCardIn .9s cubic-bezier(.22,1,.36,1) .18s both">
+          <span class="cxa-topbar" ref="{{ topbarRef }}"></span>
+          <div class="cxa-head" ref="{{ headRef }}">
+            <div class="cxa-headrow">
+              <span class="cxa-lbl">Account</span>
+              <span class="cxa-tier" ref="{{ tierRef }}"><i></i><b>Low</b></span>
+            </div>
+            <div class="cxa-idrow">
+              <span class="cxa-tile" ref="{{ tileRef }}">
+                <svg width="26" height="26" viewBox="0 0 24 24" ref="{{ tileIcRef }}" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 3.5A2.5 2.5 0 018.5 1h7A2.5 2.5 0 0118 3.5v17A2.5 2.5 0 0115.5 23h-7A2.5 2.5 0 016 20.5zM10 19.4h4a.9.9 0 010 1.8h-4a.9.9 0 010-1.8z"></path></svg>
+              </span>
+              <div class="cxa-idcol">
+                <span class="cxa-id cxa-fadein" ref="{{ idRef }}" style="animation-delay:.05s">user2173</span>
+                <span class="cxa-dev cxa-fadein" ref="{{ devRef }}" style="animation-delay:.12s">device</span>
+              </div>
+            </div>
+          </div>
+          <div class="cxa-fields">
+            <div class="cxa-fld"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8A94A6" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.6v4.7l3.2 2"></path></svg>First seen</span><b class="cxa-fadein" ref="{{ firstRef }}" style="animation-delay:.19s">—</b></div>
+            <div class="cxa-fld"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8A94A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.5h17v15h-17z"></path><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Last seen</span><b class="cxa-fadein" ref="{{ lastRef }}" style="animation-delay:.25s">—</b></div>
+            <div class="cxa-fld"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="#8A94A6"><path d="M3 13.5h2.6V19H3zm4.7-4.8h2.6V19H7.7zm4.7-4.4H15V19h-2.6zm4.7 6.4h2.6V19h-2.6z"></path></svg>Activities</span><b class="cxa-fadein" ref="{{ actsRef }}" style="animation-delay:.31s">—</b></div>
+            <div class="cxa-fld"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="#8A94A6"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.8a7.7 7.7 0 00-7.7 7.7c0 5.7 6.7 11.8 7 12.1a1 1 0 001.4 0c.3-.3 7-6.4 7-12.1A7.7 7.7 0 0012 1.8zm0 10.2a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"></path></svg>Location</span><b class="cxa-fadein" ref="{{ cityRef }}" style="animation-delay:.37s">—</b></div>
+          </div>
+          <div class="cxa-foot" ref="{{ footRef }}">
+            <div class="cxa-gauge">
+              <svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true">
+                <circle cx="52" cy="52" r="46" fill="none" stroke="#0A1628" stroke-opacity=".08" stroke-width="7"></circle>
+                <circle ref="{{ ringRef }}" cx="52" cy="52" r="46" fill="none" stroke="#E536A3" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 289" transform="rotate(-90 52 52)"></circle>
+              </svg>
+              <div class="n" ref="{{ numRef }}"><b ref="{{ scoreIntRef }}">0</b><i>/ 100</i></div>
+            </div>
+            <div class="cxa-fcol">
+              <span class="k">Current risk</span>
+              <span class="big" ref="{{ scoreBigRef }}">0.00</span>
+              <span class="cxa-segs"><span ref="{{ segsRef }}"></span><em ref="{{ sigLabelRef }}">No signals active</em></span>
+            </div>
+          </div>
+
+        </div>
+        <div class="cxa-orb" aria-hidden="true" style="left:0;top:8px;z-index:3;animation:cxqOrbPop .8s cubic-bezier(.34,1.5,.64,1) both">
+          <span class="cxa-halo"></span>
+          <span class="cxa-halo" style="animation-delay:2.5s"></span>
+          <span class="cxa-halo" style="animation-delay:5s"></span>
+          <span class="cxa-halo" style="animation-delay:7.5s"></span>
+          <svg width="300" height="300" viewBox="0 0 300 300" style="position:absolute;inset:0;pointer-events:none">
+            <defs>
+              <linearGradient id="cxqArc" x1="0.15" y1="0" x2="0.85" y2="1">
+                <stop offset="0%" stop-color="#E536A3" ref="{{ arc1 }}" style="transition:stop-color .7s ease"></stop>
+                <stop offset="45%" stop-color="#E536A3" ref="{{ arc2 }}" style="transition:stop-color .7s ease"></stop>
+                <stop offset="78%" stop-color="#E536A3" ref="{{ arc3 }}" style="transition:stop-color .7s ease"></stop>
+                <stop offset="100%" stop-color="#E536A3" ref="{{ arc4 }}" style="transition:stop-color .7s ease"></stop>
+              </linearGradient>
+            </defs>
+            <circle cx="150" cy="150" r="114" fill="none" stroke="#0A1628" stroke-opacity=".14" stroke-width="1"></circle>
+            <circle cx="150" cy="150" r="99" fill="none" stroke="#0A1628" stroke-opacity=".14" stroke-width="1"></circle>
+            <circle cx="150" cy="150" r="106" fill="none" stroke="url(#cxqArc)" stroke-width="4.5" stroke-opacity=".45"></circle>
+          </svg>
+          <span class="cxa-photo"><i ref="{{ photoRef }}"></i></span>
+          <span class="cxa-scan" ref="{{ scanRef }}"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ref="{{ scene1 }}" style="position:absolute;left:0;top:0;width:1080px;height:900px;display:flex;align-items:center;justify-content:center;transition:opacity 700ms cubic-bezier(.4,0,.2,1),transform 860ms cubic-bezier(.32,1.02,.4,1),filter 640ms ease;opacity:{{ s1o }};transform:scale({{ s1k }});filter:blur({{ s1b }}px)">
+    <div style="zoom:1.05">
+      <div class="cxa-panel">
+        <div class="cxa-ptop">
+          <div>
+            <h3>Continuous monitoring</h3>
+            <p>Every session — logins, activity and transactions</p>
+          </div>
+          <span class="cxa-live"><i></i>Real-time</span>
+        </div>
+        <div class="cxa-tl">
+          <div class="cxa-tlbase"></div>
+          <div ref="{{ linksRef }}"></div>
+          <div class="cxa-nodes" ref="{{ nodesRef }}"></div>
+        </div>
+        <div class="cxa-graphslot" ref="{{ graphRef }}"></div>
+        <div class="cxa-groups" ref="{{ groupsRef }}"></div>
+        <div class="cxa-sum"><span></span><p ref="{{ sumRef }}"></p></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:58px;display:flex;flex-direction:column;align-items:center;gap:24px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;white-space:nowrap;transition:opacity 380ms ease;opacity:{{ capOpacity }}">
+      <b style="font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0A1628">{{ capTitle }}</b>
+      <i style="font-style:normal;font-family:Inter,sans-serif;font-size:26px;color:#6B7688">{{ capSub }}</i>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p0w }}px;background:{{ p0c }}"></span>
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p1w }}px;background:{{ p1c }}"></span>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:1080},&quot;cardSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4.2,&quot;min&quot;:2.5,&quot;max&quot;:9,&quot;step&quot;:0.2,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Timing&quot;}}">
+const LOW = '#E536A3', LOW2 = '#E536A3';
+const EASE = 'cubic-bezier(.42,0,.58,1)';
+const TONES = {
+  cyan:   { dot: LOW,       text: '#E536A3', label: '#0A1628', rgb: '8,145,178',  size: '14px', ring: '3px',   score: '16px' },
+  amber:  { dot: '#F59E0B', text: '#B45309', label: '#B45309', rgb: '245,158,11', size: '18px', ring: '3px',   score: '17px' },
+  orange: { dot: '#EA580C', text: '#C2410C', label: '#C2410C', rgb: '234,88,12',  size: '21px', ring: '3.5px', score: '18px' },
+  red:    { dot: '#EF4444', text: '#EF4444', label: '#0A1628', rgb: '239,68,68',  size: '26px', ring: '4px',   score: '20px' }
+};
+const PILL = {
+  red:   { bg: 'rgba(239,68,68,.09)',  border: 'rgba(239,68,68,.26)',  color: '#DC2626', pad: '6px 14px', size: '14px', weight: '600' },
+  amber: { bg: 'rgba(245,158,11,.10)', border: 'rgba(245,158,11,.30)', color: '#B45309', pad: '6px 14px', size: '14px', weight: '600' },
+  cyan:  { bg: 'rgba(229, 54, 163,.07)',  border: 'rgba(229, 54, 163,.22)',  color: '#E536A3', pad: '6px 14px', size: '14px', weight: '600' },
+  muted: { bg: 'rgba(10,22,40,.04)',   border: 'rgba(10,22,40,.10)',   color: '#6B7688', pad: '5px 12px', size: '13px', weight: '500' }
+};
+const GRAPH = '<svg width="300" height="76" viewBox="0 0 300 76" aria-hidden="true" style="flex:0 0 auto">' +
+  '<defs><radialGradient id="cxqHubGlow" cx=".5" cy=".5" r=".5"><stop offset="0%" stop-color="#EA580C" stop-opacity=".15"></stop><stop offset="100%" stop-color="#EA580C" stop-opacity="0"></stop></radialGradient></defs>' +
+  '<circle cx="34" cy="38" r="36" fill="url(#cxqHubGlow)"></circle>' +
+  '<g fill="none" stroke="#EA580C" stroke-opacity=".42" stroke-width="1.4"><path d="M52 38 C 82 38, 86 10, 116 10"></path><path d="M52 38 C 82 38, 86 29, 116 29"></path><path d="M52 38 C 82 38, 86 47, 116 47"></path><path d="M52 38 C 82 38, 86 66, 116 66"></path></g>' +
+  '<rect x="20" y="19" width="28" height="38" rx="7" fill="#fff" stroke="#EA580C" stroke-width="1.7"></rect>' +
+  '<rect x="25.5" y="24.5" width="17" height="21" rx="3" fill="#EA580C" fill-opacity=".16"></rect>' +
+  '<circle cx="34" cy="51.5" r="2" fill="#EA580C"></circle>' +
+  '<g>' + [10,29,47,66].map(y => '<circle cx="125" cy="' + y + '" r="8.5" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"></circle>').join('') + '</g>' +
+  '<g fill="#EA580C">' + [10,29,47,66].map(y => '<circle cx="125" cy="' + (y - 2.4) + '" r="2.3"></circle><path d="M121 ' + (y + 4.9) + 'a4.2 4.2 0 018 0z"></path>').join('') + '</g>' +
+  '<g font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#6B7688"><text x="141" y="14">user5541</text><text x="141" y="33">user5539</text><text x="141" y="51">user5602</text><text x="141" y="70">user5617</text></g>' +
+  '<g font-family="Inter,system-ui,sans-serif" font-size="11.5" font-weight="600" fill="#C2410C"><text x="210" y="14">\u20b91.8k in</text><text x="210" y="33">\u20b9500 in</text><text x="210" y="51">\u20b92k in</text><text x="210" y="70">\u20b91.1k in</text></g>' +
+  '</svg>' +
+  '<div style="display:flex;flex-direction:column;gap:5px;padding-left:4px;border-left:2px solid rgba(234,88,12,.22)">' +
+  '<span style="font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;color:#C2410C;padding-left:12px">One device fingerprint, four accounts</span>' +
+  '<span style="font-family:Inter,system-ui,sans-serif;font-size:13.5px;color:#6B7688;padding-left:12px">All credits landed inside the same hour</span></div>';
+
+const CASES = [
+  { photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/cx_face_illus_1_46a15bc4c2.png', pos: '50% 50%', id: 'user2173', device: 'samsung SM-X706B \u00b7 Android 12',
+    city: 'Atlanta', first: '22 Jul', last: '30 Jul', acts: 11,
+    nodeAt: [1.4,2.5,3.6,4.7,6.0,7.3], groupAt: [5.0,6.3,8.0], tagAt: 7.7, summaryAt: 8.3, end: 11.0, graph: false,
+    nodes: [['22 Jul','Login',18,'cyan'],['24 Jul','Balance check',21,'cyan'],['27 Jul','Bill payment \u20b91.2k',24,'cyan'],['30 Jul','New device',58,'amber'],['30 Jul','New beneficiary',74,'orange'],['30 Jul','Transfer \u20b92.4L',95,'red','Blocked','#EF4444',true]],
+    scores: [18,21,24,58,74,95.36], signals: [0,0,0,2,5,9],
+    groups: [['Device',[['New device','red'],['Screen mirror','red']]],['Behaviour',[['New beneficiary','red'],['Behavioural drift','red'],['Velocity spike','amber']]],['Network',[['VPN','muted'],['Proxy','muted']]]],
+    summary: 'Days of normal activity, then a new device, a new beneficiary, and a \u20b92.4L transfer \u2014 risk climbed 18 to 95 before any funds moved. Held for review.' },
+  { photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/cx_face_illus_2_35f00f041b.png', pos: '50% 50%', id: 'user5541', device: 'Xiaomi 22120RN86G \u00b7 Android 13',
+    city: 'Hyderabad', first: '21 Jul', last: '30 Jul', acts: 14,
+    nodeAt: [0.7,1.5,2.3,3.2,4.1,5.0], groupAt: [3.5,5.4,6.2], tagAt: 5.6, summaryAt: 6.6, end: 9.5, graph: true, graphAt: 5.9,
+    nodes: [['22 Jul','Login',18,'cyan'],['24 Jul','Balance check',20,'cyan'],['26 Jul','Bill payment \u20b9900',23,'cyan'],['29 Jul','Credit \u20b91.8k in',44,'amber'],['29 Jul','Credit \u20b9500 in',58,'amber'],['30 Jul','Credit \u20b92k in',72,'orange','Watchlist','#D97706',false]],
+    scores: [18,20,23,44,58,71.64], signals: [0,0,0,1,2,4],
+    groups: [['Device',[['Shared fingerprint','amber']]],['Behaviour',[['Linked-account pattern','red'],['Inbound velocity','amber']]],['Network',[['VPN','muted'],['Proxy','muted']]]],
+    summary: 'Small inbound credits landed within the hour across four accounts sharing one device fingerprint. Nothing was transferred out \u2014 the account is on the watchlist.' },
+  { photo: 'https://cdn.sign3.in/strapi-assets/api-uploads/cx_face_illus_3_3a762cc999.png', pos: '50% 50%', id: 'user8207', device: 'Pixel 7a \u00b7 Android 14',
+    city: 'Pune', first: '12 Jun', last: '30 Jul', acts: 26,
+    nodeAt: [0.7,1.5,2.3,3.2,4.1,5.0], groupAt: [3.5,5.4,6.2], tagAt: 5.6, summaryAt: 6.4, end: 9.3, graph: false,
+    nodes: [['22 Jul','Login 09:12',18,'cyan'],['24 Jul','Login 10:04',21,'cyan'],['26 Jul','Bill payment \u20b91.4k',24,'cyan'],['28 Jul','Login 02:40',43,'amber'],['29 Jul','6 transfers in 1 hr',61,'amber'],['30 Jul','Login 03:18',84,'orange','Step-up authentication','#D97706',false]],
+    scores: [18,21,24,43,61,84.2], signals: [0,0,0,1,3,4],
+    groups: [['Device',[['Same device \u00b7 trusted','cyan']]],['Behaviour',[['Session-time drift','red'],['Velocity spike','amber']]],['Network',[['VPN','muted'],['Proxy','muted']]]],
+    summary: 'No new device and no new payee \u2014 but login times and transfer velocity drifted well away from this account\u2019s baseline. Routed to step-up authentication.' }
+];
+const CAPS = [
+  ['Monitored account', 'One customer, thousands of sessions'],
+  ['Continuous monitoring', 'Every session — scored in real time']
+];
+const T = 800;
+
+class Component extends DCLogic {
+  state = { scene: 0, moving: false, idx: 0 };
+
+  constructor(props) {
+    super(props);
+    ['scene0', 'scene1', 'topbarRef', 'headRef', 'tierRef', 'tileRef', 'tileIcRef', 'idRef', 'devRef',
+     'firstRef', 'lastRef', 'actsRef', 'cityRef', 'footRef', 'ringRef', 'numRef', 'scoreIntRef', 'scoreBigRef',
+     'segsRef', 'sigLabelRef', 'photoRef', 'scanRef', 'arc1', 'arc2', 'arc3', 'arc4',
+     'linksRef', 'nodesRef', 'graphRef', 'groupsRef', 'sumRef']
+      .forEach(k => { this[k] = React.createRef(); });
+    this.idx = 0; this.score = 0; this.signals = 0; this.kf = []; this.curColor = LOW; this.panelBuilt = false;
+  }
+
+  componentDidMount() {
+    this.caseT0 = performance.now();
+    this.startCase(0);
+    this.raf = requestAnimationFrame(this.loop);
+  }
+
+  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+
+  get cardHold() { return (this.props.cardSeconds == null ? 4.2 : this.props.cardSeconds) * 1000; }
+
+  loop = () => {
+    this.raf = requestAnimationFrame(this.loop);
+    this.tick();
+  };
+
+  // card phase, then the monitoring phase runs the session timeline on its own clock
+  tick() {
+    const C = CASES[this.idx];
+    const ms = performance.now() - this.caseT0;
+    const A = this.cardHold + T;
+    let scene, moving, e;
+    if (ms < A) {
+      scene = 0; moving = ms > A - T;
+      e = Math.min(0.9, ms / 1000);
+      this.score = C.scores[0] * this.ease(Math.min(1, e / 0.9));
+      this.signals = 0;
+    } else {
+      scene = 1;
+      const b = (ms - A) / 1000;
+      if (!this.panelBuilt) { this.buildPanel(); this.panelBuilt = true; }
+      if (b >= C.end) {
+        const next = (this.idx + 1) % CASES.length;
+        this.idx = next; this.panelBuilt = false; this.caseT0 = performance.now();
+        this.startCase(next);
+        return;
+      }
+      moving = b > C.end - T / 1000;
+      this.score = this.valueAt(b);
+      let n = 0;
+      for (let i = 0; i < C.nodeAt.length; i++) if (b >= C.nodeAt[i] + 0.05) n = C.signals[i];
+      this.signals = n;
+    }
+    this.paint();
+    const s = this.state;
+    if (scene !== s.scene || moving !== s.moving || this.idx !== s.idx) {
+      this.setState({ scene: scene, moving: moving, idx: this.idx });
+    }
+  }
+
+  startCase(i) {
+    const C = CASES[i];
+    this.kf = [{ t: 0, v: C.scores[0] }];
+    for (let k = 1; k < C.nodeAt.length; k++) {
+      const at = C.nodeAt[k] + 0.05;
+      this.kf.push({ t: at, v: C.scores[k - 1] });
+      this.kf.push({ t: at + (k < 3 ? 1.0 : 1.15), v: C.scores[k] });
+    }
+    this.buildCard();
+  }
+
+  ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+  rgba(hex, a) { const n = parseInt(hex.slice(1), 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; }
+  pair(c) { return c === '#EF4444' ? '#F87171' : c === '#EA580C' ? '#FB923C' : c === '#F59E0B' ? '#FBBF24' : LOW2; }
+  rgbOf(c) { return c === '#EF4444' ? '239,68,68' : c === '#EA580C' ? '234,88,12' : c === '#F59E0B' ? '245,158,11' : '8,145,178'; }
+
+  valueAt(e) {
+    const kf = this.kf;
+    if (e <= kf[0].t) return kf[0].v;
+    for (let i = 1; i < kf.length; i++) {
+      if (e <= kf[i].t) {
+        const a = kf[i - 1], span = kf[i].t - a.t;
+        return span <= 0 ? kf[i].v : a.v + (kf[i].v - a.v) * this.ease((e - a.t) / span);
+      }
+    }
+    return kf[kf.length - 1].v;
+  }
+
+  buildCard() {
+    const C = CASES[this.idx];
+    const set = (ref, v) => { if (ref.current) ref.current.textContent = v; };
+    set(this.idRef, C.id); set(this.devRef, C.device); set(this.firstRef, C.first);
+    set(this.lastRef, C.last); set(this.actsRef, C.acts); set(this.cityRef, C.city);
+    const ph = this.photoRef.current;
+    if (ph) {
+      ph.style.backgroundImage = 'url(' + C.photo + ')';
+      ph.style.backgroundPosition = C.pos;
+      ph.style.animation = 'none'; void ph.offsetWidth;
+      ph.style.animation = 'cxaPhotoSwap .85s cubic-bezier(.22,1,.36,1) both';
+    }
+    const root = this.scene0.current;
+    if (root) root.querySelectorAll('.cxa-fadein').forEach(e => {
+      const d = e.style.animationDelay;
+      e.style.animation = 'none'; void e.offsetWidth;
+      e.style.animation = 'cxaFieldIn .5s ' + EASE + ' ' + d + ' both';
+    });
+    if (root) root.querySelectorAll('.cxa-orb, .cxa-card').forEach(e => {
+      if (!e.getAnimations) return;
+      e.getAnimations().forEach(a => { if (a.animationName === 'cxqOrbPop' || a.animationName === 'cxqCardIn') { a.cancel(); a.play(); } });
+    });
+  }
+
+  buildPanel() {
+    const C = CASES[this.idx];
+    if (this.nodesRef.current) this.nodesRef.current.innerHTML = C.nodes.map((nd, i) => {
+      const O = TONES[nd[3]], big = nd[3] === 'red';
+      const shadow = big ? '0 0 0 2px rgba(' + O.rgb + ',.45),0 0 0 9px rgba(' + O.rgb + ',.10)' : '0 0 0 1.5px rgba(' + O.rgb + ',.45)';
+      const pulse = big ? 'cxaRingPulse 2.4s ' + EASE + ' ' + (C.tagAt + 0.3) + 's infinite' : 'none';
+      return '<div class="cxa-node" style="animation:cxaNodeIn .85s ' + EASE + ' ' + C.nodeAt[i] + 's both">' +
+        '<div class="top"><span class="dt">' + nd[0] + '</span>' +
+        '<span class="lb" style="font-size:' + (i === 5 && big ? '16px' : '14.5px') + ';color:' + O.label + '">' + nd[1] + '</span></div>' +
+        '<div class="dotwrap"><span class="dot" style="background:' + O.dot + ';border-width:' + O.ring + ';width:' + O.size + ';height:' + O.size + ';box-shadow:' + shadow + ';animation:' + pulse + '"></span></div>' +
+        '<div class="bot"><span class="sc" style="font-size:' + O.score + ';color:' + O.text + '">' + nd[2] + '</span>' +
+        (nd[4] ? '<span class="tag" style="background:' + nd[5] + ';animation:cxaTagPop .55s ' + EASE + ' ' + C.tagAt + 's both">' + nd[4] + '</span>' : '') +
+        '</div></div>';
+    }).join('');
+
+    if (this.linksRef.current) this.linksRef.current.innerHTML = [0,1,2,3,4].map(i => {
+      const A = TONES[C.nodes[i][3]], B = TONES[C.nodes[i + 1][3]];
+      return '<div class="cxa-link" style="left:' + (8.333 + 16.667 * i).toFixed(3) + '%;background:linear-gradient(90deg,rgba(' + A.rgb + ',.34),rgba(' + B.rgb + ',.42));animation:cxaLineDraw .65s ' + EASE + ' ' + (C.nodeAt[i] + 0.4) + 's both"></div>';
+    }).join('');
+
+    if (this.groupsRef.current) this.groupsRef.current.innerHTML = C.groups.map((g, gi) =>
+      '<div style="opacity:' + (gi === 2 ? 0.62 : 1) + '"><div class="cxa-grow">' +
+        '<span style="font-size:' + (gi === 2 ? '12px' : '13px') + ';color:' + (gi === 2 ? '#8A94A6' : '#0A1628') + '">' + g[0] + '</span>' +
+        '<div class="cxa-pills">' + g[1].map((pp, pi) => {
+          const P = PILL[pp[1]];
+          return '<span class="cxa-pill" style="padding:' + P.pad + ';font-size:' + P.size + ';font-weight:' + P.weight + ';background:' + P.bg + ';border:1px solid ' + P.border + ';color:' + P.color + ';animation:cxaPillIn .5s ' + EASE + ' ' + (C.groupAt[gi] + 0.05 + pi * 0.18) + 's both">' + pp[0] + '</span>';
+        }).join('') + '</div></div></div>').join('');
+
+    if (this.graphRef.current) this.graphRef.current.innerHTML = C.graph
+      ? '<div class="cxa-graph" style="animation:cxaRowIn .7s ' + EASE + ' ' + (C.graphAt || 0) + 's both">' + GRAPH + '</div>' : '';
+
+    const sm = this.sumRef.current;
+    if (sm) {
+      sm.textContent = C.summary;
+      sm.style.animation = 'none'; void sm.offsetWidth;
+      sm.style.animation = 'cxaRowIn .8s ' + EASE + ' ' + C.summaryAt + 's both';
+    }
+  }
+
+  paint() {
+    const s = this.score;
+    if (!this.scoreBigRef.current) return;
+    const color = s >= 85 ? '#EF4444' : s >= 66 ? '#EA580C' : s >= 40 ? '#F59E0B' : LOW;
+    const rgb = this.rgbOf(color), c2 = this.pair(color);
+    this.curColor = color;
+    this.scoreBigRef.current.textContent = s.toFixed(2);
+    this.scoreBigRef.current.style.color = color;
+    this.scoreIntRef.current.textContent = Math.round(s);
+    this.numRef.current.style.color = color;
+    const ring = this.ringRef.current;
+    ring.setAttribute('stroke', color);
+    ring.setAttribute('stroke-dasharray', (s / 100 * 289).toFixed(1) + ' 289');
+    this.topbarRef.current.style.background = 'linear-gradient(90deg,' + color + ' 0%,rgba(' + rgb + ',.55) 62%,rgba(' + rgb + ',.12) 100%)';
+    this.headRef.current.style.background = 'linear-gradient(165deg,rgba(' + rgb + ',.055) 0%,rgba(' + rgb + ',0) 78%)';
+    this.footRef.current.style.background = 'linear-gradient(180deg,rgba(' + rgb + ',.03) 0%,rgba(' + rgb + ',.075) 100%)';
+    const tile = this.tileRef.current;
+    tile.style.background = 'linear-gradient(150deg,rgba(' + rgb + ',.09) 0%,#fff 100%)';
+    tile.style.border = '1.5px solid rgba(' + rgb + ',.28)';
+    tile.style.boxShadow = '0 6px 18px rgba(' + rgb + ',.12)';
+    this.tileIcRef.current.setAttribute('fill', color);
+    const tier = this.tierRef.current;
+    tier.style.background = 'rgba(' + rgb + ',.10)';
+    tier.style.border = '1px solid rgba(' + rgb + ',.28)';
+    tier.style.color = color;
+    tier.querySelector('i').style.background = color;
+    tier.querySelector('i').style.boxShadow = '0 0 0 3px rgba(' + rgb + ',.10)';
+    tier.querySelector('b').textContent = s >= 66 ? 'High' : s >= 40 ? 'Elevated' : 'Low';
+    this.arc1.current.setAttribute('stop-color', color);
+    this.arc2.current.setAttribute('stop-color', color);
+    this.arc3.current.setAttribute('stop-color', c2);
+    this.arc4.current.setAttribute('stop-color', c2);
+    this.scanRef.current.style.background = 'conic-gradient(from 0deg,' + this.rgba(color, 0) + ' 0deg,' + this.rgba(color, .08) + ' 90deg,' +
+      this.rgba(c2, .55) + ' 200deg,' + color + ' 300deg,' + color + ' 342deg,' + this.rgba(color, 0) + ' 360deg)';
+    this.sigLabelRef.current.textContent = this.signals === 0 ? 'No signals active' : this.signals === 1 ? '1 signal active' : this.signals + ' signals active';
+    const segs = this.segsRef.current;
+    if (segs.childNodes.length !== 9) {
+      segs.innerHTML = '';
+      for (let i = 0; i < 9; i++) segs.appendChild(document.createElement('i'));
+    }
+    for (let j = 0; j < 9; j++) segs.childNodes[j].style.background = j < this.signals ? color : 'rgba(10,22,40,.10)';
+  }
+
+  layer(i) {
+    const s = this.state;
+    if (s.moving) return { o: 0, k: i === s.scene ? 1.1 : 0.9, b: 9 };
+    if (i === s.scene) return { o: 1, k: 1, b: 0 };
+    return { o: 0, k: 0.9, b: 6 };
+  }
+
+  renderVals() {
+    const a = this.layer(0), b = this.layer(1);
+    const sc = this.state.scene;
+    const bar = i => ({ w: i === sc ? 84 : 26, c: i === sc ? '#E536A3' : 'rgba(10,22,40,0.16)' });
+    const b0 = bar(0), b1 = bar(1);
+    const out = {
+      s0o: a.o, s0k: a.k, s0b: a.b,
+      s1o: b.o, s1k: b.k, s1b: b.b,
+      beamOpacity: this.state.moving ? 1 : 0,
+      capTitle: CAPS[sc][0], capSub: CAPS[sc][1],
+      capOpacity: this.state.moving ? 0 : 1,
+      p0w: b0.w, p0c: b0.c, p1w: b1.w, p1c: b1.c
+    };
+    ['scene0', 'scene1', 'topbarRef', 'headRef', 'tierRef', 'tileRef', 'tileIcRef', 'idRef', 'devRef',
+     'firstRef', 'lastRef', 'actsRef', 'cityRef', 'footRef', 'ringRef', 'numRef', 'scoreIntRef', 'scoreBigRef',
+     'segsRef', 'sigLabelRef', 'photoRef', 'scanRef', 'arc1', 'arc2', 'arc3', 'arc4',
+     'linksRef', 'nodesRef', 'graphRef', 'groupsRef', 'sumRef'].forEach(k => { out[k] = this[k]; });
+    return out;
+  }
+}
+
+</script>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     The standalone's viewing harness: its padding is white space around the
+     artwork, and its caption is the preview's own title. */
+  .stage { padding: 0; max-width: none; }
+  .stage > .cap { display: none; }
+
+  html,
+  body { background: transparent; }
+</style>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle. */
+  html,
+  body { width: 100%; margin: 0; overflow: hidden; }
+
+  /* The artboard's own width. Its children are positioned in a 1080 space but
+     the root only inherits the body's, so without this the scale below shrinks
+     a 100%-wide box and the composition lands at a third of its width. The
+     scale itself is set by the script, not here. */
+  body > *:not(style):not(script):not(link) {
+    width: 1080px;
+    transform-origin: top left;
+    /* The scale is a plain number in a custom property, set by the script. A
+       RULE rather than an inline style, because the Design Component runtime
+       replaces this element after it renders — an inline style set before that
+       is simply gone, while a rule applies to whatever the root becomes. */
+    transform: scale(var(--sq-scale, 1));
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // Fits the artboard to the frame. These four are the one family that does not
+  // fit itself: each is a fixed 1080 x 1080 composition, and the handoff scales
+  // it from the page ("340 x 340, scale 0.31481"). Every other animation we
+  // serve fits itself to its host, and useAnimationFrameHeight relies on that.
+  //
+  // In JS rather than CSS, and the reason is the second line below. The scale
+  // alone can be written in CSS as scale(calc(100vw / 1080px)) — but that is a
+  // length divided by a length, which is CSS Values 4 and not something to
+  // depend on across engines: where it is not supported the declaration is
+  // dropped silently and the artboard renders at its full 1080, which is
+  // exactly "the animation is too tall and there is white space after it".
+  //
+  // The height matters more. A transform does not participate in layout, so
+  // whatever the scale, the document still RESERVES the artboard's untransformed
+  // 1080px. Chromium happens to give the right answer because the frame is sized
+  // from painted rects rather than the document, but that is the measurement
+  // getting lucky, not the layout being right. Setting the body's height to what
+  // the artwork actually paints makes the document honest in every engine, and
+  // leaves nothing for the frame to over-reserve.
+  (function () {
+    var ARTBOARD = 1080;
+    function fit() {
+      var width = document.documentElement.clientWidth;
+      if (!width) return;
+      var scale = width / ARTBOARD;
+      // On the document element, so it survives the root being re-rendered.
+      document.documentElement.style.setProperty("--sq-scale", scale);
+      document.body.style.height = Math.round(ARTBOARD * scale) + "px";
+    }
+
+    fit();
+    addEventListener("resize", fit);
+    addEventListener("load", fit);
+  })();
+</script>

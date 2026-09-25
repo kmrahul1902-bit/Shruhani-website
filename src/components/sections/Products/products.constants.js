@@ -28,16 +28,20 @@ export const FLOW_ASPECT = {
 export const SUITE_CARD_MIN_H = "min-h-101";
 
 /**
- * Structural metadata (route/key) for the three suites, in the same order
- * `home.json`'s `productShowcase.panels` carries them — confirmed by each
- * panel's own `tabLabel` (ScreenX, Cortex, Escalation). The reference reads
- * `key`/`href`/`animation` from the CMS alongside the copy; we have no CMS,
- * so it lives here instead (see plan/CLAUDE.md → Decisions). No `animation`
- * — the flow animations (Phase 7) aren't ported, so `HeroAnimation` simply
- * doesn't render for these panels yet (guarded by `item.animation` below).
+ * Structural metadata (route/key/animation) for the three suites, in the
+ * same order `home.json`'s `productShowcase.panels` carries them — confirmed
+ * by each panel's own `tabLabel` (ScreenX, Cortex, Escalation). The
+ * reference reads `key`/`href`/`animation` from the CMS alongside the copy;
+ * we have no CMS, so it lives here instead (see plan/CLAUDE.md → Decisions).
+ * `animation` slugs match the flow-diagram files ported in Phase 7
+ * (`public/animations/<slug>.html`).
  */
 export const PRODUCT_META = [
-  { key: "screenx", href: "/products/screenx" },
-  { key: "cortex", href: "/products/cortex" },
-  { key: "escalation", href: "/products/escalation" },
+  { key: "screenx", href: "/products/screenx", animation: "screenx-flow" },
+  { key: "cortex", href: "/products/cortex", animation: "cortex-flow" },
+  {
+    key: "escalation",
+    href: "/products/escalation",
+    animation: "escalation-flow",
+  },
 ];

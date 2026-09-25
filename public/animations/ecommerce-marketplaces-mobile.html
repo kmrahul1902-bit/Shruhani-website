@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shruhani E-Commerce — hero evidence-stack animation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0a0a0a;--gray-400:#9ca3af;--gray-500:#6b7280;--gray-600:#4b5563;--blue:#C21E86;--blue-hover:#C21E86}
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#0a0a0a;background:#fff;overflow-x:hidden}
+  .fx-hero{margin-top:0 !important}
+  .btn-pill{border:none;padding:16px 30px;font-size:16px;font-weight:600;border-radius:999px;cursor:pointer;font-family:inherit;transition:transform .15s ease,background .15s ease,color .15s ease;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+  .btn-pill.primary{background:var(--blue);color:#fff}
+  .btn-pill.primary:hover{background:var(--blue-hover);transform:translateY(-1px)}
+  .btn-pill.outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-pill.outline:hover{background:var(--ink);color:#fff;transform:translateY(-1px)}
+</style>
+<style>
+/* ── HERO (onboarding v2 pattern: visual left, copy right) ── */
+  .fx-hero{position:relative;overflow:hidden;margin-top:-92px;padding:92px 0 0;background:radial-gradient(1200px 620px at 12% 18%,rgba(194, 30, 134,0.10),transparent 60%),linear-gradient(172deg,#FEF8FB 0%,#FEF8FB 42%,#FEF8FB 74%,#ffffff 100%)}
+.fx-hero-inner{max-width:1460px;margin:0 auto;padding:56px 80px 96px;display:grid;grid-template-columns:0.94fr 1.06fr;gap:72px;align-items:center}
+.fx-visual{position:relative;min-height:560px;display:flex;align-items:center;justify-content:flex-end}
+.fx-photo{position:relative;width:460px;height:600px;overflow:hidden;background:#FEF8FB;box-shadow:0 30px 70px rgba(15,23,42,0.14)}
+.fx-photo img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
+.fx-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,rgba(10,10,10,0) 45%,rgba(10,10,10,0.32))}
+.fx-copy h1{font-size:clamp(40px,4.4vw,60px);font-weight:800;letter-spacing:-0.045em;line-height:1.05;color:var(--ink);margin:0;text-wrap:balance}
+.fx-copy h1 em{font-style:normal;color:var(--gray-400)}
+.fx-copy-sub{margin:24px 0 0;max-width:560px;font-size:18px;line-height:1.58;color:var(--gray-600);text-wrap:pretty}
+.fx-cta{margin-top:34px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+/* ── hero foreground (animated evidence stack) ── */
+  .hf{position:relative;width:550px;height:600px;box-sizing:border-box;border-radius:26px;overflow:hidden;background:#0A1628;border:3px solid #fff;box-shadow:0 30px 70px rgba(10,22,40,.28);flex:none}
+.hf-bg{position:absolute;inset:-2%;background-color:#0A1628;background-repeat:no-repeat;background-image:url('https://cdn.sign3.in/strapi-assets/api-uploads/hero_ecommerce_bg_73cfb75b6f.png');background-size:cover;background-position:center}
+.hf-bg::after{content:"";position:absolute;inset:0;background:rgba(8,16,32,.34)}
+.hf-layer{position:absolute;top:89px;left:16px;display:flex;align-items:flex-start;gap:34px;width:500px;box-sizing:border-box;padding:10px 10px 18px 34px}
+.hf-wires{position:absolute;top:0;left:0;z-index:0;pointer-events:none;overflow:visible}
+.hf-col{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px;width:336px;flex:none}
+.hf-id{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid rgba(15,30,60,.08);border-radius:14px;padding:14px 18px 14px 14px;box-sizing:border-box;box-shadow:0 14px 34px rgba(10,22,40,.18);animation:cardBob 7.2s ease-in-out -2.3s infinite;will-change:transform}
+.hf-av{position:relative;width:76px;height:76px;flex:none}
+.hf-av-img{position:relative;width:76px;height:76px;border-radius:50%;border:3px solid #C21E86;background:#FEF8FB;box-sizing:border-box;overflow:hidden;box-shadow:0 8px 20px rgba(10,22,40,.18)}
+.hf-av-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
+.hf-av-badge{position:absolute;right:-3px;bottom:-1px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(15,30,60,.08),0 4px 12px rgba(10,22,40,.24);display:flex;align-items:center;justify-content:center}
+.hf-name{font-size:18px;font-weight:700;letter-spacing:-.3px;color:#0A1628}
+.hf-meta{margin-top:3px;font-size:12.5px;font-weight:500;color:#64748B}
+.hf-card{width:100%;box-sizing:border-box;background:#fff;border:1px solid rgba(15,30,60,.08);border-radius:12px;padding:13px 14px;box-shadow:0 12px 30px rgba(10,22,40,.16);display:flex;align-items:center;gap:11px;will-change:transform}
+.hf-ic{width:30px;height:30px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center}
+.hf-ic.b{background:rgba(194, 30, 134,.09)}
+.hf-ic.v{background:rgba(109,90,230,.11)}
+.hf-lab{flex:1;min-width:0;font-size:13.5px;font-weight:600;color:#0A1628}
+.hf-val{display:flex;align-items:center;gap:7px;flex:none;font-size:13px;font-weight:500;color:#475569}
+.hf-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;display:block}
+.hf-nodewrap{position:relative;z-index:1;display:flex;align-items:center;align-self:stretch;flex:none}
+.hf-node{position:relative;width:64px;height:64px;border-radius:50%;background:#fff;animation:nodeRing 6.5s ease-in-out infinite;display:flex;align-items:center;justify-content:center}
+@keyframes nodeSpin{from{transform:rotate(var(--a,0deg))}to{transform:rotate(calc(var(--a,0deg) + 360deg))}}
+@keyframes nodeSpinRev{from{transform:rotate(var(--a,0deg))}to{transform:rotate(calc(var(--a,0deg) - 360deg))}}
+@keyframes nodeCore{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.14);opacity:1}}
+@keyframes nodeRipple{0%{transform:scale(.55);opacity:.55}70%{opacity:0}100%{transform:scale(2.1);opacity:0}}
+@keyframes nodeRing{0%,100%{box-shadow:0 0 0 1px rgba(15,30,60,.08),0 0 0 7px rgba(194, 30, 134,.08),0 14px 30px rgba(10,22,40,.22)}50%{box-shadow:0 0 0 1px rgba(15,30,60,.08),0 0 0 12px rgba(194, 30, 134,.13),0 14px 30px rgba(10,22,40,.22)}}
+@keyframes arcBreatheA{0%,100%{stroke-dasharray:16 110;stroke-dashoffset:0}50%{stroke-dasharray:62 64;stroke-dashoffset:-22}}
+@keyframes arcBreatheB{0%,100%{stroke-dasharray:10 75;stroke-dashoffset:0}50%{stroke-dasharray:40 45;stroke-dashoffset:-15}}
+@keyframes cardDrift{0%,100%{transform:translate3d(0,-1.6px,0)}50%{transform:translate3d(0,1.6px,0)}}
+@keyframes cardBob{0%,100%{transform:translate3d(0,-1.1px,0)}50%{transform:translate3d(0,1.1px,0)}}
+.arcA{animation:arcBreatheA 3.4s ease-in-out infinite}
+.arcB{animation:arcBreatheB 4.6s ease-in-out -1.6s infinite}
+.nSpin{transform-box:view-box;transform-origin:32px 32px;animation:nodeSpin linear infinite}
+.nSpinRev{transform-box:view-box;transform-origin:32px 32px;animation:nodeSpinRev linear infinite}
+.nRipple{transform-box:view-box;transform-origin:32px 32px;animation:nodeRipple 3.2s ease-out infinite}
+.nCore{transform-box:view-box;transform-origin:32px 32px;animation:nodeCore 3.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){
+.hf-id,.hf-card,.hf-node,.arcA,.arcB,.nCore,.nRipple{animation:none!important}
+.nSpin,.nSpinRev{animation:none!important;transform:rotate(var(--a,0deg))}
+.sigLights{display:none}
+}
+@media (max-width:1360px){
+.hf{margin:0 auto}
+}
+@media (max-width:640px){
+.hf{zoom:.66}
+}
+@media (max-width:430px){
+.hf{zoom:.54}
+}
+.fx-hero-card{position:absolute;left:27px;top:225px;z-index:3;width:339px;max-width:92%;background:#fff;border-radius:20px;border:1px solid rgba(15,23,42,0.06);box-shadow:0 1px 2px rgba(15,23,42,0.04),0 34px 80px rgba(15,23,42,0.22),0 14px 36px rgba(194, 30, 134,0.12);overflow:hidden}
+@media (max-width:1080px){
+.fx-hero-inner{grid-template-columns:1fr;gap:48px;padding:40px 24px 72px}
+.fx-visual{flex-direction:column;justify-content:center;min-height:0}
+.fx-photo{width:100%;height:400px}
+.fx-hero-card{position:relative;top:auto;left:auto;transform:none;margin-top:-70px;width:100%}
+}
+</style>
+<style id="mobileScale">
+/* This bundle is the MOBILE handoff. The production mobile page scales the
+   fixed 550x600 evidence stack with zoom:.618 and stacks copy above visual;
+   pinned here so the standalone file matches the page instead of its own
+   older standalone breakpoints. */
+@media (max-width: 620px) {
+  .fx-hero-inner { display: flex !important; flex-direction: column !important;
+    gap: 26px !important; padding: 22px 18px 44px !important; }
+  .fx-copy { order: 1 !important; }
+  .fx-visual { order: 2 !important; }
+  .fx-copy h1 span { white-space: normal !important; }
+  .hf { zoom: .618 !important; margin: 0 auto !important; }
+}
+</style>
+</head>
+<body>
+<section class="fx-hero" data-screen-label="Platform Hero">
+  <div class="fx-hero-inner">
+    <div class="fx-visual">
+      <div class="hf" style="border-radius:20px">
+        <div class="hf-bg"></div>
+        <div class="hf-layer">
+          <svg class="hf-wires" width="500" height="430" viewBox="0 0 500 430" fill="none" aria-hidden="true">
+      <defs>
+        <filter id="sigGlow" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="2.4" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter>
+        <path id="sigT1" d="M34 63 H24 A6 6 0 0 0 18 69 V159 H34" fill="none"></path>
+        <path id="sigT2" d="M34 63 H24 A6 6 0 0 0 18 69 V231 H34" fill="none"></path>
+        <path id="sigT3" d="M34 63 H24 A6 6 0 0 0 18 69 V303 H34" fill="none"></path>
+        <path id="sigT4" d="M34 63 H24 A6 6 0 0 0 18 69 V369 A6 6 0 0 0 24 375 H34" fill="none"></path>
+        <path id="sigR1" d="M370 159 H380 A6 6 0 0 1 386 165 V201 A6 6 0 0 0 392 207 H404" fill="none"></path>
+        <path id="sigR2" d="M370 231 H380 A6 6 0 0 0 386 225 V213 A6 6 0 0 1 392 207 H404" fill="none"></path>
+        <path id="sigR3" d="M370 303 H380 A6 6 0 0 0 386 297 V213 A6 6 0 0 1 392 207 H404" fill="none"></path>
+        <path id="sigR4" d="M370 375 H380 A6 6 0 0 0 386 369 V213 A6 6 0 0 1 392 207 H404" fill="none"></path>
+      </defs>
+      <g stroke="#B9C2D0" stroke-width="1" stroke-dasharray="4 4" stroke-linecap="round" fill="none">
+        <path d="M34 63 H24 A6 6 0 0 0 18 69 V369 A6 6 0 0 0 24 375 H34"></path>
+        <path d="M18 159 H34"></path>
+        <path d="M18 231 H34"></path>
+        <path d="M18 303 H34"></path>
+        <path d="M370 159 H380 A6 6 0 0 1 386 165 V201 A6 6 0 0 0 392 207 H404"></path>
+        <path d="M370 231 H380 A6 6 0 0 0 386 225 V213 A6 6 0 0 1 392 207 H404"></path>
+        <path d="M370 303 H380 A6 6 0 0 0 386 297 V213 A6 6 0 0 1 392 207 H404"></path>
+        <path d="M370 375 H380 A6 6 0 0 0 386 369 V213 A6 6 0 0 1 392 207 H404"></path>
+      </g>
+      <g class="sigLights" filter="url(#sigGlow)">
+        <g opacity="0"><circle r="5.5" fill="#C21E86" opacity=".16"></circle><circle r="2.2" fill="#C21E86"></circle><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.14;.84;1" dur="3.1s" begin="-0.4s" repeatCount="indefinite"></animate><animateMotion dur="3.1s" begin="-0.4s" repeatCount="indefinite"><mpath href="#sigT1"></mpath></animateMotion></g>
+        <g opacity="0"><circle r="5.5" fill="#6D5AE6" opacity=".16"></circle><circle r="2.2" fill="#7C6BEC"></circle><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.14;.84;1" dur="3.7s" begin="-2.1s" repeatCount="indefinite"></animate><animateMotion dur="3.7s" begin="-2.1s" repeatCount="indefinite"><mpath href="#sigT2"></mpath></animateMotion></g>
+        <g opacity="0"><circle r="5.5" fill="#C21E86" opacity=".16"></circle><circle r="2.2" fill="#C21E86"></circle><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.14;.84;1" dur="2.6s" begin="-1.3s" repeatCount="indefinite"></animate><animateMotion dur="2.6s" begin="-1.3s" repeatCount="indefinite"><mpath href="#sigT3"></mpath></animateMotion></g>
+        <g opacity="0"><circle r="5.5" fill="#6D5AE6" opacity=".16"></circle><circle r="2.2" fill="#7C6BEC"></circle><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.14;.84;1" dur="4s" begin="-3.2s" repeatCount="indefinite"></animate><animateMotion dur="4s" begin="-3.2s" repeatCount="indefinite"><mpath href="#sigT4"></mpath></animateMotion></g>
+        <g opacity="0"><circle r="5.5" fill="#C21E86" opacity=".16"></circle><circle r="2.2" fill="#C21E86"></circle><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.14;.84;1" dur="2.8s" begin="-0.9s" repeatCount="indefinite"></animate><animateMotion dur="2.8s" begin="-0.9s" repeatCount="indefinite"><mpath href="#sigR1"></mpath></animateMotion></g>
+        <g opacity="0"><circle r="5.5" fill="#6D5AE6" opacity=".16"></circle><circle r="2.2" fill="#7C6BEC"></circle><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.14;.84;1" dur="3.4s" begin="-2.6s" repeatCount="indefinite"></animate><animateMotion dur="3.4s" begin="-2.6s" repeatCount="indefinite"><mpath href="#sigR2"></mpath></animateMotion></g>
+        <g opacity="0"><circle r="5.5" fill="#C21E86" opacity=".16"></circle><circle r="2.2" fill="#C21E86"></circle><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.14;.84;1" dur="3.9s" begin="-1.7s" repeatCount="indefinite"></animate><animateMotion dur="3.9s" begin="-1.7s" repeatCount="indefinite"><mpath href="#sigR3"></mpath></animateMotion></g>
+        <g opacity="0"><circle r="5.5" fill="#6D5AE6" opacity=".16"></circle><circle r="2.2" fill="#7C6BEC"></circle><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.14;.84;1" dur="3.2s" begin="-2.9s" repeatCount="indefinite"></animate><animateMotion dur="3.2s" begin="-2.9s" repeatCount="indefinite"><mpath href="#sigR4"></mpath></animateMotion></g>
+      </g>
+          </svg>
+          <div class="hf-col">
+            <div class="hf-id">
+              <div class="hf-av">
+                <div class="hf-av-img"><img src="https://cdn.sign3.in/strapi-assets/api-uploads/hero_ecom_avatar_illus_082c1685ab.png" alt="New seller"/></div>
+                <span class="hf-av-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C21E86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8.4h12l-1 11.2H7L6 8.4z"></path><path d="M9.2 8.4V7a2.8 2.8 0 015.6 0v1.4"></path></svg></span>
+              </div>
+              <div style="min-width:0">
+                <div class="hf-name">New seller</div>
+                <div class="hf-meta">Marketplace listing &middot; Screening</div>
+              </div>
+            </div>
+        <div class="hf-card" style="animation:cardDrift 5.1s ease-in-out infinite"><span class="hf-ic b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C21E86" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.8" width="11" height="18.4" rx="2.6"></rect><path d="M10.6 18.4h2.8"></path></svg></span><span class="hf-lab">Device</span><span class="hf-val">Trusted<i class="hf-dot"></i></span></div>
+        <div class="hf-card" style="animation:cardDrift 6.3s ease-in-out infinite"><span class="hf-ic v"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6D5AE6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.4h3.4l2-5.2 3.2 10 2.4-6.2 1.6 3.2h4.4"></path></svg></span><span class="hf-lab">Behaviour</span><span class="hf-val">Genuine<i class="hf-dot"></i></span></div>
+        <div class="hf-card" style="animation:cardDrift 4.7s ease-in-out infinite"><span class="hf-ic b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C21E86" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 10.4c0 5-7 10.4-7 10.4s-7-5.4-7-10.4a7 7 0 1114 0z"></path><circle cx="12" cy="10.2" r="2.5"></circle></svg></span><span class="hf-lab">Location</span><span class="hf-val">Consistent<i class="hf-dot"></i></span></div>
+        <div class="hf-card" style="animation:cardDrift 5.8s ease-in-out infinite"><span class="hf-ic v"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6D5AE6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.6 11.2c0-4.1 3.3-7.4 7.4-7.4s7.4 3.3 7.4 7.4"></path><path d="M7.4 11.4a4.6 4.6 0 019.2 0v2.2c0 3.3-2 6.2-4.6 6.8"></path><path d="M10 11.6a2 2 0 014 0v3.6"></path></svg></span><span class="hf-lab">Digital footprint</span><span class="hf-val">Aged<i class="hf-dot"></i></span></div>
+          </div>
+          <div class="hf-nodewrap">
+            <div class="hf-node">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="overflow:visible">
+                <circle class="nCore" cx="32" cy="32" r="6" fill="#C21E86"></circle>
+                <g class="nSpin" style="--a:0deg;animation-duration:2.6s"><circle class="arcA" cx="32" cy="32" r="20" fill="none" stroke="#C21E86" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="30 96"></circle></g>
+                <g class="nSpinRev" style="--a:140deg;animation-duration:4.2s"><circle class="arcB" cx="32" cy="32" r="13.5" fill="none" stroke="#6D5AE6" stroke-width="2" stroke-linecap="round" stroke-dasharray="14 71" opacity=".85"></circle></g>
+                <circle class="nRipple" cx="32" cy="32" r="7" fill="none" stroke="#C21E86" stroke-width="1.4"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fx-copy">
+      <h1 style="font-weight: 700; font-size: 42px">Customer intelligence for platforms that run on trust.</h1>
+      <p class="fx-copy-sub" style="font-size: 16px">Marketplaces and e-commerce platforms make continuous decisions about users: who to onboard, who to reward, who to promote, who to investigate. Shruhani provides the intelligence layer that distinguishes a genuine user from a manufactured one, so trust infrastructure scales with the platform.</p>
+      <div class="fx-cta"><a href="#demo" class="btn-pill primary">Book a demo &rarr;</a></div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle. */
+  section.fx-hero {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    /* The bundle is a whole hero, so it paints the hero's own wash. In a 354px
+       frame that gradient reads as a tinted rectangle sitting on top of the
+       PAGE's wash — a box around the animation that the design does not have.
+       The frame carries the drawing only. */
+    background: transparent !important;
+  }
+  .fx-hero-inner {
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    min-height: 0 !important;
+  }
+  .fx-copy { display: none !important; }
+  .fx-visual {
+    order: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+  html,
+  body { background: transparent; }
+</style>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs -- not from the design bundle. */
+  /* Pin the rotation pivot to a box that every engine agrees on.
+     The bundle writes transform-box:view-box with a pixel transform-origin
+     on its concentric rings. That pair is only the ring's centre if view-box is
+     honoured; resolved against the fill-box instead, the pixel pair is measured
+     from the element's own bbox corner and every ring spins about a different
+     off-centre point — the rings stop being concentric.
+     Measured across all seventeen animations, the fill-box centre IS the
+     declared pivot for every one of these elements to within a user unit, so
+     'center' under an explicitly pinned fill-box is the same rotation with no
+     dependency on view-box support. The one exception is measured out below. */
+  [data-scan-ring],
+  #bhHero [data-breathe],
+  .hero-anim .hf-core,
+  .hero-anim .hf-ripple,
+  .hero-anim .hf-spin,
+  .hero-anim .hf-spin-rev,
+  .nCore,
+  .nRipple,
+  .nSpin,
+  .nSpinRev {
+    transform-box: fill-box !important;
+    transform-origin: center !important;
+  }
+
+  /* !important, not higher specificity, and this is load-bearing rather than
+     lazy. The bundles namespace every selector under the wrapper id -- the
+     24 Aug cut's README states it as a rule -- so the file's own declaration is
+     '#diHero [data-scan-ring]' at (1,1,0) where the selector above is (0,1,0).
+     It loses on specificity no matter what order the sheets are in. That is
+     exactly how this fix went missing: it worked while device-intelligence
+     shipped an unscoped rule, then stopped the moment the new cut replaced the
+     file, and the rings went back to being non-concentric in Safari with
+     nothing in the diff to show it. Matching the namespacing here would only
+     put us one bundle rename away from the same silent failure. */
+
+  /* The one element whose fill box is not centred on its pivot: its bbox starts
+     at (123.4, 101.7) and the bundle rotates it about (230, 220). */
+  #bhHero [data-breathe] { transform-origin: 106.6px 118.3px !important; }
+</style>

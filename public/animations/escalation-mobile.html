@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+  body { margin: 0; background: transparent; }
+  a { color: #C21E86; text-decoration: none; }
+  a:hover { color: #6D5AE6; }
+  #eq *, #eq *::before, #eq *::after { box-sizing: border-box; }
+  #eq .eq-zone {
+    width: 470px; display: flex; flex-direction: column; gap: 14px;
+    background: #FEF8FB; border: 1px solid #FEF8FB; border-radius: 22px; padding: 18px 17px;
+    box-shadow: 0 1px 2px rgba(10,22,40,0.03), 0 12px 32px rgba(10,22,40,0.05);
+  }
+  #eq .eq-eyebrow { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; color: #64748B; }
+  #eq .eq-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 56px; line-height: 1; font-weight: 700; letter-spacing: -0.02em; transition: opacity 280ms ease-out; }
+  #eq .eq-sub { font-family: Inter, system-ui, sans-serif; font-size: 16px; color: #64748B; }
+  #eq .eq-foot { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; color: #94A3B8; }
+  #eq .eq-list { position: relative; height: 264px; overflow: hidden; padding-right: 4px; }
+  #eq .eq-track { display: flex; flex-direction: column; gap: 11px; padding-bottom: 11px; will-change: transform; }
+  #eq .eq-card { background: #fff; border-radius: 10px; box-shadow: 0 1px 2px rgba(10,22,40,0.05), 0 6px 16px rgba(10,22,40,0.06); padding: 13px 15px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  #eq .eq-card .l { display: flex; align-items: center; gap: 10px; }
+  #eq .eq-ic { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; }
+  #eq .eq-t { font-family: Inter, system-ui, sans-serif; font-size: 16px; font-weight: 400; white-space: nowrap; }
+  #eq .eq-pill { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 500; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+  #eq .red { border-left: 3px solid #EF4444; }
+  #eq .red .eq-ic { background: #FEF2F2; color: #EF4444; }
+  #eq .red .eq-t { color: #6B7A90; }
+  #eq .red .eq-pill { color: #EF4444; background: #FEF2F2; }
+  #eq .amber { border-left: 3px solid #F59E0B; }
+  #eq .amber .eq-ic { background: #FFFBEB; color: #D97706; }
+  #eq .amber .eq-t { color: #6B7A90; }
+  #eq .amber .eq-pill { color: #B45309; background: #FFFBEB; }
+  #eq .green { border-left: 3px solid #22C55E; }
+  #eq .green .eq-ic { background: #F0FDF4; color: #16A34A; }
+  #eq .green .eq-t { color: #0A1628; }
+  #eq .green .eq-pill { color: #15803D; background: #F0FDF4; }
+  #eq .eq-mask-t { position: absolute; top: 0; left: 0; right: 0; height: 46px; background: linear-gradient(to bottom, #FEF8FB, rgba(254, 248, 251,0)); pointer-events: none; z-index: 2; }
+  #eq .eq-mask-b { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, #FEF8FB, rgba(254, 248, 251,0)); pointer-events: none; z-index: 2; }
+  #eq .eq-chip { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 500; color: #3F4653; background: rgba(15,23,42,0.07); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+  @keyframes escx-scroll-up { from { transform: translateY(0) } to { transform: translateY(-50%) } }
+  @keyframes escx-core-drift { 0% { transform: rotate(0deg) scale(1.04) } 50% { transform: rotate(180deg) scale(1.12) } 100% { transform: rotate(360deg) scale(1.04) } }
+  @keyframes escx-ring { 0% { transform: scale(1); opacity: 0.5 } 100% { transform: scale(1.9); opacity: 0 } }
+  @keyframes eqZoneIn { 0% { opacity: 0; transform: translateY(26px) scale(.97) } 100% { opacity: 1; transform: translateY(0) scale(1) } }
+  @keyframes eqOrbPop { 0% { opacity: 0; transform: scale(.72) } 62% { opacity: 1; transform: scale(1.05) } 100% { opacity: 1; transform: scale(1) } }
+  @keyframes eqRise { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: translateY(0) } }
+  @keyframes eqBeam { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.25) } 38% { opacity: .8 } 100% { opacity: 0; transform: translate(-50%,-50%) scale(2) } }
+</style>
+</helmet>
+<div id="eq" style="position:relative;width:1080px;height:1080px;overflow:hidden;background:transparent;font-family:Inter,system-ui,sans-serif;color:#0A1628">
+
+  <div style="position:absolute;left:540px;top:450px;width:220px;height:220px;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle,rgba(109,90,230,.26),rgba(194, 30, 134,.10) 55%,rgba(255,255,255,0) 100%);opacity:{{ beamOpacity }};animation:eqBeam .85s ease-out infinite"></div>
+
+  <div style="position:absolute;left:392px;top:222px;width:296px;height:296px;z-index:3;transform-origin:50% 50%;transition:transform 1150ms cubic-bezier(.55,0,.2,1);transform:{{ orbT }}">
+    <div style="position:relative;width:296px;height:296px;display:flex;align-items:center;justify-content:center;animation:eqOrbPop .85s cubic-bezier(.34,1.5,.64,1) both">
+      <div style="position:absolute;width:296px;height:296px;border-radius:50%;background:radial-gradient(closest-side,rgba(194, 30, 134,0.16),rgba(109,90,230,0.10) 72%,rgba(255,255,255,0) 100%);filter:blur(10px);pointer-events:none"></div>
+      <div style="position:absolute;width:238px;height:238px;border-radius:50%;border:1px solid rgba(109,90,230,0.45);animation:escx-ring 2.4s ease-in-out infinite"></div>
+      <div style="position:absolute;width:238px;height:238px;border-radius:50%;border:1px solid rgba(109,90,230,0.35);animation:escx-ring 2.4s ease-in-out 1.2s infinite"></div>
+      <div style="position:absolute;width:250px;height:250px;border-radius:50%;background:linear-gradient(160deg,#C21E86 0%,#C21E86 34%,#6D5AE6 74%,#8E7CEC 100%);opacity:.9;pointer-events:none"></div>
+      <div style="position:relative;width:234px;height:234px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 42%,#FFFFFF 0%,#FEF8FB 48%,#FDF1F8 78%,#FDF1F8 100%);box-shadow:0 26px 64px rgba(194, 30, 134,0.18),inset 0 0 46px rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(from 0deg,rgba(109,90,230,0.16),rgba(194, 30, 134,0.10) 90deg,rgba(142,124,236,0.16) 180deg,rgba(194, 30, 134,0.08) 270deg,rgba(109,90,230,0.16));mix-blend-mode:multiply;animation:escx-core-drift 26s linear infinite"></div>
+        <canvas ref="{{ meshCanvas }}" width="560" height="560" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;padding:0 18px;text-align:center">
+          <img src="/logo.svg" alt="Shruhani" style="height:15px;width:auto;display:block;opacity:.9">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:23px;font-weight:700;color:#6D5AE6;letter-spacing:-0.01em">EscalationX</div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+            <div class="eq-chip" style="animation:eqRise .55s ease-out .5s both">Email Automation</div>
+            <div class="eq-chip" style="animation:eqRise .55s ease-out .65s both">EDD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:164px;top:120px;z-index:1;transition:opacity 620ms ease,transform 760ms cubic-bezier(.22,1,.36,1);opacity:{{ boxO }};transform:scale({{ boxK }});transform-origin:50% 50%">
+    <div style="zoom:1.6">
+      <div class="eq-zone" style="animation:eqZoneIn .9s cubic-bezier(.22,1,.36,1) both">
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px">
+          <div style="display:flex;align-items:baseline;gap:8px;animation:eqRise .55s ease-out .35s both">
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#94A3B8">ARRIVED</span>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#EF4444;letter-spacing:-0.01em;opacity:{{ flash }};transition:opacity 280ms ease-out">{{ arriving }}</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding-left:58px">
+          <div class="eq-eyebrow">CLEARED</div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div class="eq-num" style="color:#22C55E;opacity:{{ flash }}">{{ cleared }}</div>
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style="margin-bottom:8px">
+              <path d="M4 12L9 17L18 6" stroke="#22C55E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <div class="eq-sub">automated · faster · audited</div>
+        </div>
+        <div class="eq-list">
+          <div class="eq-track" style="animation:escx-scroll-up 18s linear .6s infinite">
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h6l3 3v9H4z"></path><path d="M6.5 8.5h4M6.5 11h4"></path></svg></span><span class="eq-t">Court order · freeze</span></div><span class="eq-pill">Replied</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"></circle><path d="M11 11l3 3"></path></svg></span><span class="eq-t">EDD case · large cash</span></div><span class="eq-pill">Closed</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="13" height="10" rx="2"></rect><circle cx="7" cy="8.5" r="1.6"></circle><path d="M11 8h2.5M11 10.5h2.5"></path></svg></span><span class="eq-t">KYC retrieval · cyber cell</span></div><span class="eq-pill">Sent</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="10" height="6.5" rx="1.6"></rect><path d="M6.5 8V6.2a2.5 2.5 0 015 0V8"></path></svg></span><span class="eq-t">Freeze order · LEA</span></div><span class="eq-pill">Actioned</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5l5 2v4.5c0 3-2.1 5.4-5 6.5-2.9-1.1-5-3.5-5-6.5V4.5z"></path><path d="M9 6.5v3M9 11.6v.2"></path></svg></span><span class="eq-t">Sanctions hit · review</span></div><span class="eq-pill">Cleared</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="4.5" cy="5" r="1.6"></circle><circle cx="13" cy="4.5" r="1.6"></circle><circle cx="8.5" cy="12" r="1.6"></circle><path d="M5.8 6.2l2 4.4M11.7 5.7l-2.2 4.9"></path></svg></span><span class="eq-t">Beneficiary / IP logs</span></div><span class="eq-pill">Sent</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h6l3 3v9H4z"></path><path d="M6.5 8.5h4M6.5 11h4"></path></svg></span><span class="eq-t">Court order · freeze</span></div><span class="eq-pill">Replied</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"></circle><path d="M11 11l3 3"></path></svg></span><span class="eq-t">EDD case · large cash</span></div><span class="eq-pill">Closed</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="13" height="10" rx="2"></rect><circle cx="7" cy="8.5" r="1.6"></circle><path d="M11 8h2.5M11 10.5h2.5"></path></svg></span><span class="eq-t">KYC retrieval · cyber cell</span></div><span class="eq-pill">Sent</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="10" height="6.5" rx="1.6"></rect><path d="M6.5 8V6.2a2.5 2.5 0 015 0V8"></path></svg></span><span class="eq-t">Freeze order · LEA</span></div><span class="eq-pill">Actioned</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5l5 2v4.5c0 3-2.1 5.4-5 6.5-2.9-1.1-5-3.5-5-6.5V4.5z"></path><path d="M9 6.5v3M9 11.6v.2"></path></svg></span><span class="eq-t">Sanctions hit · review</span></div><span class="eq-pill">Cleared</span></div>
+            <div class="eq-card green"><div class="l"><span class="eq-ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="4.5" cy="5" r="1.6"></circle><circle cx="13" cy="4.5" r="1.6"></circle><circle cx="8.5" cy="12" r="1.6"></circle><path d="M5.8 6.2l2 4.4M11.7 5.7l-2.2 4.9"></path></svg></span><span class="eq-t">Beneficiary / IP logs</span></div><span class="eq-pill">Sent</span></div>
+          </div>
+          <div class="eq-mask-t"></div>
+          <div class="eq-mask-b"></div>
+        </div>
+        <div class="eq-foot">SOLVED &amp; AUDITED</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:58px;display:flex;flex-direction:column;align-items:center;gap:24px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;white-space:nowrap;transition:opacity 380ms ease;opacity:{{ capOpacity }}">
+      <b style="font-family:'Plus Jakarta Sans',sans-serif;font-size:30px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0A1628">{{ capTitle }}</b>
+      <i style="font-style:normal;font-family:Inter,sans-serif;font-size:26px;color:#64748B">{{ capSub }}</i>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p0w }}px;background:{{ p0c }}"></span>
+      <span style="height:6px;border-radius:3px;transition:width 460ms ease,background 460ms ease;width:{{ p1w }}px;background:{{ p1c }}"></span>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:1080},&quot;sceneSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4.6,&quot;min&quot;:2.5,&quot;max&quot;:9,&quot;step&quot;:0.2,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Timing&quot;}}">
+const CAPS = [
+  ['EscalationX', 'AI-powered context-aware case manager'],
+  ['Cleared', 'Same volume, closed and audited']
+];
+const HERO = 'translate(0px, 0px) scale(2.2)';
+const DOCK = 'translate(-350px, -230px) scale(0.42)';
+
+class Component extends DCLogic {
+  state = { phase: 0, arriving: 412, cleared: 405, flash: 1 };
+
+  constructor(props) {
+    super(props);
+    this.meshCanvas = React.createRef();
+    this.last = 0;
+  }
+
+  componentDidMount() {
+    this.t0 = performance.now();
+    this.drawMesh(0);
+    this.raf = requestAnimationFrame(this.loop);
+    this.counter = setInterval(() => {
+      this.setState(s => ({ arriving: s.arriving + 1, cleared: s.cleared + 1, flash: 0.62 }));
+      this.fade = setTimeout(() => this.setState({ flash: 1 }), 150);
+    }, 1300);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    clearInterval(this.counter);
+    clearTimeout(this.fade);
+  }
+
+  loop = ts => {
+    this.raf = requestAnimationFrame(this.loop);
+    if (ts - this.last > 24) { this.last = ts; this.drawMesh(ts / 1000); }
+    this.tick(Math.max(0, ts - this.t0));
+  };
+
+  // sphere holds centre, then shrinks into the cleared box's top-left corner and holds there
+  get plan() {
+    const hero = (this.props.heroSeconds == null ? 3.8 : this.props.heroSeconds) * 1000;
+    const docked = (this.props.dockedSeconds == null ? 5.6 : this.props.dockedSeconds) * 1000;
+    return [hero, docked];
+  }
+
+  tick(ms) {
+    const p = this.plan, cycle = p[0] + p[1];
+    const t = ms % cycle;
+    const phase = t < p[0] ? 0 : 1;
+    if (phase !== this.state.phase) this.setState({ phase: phase });
+  }
+
+  buildMesh() {
+    const N = 300, gold = Math.PI * (3 - Math.sqrt(5)), base = [];
+    for (let i = 0; i < N; i++) {
+      const y = 1 - (i / (N - 1)) * 2, r0 = Math.sqrt(Math.max(0, 1 - y * y)), t = gold * i;
+      base.push([Math.cos(t) * r0, y, Math.sin(t) * r0]);
+    }
+    const links = [], lim = 0.28;
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+      const dx = base[i][0] - base[j][0], dy = base[i][1] - base[j][1], dz = base[i][2] - base[j][2];
+      const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      if (d < lim) links.push([i, j, 1 - d / lim]);
+    }
+    this._mesh = { base: base, links: links };
+  }
+
+  drawMesh(time) {
+    const cv = this.meshCanvas.current;
+    if (!cv) return;
+    if (!this._mesh) this.buildMesh();
+    const t = time || 0, ctx = cv.getContext('2d');
+    const S = cv.width, C = S / 2, Rr = S * 0.455;
+    ctx.clearRect(0, 0, S, S);
+    const ry = 0.6 + t * 0.3, rx = -0.26 + Math.sin(t * 0.5) * 0.1;
+    const cry = Math.cos(ry), sry = Math.sin(ry), crx = Math.cos(rx), srx = Math.sin(rx);
+    const base = this._mesh.base, links = this._mesh.links, pts = [];
+    for (let i = 0; i < base.length; i++) {
+      const x = base[i][0], y = base[i][1], z = base[i][2];
+      const x1 = x * cry + z * sry;
+      let z1 = -x * sry + z * cry;
+      const y1 = y * crx - z1 * srx;
+      z1 = y * srx + z1 * crx;
+      const p = 1 / (1.9 - z1 * 0.42);
+      pts.push({ sx: C + x1 * Rr * p * 1.9, sy: C + y1 * Rr * p * 1.9, z: z1 });
+    }
+    ctx.lineWidth = 0.7;
+    for (let k = 0; k < links.length; k++) {
+      const a = pts[links[k][0]], b = pts[links[k][1]], w = links[k][2];
+      const depth = (a.z + b.z) / 2, alpha = w * (depth > 0 ? 0.3 : 0.12);
+      if (alpha < 0.02) continue;
+      ctx.strokeStyle = 'rgba(96,86,220,' + alpha.toFixed(3) + ')';
+      ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
+    }
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i], front = p.z > 0;
+      ctx.fillStyle = front ? 'rgba(194, 30, 134,0.55)' : 'rgba(142,124,236,0.28)';
+      ctx.beginPath(); ctx.arc(p.sx, p.sy, front ? 1.9 : 1.3, 0, Math.PI * 2); ctx.fill();
+    }
+    const g = ctx.createRadialGradient(C, C, 0, C, C, Rr * 0.74);
+    g.addColorStop(0, 'rgba(255,255,255,0.96)');
+    g.addColorStop(0.62, 'rgba(255,255,255,0.86)');
+    g.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, S, S);
+  }
+
+  renderVals() {
+    const docked = this.state.phase === 1;
+    const bar = i => ({ w: i === this.state.phase ? 84 : 26, c: i === this.state.phase ? '#6D5AE6' : 'rgba(10,22,40,0.16)' });
+    const b0 = bar(0), b1 = bar(1);
+    return {
+      meshCanvas: this.meshCanvas,
+      orbT: docked ? DOCK : HERO,
+      boxO: docked ? 1 : 0,
+      boxK: docked ? 1 : 0.96,
+      beamOpacity: 0,
+      arriving: this.state.arriving, cleared: this.state.cleared, flash: this.state.flash,
+      capTitle: CAPS[this.state.phase][0], capSub: CAPS[this.state.phase][1],
+      capOpacity: 1,
+      p0w: b0.w, p0c: b0.c, p1w: b1.w, p1c: b1.c
+    };
+  }
+}
+</script>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     The standalone's viewing harness: its padding is white space around the
+     artwork, and its caption is the preview's own title. */
+  .stage { padding: 0; max-width: none; }
+  .stage > .cap { display: none; }
+
+  html,
+  body { background: transparent; }
+</style>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle. */
+  html,
+  body { width: 100%; margin: 0; overflow: hidden; }
+
+  /* The artboard's own width. Its children are positioned in a 1080 space but
+     the root only inherits the body's, so without this the scale below shrinks
+     a 100%-wide box and the composition lands at a third of its width. The
+     scale itself is set by the script, not here. */
+  body > *:not(style):not(script):not(link) {
+    width: 1080px;
+    transform-origin: top left;
+    /* The scale is a plain number in a custom property, set by the script. A
+       RULE rather than an inline style, because the Design Component runtime
+       replaces this element after it renders — an inline style set before that
+       is simply gone, while a rule applies to whatever the root becomes. */
+    transform: scale(var(--sq-scale, 1));
+  }
+</style>
+
+<script>
+  // Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+  //
+  // Fits the artboard to the frame. These four are the one family that does not
+  // fit itself: each is a fixed 1080 x 1080 composition, and the handoff scales
+  // it from the page ("340 x 340, scale 0.31481"). Every other animation we
+  // serve fits itself to its host, and useAnimationFrameHeight relies on that.
+  //
+  // In JS rather than CSS, and the reason is the second line below. The scale
+  // alone can be written in CSS as scale(calc(100vw / 1080px)) — but that is a
+  // length divided by a length, which is CSS Values 4 and not something to
+  // depend on across engines: where it is not supported the declaration is
+  // dropped silently and the artboard renders at its full 1080, which is
+  // exactly "the animation is too tall and there is white space after it".
+  //
+  // The height matters more. A transform does not participate in layout, so
+  // whatever the scale, the document still RESERVES the artboard's untransformed
+  // 1080px. Chromium happens to give the right answer because the frame is sized
+  // from painted rects rather than the document, but that is the measurement
+  // getting lucky, not the layout being right. Setting the body's height to what
+  // the artwork actually paints makes the document honest in every engine, and
+  // leaves nothing for the frame to over-reserve.
+  (function () {
+    var ARTBOARD = 1080;
+    function fit() {
+      var width = document.documentElement.clientWidth;
+      if (!width) return;
+      var scale = width / ARTBOARD;
+      // On the document element, so it survives the root being re-rendered.
+      document.documentElement.style.setProperty("--sq-scale", scale);
+      document.body.style.height = Math.round(ARTBOARD * scale) + "px";
+    }
+
+    fit();
+    addEventListener("resize", fit);
+    addEventListener("load", fit);
+  })();
+</script>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: transparent; }
+  a { color: #C21E86; text-decoration: none; }
+  a:hover { color: #0A1628; }
+  @keyframes s3-comet { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -190; } }
+  @keyframes s3-orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes s3-orbit-upright { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+  @keyframes s3-fade-out { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes s3-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes s3-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes s3-scan {
+    0% { transform: scale(0.86); opacity: 0; }
+    18% { opacity: 0.4; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  [data-spin] { transform-box: view-box; transform-origin: 140px 140px; }
+  @keyframes s3-dot { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    [data-dot-pulse] { animation: none !important; opacity: 1 !important; }
+    [data-rise] { animation: none !important; opacity: 1 !important; transform: none !important; }
+    [data-spin], [data-orbit] { animation: none !important; }
+    [data-scan], [data-comet] { animation: none !important; opacity: 0 !important; }
+  }
+</style>
+</helmet>
+<div style="width:100%;box-sizing:border-box;background:transparent;font-family:'Plus Jakarta Sans',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden">
+  <div ref="{{ canvasRef }}" style="width:852px;height:556px;position:relative;flex:0 0 auto;transform-origin:center center">
+
+    <div style="position:absolute;left:0;top:0;width:852px;height:556px;box-sizing:border-box;background:#FEF8FB;border:1px solid rgba(194, 30, 134,0.35);border-radius:20px;box-shadow:0 26px 60px rgba(10,22,40,0.10);padding:22px 28px;display:flex;flex-direction:column;gap:12px">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:24px">
+        <div style="display:flex;align-items:center;gap:20px">
+          <div style="position:relative;width:104px;height:104px;flex:0 0 auto">
+            <svg width="104" height="104" viewBox="0 0 132 132" style="position:absolute;left:0;top:0;pointer-events:none">
+              <circle cx="66" cy="66" r="64" fill="none" stroke="#0A1628" stroke-opacity="0.13" stroke-width="1"></circle>
+              <circle cx="66" cy="66" r="55" fill="none" stroke="#0A1628" stroke-opacity="0.13" stroke-width="1"></circle>
+              <circle data-ringmain="" cx="66" cy="66" r="59.5" fill="none" stroke="#C21E86" stroke-width="5" stroke-opacity="0.5"></circle>
+              <circle data-spin="" cx="66" cy="66" r="51" fill="none" stroke="#C21E86" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="3 9" style="transform-box:view-box;transform-origin:66px 66px;animation:s3-spin 26s linear infinite"></circle>
+              <circle data-scan="" cx="66" cy="66" r="40" fill="none" stroke="#C21E86" stroke-width="2" opacity="0" style="transform-box:view-box;transform-origin:66px 66px;animation:s3-scan 2.8s cubic-bezier(0.42,0,0.58,1) infinite"></circle>
+            </svg>
+            <div data-frame="" style="position:absolute;left:14px;top:14px;width:76px;height:76px;box-sizing:border-box;border-radius:50%;border:3px solid #C21E86;background:#EDF0F5;box-shadow:0 12px 32px rgba(10,22,40,0.14);overflow:hidden;display:flex;align-items:center;justify-content:center">
+            <img data-layer="a" src="https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_1_180596e516.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:1;transform:scale(1);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)">
+            <img data-layer="b" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transform:scale(1.06);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)">
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8">Image intelligence</span>
+            <span style="font-size:22px;font-weight:800;letter-spacing:-0.01em;color:#0A1628">Selfie analysis</span>
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#6B7688">five dimensions from one photo</span>
+            <span data-chip="" style="display:flex;align-items:center;gap:8px;margin-top:2px;padding:6px 14px;border-radius:999px;background:rgba(34,197,94,0.10);border:1px solid rgba(34,197,94,0.32);font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:600;color:#22C55E">
+              <span data-chipdot="" style="width:7px;height:7px;border-radius:50%;background:#22C55E"></span><span data-chiptext="">Genuine selfie</span>
+            </span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="position:relative;width:74px;height:74px;flex:0 0 auto">
+            <svg width="74" height="74" viewBox="0 0 104 104">
+              <circle cx="52" cy="52" r="46" fill="none" stroke="#0A1628" stroke-opacity="0.08" stroke-width="7"></circle>
+              <circle data-ring="" cx="52" cy="52" r="46" fill="none" stroke="#22C55E" stroke-width="7" stroke-linecap="round" stroke-dasharray="26 289" transform="rotate(-90 52 52)"></circle>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px">
+              <span style="font-family:Inter,system-ui,sans-serif;font-size:20px;font-weight:600;line-height:1;letter-spacing:-0.02em;color:#22C55E;font-variant-numeric:tabular-nums" data-int="">9</span>
+              <span style="font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:500;color:#22C55E;opacity:0.65" data-outof="">/ 100</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#94A3B8">Current risk</span>
+            <span style="font-size:30px;line-height:1;font-weight:800;letter-spacing:-0.02em;color:#22C55E;font-variant-numeric:tabular-nums" data-score="">9.00</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span data-pill="" style="padding:3px 9px;border-radius:999px;background:#22C55E;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em">LOW</span>
+              <span style="display:flex;align-items:center;gap:6px;padding:3px 9px 3px 8px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(194, 30, 134,0.22);font-family:Inter,system-ui,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.08em;color:#C21E86"><span data-dot-pulse="" style="width:5px;height:5px;border-radius:50%;background:#C21E86;animation:s3-dot 1.8s ease-in-out infinite"></span>READING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:1px;background:rgba(10,22,40,0.07)"></div>
+
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between">
+
+        <div data-rise="" style="display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:13.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Face &amp; Identity</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">9</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Single real face</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">Yes</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Duplicate</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">None</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <div data-rise="" style="display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:13.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Background Scene</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">4</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Scene</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">Personal <span style="color:#94A3B8;font-weight:500">· home</span></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Fraud background</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">No</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <div data-rise="" style="display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:13.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Quality &amp; Liveness</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">8</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Liveness</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">Live</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Quality tier</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">High</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <div data-rise="" style="display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:13.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Device Intelligence</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">9</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Device</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">Mid-range <span style="color:#94A3B8;font-weight:500">· real</span></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">EXIF</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">Complete</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+        <div data-rise="" style="display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:13.5px;font-weight:700;color:#0A1628;letter-spacing:-0.01em">Risk Flags</span>
+            <span style="padding:2px 8px;border-radius:999px;background:rgba(194, 30, 134,0.10);color:#C21E86;font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums">10</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid rgba(10,22,40,0.05)">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Risk flags</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">0</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+            <div data-row="" style="display:flex;align-items:center;gap:12px;padding:5px 0">
+              <span style="flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#4A5567">Severity</span>
+              <span style="flex:0 0 auto;white-space:nowrap;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:600;color:#0A1628">None</span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex:0 0 auto"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const G = '#22C55E', A = '#F59E0B', R = '#EF4444', N = '#94A3B8', B = '#C21E86';
+const soft = { '#22C55E': 'rgba(34,197,94,', '#F59E0B': 'rgba(245,158,11,', '#EF4444': 'rgba(239,68,68,', '#94A3B8': 'rgba(148,163,184,' };
+const HOLD = 5600, FADE = 500, BLANK = 500, C = 2 * Math.PI * 46;
+
+const CASES = [
+  {
+    score: 9, tier: 'LOW', col: G, ring: B, chip: ['Genuine selfie', G], face: 'https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_1_180596e516.png',
+    rows: [['Single real face', 'Yes', G], ['Duplicate', 'None', G],
+           ['Scene', 'Personal · home', G], ['Fraud background', 'No', G],
+           ['Liveness', 'Live', G], ['Quality tier', 'High', G],
+           ['Device', 'Mid-range · real', G], ['EXIF', 'Complete', G],
+           ['Risk flags', '0', G], ['Severity', 'None', G]]
+  },
+  {
+    score: 84, tier: 'HIGH', col: R, ring: R, chip: ['Non-live · spoof', R], face: 'https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_2_7924618cf1.png',
+    rows: [['Face', 'Detected', N], ['Selfie auth', 'Fail', R],
+           ['Scene', 'Indoor', N], ['Fraud background', 'No', G],
+           ['Liveness', 'Non-live', R], ['Spoof', 'Screen replay', R],
+           ['Device', 'Real', G], ['EXIF', 'Missing', A],
+           ['Risk flags', '3', R], ['Severity', 'High', R]]
+  },
+  {
+    score: 88, tier: 'HIGH', col: R, ring: R, chip: ['Duplicate identity', R], face: 'https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_3_b0436364a3.png',
+    rows: [['Duplicate', 'Matches 2 apps', R], ['Multiple faces', 'Yes', A],
+           ['Scene', 'Cyber-cafe · kiosk', R], ['Fraud background', 'Yes', R],
+           ['Liveness', 'Live', G], ['Quality tier', 'High', G],
+           ['Device', 'Shared · flagged', A], ['EXIF', 'Complete', G],
+           ['Risk flags', '4', R], ['Severity', 'High', R]]
+  }
+];
+
+class Component extends DCLogic {
+  componentDidMount() {
+    this.fit = () => {
+      const el = this.node;
+      if (!el || !el.parentElement) return;
+      const host = el.parentElement;
+      const cs = getComputedStyle(host);
+      const availW = host.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const s = Math.min(1, availW / 852);
+      el.style.transform = 'scale(' + s + ')';
+      el.style.margin = (-(556 * (1 - s)) / 2) + 'px ' + (-(852 * (1 - s)) / 2) + 'px';
+    };
+    this.ro = new ResizeObserver(() => this.fit());
+    if (this.node && this.node.parentElement) this.ro.observe(this.node.parentElement);
+    this.fit();
+    this.boot();
+  }
+  componentWillUnmount() {
+    if (this.ro) this.ro.disconnect();
+    if (this.tween) clearInterval(this.tween);
+    (this.timers || []).forEach(clearTimeout);
+  }
+  later(fn, ms) { (this.timers = this.timers || []).push(setTimeout(fn, ms)); }
+
+  boot() {
+    if (this.booted || !this.node) return;
+    this.booted = true;
+    const n = this.node;
+    this.sections = Array.from(n.querySelectorAll('[data-rise]'));
+    this.rowEls = Array.from(n.querySelectorAll('[data-row]'));
+    this.ringEl = n.querySelector('[data-ring]');
+    this.intEl = n.querySelector('[data-int]');
+    this.outOfEl = n.querySelector('[data-outof]');
+    this.scoreEl = n.querySelector('[data-score]');
+    this.pillEl = n.querySelector('[data-pill]');
+    this.ringMainEl = n.querySelector('[data-ringmain]');
+    this.frameEl = n.querySelector('[data-frame]');
+    this.chipEl = n.querySelector('[data-chip]');
+    this.chipDotEl = n.querySelector('[data-chipdot]');
+    this.chipTextEl = n.querySelector('[data-chiptext]');
+    this.exitEls = [this.ringEl, this.intEl, this.outOfEl, this.scoreEl, this.pillEl, this.ringMainEl, this.chipEl].filter(Boolean);
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._faceFront = 'a';
+    ['https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_1_180596e516.png', 'https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_2_7924618cf1.png', 'https://cdn.sign3.in/strapi-assets/api-uploads/ii_face_3_b0436364a3.png'].forEach(s => { const i = new Image(); i.src = s; });
+    this.idx = 0;
+    this.apply(CASES[0]);
+    if (this.reduce) { this.paintScore(CASES[0].score, CASES[0].col); return; }
+    this.load(0);
+  }
+
+  crossfadeFace(src) {
+    const av = this.frameEl;
+    if (!av || !src) return;
+    const a = av.querySelector('[data-layer="a"]');
+    const b = av.querySelector('[data-layer="b"]');
+    if (b) b.style.display = 'none';
+    if (!a) return;
+    // single state-driven layer: no front/back bookkeeping to desync from the DOM
+    if (a.getAttribute('src') !== src) a.setAttribute('src', src);
+    a.style.opacity = '1';
+    a.style.transform = 'scale(1)';
+  }
+
+  apply(c) {
+    this.crossfadeFace(c.face);
+    this.rowEls.forEach((row, i) => {
+      const r = c.rows[i]; if (!r) return;
+      const k = row.children;
+      if (k[0]) k[0].textContent = r[0];
+      const parts = r[1].split(' · ');
+      if (k[1]) {
+        k[1].innerHTML = parts[1]
+          ? parts[0] + ' <span style="color:#94A3B8;font-weight:500">· ' + parts[1] + '</span>'
+          : parts[0];
+      }
+      if (k[2]) {
+        k[2].style.background = r[2];
+        k[2].style.boxShadow = r[2] === R ? '0 0 0 3px rgba(239,68,68,0.14)' : 'none';
+      }
+    });
+    if (this.pillEl) { this.pillEl.textContent = c.tier; this.pillEl.style.background = c.col; }
+    if (this.ringMainEl) this.ringMainEl.setAttribute('stroke', c.ring);
+    if (this.frameEl) this.frameEl.style.borderColor = c.ring;
+    if (this.chipEl) {
+      this.chipEl.style.background = soft[c.chip[1]] + '0.10)';
+      this.chipEl.style.border = '1px solid ' + soft[c.chip[1]] + '0.32)';
+      this.chipEl.style.color = c.chip[1];
+    }
+    if (this.chipDotEl) this.chipDotEl.style.background = c.chip[1];
+    if (this.chipTextEl) this.chipTextEl.textContent = c.chip[0];
+  }
+
+  paintScore(s, col) {
+    if (this.scoreEl) { this.scoreEl.textContent = s.toFixed(2); this.scoreEl.style.color = col; }
+    if (this.intEl) { this.intEl.textContent = String(Math.round(s)); this.intEl.style.color = col; }
+    if (this.outOfEl) this.outOfEl.style.color = col;
+    if (this.ringEl) {
+      this.ringEl.setAttribute('stroke-dasharray', (s / 100 * C).toFixed(1) + ' ' + C.toFixed(1));
+      this.ringEl.setAttribute('stroke', col);
+    }
+  }
+
+  countUp(target, col) {
+    if (this.tween) { clearInterval(this.tween); this.tween = null; }
+    const DUR = 1400, DELAY = 200, STEP = 24;
+    const ease = (p) => p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+    const t0 = Date.now() + DELAY;
+    this.tween = setInterval(() => {
+      const p = Math.max(0, Math.min(1, (Date.now() - t0) / DUR));
+      this.paintScore(target * ease(p), col);
+      if (p >= 1) { clearInterval(this.tween); this.tween = null; }
+    }, STEP);
+  }
+
+  load(i) {
+    const c = CASES[i];
+    this.apply(c);
+    this.sections.forEach((el, k) => {
+      el.style.transition = 'none';
+      el.style.opacity = '';
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = 's3-rise 0.55s cubic-bezier(0.42,0,0.58,1) ' + (0.08 + k * 0.09).toFixed(3) + 's both';
+    });
+    this.exitEls.forEach(el => {
+      el.style.animation = 'none';
+      el.style.transition = 'opacity ' + (FADE / 1000) + 's cubic-bezier(0.42,0,0.58,1)';
+      el.style.opacity = '1';
+    });
+    this.paintScore(c.score, c.col);
+    this.countUp(c.score, c.col);
+    this.later(() => this.paintScore(c.score, c.col), 1700);
+    this.later(() => this.fadeOut(), 1900 + HOLD);
+  }
+
+  fadeOut() {
+    this.sections.forEach(el => {
+      el.style.transition = 'none';
+      el.style.opacity = '';
+      el.style.animation = 's3-fade-out ' + (FADE / 1000) + 's cubic-bezier(0.42,0,0.58,1) both';
+    });
+    this.exitEls.forEach(el => { el.style.opacity = '0'; });
+    this.later(() => {
+      this.idx = (this.idx + 1) % CASES.length;
+      this.load(this.idx);
+    }, FADE + BLANK);
+  }
+
+  renderVals() {
+    return { canvasRef: (el) => { this.node = el; if (this.fit) this.fit(); } };
+  }
+}
+</script>
+</body>
+</html>
+
+<style>
+  /* Added by scripts/sync-hero-animations.mjs — not from the design bundle.
+     The standalone's viewing harness: its padding is white space around the
+     artwork, and its caption is the preview's own title. */
+  .stage { padding: 0; max-width: none; }
+  .stage > .cap { display: none; }
+
+  html,
+  body { background: transparent; }
+</style>
