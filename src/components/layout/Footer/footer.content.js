@@ -106,7 +106,7 @@ export const footerContent = {
     // Global-rename of the reference's "contact@sign3.ai", then updated to
     // the team's real contact address.
     email: "amit@shruhani.com",
-    phone: "+91 98765 43211",
+    phone: "+91 88103 94015",
     addressLines: [
       "241, Udyog Vihar Phase 1, Sector 20",
       "Gurugram, Haryana 122016",

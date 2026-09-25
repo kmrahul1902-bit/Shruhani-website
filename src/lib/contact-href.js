@@ -5,8 +5,8 @@
  * address — an editor changing the number changes where it dials, and a
  * displayed address cannot drift away from the one it opens.
  *
- * `tel:` gets the separators stripped: a reader wants "+91 98765 43211", and
- * a dialler wants "+919876543211".
+ * `tel:` gets the separators stripped: a reader wants "+91 88103 94015", and
+ * a dialler wants "+918810394015".
  *
  * @returns a `mailto:`/`tel:` URL, or null for a value that is not a
  *   destination — opening hours, an office name, a postal address.
