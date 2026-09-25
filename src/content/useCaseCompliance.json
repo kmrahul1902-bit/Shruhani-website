@@ -157,12 +157,16 @@
   "seo.metaTitle": "Fraud Compliance & Audit-Ready AI | Shruhani",
   "split.body": "Indian financial institutions operate under overlapping frameworks: RBI KYC Master Direction, PMLA, FIU-IND reporting obligations, I4C coordination requirements, the DPDP Act and RBI Outsourcing of IT Services Directions. Each carries distinct filing requirements, SLA deadlines and penalty structures. ₹25,000 per missed STR filing. Multi-week EDD cycles that exceed regulatory timelines. LEA correspondence that remains unactioned because the capacity to parse, classify and route it does not exist at the required volume.\nDetection infrastructure has improved. Institutions have deployed TMS platforms, AML screening tools and alert engines. What has not improved is the speed at which alerts are converted into defensible, filed, auditable decisions. Alerts are generated at API speed. Cases continue to close at human speed. Regulatory risk accumulates in that gap.",
   "split.cards[0].description": "The FIU-IND penalty for every missed STR.",
+  "split.cards[0].key": "25-000-per-filing",
   "split.cards[0].title": "₹25,000 per filing",
   "split.cards[1].description": "Longer than the regulatory timeline allows.",
+  "split.cards[1].key": "15-20-day-edd-cycles",
   "split.cards[1].title": "15–20 day EDD cycles",
   "split.cards[2].description": "Every month, parsed and routed by hand.",
+  "split.cards[2].key": "thousands-of-lea-requests",
   "split.cards[2].title": "Thousands of LEA requests",
   "split.cards[3].description": "Regulatory risk accumulates in the gap.",
+  "split.cards[3].key": "api-speed-vs-human-speed",
   "split.cards[3].title": "API speed vs human speed",
   "split.heading": "Compliance teams are not constrained by regulation. They are constrained by the cost of meeting it"
 }

@@ -156,12 +156,16 @@
   "seo.metaTitle": "AI Credit Risk & Underwriting Intelligence | Shruhani",
   "split.body": "Indian digital lending is growing at 30%+ CAGR, and the borrowers driving that growth are disproportionately new-to-credit, thin-file, or gig-economy workers with no bureau history. For these segments the traditional infrastructure returns no score — and the absence of a score is treated as grounds for decline.\nThe cost extends beyond the individual rejection. It is market share conceded to institutions that have found alternative means to assess them. Meanwhile the risks bureau does track are months stale: a borrower who has taken on three new obligations this week still reflects last month's score. The gap between reported data and actual behaviour widens with every reporting cycle.",
   "split.cards[0].description": "No bureau file, so no score at all.",
+  "split.cards[0].key": "300m-new-to-credit",
   "split.cards[0].title": "300M new-to-credit",
   "split.cards[1].description": "Concentrated in thin-file segments.",
+  "split.cards[1].key": "30-cagr-growth",
   "split.cards[1].title": "30%+ CAGR growth",
   "split.cards[2].description": "The reporting lag behind real behaviour.",
+  "split.cards[2].key": "two-to-three-months",
   "split.cards[2].title": "Two to three months",
   "split.cards[3].description": "To lenders who found another way to score.",
+  "split.cards[3].key": "market-share-conceded",
   "split.cards[3].title": "Market share conceded",
   "split.heading": "Credit models built on bureau alone have reached a structural ceiling"
 }

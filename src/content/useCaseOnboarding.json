@@ -157,12 +157,16 @@
   "seo.metaTitle": "Digital Onboarding Fraud Prevention | Shruhani",
   "split.body": "Indian financial institutions have digitised onboarding at scale. A loan application that previously required days now completes in minutes. An account opening that necessitated a branch visit now happens on a mobile device. That speed is no longer a differentiator; it is a competitive requirement.\nThe decisioning layer behind that speed has not kept pace. The same KYC, bureau and liveness checks that powered branch-era onboarding now sit behind digital-first flows — processing higher volumes, at greater speed, with fewer human touchpoints, and identical structural blind spots. A genuine applicant and a synthetic identity receive exactly the same verification checks. The difference between them lives in signals those checks were never designed to capture.",
   "split.cards[0].description": "Loan decisions now close in minutes.",
+  "split.cards[0].key": "minutes-not-days",
   "split.cards[0].title": "Minutes, not days",
   "split.cards[1].description": "Account opening happens on a phone.",
+  "split.cards[1].key": "no-branch-visit",
   "split.cards[1].title": "No branch visit",
   "split.cards[2].description": "KYC, bureau and liveness, unchanged.",
+  "split.cards[2].key": "same-three-checks",
   "split.cards[2].title": "Same three checks",
   "split.cards[3].description": "Higher volume, fewer human touchpoints.",
+  "split.cards[3].key": "same-blind-spots",
   "split.cards[3].title": "Same blind spots",
   "split.heading": "The onboarding flow accelerated. The intelligence behind it did not"
 }

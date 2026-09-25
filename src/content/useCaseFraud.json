@@ -151,12 +151,16 @@
   "seo.metaTitle": "AI Fraud Prevention Solutions | Shruhani",
   "split.body": "Indian financial fraud has undergone a structural shift. The era of forged documents and impersonated identities is being replaced by a more sophisticated pattern: fraud committed with genuine credentials. Synthetic identities are assembled from valid fragments. Mule accounts are opened with fully compliant KYC. Account takeovers are executed with legitimate login credentials. In each case, the verification infrastructure confirms the identity. What it does not confirm, and was never built to confirm, is the intent behind it.\nThe result is a category of loss that traditional fraud systems are architecturally unable to prevent. Not because they are poorly configured, but because they answer a question that no longer separates legitimate customers from fraudulent ones.",
   "split.cards[0].description": "Assembled from valid fragments.",
+  "split.cards[0].key": "synthetic-identities",
   "split.cards[0].title": "Synthetic identities",
   "split.cards[1].description": "Opened with fully compliant KYC.",
+  "split.cards[1].key": "mule-accounts",
   "split.cards[1].title": "Mule accounts",
   "split.cards[2].description": "Executed with legitimate logins.",
+  "split.cards[2].key": "account-takeovers",
   "split.cards[2].title": "Account takeovers",
   "split.cards[3].description": "Identity confirmed. Intent never was.",
+  "split.cards[3].key": "intent-unverified",
   "split.cards[3].title": "Intent, unverified",
   "split.heading": "A structural problem running on legacy infrastructure"
 }
