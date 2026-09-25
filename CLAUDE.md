@@ -111,11 +111,16 @@ relying on it in a gate.
 
 ## Decisions (fill in as you go)
 
-- **Hosting:** **Path A — full dynamic Next.js**, run locally with `npm run
-dev` for now. `output: 'export'` is **not** set and the `src/app/api/`
-  routes stay available. The final host (Vercel full‑dynamic ▸ or ▸
-  static‑export on GitHub Pages) is decided in **Phase 8** — do not add
-  `output: 'export'` before then without revisiting this decision.
+- **Hosting:** **Static export on GitHub Pages**, finalized post-Phase-8.
+  `next.config.mjs` sets `output: 'export'` and `images.unoptimized: true`
+  (no server left to run the default image loader). `src/app/api/` is gone —
+  the book-a-demo form (`ContactForm.jsx`) posts directly to Formspree
+  (`NEXT_PUBLIC_FORMSPREE_FORM_ID`) instead of a route handler. `next.config.mjs`'s
+  `redirects()`/`headers()` are unsupported under static export and were
+  removed; the `/home` → `/` redirect moved to a client-side page
+  (`src/app/home/page.js`). `.github/workflows/deploy.yml` builds `out/` and
+  deploys it via `actions/deploy-pages`. `public/CNAME` and `public/.nojekyll`
+  ship with every build (custom domain + disable Jekyll's `_next/` mangling).
 - **Content source:** **Baked JSON** from `<REFERENCE>/cms-sync-baseline/*.json`,
   copied to `src/content/` and read via `src/lib/content.js` → `getContent(key)`.
   No live Strapi CMS; `cms:*` scripts are dropped from `package.json`.
@@ -124,6 +129,6 @@ dev` for now. `output: 'export'` is **not** set and the `src/app/api/`
   Intelligence, Digital Footprint, Image Intelligence, Location Intelligence,
   SMS Intelligence). Do not rename.
 - **Product accents:** _TBD in Phase 1 (keep green/purple product identities ▸ or ▸ unify to a pink family)._
-- **Domain / CNAME:** `shruhani.com` (currently GitHub Pages). Update per hosting decision.
+- **Domain / CNAME:** `shruhani.com` on GitHub Pages, served from `public/CNAME` (copied into every `out/` build).
 - **Logo:** SVG color + white-mono variants, from user's fingerprint-S PNG; `#E536A3`.
 - **Content policy:** Sign3→Shruhani rebrand of same entity — carry content over, global rename, TODO(verify) on rename-sensitive legal/cert/customer/investor items.

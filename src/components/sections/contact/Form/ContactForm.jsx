@@ -5,19 +5,23 @@ import { useState } from "react";
 /**
  * The book-a-demo form.
  *
- * Posts to our own /api/demo-request (see that route for what happens to a
- * submission — this project has no CMS to write to, see its comments).
+ * Posts directly to Formspree (`NEXT_PUBLIC_FORMSPREE_FORM_ID`) — this
+ * project is a static export (see CLAUDE.md → Decisions), so there's no
+ * server left to run a `/api/demo-request` route handler against; the
+ * validation and webhook-forwarding that route used to do now live on
+ * Formspree's side instead.
  *
  * Field NAMES come from code, not content: they are this form's contract
- * with the API route, so rewording a label cannot silently stop a
- * submission mapping. Only the wording is content.
+ * with Formspree, so rewording a label cannot silently stop a submission
+ * mapping. Only the wording is content.
  *
  * Adapted from the reference: the baked content's `form.inputs[]` carries no
  * `.key` (no CMS — see plan/CLAUDE.md → Decisions), so `FIELD_KEYS` supplies
  * one per input, by the same position the reference's `form.fields[].key`
- * always held (confirmed against `ROWS`' pairing below). A hidden `company_hp`
- * honeypot field is new, not in the reference — PHASE-6 asks for one and the
- * API route rejects a filled one.
+ * always held (confirmed against `ROWS`' pairing below). The hidden `_gotcha`
+ * field is Formspree's own honeypot convention (a filled one is silently
+ * dropped server-side) — it replaces the API route's custom `company_hp`
+ * check, which had no server left to run on.
  */
 const FIELD_KEYS = [
   "firstName",
@@ -90,23 +94,38 @@ function Field({ field }) {
   );
 }
 
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
+
 export default function ContactForm({ form, labels }) {
   const [state, setState] = useState("idle");
   const [error, setError] = useState(null);
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const data = Object.fromEntries(new FormData(event.currentTarget));
+    if (!FORMSPREE_ID) {
+      // No form configured — fail loudly to whoever's testing rather than
+      // pretending the lead went somewhere. Set NEXT_PUBLIC_FORMSPREE_FORM_ID
+      // in .env.local (see .env.example).
+      console.error(
+        "[ContactForm] NEXT_PUBLIC_FORMSPREE_FORM_ID is not set — nowhere to send this."
+      );
+      setError(form.errorBody);
+      return;
+    }
+    const formData = new FormData(event.currentTarget);
+    formData.set("sourcePath", window.location.pathname);
     setState("sending");
     setError(null);
     try {
-      const res = await fetch("/api/demo-request", {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ ...data, sourcePath: window.location.pathname }),
+        headers: { Accept: "application/json" },
+        body: formData,
       });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body.error || form.errorBody);
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.errors?.[0]?.message || form.errorBody);
+      }
       setState("sent");
     } catch (e) {
       setError(e.message || form.errorBody);
@@ -165,12 +184,13 @@ export default function ContactForm({ form, labels }) {
 
         {/* Honeypot: hidden from a sighted user and skipped by a screen
             reader, but a bot filling every field on the page fills this
-            one too. The API route rejects any submission where it's set. */}
+            one too. `_gotcha` is Formspree's own convention — a filled one
+            is silently dropped server-side, no code on our end involved. */}
         <div aria-hidden="true" className="sr-only">
-          <label htmlFor="demo-company_hp">Leave this field empty</label>
+          <label htmlFor="demo-gotcha">Leave this field empty</label>
           <input
-            id="demo-company_hp"
-            name="company_hp"
+            id="demo-gotcha"
+            name="_gotcha"
             type="text"
             tabIndex={-1}
             autoComplete="off"

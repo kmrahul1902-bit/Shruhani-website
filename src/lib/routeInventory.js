@@ -4,7 +4,7 @@
  * project has none — see plan/CLAUDE.md → Decisions).
  *
  * `/resources/article/[slug]` is excluded: it is dynamic and currently has
- * zero articles. `/api/demo-request` is a route handler, not a page.
+ * zero articles.
  */
 export const ALL_PATHS = [
   "/",
