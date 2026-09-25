@@ -1,19 +1,19 @@
 import Button from "@/components/ui/Button";
 import HeroAnimation from "@/components/shared/HeroAnimation";
+import EvidenceStack from "./EvidenceStack";
 
 /**
  * Industry hero — headline + CTA, with a decorative visual on the right.
  *
- * Adapted from the reference: the baked content has no `hero.identity` /
- * `hero.signals` / `hero.visual` (that's live customer-account data from
- * the CMS, absent from the export snapshot) and no `hero.eyebrow` /
- * `hero.sub` either — so the reference's interactive `EvidenceStack`
- * (a customer-identity card + animated signal rows) isn't ported here.
- * Both the mobile AND desktop visual slots use the same `HeroAnimation`
- * static placeholder every other Hero in this project already uses for
- * its currently-missing Phase 7 motion assets, so the page isn't left
- * with an empty column. Also: `hero.heading`, not `hero.h1` (the baked
- * JSON's actual field name).
+ * Adapted from the reference: the baked content originally had no
+ * `hero.identity` / `hero.signals` / `hero.visual` (that's live
+ * customer-account data from the CMS, absent from the export snapshot) —
+ * post-build, illustrative (non-customer-attributed) demo data was written
+ * for all four industry pages so the reference's `EvidenceStack` (a sample
+ * applicant card + animated signal rows) could be wired in for desktop,
+ * matching the reference's own composition: `EvidenceStack` on desktop,
+ * the `HeroAnimation` mobile-frame placeholder below 620px. Also:
+ * `hero.heading`, not `hero.h1` (the baked JSON's actual field name).
  *
  * Server Component.
  */
@@ -30,11 +30,20 @@ export default function Hero({ hero, labels, demoHref, animationSlug }) {
         />
 
         <div className="max-threats:justify-center max-mob:hidden flex min-h-140 items-center justify-end">
-          <HeroAnimation
-            slug={animationSlug}
-            title={labels?.heroRegion}
-            className="w-full"
-          />
+          {hero.visual && hero.identity && hero.signals ? (
+            <EvidenceStack
+              visual={hero.visual}
+              identity={hero.identity}
+              signals={hero.signals}
+              label={labels?.heroRegion}
+            />
+          ) : (
+            <HeroAnimation
+              slug={animationSlug}
+              title={labels?.heroRegion}
+              className="w-full"
+            />
+          )}
         </div>
 
         <div className="max-mob:order-1 max-mob:text-center">

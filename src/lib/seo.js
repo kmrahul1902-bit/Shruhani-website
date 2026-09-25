@@ -5,16 +5,21 @@
  * site-wide values it needs are inlined below instead.
  */
 
-/**
- * TODO(content): no 1200x630 share image exists anywhere in this project yet
- * (checked every prior phase — no `/og/*.png` or similar). Once one is
- * supplied, wire it in here as a site-wide `shareImage` floor and add
- * `openGraph.images`/`twitter.images` back to `buildMetadata` below.
- */
 export const SITE = {
   name: "Shruhani",
   legalName: "Shruhani Technologies Pvt. Ltd.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shruhani.com",
+  /**
+   * The site-wide social card, used by every page (none has a more specific
+   * one — no per-page share images exist). 1200x630, the size every scraper
+   * crops to. Downloaded from the live site's own CDN (post-build fix) —
+   * see plan/CLAUDE.md → Decisions for why this project has no CMS to
+   * source it from at request time instead.
+   */
+  shareImage: {
+    src: "/images/og-preview.png",
+    alt: "Shruhani — AI-powered fraud and risk decisions, one platform from onboarding to every transaction",
+  },
 };
 
 const ROBOTS_INDEX =
@@ -24,10 +29,11 @@ const ROBOTS_NOINDEX = "noindex, nofollow";
 
 /**
  * Adapted from the reference `buildMetadata()`: dropped `titleAbsolute`,
- * `ogImage`/`shareImage`/`article` (no share-image asset exists — see the
- * TODO above) and the `site.indexable` environment gate (no CMS/dev-preview
+ * `article`, and the `site.indexable` environment gate (no CMS/dev-preview
  * split here; `noIndex` alone drives robots). Every page still self-
- * canonicalises to `SITE.url + path`, and Open Graph/Twitter still come free.
+ * canonicalises to `SITE.url + path`. `shareImage`/`ogImage` let a page
+ * override the site-wide card; `SITE.shareImage` is the floor every page
+ * gets otherwise (post-build fix — see `SITE` above).
  */
 export function buildMetadata({
   title,
@@ -35,8 +41,15 @@ export function buildMetadata({
   keywords,
   path = "/",
   noIndex,
+  shareImage,
+  ogImage,
 }) {
   const url = `${SITE.url}${path}`;
+  const card = shareImage?.src
+    ? shareImage
+    : ogImage
+      ? { src: ogImage }
+      : SITE.shareImage;
   return {
     title,
     description,
@@ -49,11 +62,13 @@ export function buildMetadata({
       url,
       siteName: SITE.name,
       type: "website",
+      images: [{ url: card.src, ...(card.alt && { alt: card.alt }) }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [card.src],
     },
   };
 }

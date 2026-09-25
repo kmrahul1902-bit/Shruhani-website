@@ -44,6 +44,8 @@
   "metricsBand.sub": "Real outcomes from live deployments across banking, lending and credit cards.",
   "modulesGrid.heading": "Six signal modules. One verdict",
   "modulesGrid.modules[0].description": "A device cannot lie consistently. 1000+ signals catch emulators, root access, app cloning, SIM-swap, tampering, VPN and proxy use before the first action.",
+  "modulesGrid.modules[0].image.alt": "Device Intelligence",
+  "modulesGrid.modules[0].image.src": "/images/modules/device.webp",
   "modulesGrid.modules[0].linkLabel": "Learn more →",
   "modulesGrid.modules[0].title": "Device Intelligence",
   "modulesGrid.modules[1].description": "It's not what you type, it's how you type it. Rhythm, touch pressure, mouse movement and sensor data — matched to the user's own profile, every session. Bots fail instantly. Account takeovers break within seconds.",

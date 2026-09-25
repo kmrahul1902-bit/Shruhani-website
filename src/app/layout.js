@@ -5,6 +5,7 @@ import CtaBand, { CtaBandGate } from "@/components/sections/CtaBand";
 import JsonLd from "@/components/shared/JsonLd";
 import { footerContent } from "@/components/layout/Footer/footer.content";
 import { organizationSchema, webSiteSchema } from "@/lib/schema";
+import { SITE } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -20,6 +21,10 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
+  // Resolves every page's relative OG/Twitter image URL (e.g. buildMetadata's
+  // `/images/og-preview.png`) to an absolute one — required for social
+  // crawlers, and Next warns on every build without it.
+  metadataBase: new URL(SITE.url),
   title: "Shruhani",
   description: "Real-time fraud & credit-risk intelligence for Indian BFSI.",
   manifest: "/manifest.json",

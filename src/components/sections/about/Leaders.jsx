@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "@/components/shared/Reveal";
 import { SECTION_TIGHT } from "./about.constants";
 import { LinkedInIcon } from "./about.icons";
@@ -5,12 +6,11 @@ import { LinkedInIcon } from "./about.icons";
 /**
  * Our leaders — two cards, each a square portrait beside a bio.
  *
- * Adapted from the reference: the content's portraits are real, live URLs on
- * an external CDN (`cdn.sign3.in`) rather than local files — but that host
- * isn't on this project's `next.config.mjs` image allowlist, and adding a
- * remote pattern is a shared-config decision beyond this page. A plain
- * `<img>` renders the actual photo without needing that change; swap back to
- * `next/image` once the asset is either local or the host is allowlisted.
+ * The portraits were originally real, live URLs on an external CDN
+ * (`cdn.sign3.in`), not local files — using them required either a plain
+ * `<img>` or allowlisting that host in `next.config.mjs`. Post-build fix:
+ * downloaded locally to `public/images/team/`, so this uses `next/image`
+ * (optimized, sized) like every other image on the site.
  */
 export default function Leaders({ leaders }) {
   return (
@@ -32,11 +32,12 @@ export default function Leaders({ leaders }) {
           >
             <div className="bg-surface-3 max-flow:aspect-4/3 relative aspect-square min-w-0">
               {person.image?.src && (
-                // eslint-disable-next-line @next/next/no-img-element -- external CDN, not on the next/image allowlist; see comment above.
-                <img
+                <Image
                   src={person.image.src}
                   alt={person.image.alt ?? person.name}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  fill
+                  sizes="(max-width: 760px) 100vw, 460px"
+                  className="object-cover"
                 />
               )}
             </div>
