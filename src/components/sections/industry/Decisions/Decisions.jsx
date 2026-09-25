@@ -17,13 +17,11 @@ function DecisionCard({ card }) {
   return (
     <article className="border-card-hairline rounded-visual flex h-full flex-col overflow-hidden border bg-white px-5 pt-4.5 pb-5.5">
       <div className="-mx-5 -mt-4.5 flex items-center justify-center overflow-hidden bg-white">
-        {/* TODO(content): the live site's illustrations for these cards
-            (cdn.sign3.in/.../bk_decision_*.png and equivalents per industry)
-            exist but are blue, off-token, and rendered in the isometric
-            icon-pack style this project's Art Direction guardrail bans —
-            wiring them would fail both the zero-blue sweep and the banned-
-            imagery list. Needs a pink-native replacement set, not a recolor
-            of these. */}
+        {/* The illustrations are the live site's isometric/3D-render art,
+            which CLAUDE.md § Art Direction bans outright — wired anyway per
+            an explicit, temporary override for the investor presentation
+            (filled pages over empty boxes); slated for replacement with
+            on-brand art. */}
         {card.image?.src && (
           <Image
             src={card.image.src}

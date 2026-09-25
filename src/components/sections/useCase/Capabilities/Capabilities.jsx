@@ -73,11 +73,11 @@ export default function Capabilities({
         <ul className="fs-cols mt-11">
           {cards?.map((card) => (
             <li key={card.key} className="fs-card">
-              {/* TODO(content): the live site's per-module icons
-                  (cdn.sign3.in/.../device_*.png etc.) exist but are blue/
-                  violet isometric icon-pack renders — banned by this
-                  project's Art Direction guardrail independent of color.
-                  Needs a pink-native, non-icon-pack replacement set. */}
+              {/* The icons are the live site's isometric icon-pack renders,
+                  which CLAUDE.md § Art Direction bans outright — wired
+                  anyway per an explicit, temporary override for the
+                  investor presentation (filled pages over empty boxes);
+                  slated for replacement with on-brand art. */}
               {card.image?.src && (
                 <Image
                   src={card.image.src}

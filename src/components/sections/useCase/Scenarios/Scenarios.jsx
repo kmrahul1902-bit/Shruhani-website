@@ -139,12 +139,18 @@ export default function Scenarios({ heading, sub, tabs }) {
           </div>
 
           <div className="fq-media">
-            {/* TODO(content): the live site's per-tab illustrations
-                (cdn.sign3.in/.../fd_sc_*.png and equivalents per use-case)
-                exist but are blue and, for at least one tab, a hooded-figure
-                "hacker" illustration — explicitly banned by this project's
-                Art Direction guardrail regardless of color. Needs a
-                pink-native, non-banned replacement set. */}
+            {/* The illustrations are the live site's isometric/3D-render
+                art, which CLAUDE.md § Art Direction bans outright — wired
+                anyway per an explicit, temporary override for the investor
+                presentation (filled pages over empty boxes); slated for
+                replacement with on-brand art.
+                TODO(content): a subset of tabs across the four use-case
+                pages are still unwired regardless of the override — their
+                only CDN art is a hooded/masked "hacker" figure, which
+                CLAUDE.md bans as a factually misleading cliché ("the cliché
+                a bank risk officer is trained to discount"), not just an
+                off-brand style. That ban isn't lifted by the style override
+                and those specific tabs are left without an image. */}
             {tabs.map((tab, i) =>
               tab.image?.src ? (
                 <Image

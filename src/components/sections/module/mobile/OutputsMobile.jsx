@@ -13,8 +13,8 @@ import {
  * "What comes out" on a phone: three independently-opening collapsibles —
  * `type="multiple"`, so a reader comparing two outputs can hold both open.
  *
- * TODO(content): see `Outputs/OutputCard.jsx`'s note — no module's `.image`
- * here is wired, the live CDN art is banned by CLAUDE.md § Art Direction.
+ * See `Outputs/OutputCard.jsx`'s note on the temporary Art Direction
+ * override — same applies here.
  */
 export default function OutputsMobile({ heading, sub, cards }) {
   return (

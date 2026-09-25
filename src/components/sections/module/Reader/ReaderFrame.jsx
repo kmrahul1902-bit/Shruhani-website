@@ -9,10 +9,10 @@ import ReaderCardGroup from "./ReaderCardGroup";
  * Every image is rendered and cross-faded by opacity; only the first is
  * eager. `plate` says how this module's mockup grounds the frame.
  *
- * TODO(content): no module's `reader.slides[].image` is wired — the live
- * site's CDN art for this section (and for Applies/Outputs/Integration on
- * the same pages) is isometric/3D icon-pack and podium-render illustration,
- * banned outright by CLAUDE.md § Art Direction regardless of color.
+ * The cluster photographs are the live site's isometric/3D-render art,
+ * which CLAUDE.md § Art Direction bans outright — wired anyway per an
+ * explicit, temporary override for the investor presentation (filled pages
+ * over empty boxes); slated for replacement with on-brand art.
  */
 export default function ReaderFrame({
   frameRef,

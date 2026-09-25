@@ -4,8 +4,8 @@ import Image from "next/image";
  * "Where it applies" on a phone: title, then visual, then body (the reverse
  * of the desktop card, which leads with the artwork).
  *
- * TODO(content): see `Applies/AppliesCard.jsx`'s note — no module's `.image`
- * here is wired, the live CDN art is banned by CLAUDE.md § Art Direction.
+ * See `Applies/AppliesCard.jsx`'s note on the temporary Art Direction
+ * override — same applies here.
  */
 export default function AppliesMobile({ heading, sub, cards }) {
   return (

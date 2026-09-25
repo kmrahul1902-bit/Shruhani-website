@@ -15,8 +15,7 @@ import { MODULE_IMAGE_SIZES } from "./modules.constants";
  * The six sensing modules on a phone. The desktop grid becomes a single
  * column of collapsibles, title as control, one open at a time.
  *
- * TODO(content): see `Modules.jsx`'s note — no module's `.image` is wired,
- * the live CDN art is banned by CLAUDE.md § Art Direction.
+ * See `Modules.jsx`'s note on the tile art's temporary Art Direction override.
  */
 export default function ModuleAccordion({ modules }) {
   const [open, setOpen] = useState(modules[0]?.key);

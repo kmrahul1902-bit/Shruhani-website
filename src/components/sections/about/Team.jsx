@@ -5,14 +5,11 @@ import { SECTION_TIGHT } from "./about.constants";
 /**
  * Our team — four function cards and the group photograph below them.
  *
- * The group photograph is wired (post-build) to a real office photo.
- *
- * TODO(content): the four function cards' `.image` are not wired — the live
- * site's CDN icons for Product Engineering/Data Science/Banking &
- * Compliance/Platform Security are 3D podium-render illustrations (glossy
- * highlights, drop shadows, blue), banned outright by CLAUDE.md § Art
- * Direction regardless of color — same conflict as the product/module pages
- * (see `product/SignalLayers/SignalLayers.jsx`'s note).
+ * The group photograph is wired (post-build) to a real office photo. The
+ * function-card icons are the live site's 3D podium-render illustration,
+ * which CLAUDE.md § Art Direction bans outright — wired anyway per an
+ * explicit, temporary override for the investor presentation (filled pages
+ * over empty boxes); slated for replacement with on-brand art.
  */
 export default function Team({ team }) {
   return (

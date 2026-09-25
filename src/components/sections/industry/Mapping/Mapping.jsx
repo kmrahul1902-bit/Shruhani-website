@@ -45,10 +45,11 @@ export default function Mapping({ heading, sub, note, noteAccent, cards }) {
               <h3 className="text-title-3 text-ink font-bold">{card.title}</h3>
             </div>
             <p className="text-body-sm text-muted mt-2.5">{card.description}</p>
-            {/* TODO(content): the live site's ScreenX/Cortex/Escalation
-                suite illustrations (cdn.sign3.in/.../suite_*.png) exist but
-                are blue and off-token — see the matching TODO in
-                Decisions.jsx for why they're not wired here either. */}
+            {/* The suite illustrations are the live site's isometric/
+                3D-render art, which CLAUDE.md § Art Direction bans outright
+                — wired anyway per an explicit, temporary override for the
+                investor presentation (filled pages over empty boxes);
+                slated for replacement with on-brand art. */}
             {card.image?.src && (
               <div className="mt-auto flex items-end justify-center pt-4.5">
                 <Image

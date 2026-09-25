@@ -18,8 +18,10 @@ import {
  * decided here from the card's key rather than by the parent passing geometry
  * down — the parent has no business knowing an illustration's intrinsic size.
  *
- * TODO(content): no product page's `gap.cards[].image` is wired — see
- * `SignalLayers.jsx`'s note for why (banned icon-pack/3D-render imagery).
+ * The illustrations are the live site's isometric/3D-render art, which
+ * CLAUDE.md § Art Direction bans outright — wired anyway per an explicit,
+ * temporary override for the investor presentation (filled pages over empty
+ * boxes); slated for replacement with on-brand art.
  */
 export default function GapCard({ card, variant, fill, artHeight }) {
   const industry = variant === SECTION_VARIANT.INDUSTRY;

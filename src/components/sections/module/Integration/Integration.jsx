@@ -8,8 +8,8 @@ import IntegrationCard from "./IntegrationCard";
  * pages. `className` is where the template hands this section a wider
  * measure (see integration-measure-wide).
  *
- * TODO(content): see `ReaderFrame.jsx`'s note — no module's `.image` here is
- * wired, the live CDN art is banned by CLAUDE.md § Art Direction.
+ * See `ReaderFrame.jsx`'s note on the temporary Art Direction override —
+ * same applies here.
  */
 export default function Integration({
   heading,

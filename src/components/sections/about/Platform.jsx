@@ -12,11 +12,10 @@ import { ArrowIcon } from "./about.icons";
  * `href` and `key`, attached by `about.adapter.js`, rather than looking one
  * up in a route registry here.
  *
- * TODO(content): no suite's `.image` is wired — the live site's CDN icons
- * for ScreenX/Cortex/EscalationX are 3D podium-render illustrations (glossy
- * highlights, drop shadows, blue), banned outright by CLAUDE.md § Art
- * Direction regardless of color — same conflict as the product/module pages
- * (see `SignalLayers.jsx`'s note).
+ * The suite icons are the live site's 3D podium-render illustration, which
+ * CLAUDE.md § Art Direction bans outright — wired anyway per an explicit,
+ * temporary override for the investor presentation (filled pages over empty
+ * boxes); slated for replacement with on-brand art.
  */
 export default function Platform({ platform }) {
   return (

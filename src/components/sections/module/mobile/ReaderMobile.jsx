@@ -7,9 +7,8 @@ import { ReaderIcon, ReaderTick } from "../Reader/reader.icons";
  * cards (rather than the desktop's sticky-frame swap), so this renders on
  * the server with no JS.
  *
- * TODO(content): see `Reader/ReaderFrame.jsx`'s note — no module's
- * `reader.slides[].image` is wired, the live CDN art is banned by CLAUDE.md
- * § Art Direction.
+ * See `Reader/ReaderFrame.jsx`'s note on the temporary Art Direction
+ * override — same applies here.
  */
 const TONE_CLASS = {
   ok: "text-signal-ok",

@@ -7,8 +7,8 @@ import { cn } from "@/lib/cn";
  * `tallIllustration` is the plate the two-up row uses; the section decides
  * it from the card count.
  *
- * TODO(content): see `ReaderFrame.jsx`'s note — no module's `.image` here is
- * wired, the live CDN art is banned by CLAUDE.md § Art Direction.
+ * See `ReaderFrame.jsx`'s note on the temporary Art Direction override —
+ * same applies here.
  */
 export default function OutputCard({
   title,

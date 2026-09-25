@@ -15,16 +15,20 @@ import { SECTION_VARIANT } from "../product.constants";
  * Cortex and ScreenX pull their heading up into the section above; Escalation
  * does not, and paints its card border violet rather than blue.
  *
- * TODO(content): none of the three product pages' `personaLayers.cards[].image`
- * fields are wired. The live site's CDN candidates for this section (and for
- * `gap.cards[].image`, `howItWorks.steps[].image`/`.visual`, and
- * `threats.cards[].image` on all three pages — see matching notes on
- * `GapCard.jsx`, `HowItWorks.jsx`, `Threats.jsx`) are isometric/3D icon-pack
- * renders in blue and purple, both banned outright by CLAUDE.md § Art
- * Direction ("Isometric / flat clipart from icon packs", "3D podium renders,
- * glow rims, floating device composites") — recoloring wouldn't fix the
- * imagery problem, only the palette. Left unwired rather than wiring content
- * that violates the design system.
+ * ScreenX's and Cortex's `personaLayers.cards[].image` are the live site's
+ * isometric/3D-render art, which CLAUDE.md § Art Direction bans outright —
+ * wired anyway per an explicit, temporary override for the investor
+ * presentation (filled pages over empty boxes); slated for replacement with
+ * on-brand art (see matching notes on `GapCard.jsx`, `HowItWorks.jsx`,
+ * `Threats.jsx` for the rest of the three pages' art).
+ *
+ * TODO(content): Escalation's `personaLayers.cards[].image` (Enhanced Due
+ * Diligence / LEA Automation / Built on Shared Evidence) is still unwired —
+ * the only CDN candidates for that section are generic device/location/
+ * behaviour signal icons reused from elsewhere, not art matching these three
+ * capability labels. The style override doesn't extend to wiring a
+ * factually mismatched image; left unwired rather than shipping the wrong
+ * picture under the wrong label.
  */
 const VARIANTS = {
   product: { top: "-mt-10 mb-10", border: "layer-card-border" },

@@ -7,8 +7,8 @@ import { cn } from "@/lib/cn";
  * `visual: "plate"` is the exception, for a module whose illustrations have
  * no ground of their own.
  *
- * TODO(content): see `ReaderFrame.jsx`'s note — no module's `.image` here is
- * wired, the live CDN art is banned by CLAUDE.md § Art Direction.
+ * See `ReaderFrame.jsx`'s note on the temporary Art Direction override —
+ * same applies here.
  */
 export default function AppliesCard({ title, description, image, visual }) {
   const plate = visual === "plate";
