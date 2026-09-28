@@ -1,11 +1,24 @@
+import fs from "node:fs";
+import path from "node:path";
+
 /**
  * The flat list of every static route's path, for `sitemap.js`, `robots.js`
  * and any page that needs "every route" without a routes registry (this
  * project has none — see plan/CLAUDE.md → Decisions).
  *
- * `/resources/article/[slug]` is excluded: it is dynamic and currently has
- * zero articles.
+ * Article paths are appended below, read straight from the same baked JSON
+ * `lib/articles.js` serves — this module can't import that one back (it
+ * exports async functions for a list `robots.js`/`sitemap.js` need
+ * synchronously at build time), so it reads the file itself.
  */
+const posts = JSON.parse(
+  fs.readFileSync(
+    path.join(process.cwd(), "src/content/blog-posts.json"),
+    "utf8"
+  )
+);
+const ARTICLE_PATHS = posts.map((post) => post.href);
+
 export const ALL_PATHS = [
   "/",
   "/about",
@@ -34,6 +47,7 @@ export const ALL_PATHS = [
   "/solutions/industries/nbfcs-lending",
   "/solutions/industries/fintechs-neobanks",
   "/solutions/industries/ecommerce-marketplaces",
+  ...ARTICLE_PATHS,
 ];
 
 /** Internal/QA pages — not indexed, not in the sitemap. */
